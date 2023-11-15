@@ -1,0 +1,379 @@
+\documentclass{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{enumerate, amsmath, amsfonts, amssymb, amsthm, mathrsfs, wasysym, graphics, graphicx, xcolor, url, hyperref, hypcap, xargs, multicol, pdflscape, multirow, hvfloat, array, ae, aecompl, pifont, mathtools, a4wide, float, blkarray, overpic, nicefrac}
+\usepackage[bb=boondox]{mathalfa}%allows for mathbb 0 and 1
+\usepackage[shortlabels, inline]{enumitem}
+\usepackage[noabbrev,capitalise]{cleveref}
+\usepackage[normalem]{ulem}
+\usepackage{marginnote}
+\hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue}
+\usepackage[all]{xy}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+%\usepackage{tkz-graph}
+\usetikzlibrary{trees, decorations, decorations.pathmorphing, decorations.markings, decorations.shapes, shapes, arrows, matrix, calc, fit, intersections, patterns, angles}
+\graphicspath{{figures/}{figures/diagonals/}{figures/walks/}{figures/tubes/}{figures/blocks/}}
+\makeatletter\def\input@path{{figures/}}\makeatother
+\usepackage{caption}
+\captionsetup{width=\textwidth}
+\usepackage[export]{adjustbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% theorems
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem*{theorem*}{Theorem}%[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{convention}[theorem]{Convention}
+
+\crefname{equation}{Equation}{Equations}
+
+% math special letters
+\newcommand{\R}{\mathbb{R}} % reals
+\newcommand{\Q}{\mathbb{Q}} % rationals
+\newcommand{\N}{\mathbb{N}} % naturals
+\newcommand{\Z}{\mathbb{Z}} % integers
+\newcommand{\C}{\mathbb{C}} % complex
+\newcommand{\I}{\mathbb{I}} % set of integers
+\newcommand{\HH}{\mathbb{H}} % hyperplane
+\newcommand{\K}{k} % field
+\newcommand{\f}[1]{{\mathfrak{#1}}} % mathfrak letters
+\renewcommand{\c}[1]{{\mathcal{#1}}} % call letters
+\renewcommand{\b}[1]{{\boldsymbol{#1}}} % bold letters
+\newcommand{\h}{\widehat} % hat letters
+
+% math commands
+\newcommand{\set}[2]{\left\{ #1 \;\middle|\; #2 \right\}} % set notation
+\newcommand{\smallset}[2]{\{ #1 \;\big|\; #2 \}} % small set notation
+\newcommand{\bigset}[2]{\big\{ #1 \;\big|\; #2 \big\}} % big set notation
+\newcommand{\Bigset}[2]{\Big\{ #1 \;\Big|\; #2 \Big\}} % Big set notation
+\newcommand{\setangle}[2]{\left\langle #1 \;\middle|\; #2 \right\rangle} % set notation
+\newcommand{\ssm}{\smallsetminus} % small set minus
+\newcommand{\dotprod}[2]{\langle \, #1 \; | \; #2 \, \rangle} % dot product
+\newcommand{\bigdotprod}[2]{\big\langle \, #1 \; \big| \; #2 \, \big\rangle} % dot product
+\newcommand{\symdif}{\,\triangle\,} % symmetric difference
+% \newcommand{\one}{{1\!\!1}} % the all one vector
+\newcommand{\one}{{\mathbb{1}}} % the all one vector
+\newcommand{\zero}{{\mathbb{0}}} % the all zero vector
+
+\newcommand{\eqdef}{\mbox{\,\raisebox{0.2ex}{\scriptsize\ensuremath{\mathrm:}}\ensuremath{=}\,}} % :=
+\newcommand{\defeq}{\mbox{~\ensuremath{=}\raisebox{0.2ex}{\scriptsize\ensuremath{\mathrm:}} }} % =:
+\newcommand{\simplex}{\triangle} % simplex
+\renewcommand{\implies}{\Rightarrow} % imply sign
+\newcommand{\transpose}[1]{{#1}^T} % transpose matrix
+
+% operators
+\DeclareMathOperator{\conv}{conv} % convex hull
+\DeclareMathOperator{\vect}{vect} % linear span
+\DeclareMathOperator{\cone}{cone} % cone hull
+\DeclareMathOperator{\sign}{sign} % sign
+\DeclareMathOperator{\suppmin}{\mu} % support minimal
+
+% others
+\newcommand{\ie}{\textit{i.e.}~} % id est
+\newcommand{\eg}{\textit{e.g.}~} % exempli gratia
+\newcommand{\Eg}{\textit{E.g.}~} % exempli gratia
+\newcommand{\apriori}{\textit{a priori}} % a priori
+\newcommand{\viceversa}{\textit{vice versa}} % vice versa
+\newcommand{\versus}{\textit{vs.}~} % versus
+\newcommand{\aka}{\textit{a.k.a.}~} % also known as
+\newcommand{\perse}{\textit{per se}} % per se
+\newcommand{\ordinal}{\textsuperscript{th}} % th for ordinals
+\newcommand{\ordinalst}{\textsuperscript{st}} % st for ordinals
+\definecolor{darkblue}{rgb}{0,0,0.7} % darkblue color
+\definecolor{green}{RGB}{57,181,74} % green color
+\definecolor{violet}{RGB}{147,39,143} % violet color
+\newcommand{\red}{\color{red}} % red command
+\newcommand{\blue}{\color{blue}} % blue command
+\newcommand{\orange}{\color{orange}} % orange command
+\newcommand{\green}{\color{green}} % green command
+\newcommand{\darkblue}{\color{darkblue}} % darkblue command
+\newcommand{\defn}[1]{\textsl{\darkblue #1}} % emphasis of a definition
+\newcommand{\para}[1]{\medskip\noindent\textsc{#1.}} % paragraph
+\renewcommand{\topfraction}{1} % possibility to have one page of pictures
+\renewcommand{\bottomfraction}{1} % possibility to have one page of pictures
+\newcommand{\ex}{_{\textrm{exm}}} % examples
+\newcommand{\pa}{_{\textrm{pa}}} % path
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle, draw, inner sep=1.5pt, scale=.7] (char) {#1};}}
+\newcommand{\compactVectorD}[2]{\begin{bmatrix} #1 \\ #2 \end{bmatrix}}
+\newcommand{\compactVectorT}[3]{\begin{bmatrix} #1 \\[-.1cm] #2 \\[-.1cm] #3 \end{bmatrix}}
+
+% marginal comments
+\usepackage{todonotes}
+\newcommand{\emily}[1]{\todo[color=red!30]{#1 \\ \hfill --- E.}}
+\newcommand{\jc}[1]{\todo[color=green!30]{#1 \\ \hfill --- J.-C.}}
+\newcommand{\vincent}[1]{\todo[color=blue!30]{#1 \\ \hfill --- V.}}
+
+% geometry
+\newcommandx{\polytope}[1][1 = P]{\mathsf{#1}} % polytope
+\newcommandx{\Asso}[1][1=n]{\polytope{Asso}(#1)} % associahedron
+\newcommandx{\Zono}[1][1=\digraph]{\polytope{Zono}(#1)} % zonotope
+\newcommandx{\Quotientope}[1][1=\equiv]{\polytope{Quot}(#1)} % quotientope
+\newcommandx{\QuotientFan}[1][1=\equiv]{\c{F}(#1)} % quotient fan
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% formating the part command
+\makeatletter
+\def\part{\@startsection{part}{1}%
+\z@{.7\linespacing\@plus\linespacing}{.8\linespacing}%
+{\LARGE\sffamily\centering}}
+%\@addtoreset{section}{part}
+\makeatother
+\renewcommand{\thepart}{\Roman{part}}
+%\renewcommand{\thesection}{\arabic{part}.\arabic{section}}
+
+% formating the table of contents
+\setcounter{tocdepth}{4}
+\makeatletter
+\def\l@section{\@tocline{1}{5pt}{0pc}{}{}}
+\makeatother
+\let\oldtocpart=\tocpart
+\renewcommand{\tocpart}[2]{\sc\large\oldtocpart{#1}{#2}}
+\let\oldtocsection=\tocsection
+\renewcommand{\tocsection}[2]{\bf\oldtocsection{#1}{#2}}
+\let\oldtocsubsubsection=\tocsubsubsection
+\renewcommand{\tocsubsubsection}[2]{\quad\oldtocsubsubsection{#1}{#2}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[Separating trees and simple comgruences]{Separating trees and simple congruences of the weak order}
+%\title{Poset associahedra as sections of graph associahedra}
+
+\thanks{
+VP was partially supported by the French project CHARMS (ANR~19\,CE40\,0017), by the French\,--\,Austrian project PAGCAP (ANR~21\,CE48\,0020 \& FWF I 5788), and by the Spanish projects PID2019-106188GB-I00 and PID2022-137283NB-C21 of MCIN/AEI/10.13039/501100011033.
+}
+
+\author{Emily Barnard}
+\address[Emily Barnard]{DePaul University, Chicago, U.S.A.}
+\email{e.barnard@depaul.edu}
+\urladdr{\url{https://emilybarnard.github.io}}
+
+\author{Jean-Christophe Novelli}
+\address[Jean-Christophe Novelli]{Université Gustave Eiffel, Marne-la-Vallée, France}
+\email{novelli@univ-mlv.fr}
+\urladdr{\url{https://igm.univ-mlv.fr/~novelli/}}
+
+\author{Vincent Pilaud}
+\address[Vincent Pilaud]{Universitat de Barcelona, Spain}
+\email{vincent.pilaud@ub.edu}
+\urladdr{\url{https://www.ub.edu/comb/vincentpilaud/}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{abstract}
+\end{abstract}
+
+\maketitle
+
+%\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+\label{sec:introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Separating trees}
+\label{sec:separatingTrees}
+
+\vincent{parent, children, ancestor, descendant}
+
+\begin{definition}
+\label{def:separatingTree}
+A \defn{separating tree} is an oriented tree on~$[n]$ such that
+\begin{itemize}
+\item each node has at most two parents and at most two children,
+\item node~$j$ with two parents (resp.~children) separates its two ancestor (resp.~descendant) subtrees, meaning that all nodes in the left subtree are smaller than~$j$ while all nodes in the right subtree are larger than~$j$.
+\end{itemize}
+\end{definition}
+
+To represent separating trees, ...
+\vincent{todo}
+\vincent{add a figure with examples of separating trees.}
+
+\begin{remark}
+Readers familiar with~\cite{PilaudPons-permutrees} might wonder what differs between permutrees and separating trees.
+The subtle distinction is that empty ancestor or descendant subtrees are allowed in permutrees and not in separating trees.
+For instance, a in a separating tree, it is impossible to say that a node has two children, one of which is empty.
+\end{remark}
+
+We gather in this section some structural lemmas about separating trees.
+
+\begin{lemma}
+\label{lem:separatingTree1}
+Consider a separating tree~$T$ and let~$1 \le i < j < k \le n$. Then
+\begin{itemize}
+\item if~$i \leftarrow k$ is an arc of~$T$ , then there is a directed path in~$T$ joining either~$i$ to~$j$, or~$j$ to~$k$,
+\item if~$i \to k$ is an arc of~$T$ , then there is a directed path in~$T$ joining either~$j$ to~$i$, or~$k$ to~$j$.
+\end{itemize}
+%A symmetric statement holds for an arc~$i \leftarrow k$.
+\end{lemma}
+
+\begin{proof}
+\vincent{todo}
+\end{proof}
+
+\begin{corollary}
+\label{coro:separatingTree1}
+In a separating tree, there is no edge passing above a node with two parent or below a node with two children.
+\end{corollary}
+
+In other words, we can draw a separating red wall above each node with two parents and below each node with two children, and the edges of the separating tree will never cross the red walls.
+
+\begin{lemma}
+\label{lem:separatingTree2}
+Consider a node~$j$ with two parents (resp.~children) in a separating tree~$T$, and denote by~$M$ the maximum of the left ancestor (resp.~descendant) subtree of~$j$ and by~$m$ the minimum of the right ancestor (resp.~descendant) subtree of~$j$. Then for each~$k$ with~$M < k < m$, there is a directed path from~$k$ to~$j$ (resp.~from~$j$ to~$k$).
+\end{lemma}
+
+\begin{proof}
+\vincent{todo}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Simple congruences}
+\label{sec:simpleCongruences}
+
+%%%%%%%%%%%%%%%%%%%
+
+\subsection{Background on lattice congruences of the weak order}
+\label{subsec:backgroundLatticeCongruences}
+
+%%%%%%%%%%%%%%%%%%%
+
+\subsection{Insertion map}
+\label{subsec:insertionMap}
+
+%%%%%%%%%%%%%%%%%%%
+
+\subsection{Simple congruences}
+\label{subsec:simpleCongruences}
+
+\begin{definition}
+\label{def:simpleCongruence}
+A lattice congruence of the weak order is \defn{simple} if the minimal (for the subarc order) arcs not contained in its arc ideal are up arcs (of the form~$(a, b, {]a,b[}, \varnothing)$) or down arcs (of the form~$(a, b, \varnothing, {]a,b[})$).
+\end{definition}
+
+\begin{example}
+Classical examples of simple congruences of the weak order are
+\begin{itemize}
+\item the trivial congruence,
+\item the Sylvester congruences~\cite{Tonks, HivertNovelliThibon-algebraBinarySearchTrees},
+\item the Cambrian congruences~\cite{Reading-CambrianLattices, ChatelPilaud},
+\item the permutree congruences~\cite{PilaudPons-permutrees},
+\item the graph associahedra congruences of~\cite{BarnardMcConville}.
+\end{itemize}
+A good example of a congruence which is not simple is the Baxter congruence~\cite{LawReading, Giraudo} whose quotient corresponds to diagonal rectangulations of a square.
+\end{example}
+
+The main result of this section is a simple combinatorial proof of the following statement.
+
+\begin{theorem}[{\cite[Thm.~??]{HoangMutze} \& \cite[Thm.~??]{DemonetIyamaReadingReitenThomas}}]
+The following assertions are equivalent for a lattice congruence~$\equiv$ of the weak order:
+\begin{enumerate}[(i)]
+\item $\equiv$ is a simple congruence,
+\item the Hasse diagram of any $\equiv$-poset is a tree,
+\item the Hasse diagram of the lattice quotient~$\f{S}_n/{\equiv}$ is regular (\ie constant degree),
+\item the quotient fan~$\QuotientFan$ is a simplicial fan,
+\item the quotientope~$\Quotientope$ is a simple polytope.
+\end{enumerate}
+\end{theorem}
+
+This statement was originally proved by H.~Hoang and T.~Mütze in~\cite{HoangMutze} with a purely combinatorial (but slightly involved) proof.
+In their paper on the lattice theory of torsion classes~\cite{DemonetIyamaReadingReitenThomas}, L.~Demonet, O.~Iyama, N.~Reading, I.~Reiten, and H.~Thomas provided an alternative proof in terms of quiver representation theory.
+Our proof is a very elementary approach just based on the insertion map described in~\cref{subsec:insertionMap}.
+In fact, we prove the following stronger statement on the $\equiv$-posets of a simple congruence~$\equiv$.
+
+\begin{proposition}
+\label{prop:simpleImpliesSeparatingTrees}
+If~$\equiv$ is a simple congruence of the weak order, then all the Hasse diagram of any $\equiv$-poset is a separating tree.
+\end{proposition}
+
+\begin{proof}
+\vincent{todo}
+\end{proof}
+
+In fact, we can actually characterize the $\equiv$-posets of a simple congruence~$\equiv$.
+For this, we need the following two definitions.
+
+\begin{definition}
+\label{lem:edgeIsArc}
+From \cref{lem:separatingTree1}, each edge in a separating tree~$T$ actually defines an arc. Namely
+\begin{itemize}
+\item each edge~$i \leftarrow k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$k$ (resp.~$i$ to~$j$),
+\item each edge~$i \to k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$i$ (resp.~$k$ to~$j$).
+\end{itemize}
+\end{definition}
+
+\begin{definition}
+\label{def:admissibleSeparatingTrees}
+Fix a (simple) lattice congruence~$\equiv$ of the weak order.
+A separating tree~$T$ is \defn{$\equiv$-admissible} if
+\begin{enumerate}[(i)]
+\item all edges of~$T$ are allowed arcs in~$\equiv$,
+\item if a node~$j$ of~$T$ has two parents, and $M$ (resp.~$m$) denotes the maximum (resp.~minimum) of the left (resp.~right) ancestor subtree of~$j$, then the up arc~$(M, m, {]M,m[}, \varnothing)$ is forbidden~in~$\equiv$,
+\item if a node~$j$ of~$T$ has two children, and $M$ (resp.~$m$) denotes the maximum (resp.~minimum) of the left (resp.~right) descendant subtree of~$j$, then the down arc~$(M, m, \varnothing, {]M,m[})$ is forbidden in~$\equiv$.
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+If~$T$ and~$T'$ are two $\equiv$-admissible separating trees with a common linear extension, then~${T = T'}$.
+\end{lemma}
+
+\begin{proof}
+\vincent{todo}
+\end{proof}
+
+\begin{proposition}
+\label{prop:admissibleSeparatingTrees}
+For a simple congruence~$\equiv$ of the weak order, the $\equiv$-posets are precisely the (linear extensions of the) $\equiv$-admissible separating trees.
+\end{proposition}
+
+\begin{proof}
+\vincent{todo}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Schröder separating trees}
+\label{sec:SchroderSeparatingTrees}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Hopf algebra}
+\label{sec:HopfAlgebra}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Quiver representation theory}
+\label{subsec:representationTheory}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\addtocontents{toc}{\vspace{.1cm}}
+\section*{Acknowledgments}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{alpha}
+\bibliography{separatingTrees}
+\label{sec:biblio}
+
+\end{document}
