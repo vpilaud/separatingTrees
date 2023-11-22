@@ -121,6 +121,7 @@
 \newcommandx{\polytope}[1][1=P]{\mathsf{#1}} % polytope
 \newcommandx{\Perm}[1][1=n]{\polytope[Perm]_{#1}} % permutahedron
 \newcommandx{\Asso}[1][1=n]{\polytope[Asso]_{#1}} % associahedron
+\newcommandx{\Para}[1][1=n]{\polytope[Para]_{#1}} % parallelotope
 \newcommandx{\Zono}[1][1=\digraph]{\polytope[Zono]_{#1}} % zonotope
 \newcommandx{\Quotientope}[1][1=\equiv]{\polytope[Quot]_{#1}} % quotientope
 \newcommandx{\Fan}[1][1=F]{\mathcal{#1}} % fan
@@ -153,6 +154,8 @@
 \newcommand{\Decorations}{\{\noneCirc{}, \downCirc{}, \upCirc{}, \upDownCirc{}\}} % all decorations
 \newcommand{\projDown}{\smash{\pi^{\equiv}_{\!\downarrow\!}}} % down projection lattice congruence
 \newcommand{\projUp}{\smash{\pi_{\equiv}^{\!\uparrow\!}}} % up projection lattice congruence
+\newcommand{\arcDown}{\smash{\alpha_{\downarrow\!}}} % down arc
+\newcommand{\arcUp}{\smash{\alpha^{\uparrow\!}}} % up arc
 \newcommandx{\arcDiagramDown}[1][1=\equiv]{\smash{\delta^{#1}_{\downarrow\!}}} % down arc diagram lattice congruence
 \newcommandx{\arcDiagramUp}[1][1=\equiv]{\smash{\delta_{#1}^{\uparrow\!}}} % up arc diagram lattice congruence
 
@@ -327,7 +330,7 @@ Visually, $\arc$ is a subarc of~$\arc'$ if the endpoints of~$\arc$ are located i
 The \defn{arc poset} is the poset on all arcs of~$\arcs_n$ ordered by reverse subarc order (big elements are subarcs of small elements in this poset).
 The the arc poset on~$\arcs_4$ is illustrated in \cref{fig:forcingOrder}.
 An \defn{arc ideal} is an upper ideal of the arc poset.
-\vincent{I hesitate to reverse the poset... it would not be the usual convention, but this convention always puzzles me. Somehow, I like that small arcs are short...}
+\vincent{I always hesitate to reverse the poset... it would not be the usual convention, but this convention always puzzles me. Somehow, I like that small arcs are short...}
 
 \begin{figure}
 	\capstart
@@ -412,19 +415,65 @@ The quotient fan~$\quotientFan[\equiv_\textrm{sylv}]$ is the normal fan of the c
 \label{subsec:famousCongruences}
 
 We briefly gather some famous congruences of the weak order:
-\begin{enumerate}
-\item The \defn{trivial congruence}~$\equiv_\textrm{triv}$ is defined by the ideal~$\arcs_n$ of all arcs. It has a congruence class for each permutation. The quotient~$\f{S}_n/{\equiv_\textrm{triv}}$ is the weak order. The quotient fan~$\quotientFan[\textrm{triv}]$ is the braid fan, and the quotientope~$\Quotientope[\textrm{triv}]$ is the permutahedron~$\Perm$.
-\item The \defn{sylvester congruence} is defined by the ideal~$\arcs_\textrm{sylv} \eqdef \set{(i, j, {]i,j[}, \varnothing}{1 \le i < j \le n}$ of up arcs. It has a congruence class for each binary tree, given by the linear extensions of this tree (when labeled in inorder and oriented towards its root). It can also be seen as the transitive closure of the rewriting rule~$U i k V j W \equiv_\textrm{sylv} U k i V j W$ where~$i < j < k$ are letters and~$U,V,W$ are words on~$[n]$. The quotient~$\f{S}_n/{\equiv_\textrm{sylv}}$ is the weak order. The quotient fan~$\quotientFan[\textrm{sylv}]$ is the sylvester fan, and the quotientope~$\Quotientope[\textrm{sylv}]$ is the associahedron~$\Asso$.
 
-\item The \defn{recoil congruence}~$\equiv_\textrm{rec}$ is defined by the ideal~$\arcs_\textrm{rec} = \set{(i, i+1, \varnothing, \varnothing)}{i \in [n-1]}$ of basic arcs. It has a congruence class for each subset~$I \subseteq [n-1]$ given by the permutations whose recoils (descents of the inverse) are at positions in~$I$. It can also be seen as the transitive closure of the rewriting rule~$U i j V \equiv_{\textrm{rec}} U j i V$ for~$|i - j| > 1$. The quotient~$\f{S}_n/{\equiv_\textrm{rec}}$ is the boolean lattice.
-\item For an arc~$\arc \in \arcs_n$, the \defn{$\arc$-Cambrian congruence} \vincent{todo}
-\item For~$\decoration \in \Decorations^n$, the \defn{$\decoration$-permutree congruence}~$\equiv_\decoration$ is defined by the ideal~$\arcs_\decoration$ of arcs which do not pass above the points~$j$ with~$\decoration_j \in \{\upCirc, \upDownCirc\}$ nor below the points~$j$ with~$\decoration_j \in \{\downCirc, \upDownCirc\}$. Its congruence classes correspond to $\decoration$-permutrees~\cite{PilaudPons-permutrees}. It can also be seen as the transitive closure of the rewriting rules~$U i k V j W \equiv_\decoration U k i V j W$ for~$i < j < k$ with~$\decoration_j \in \{\downCirc, \upDownCirc\}$ and~$U j V i k W \equiv_\decoration U j V k i W$ for~$i < j < k$ with~$\decoration_j \in \{\upCirc, \upDownCirc\}$.
-\label{item:permutreeCongruence}
-\item The \defn{Baxter congruence}~$\equiv_\textrm{Bax}$ is defined by the ideal of arcs that do not cross the horizontal axis, \ie~$\arcs_\textrm{Bax} = \set{(a, b, A, B) \in \arcs_n}{A = \varnothing \text{ or } B = \varnothing}$. Its congruence classes correspond to diagonal rectangulations~\cite{LawReading} or equivalently pairs of twin binary trees~\cite{Giraudo}, which are counted by the Baxter numbers. It can also be seen as the transitive closure of the rewriting rule~$U j V i \ell W k X \equiv_{\textrm{Bax}} U j V \ell i W k X$ for~$i < j, k < \ell$.
-\label{item:BaxterCongruence}
-\item For~$p \ge 1$, the \defn{$p$-recoil congruence}~$\equiv_{p\textrm{-rec}}$ is defined by the ideal of arcs of length at most~$p$, \ie~$\arcs_{p\textrm{-rec}} = \set{(a, b, A, B) \in \arcs_n}{b-a \le p}$. Its congruence classes correspond to acyclic orientations of the graph on~$[n]$ with edges~$(a,b)$ for~$|a-b| \le p$. It can also be seen as the transitive closure of the rewriting rule~$U i j V \equiv_{p\textrm{-rec}} U j i V$ for~$|i - j| > p$. See \cite{Reading-HopfAlgebras, Pilaud-brickAlgebra}.
-\item For~$p \ge 1$, the \defn{$p$-twist congruence}~$\equiv_{p\textrm{-twist}}$ is defined by the ideal of arcs passing below at most~$p$ points, \ie~$\arcs_{p\textrm{-twist}} = \set{(a, b, A, B) \in \arcs_n}{|B| \le p}$. Its congruence classes correspond to certain acyclic pipe dreams~\cite{Pilaud-brickAlgebra}. It can also be seen as the transitive closure of the rewriting rule~$U i k V_1 j_1 \dots V_p j_p W \equiv_{p\textrm{-twist}} U k i V_1 j_1 \dots V_p j_p W$ for~$i < j_1, \dots, j_p < k$.
-\item The graph associahedra congruences of~\cite{BarnardMcConville}. \vincent{todo}
+\begin{enumerate}
+\item \label{item:trivialCongruence}
+The \defn{trivial congruence}~$\equiv_\textrm{triv}$ is defined by the ideal~$\arcs_n$ of all arcs.
+It has a congruence class for each permutation.
+The quotient~$\f{S}_n/{\equiv_\textrm{triv}}$ is the weak order.
+The quotient fan~$\quotientFan[\textrm{triv}]$ is the braid fan, and the quotientope~$\Quotientope[\textrm{triv}]$ is the permutahedron~$\Perm$.
+
+\item \label{item:sylvesterCongruence}
+The \defn{sylvester congruence} is defined by the ideal~$\arcs_\textrm{sylv} \eqdef \set{(i, j, {]i,j[}, \varnothing}{1 \le i < j \le n}$ of up arcs.
+It has a congruence class for each binary tree, given by the linear extensions of this tree (when labeled in inorder and oriented towards its root)~\cite{Tonks, HivertNovelliThibon-algebraBinarySearchTrees}.
+It can also be seen as the transitive closure of the rewriting rule~$U i k V j W \equiv_\textrm{sylv} U k i V j W$ where~$i < j < k$ are letters and~$U,V,W$ are words on~$[n]$.
+The quotient~$\f{S}_n/{\equiv_\textrm{sylv}}$ is the Tamari lattice.
+The quotient fan~$\quotientFan[\textrm{sylv}]$ is the sylvester fan, and the quotientope~$\Quotientope[\textrm{sylv}]$ is the associahedron~$\Asso$.
+
+\item \label{item:recoilCongruence}
+The \defn{recoil congruence}~$\equiv_\textrm{rec}$ is defined by the ideal~$\arcs_\textrm{rec} = \set{(i, i+1, \varnothing, \varnothing)}{i \in [n-1]}$ of basic arcs.
+It has a congruence class for each subset~$I \subseteq [n-1]$ given by the permutations whose recoils (descents of the inverse) are at positions in~$I$.
+It can also be seen as the transitive closure of the rewriting rule~$U i j V \equiv_{\textrm{rec}} U j i V$ for~$|i - j| > 1$.
+The quotient~$\f{S}_n/{\equiv_\textrm{rec}}$ is the boolean lattice.
+The quotient fan~$\quotientFan[\textrm{rec}]$ is defined by the hyperplanes~$x_i = x_{i+1}$ for~$i \in [n-1]$, and the quotientope~$\Quotientope[\textrm{rec}]$ is the parallelotope~$\sum_{i \in [n-1]} [\b{e}_i, \b{e}_{i+1}]$.
+
+\item \label{item:CambrianCongruence}
+For an arc~$\arc \eqdef (i, j, A, B) \in \arcs_n$, the \defn{$\arc$-Cambrian congruence}~$\equiv_\arc$ is defined by the ideal~$\arcs_\arc$ of the arc poset generated by~$\arc$.
+It has a congruence class for each  $\arc$-Cambrian tree~\cite{LangePilaud, ChatelPilaud, PilaudPons-permutrees}.
+%The $\arc$-Cambrian congruence classes are fibers of the $\arc$-Cambrian tree insertion, or equivalently linear extensions of $\arc$-Cambrian trees~\cite{LangePilaud, ChatelPilaud, PilaudPons-permutrees}. %, that is, trees on~$[a,b]$ such that the node~$j \in \{a\} \cup A$ (resp.~$j \in B \cup \{b\}$) has one ancestor (resp.~descendant) subtree and two descendant (resp.~ancestor) subtrees, and~$i < j < k$ for any nodes $i$ in the left descendant (resp.~ancestor) subtree of~$j$ and~$k$ in the right descendant (resp.~ancestor) subtree of~$j$.
+The $\arc$-Cambrian congruence can also be seen as the transitive closure of the three rewriting rules~${U i j V \equiv_\arc U j i V}$ for~$i < a$ or~$j > b$, $U i k V j W \equiv_\arc U k i V j W$ for~$i < j < k$ with~$j \in A$, and~$U j V i k W \equiv_\arc U j V k i W$ for~$i < j < k$ with~$j \in B$.
+In particular, the uncontracted permutations in the $\arc$-Cambrian congruence are those avoiding the consecutive patterns~$ji$ with~$i < j$ and~$i < a$ or~$j > b$, and the patterns~$kij$ for~$i < j < k$ with~$j \in A$ and~$jki$ for~$i < j < k$ with~$j \in B$.
+The quotient~$\f{S}_n / {\equiv_\arc}$ is the \defn{$\arc$-Cambrian lattice}~\cite{Reading-CambrianLattices}.
+The quotient fan~$\quotientFan[\arc]$ is the \defn{$\arc$-Cambrian fan} of~\cite{ReadingSpeyer} and the quotientope~$\Quotientope[\arc]$ is the \defn{$\arc$-associahedron} of~\cite{HohlwegLange}.
+
+\item \label{item:permutreeCongruence}
+For~$\decoration \in \Decorations^n$, the \defn{$\decoration$-permutree congruence}~$\equiv_\decoration$ is defined by the ideal~$\arcs_\decoration$ of arcs which do not pass above the points~$j$ with~$\decoration_j \in \{\upCirc, \upDownCirc\}$ nor below the points~$j$ with~$\decoration_j \in \{\downCirc, \upDownCirc\}$.
+Its congruence classes correspond to $\decoration$-permutrees~\cite{PilaudPons-permutrees}.
+It can also be seen as the transitive closure of the rewriting rules~$U i k V j W \equiv_\decoration U k i V j W$ for~$i < j < k$ with~$\decoration_j \in \{\downCirc, \upDownCirc\}$ and~$U j V i k W \equiv_\decoration U j V k i W$ for~$i < j < k$ with~$\decoration_j \in \{\upCirc, \upDownCirc\}$.
+The quotient~$\f{S}_n / {\equiv_\decoration}$ is the \defn{$\decoration$-permutree lattice}~\cite{PilaudPons-permutrees}.
+The quotient fan~$\quotientFan[\decoration]$ is the \defn{$\decoration$-permutree fan} of~\cite{PilaudPons-permutrees} and the quotientope~$\Quotientope[\decoration]$ is the \defn{$\decoration$-permutreehedron} of~\cite{PilaudPons-permutrees}.
+
+\item \label{item:BaxterCongruence}
+The \defn{Baxter congruence}~$\equiv_\textrm{Bax}$ is defined by the ideal of arcs that do not cross the horizontal axis, \ie~$\arcs_\textrm{Bax} = \set{(a, b, A, B) \in \arcs_n}{A = \varnothing \text{ or } B = \varnothing}$.
+Its congruence classes correspond to diagonal rectangulations~\cite{LawReading} or equivalently pairs of twin binary trees~\cite{Giraudo}, which are counted by the Baxter numbers.
+It can also be seen as the transitive closure of the rewriting rule~$U j V i \ell W k X \equiv_{\textrm{Bax}} U j V \ell i W k X$ for~$i < j, k < \ell$.
+\vincent{complete}
+
+\item 
+For~$p \ge 1$, the \defn{$p$-recoil congruence}~$\equiv_{p\textrm{-rec}}$ is defined by the ideal of arcs of length at most~$p$, \ie~$\arcs_{p\textrm{-rec}} = \set{(a, b, A, B) \in \arcs_n}{b-a \le p}$.
+Its congruence classes correspond to acyclic orientations of the graph on~$[n]$ with edges~$(a,b)$ for~$|a-b| \le p$.
+It can also be seen as the transitive closure of the rewriting rule~$U i j V \equiv_{p\textrm{-rec}} U j i V$ for~$|i - j| > p$. See \cite{Reading-HopfAlgebras, Pilaud-brickAlgebra}.
+\vincent{complete}
+
+\item
+For~$p \ge 1$, the \defn{$p$-twist congruence}~$\equiv_{p\textrm{-twist}}$ is defined by the ideal of arcs passing below at most~$p$ points, \ie~$\arcs_{p\textrm{-twist}} = \set{(a, b, A, B) \in \arcs_n}{|B| \le p}$.
+Its congruence classes correspond to certain acyclic pipe dreams~\cite{Pilaud-brickAlgebra}.
+It can also be seen as the transitive closure of the rewriting rule~$U i k V_1 j_1 \dots V_p j_p W \equiv_{p\textrm{-twist}} U k i V_1 j_1 \dots V_p j_p W$ for~$i < j_1, \dots, j_p < k$.
+\vincent{complete}
+
+\item
+The graph associahedra congruences of~\cite{BarnardMcConville}.
+\vincent{todo}
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%
@@ -449,23 +498,21 @@ We consider the set~$\boxslash(\sigma)$ of pairs of positions such that the rect
 \]
 For~$(i, j) \in \boxslash(\sigma)$, we define an arc~$\alpha(i, j, \sigma)$ by
 \[
-\overline{\alpha}(i, j, \sigma) \eqdef (\sigma_i, \sigma_j, \set{\sigma_k}{k < i \text{ and } \sigma_k \in {]\sigma_i, \sigma_j[}}, \set{\sigma_k}{j < k \text{ and } \sigma_k \in {]\sigma_i, \sigma_j[}}).
+\arcUp(i, j, \sigma) \eqdef (\sigma_i, \sigma_j, \set{\sigma_k}{k < i \text{ and } \sigma_k \in {]\sigma_i, \sigma_j[}}, \set{\sigma_k}{j < k \text{ and } \sigma_k \in {]\sigma_i, \sigma_j[}}).
 \]
 Moreover, we order~$\boxslash(\sigma)$ by the slope of the diagonal joining~$(\sigma_i, i)$ to~$(\sigma_j, j)$, that is, $(i, j) \prec (k,\ell)$ if~$i \le k < \ell \le j$ and~$\sigma_k \le \sigma_i < \sigma_j \le \sigma_\ell$.
-Finally, we define~$\boxslash_\equiv(\sigma)$ to be the subset of $\prec$-maximal elements in~$\set{(i, j) \in \boxslash(\sigma)}{\overline{\alpha}(i, j, \sigma) \in \arcs_\equiv}$.
+Finally, we define~$\boxslash_\equiv(\sigma)$ to be the subset of $\prec$-maximal elements in~$\set{(i, j) \in \boxslash(\sigma)}{\arcUp(i, j, \sigma) \in \arcs_\equiv}$.
 
-Symmetrically, we define~$\boxbslash(\sigma) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \sigma_i > \sigma_j \text{ and } \sigma({]i,j[}) \cap {]\sigma_j, \sigma_i[} = \varnothing}$, we associate an arc~$\underline{\alpha}(i, j, \sigma) \eqdef (\sigma_j, \sigma_i, \set{\sigma_k}{k < i \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}}, \set{\sigma_k}{j < k \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}})$ to each~${(i,j) \in \boxbslash(\sigma)}$, and we let~$\boxbslash_\equiv(\sigma)$ be the $\prec$-maximal elements in~$\set{(i, j) \in \boxbslash(\sigma)}{\underline{\alpha}(i, j, \sigma) \in \arcs_\equiv}$.
+Symmetrically, we define~$\boxbslash(\sigma) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \sigma_i > \sigma_j \text{ and } \sigma({]i,j[}) \cap {]\sigma_j, \sigma_i[} = \varnothing}$, we associate an arc~$\arcDown(i, j, \sigma) \eqdef (\sigma_j, \sigma_i, \set{\sigma_k}{k < i \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}}, \set{\sigma_k}{j < k \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}})$ to each~${(i,j) \in \boxbslash(\sigma)}$, and we let~$\boxbslash_\equiv(\sigma)$ be the $\prec$-maximal elements in~$\set{(i, j) \in \boxbslash(\sigma)}{\arcDown(i, j, \sigma) \in \arcs_\equiv}$.
 
 \begin{proposition}[{\cite[Sect.~2.4]{Pilaud-arcDiagramAlgebra}}]
 \label{prop:insertionMap}
-The 
-
-The $\equiv$-poset~$\preccurlyeq$ corresponding to the $\equiv$-congruence class of a permutation~$\sigma$ has cover relations~$\sigma_i \preccurlyeq \sigma_j$ for~$(i,j) \in \boxslash_\equiv(\sigma)$ and~$\sigma_j \preccurlyeq \sigma_i$ for~$(i,j) \in \boxbslash_\equiv(\sigma)$.
+The noncrossing arc diagram~$\arcDiagramUp(\sigma)$ (resp.~$\arcDiagramDown(\sigma)$) contains exactly the arcs~$\arcUp(i,j,\sigma)$ for all~$(i,j) \in \boxslash_\equiv(\sigma)$ (resp.~the arcs~$\arcDown(i,j,\sigma)$ for all~$(i,j) \in \boxbslash_\equiv(\sigma)$.
 \end{proposition}
 
 \begin{corollary}
 \label{coro:insertionMap}
-The $\equiv$-poset~$\preccurlyeq$ corresponding to the $\equiv$-congruence class of a permutation~$\sigma$ has cover relations~$\sigma_i \preccurlyeq \sigma_j$ for~$(i,j) \in \boxslash_\equiv(\sigma)$ and~$\sigma_j \preccurlyeq \sigma_i$ for~$(i,j) \in \boxbslash_\equiv(\sigma)$.
+The $\equiv$-poset~$\preccurlyeq$ corresponding to the $\equiv$-congruence class of a permutation~$\sigma$ has cover relations~$\sigma_i \preccurlyeq \sigma_j$ for~$(i,j) \in \boxslash_\equiv(\sigma) \cup \boxbslash_\equiv(\sigma)$.
 \end{corollary}
 
 \begin{figure}
@@ -500,8 +547,8 @@ A lattice congruence~$\equiv$ of the weak order is \defn{simple} if all maximal 
 Classical examples of simple congruences of the weak order are
 \begin{itemize}
 \item the trivial congruence,
-\item the recoil congruence
 \item the sylvester congruence~\cite{Tonks, HivertNovelliThibon-algebraBinarySearchTrees},
+\item the recoil congruence,
 \item the Cambrian congruences~\cite{Reading-CambrianLattices, ChatelPilaud},
 \item the permutree congruences~\cite{PilaudPons-permutrees},
 \item the graph associahedra congruences of~\cite{BarnardMcConville}.
