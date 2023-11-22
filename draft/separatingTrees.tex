@@ -1,7 +1,7 @@
 \documentclass{amsart}
 
 \usepackage[T1]{fontenc}
-\usepackage{enumerate, amsmath, amsfonts, amssymb, amsthm, mathrsfs, wasysym, graphics, graphicx, xcolor, url, hyperref, hypcap, xargs, multicol, pdflscape, multirow, hvfloat, array, ae, aecompl, pifont, mathtools, a4wide, float, blkarray, overpic, nicefrac}
+\usepackage{enumerate, amsmath, amsfonts, amssymb, amsthm, mathrsfs, wasysym, graphics, graphicx, xcolor, url, hyperref, hypcap, xargs, multicol, pdflscape, multirow, hvfloat, array, ae, aecompl, pifont, mathtools, a4wide, float, blkarray, overpic, nicefrac, etoolbox, stmaryrd}
 \usepackage[bb=boondox]{mathalfa}%allows for mathbb 0 and 1
 \usepackage[shortlabels, inline]{enumitem}
 \usepackage[noabbrev,capitalise]{cleveref}
@@ -13,7 +13,7 @@
 \usepackage{tikz-cd}
 %\usepackage{tkz-graph}
 \usetikzlibrary{trees, decorations, decorations.pathmorphing, decorations.markings, decorations.shapes, shapes, arrows, matrix, calc, fit, intersections, patterns, angles}
-\graphicspath{{figures/}{figures/diagonals/}{figures/walks/}{figures/tubes/}{figures/blocks/}}
+\graphicspath{{figures/}{figures/nodes/}}
 \makeatletter\def\input@path{{figures/}}\makeatother
 \usepackage{caption}
 \captionsetup{width=\textwidth}
@@ -80,6 +80,7 @@
 \DeclareMathOperator{\cone}{cone} % cone hull
 \DeclareMathOperator{\sign}{sign} % sign
 \DeclareMathOperator{\suppmin}{\mu} % support minimal
+\DeclareMathOperator{\inv}{inv} % inversions
 
 % others
 \newcommand{\ie}{\textit{i.e.}~} % id est
@@ -117,12 +118,43 @@
 \newcommand{\vincent}[1]{\todo[color=blue!30]{#1 \\ \hfill --- V.}}
 
 % geometry
-\newcommandx{\polytope}[1][1 = P]{\mathsf{#1}} % polytope
-\newcommandx{\Asso}[1][1=n]{\polytope{Asso}(#1)} % associahedron
-\newcommandx{\Zono}[1][1=\digraph]{\polytope{Zono}(#1)} % zonotope
-\newcommandx{\Quotientope}[1][1=\equiv]{\polytope{Quot}(#1)} % quotientope
-\newcommandx{\QuotientFan}[1][1=\equiv]{\c{F}(#1)} % quotient fan
+\newcommandx{\polytope}[1][1=P]{\mathsf{#1}} % polytope
+\newcommandx{\Perm}[1][1=n]{\polytope[Perm]_{#1}} % permutahedron
+\newcommandx{\Asso}[1][1=n]{\polytope[Asso]_{#1}} % associahedron
+\newcommandx{\Zono}[1][1=\digraph]{\polytope[Zono]_{#1}} % zonotope
+\newcommandx{\Quotientope}[1][1=\equiv]{\polytope[Quot]_{#1}} % quotientope
+\newcommandx{\Fan}[1][1=F]{\mathcal{#1}} % fan
+\newcommandx{\braidFan}[1][1=n]{\Fan_{#1}} % braid fan
+\newcommandx{\quotientFan}[1][1=\equiv]{\c{F}_{#1}} % quotient fan
+\newcommand{\HA}{\mathcal{H}} % hyperplane arrangement
+\newcommand{\hyp}{\mathbb{H}} % hyperplane
+\newcommand{\Hyp}{\mathbf{H}} % hyperplane
+\newcommandx{\ray}[1][1=r]{\boldsymbol{#1}} % ray
+\newcommandx{\Cone}[1][1=C]{\polytope[#1]} % cone
 
+% arc diagrams
+\newcommand{\arc}{\alpha} % arc
+\newcommand{\arcs}{{\mathcal{A}}} % arcs
+\newcommand{\meet}{\wedge} % meet
+\newcommand{\join}{\vee} % join
+\newcommand{\decoration}{{\b{\delta}}} % decoration
+\newcommand{\includeSymbol}[1]{\ensuremath{%
+	\mathchoice
+		{\raisebox{-.7mm}{\includegraphics[height=2.2ex]{#1}}}	
+		{\raisebox{-.7mm}{\includegraphics[height=2.2ex]{#1}}}
+		{\raisebox{-.6mm}{\includegraphics[height=1.6ex]{#1}}}
+		{\raisebox{-.5mm}{\includegraphics[height=1ex]{#1}}}
+}}
+\robustify{\includeSymbol}
+\newcommand{\noneCirc}{\includeSymbol{none}}
+\newcommand{\upCirc}{\includeSymbol{up}}
+\newcommand{\downCirc}{\includeSymbol{down}}
+\newcommand{\upDownCirc}{\includeSymbol{updown}}
+\newcommand{\Decorations}{\{\noneCirc{}, \downCirc{}, \upCirc{}, \upDownCirc{}\}} % all decorations
+\newcommand{\projDown}{\smash{\pi^{\equiv}_{\!\downarrow\!}}} % down projection lattice congruence
+\newcommand{\projUp}{\smash{\pi_{\equiv}^{\!\uparrow\!}}} % up projection lattice congruence
+\newcommandx{\arcDiagramDown}[1][1=\equiv]{\smash{\delta^{#1}_{\downarrow\!}}} % down arc diagram lattice congruence
+\newcommandx{\arcDiagramUp}[1][1=\equiv]{\smash{\delta_{#1}^{\uparrow\!}}} % up arc diagram lattice congruence
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -190,22 +222,378 @@ VP was partially supported by the French project CHARMS (ANR~19\,CE40\,0017), by
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Separating trees}
+\clearpage
+\section{Lattice congruences of the weak order}
+\label{sec:latticeCongruences}
+
+We first recall the combinatorial and geometric toolbox to deal with lattice congruences of the weak order on~$\f{S}_n$.
+The presentation and pictures are borrowed from~\cite{PilaudSantos-quotientopes, PadrolPilaudRitter}.
+Throughout the paper, we let~$[n] \eqdef \{1, \dots, n\}$, $[a,b] \eqdef \{a, \dots, b\}$ and~${{]a,b[} \eqdef \{a+1, \dots, b-1\}}$ for~$a < b$.
+
+%%%%%%%%%%%%%%%%%%%
+
+\subsection{Weak order, braid fan, permutahedron}
+\label{subsec:weakOrder}
+
+The \defn{weak order} is the lattice on permutations of~$[n]$ defined by ${\sigma \le \tau \iff \inv(\sigma) \subseteq \inv(\tau)}$ where~$\inv(\sigma) \eqdef \set{(\sigma_i, \sigma_j)}{1 \le i < j \le n \text{ and } \sigma_i > \sigma_j}$ is the \defn{inversion set} of~$\sigma$.
+The cover relations correspond to exchanges of two consecutive values in a permutation: a permutation~$\sigma$ covers (resp.~is covered by) the permutations obtained from~$\sigma$ by reversing a \defn{descent}~$\sigma_i > \sigma_{i+1}$ (resp.~an \defn{ascent}~$\sigma_i < \sigma_{i+1}$) of~$\sigma$.
+See \cref{fig:weakOrder4}\,(left).
+%It can be interpreted geometrically on the braid fan~$\braidFan$ or the permutahedron~$\Perm$ defined~below.
+
+The \defn{braid arrangement} is the set~$\HA_n$ of hyperplanes~$\set{\b{x} \in \R^n}{\b{x}_i = \b{x}_j}$ for ${1 \le i < j \le n}$.
+%As all hyperplanes of~$\HA_n$ contain the line~$\R \one \eqdef \R(1,1,\dots,1)$, we restrict to the hyperplane ${\hyp \eqdef \bigset{\b{x} \in \R^n}{\sum_{i \in [n]} \b{x}_i = 0}}$.
+They divide~$\R^n$ into chambers, which are the maximal cones of a complete simplicial fan~$\braidFan$, called \defn{braid fan}.
+This fan has a cone~$\Cone(\mu) \eqdef \set{\b{x} \in \R^n}{x_i \le x_j \text{ for all } i \preccurlyeq_\mu j}$ for each ordered set partition~$\mu$ of~$[n]$.
+Here~$\preccurlyeq_\mu$ denotes the \defn{preposet} (\ie reflexive and transitive binary relation) on~$[n]$ defined by~$i \preccurlyeq_\mu j$ if the part of~$\mu$ containing~$i$ is before or equal to the part of~$\mu$ containing~$j$.
+In particular, $\braidFan$ has a maximal cone for each permutation of~$[n]$.
+See \cref{fig:weakOrder4}\,(middle).
+
+The \defn{permutahedron} is the polytope~$\Perm$ defined as the convex hull of the points~$\sum_{i \in [n]} i \, \b{e}_{\sigma_i}$ for all permutations~$\sigma \in \f{S}_n$.
+See \cref{fig:weakOrder4}\,(right).
+The normal fan of the permutahedron~$\Perm$ is the braid fan~$\braidFan$.
+The Hasse diagram of the weak order on~$\f{S}_n$ can be seen geometrically as the dual graph of the braid fan~$\braidFan$, or the graph of the permutahedron~$\Perm$, oriented in the linear direction~$\b{\alpha} \eqdef \sum_{i \in [n]} (2i-n-1) \, \b{e}_i = (-n+1, -n+3, \dots, n-3, n-1)$.
+See \cref{fig:weakOrder4}.
+
+\begin{figure}
+	\capstart
+	\centerline{\includegraphics[scale=.6]{weakOrderLeft4} \; \includegraphics[scale=.6]{braidFanLeft4} \; \includegraphics[scale=.6]{permutahedronLeft4}}
+	\caption{The Hasse diagram of the weak order on~$\f{S}_4$ (left) can be seen as the dual graph of the braid fan~$\braidFan[4]$ (middle) or as the graph of the permutahedron~$\Perm[4]$ (right). \cite[Fig.~1]{PilaudSantos-quotientopes}}
+	\label{fig:weakOrder4}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%
+
+\subsection{Noncrossing arc diagrams}
+\label{subsec:noncrossingArcDiagrams}
+
+We recall from~\cite{Reading-arcDiagrams} the bijection between permutations and noncrossing arc diagrams.
+An \defn{arc} is a quadruple~$(a, b, A, B)$ formed by two integers $1 \le a < b \le n$ and a partition~${A \sqcup B = {]a,b[}}$.
+We represent it by a curve joining~$a$ to~$b$, wiggling around the horizontal axis, passing above the points of~$A$ and below the points of~$B$.
+For instance, \smash{\raisebox{-.13cm}{\includegraphics[scale=.8]{arc}}} represents the arc~$(1,4,\{2\},\{3\})$.
+We let~$\arcs_n \eqdef \set{(a, b, A, B)}{1 \le a < b \le n \text{ and } A \sqcup B = {]a,b[}}$ denote the set of all arcs.
+
+Two arcs~$(a, b, A, B)$ and~$(a', b', A', B')$ \defn{cross} if the two corresponding curves intersect in their interior, that is, if both~$(A \cap B') \cup (\{a,b\} \cap B') \cup (A \cap \{a',b'\})$ and~$(B \cap A') \cup (\{a,b\} \cap A') \cup (B \cap \{a',b'\})$ are non-empty.
+A \defn{noncrossing arc diagram} is a collection of arcs of~$\arcs_n$ where any two arcs do not cross and have distinct left endpoints and distinct right endpoints (but the right endpoint of an arc can be the left endpoint of an other arc).
+See \cref{fig:noncrossingArcDiagrams} for illustrations.
+
+%We start by the bijection of \cite{Reading-arcDiagrams} between permutations and non-crossing arc diagrams.
+Consider now a permutation~$\sigma$ of~$[n]$, and its \defn{permutation table} containing the points~$(\sigma_i, i)$ for~$i \in [n]$.
+(This unusual choice of orientation is necessary to fit later with the existing constructions ~\cite{LodayRonco, HivertNovelliThibon-algebraBinarySearchTrees, ChatelPilaud, PilaudPons-permutrees}.)
+We draw segments between any two consecutive dots~$(\sigma_i, i)$ and~$(\sigma_{i+1}, i+1)$, colored blue if~$\sigma_i < \sigma_{i+1}$ is an \defn{ascent} and red if~$\sigma_i > \sigma_{i+1}$ is a \defn{descent}.
+We then move all dots down to the horizontal axis, allowing the segments to curve, but not to cross each other nor to pass through any dot, as illustrated in \cref{fig:noncrossingArcDiagrams}.
+The resulting set of blue (resp.~red) arcs is a noncrossing arc diagram~$\arcDiagramUp[](\sigma)$ (resp.~$\arcDiagramDown[](\sigma)$).
+
+\begin{theorem}[\cite{Reading-arcDiagrams}]
+The maps~$\arcDiagramUp[](\sigma)$ and~$\arcDiagramDown[](\sigma)$ are bijections from the permutations of~$\f{S}_n$ to the noncrossing arc diagrams on~$\arcs_n$.
+\end{theorem}
+
+The map~$\arcDiagramUp[]$ (resp.~$\arcDiagramDown[]$) is particularly adapted to understand canonical meet (resp.~join) representations in the weak order.
+Namely, each single arc corresponds to a meet (resp.~join) irreducible permutation, \ie with a single ascent (resp.~descent), and the arc diagram~$\arcDiagramUp[](\sigma)$ (resp.~$\arcDiagramDown[](\sigma)$) of a permutation corresponds to the canonical meet (resp.~join) representation of~$\sigma$.
+%While the description of lattice quotients of the weak order below is based on this fact, we do not strictly need it in this paper.
+
+\begin{figure}
+	\capstart
+	\centerline{\includegraphics[scale=.85]{arcDiagrams}}
+	\caption{The noncrossing arc diagrams~$\arcDiagramDown[](\sigma)$ (bottom) and~$\arcDiagramUp[](\sigma)$ (top) for the permutations~$\sigma = 2537146$, $2531746$, $2513746$, and $2513476$. \cite[Fig.~2]{Pilaud-arcDiagramAlgebra}}
+	\label{fig:noncrossingArcDiagrams}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%
+
+\subsection{Lattice congruences and arc ideals}
+\label{subsec:latticeCongruencesArcIdeals}
+
+A \defn{lattice congruence} of the weak order is an equivalence relation~$\equiv$ on~$\f{S}_n$ that respects the meet and join operations, \ie such that $x \equiv x'$ and~$y \equiv y'$ implies $x \meet y \, \equiv \, x' \meet y'$ and~$x \join y \, \equiv \, x' \join y'$.
+The \defn{lattice quotient}~$\f{S}_n/{\equiv}$ is the lattice on the congruence classes of~$\equiv$ where~$X \le Y$ if and only if there exist~$x \in X$ and~$y \in Y$ such that~$x \le y$, and~$X \meet Y$ (resp.~$X \join Y$) is the congruence class of~$x \meet y$ (resp.~$x \join y$) for any~$x \in X$~and~$y \in Y$.
+
+The compatibility with the meet and join operations in fact forces all congruence classes of~$\equiv$ to be intervals.
+For a permutation~$\sigma$, we denote by~$\projDown(\sigma)$ and~$\projUp(\sigma)$ the top and bottom permutations of the $\equiv$-congruence class of~$\sigma$, and we define the non-crossing arc diagrams~$\arcDiagramDown(\sigma) \eqdef \arcDiagramDown[](\projDown(\sigma))$ and~$\arcDiagramUp(\sigma) \eqdef \arcDiagramUp[](\projUp(\sigma))$.
+The interval~$[\projDown(\sigma), \projUp(\sigma)]$ is the set of all linear extensions of a poset~$\preccurlyeq^\equiv_\sigma$ on~$[n]$ whose cover relations are~$v \preccurlyeq^\equiv_\sigma u$ for each descent~$vu$ of~$\projDown(\sigma)$ and~$u \preccurlyeq^\equiv_\sigma v$ for each ascent~$uv$ of~$\projUp(\sigma)$.
+Hence, the Hasse diagram of the poset~$\preccurlyeq^\equiv_\sigma$ is obtained by superimposing the arcs of~$\arcDiagramDown(\sigma)$ oriented from right to left with the arcs of~$\arcDiagramUp(\sigma)$ oriented from left to right.
+
+We now denote by~$\arcs_\equiv$ the set of arcs corresponding via~$\arcDiagramDown[]$ to permutations with a single descent and minimal in their class, or equivalently, via~$\arcDiagramUp[]$ to permutations with a single ascent and maximal in their class.
+This set~$\arcs_\equiv$ enables us to describe completely the lattice quotient~$\f{S}_n / {\equiv}$.
+
+\begin{proposition}
+The quotient~$\f{S}_n/{\equiv}$ is isomorphic (as a poset) to the subposet of the weak order induced by the permutations which are minimal (resp.~maximal) in their class, which are precisely the permutations~$\sigma$ for which all arcs in the noncrossing arc diagram~$\arcDiagramDown[](\sigma)$ (resp.~$\arcDiagramUp[](\sigma)$) belong~to~$\arcs_\equiv$.
+\end{proposition}
+
+This proposition actually translates the fact that canonical representations behave properly under lattice quotients.
+Namely, the noncrossing arc diagrams of~$\arcs_\equiv$ precisely encode the canonical join (resp.~meet) representations in the quotient~$\f{S}_n/{\equiv}$.
+
+Understanding the lattice congruences of the weak order, thus boils down to understand the sets of arcs~$\arcs_\equiv$.
+An arc~$\arc \eqdef (a, b, A, B) \in \arcs_n$ is a \defn{subarc} of an arc~$\arc' \eqdef (a', b', A', B') \in \arcs_n$ if~$a' \le a < b \le b'$ and~${A \subseteq A'}$ and~${B \subseteq B'}$.
+Visually, $\arc$ is a subarc of~$\arc'$ if the endpoints of~$\arc$ are located in between those of~$\arc'$ and~$\arc$ agrees with~$\arc'$ in between its endpoints.
+The \defn{arc poset} is the poset on all arcs of~$\arcs_n$ ordered by reverse subarc order (big elements are subarcs of small elements in this poset).
+The the arc poset on~$\arcs_4$ is illustrated in \cref{fig:forcingOrder}.
+An \defn{arc ideal} is an upper ideal of the arc poset.
+\vincent{I hesitate to reverse the poset... it would not be the usual convention, but this convention always puzzles me. Somehow, I like that small arcs are short...}
+
+\begin{figure}
+	\capstart
+	\centerline{\includegraphics[scale=.7,valign=c]{forcing} \hspace{1cm} \includegraphics[scale=.6,valign=c]{forcingOrder}}
+	\caption{The subarc relation among arcs (left) and the arc poset for~$n = 4$ (right). The red arc~$(a,b,A,B)$ is a subarc of the blue arc~$(a',b',A',B')$. \mbox{\cite[Fig.~5]{PilaudSantos-quotientopes}}}
+	\label{fig:forcingOrder}
+\end{figure}
+
+\begin{theorem}[{\cite[Thm.~4.4 \& Coro.~4.5]{Reading-arcDiagrams}}]
+The map~${\equiv} \mapsto \arcs_\equiv$ is a bijection between the lattice congruences of the weak order on~$\f{S}_n$ and the arc ideals of~$\arcs_n$.
+\end{theorem}
+
+We denote by~$\equiv_\arcs$ the lattice congruence of the weak order on~$\f{S}_n$ corresponding to an arc ideal~$\arcs \subseteq \arcs_n$.
+We make no distinction between arc ideals and lattice congruences.
+
+Finally, note that the set of all congruences of the weak order is itself a lattice, whose meet is the intersection of congruences and join is the transitive closure of union of congruences.
+This lattice is distributive, and we have~$\arcs_{{\equiv} \join {\equiv'}} = \arcs_\equiv \cup \arcs_{\equiv'}$ and~$\arcs_{{\equiv} \meet {\equiv'}} = \arcs_\equiv \cap \arcs_{\equiv'}$.
+
+\begin{example}
+\label{exm:sylvesterCongruence}
+The most classical lattice congruence of the weak order on~$\f{S}_n$ is the \defn{sylvester congruence}~$\equiv_\textrm{sylv}$ \cite{LodayRonco, HivertNovelliThibon-algebraBinarySearchTrees}.
+Its congruence classes are the fibers of the binary search tree insertion algorithm, or equivalently the sets of linear extensions of binary trees (labeled in inorder and considered as posets oriented from bottom to top).
+It can also be seen as the transitive closure of the rewriting rule~$U i k V j W \equiv_\textrm{sylv} U k i V j W$ where~$i < j < k$ are letters and~$U,V,W$ are words on~$[n]$.
+In other words, the permutations minimal in their sylvester congruence class are those avoiding the pattern~$312$.
+The quotient of the weak order by the sylvester congruence is (isomorphic to) the classical \defn{Tamari lattice}~\cite{Tamari}, whose elements are the binary trees on~$n$ nodes and whose cover relations are right rotations in binary trees.
+See \cref{fig:sylvesterCongruence} for~$n = 4$.
+Its arc ideal is given by the set~$\arcs_\textrm{sylv} \eqdef \set{(i, j, {]i,j[}, \varnothing}{1 \le i < j \le n}$ of up arcs, and the corresponding noncrossing arc diagrams are known as \defn{noncrossing partitions} of~$[n]$.
+%
+\begin{figure}
+	\capstart
+	\centerline{\includegraphics[scale=.6]{weakOrderLeft4} \; \includegraphics[scale=.6]{weakOrderCongruence4} \; \includegraphics[scale=.48]{TamariLattice4}}
+	\caption{The weak order on~$\f{S}_4$ (left), the sylvester congruence~$\equiv_\textrm{sylv}$~(middle), and the Tamari lattice (right). \cite[Fig.~1 \& 2]{PilaudSantos-quotientopes}}
+	\label{fig:sylvesterCongruence}
+\end{figure}
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%
+
+\subsection{Quotient fans and quotientopes}
+\label{subsec:quotientFansQuotientopes}
+
+Fix a lattice congruence~$\equiv$ of the weak order.
+Geometric realizations of the quotient~$\f{S}_n / {\equiv}$ were studied in~\cite{Reading-HopfAlgebras, PilaudSantos-quotientopes, PadrolPilaudRitter}.
+
+\begin{theorem}[\cite{Reading-HopfAlgebras}]
+The cones obtained by glueing together the maximal cones of the braid fan~$\braidFan$ corresponding to permutations in the same congruence class of~$\equiv$ define the \defn{quotient~fan}~$\quotientFan$.
+\end{theorem}
+
+Each cone of the quotient fan~$\quotientFan$ is the \defn{preposet cone} $\Cone({\preccurlyeq}) \eqdef \set{\b{x} \in \R^n}{x_i \le x_j \text{ for all } i \preccurlyeq j}$ of some preposet~$\preccurlyeq$ on~$[n]$.
+The cone~$\Cone(\preccurlyeq)$ is the union of the cones~$\Cone(\mu)$ of the braid fan~$\braidFan$ over all ordered set partitions~$\mu$ of~$[n]$ such that~$i \preccurlyeq j$ implies $i \preccurlyeq_\mu j$ for all~$i,j \in [n]$.
+For an ordered set partition~$\mu$ of~$[n]$, we denote by~$\preccurlyeq^\equiv_\mu$ the preposet on~$[n]$ such that~$\Cone(\preccurlyeq^\equiv_\mu)$ is the smallest cone of~$\quotientFan$ containing the braid cone~$\Cone(\mu)$.
+In particular, the maximal cones of~$\quotientFan$ are poset cones of certain posets whose sets of linear extensions give the congruence classes of~$\equiv$, and the only cone of~$\quotientFan$ containing the braid cone~$\Cone(\sigma)$ of a permutation~$\sigma$ is the cone~$\Cone(\preccurlyeq^\equiv_\sigma)$ of the poset~$\preccurlyeq^\equiv_\sigma$ described in~\cref{subsec:latticeCongruencesArcIdeals}.
+We call \defn{$\equiv$-preposets} (resp.~\defn{$\equiv$-posets}) the preposets (resp.~posets) whose cone is a cone of~$\quotientFan$.
+
+\begin{theorem}[\cite{PilaudSantos-quotientopes, PadrolPilaudRitter}]
+The quotient fan~$\quotientFan$ is the normal fan of a \defn{quotientpe}~$\Quotientope$.
+\end{theorem}
+
+\begin{proposition}[\cite{Reading-HopfAlgebras, PilaudSantos-quotientopes, PadrolPilaudRitter}]
+The Hasse diagram of the quotient lattice~$\f{S}_n / {\equiv}$ is the dual graph of the quotient fan~$\quotientFan$, or the graph of the quotientope~$\Quotientope$, oriented in the linear direction~$\b{\alpha} \eqdef \sum_{i \in [n]} (2i-n-1) \, \b{e}_i$.
+\end{proposition}
+
+\begin{example}
+\label{exm:sylvesterFanAssociahedron}
+For the sylvester congruence~$\equiv_\textrm{sylv}$ of \cref{exm:sylvesterCongruence}, the quotient fan~$\quotientFan[\textrm{sylv}]$ has a cone~$\Cone(S) \eqdef \set{\b{x} \in \hyp}{\b{x}_a \le \b{x}_b \text{ if there is a directed path from } a \text{ to } b \text{ in } S}$ for each Schröder tree~$S$ with $n+1$ leaves.
+In particular, $\quotientFan[\textrm{sylv}]$ has a chamber for each binary tree with $n$ nodes (or equivalently $n+1$ leaves).
+\cref{fig:Tamari4}\,(middle) illustrates the quotient fan~$\quotientFan[\textrm{sylv}]$ for~$n = 4$.
+The quotient fan~$\quotientFan[\equiv_\textrm{sylv}]$ is the normal fan of the classical associahedron~$\Asso$ of~\cite{ShniderSternberg, Loday}, defined equivalently as the convex hull of the points~$\sum_{j \in [n]} \ell(T,j) \, r(T,j) \, \b{e}_j$ for all binary trees~$T$ on~$n$ nodes, where $\ell(T,j)$ and~$r(T,j)$ respectively denote the numbers of leaves in the left and right subtrees of the node~$j$ of~$T$ (labeled in inorder).
+\cref{fig:Tamari4}\,(right) shows the associahedron~$\Asso[4]$.
+%
+\begin{figure}
+	\capstart
+	\centerline{\includegraphics[scale=.48]{TamariLattice4} \; \includegraphics[scale=.6]{sylvesterFan4} \hspace{-.3cm} \includegraphics[scale=.6]{associahedron4}}
+	\caption{The Tamari lattice (left) can be seen as the dual graph of the quotient fan~$\equiv_\textrm{sylv}$ (middle) or as the graph of J.-L.~Loday's associahedron (right).}
+	\label{fig:Tamari4}
+\end{figure}
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%
+
+\subsection{Famous congruences}
+\label{subsec:famousCongruences}
+
+We briefly gather some famous congruences of the weak order:
+\begin{enumerate}
+\item The \defn{trivial congruence}~$\equiv_\textrm{triv}$ is defined by the ideal~$\arcs_n$ of all arcs. It has a congruence class for each permutation. The quotient~$\f{S}_n/{\equiv_\textrm{triv}}$ is the weak order. The quotient fan~$\quotientFan[\textrm{triv}]$ is the braid fan, and the quotientope~$\Quotientope[\textrm{triv}]$ is the permutahedron~$\Perm$.
+\item The \defn{sylvester congruence} is defined by the ideal~$\arcs_\textrm{sylv} \eqdef \set{(i, j, {]i,j[}, \varnothing}{1 \le i < j \le n}$ of up arcs. It has a congruence class for each binary tree, given by the linear extensions of this tree (when labeled in inorder and oriented towards its root). It can also be seen as the transitive closure of the rewriting rule~$U i k V j W \equiv_\textrm{sylv} U k i V j W$ where~$i < j < k$ are letters and~$U,V,W$ are words on~$[n]$. The quotient~$\f{S}_n/{\equiv_\textrm{sylv}}$ is the weak order. The quotient fan~$\quotientFan[\textrm{sylv}]$ is the sylvester fan, and the quotientope~$\Quotientope[\textrm{sylv}]$ is the associahedron~$\Asso$.
+
+\item The \defn{recoil congruence}~$\equiv_\textrm{rec}$ is defined by the ideal~$\arcs_\textrm{rec} = \set{(i, i+1, \varnothing, \varnothing)}{i \in [n-1]}$ of basic arcs. It has a congruence class for each subset~$I \subseteq [n-1]$ given by the permutations whose recoils (descents of the inverse) are at positions in~$I$. It can also be seen as the transitive closure of the rewriting rule~$U i j V \equiv_{\textrm{rec}} U j i V$ for~$|i - j| > 1$. The quotient~$\f{S}_n/{\equiv_\textrm{rec}}$ is the boolean lattice.
+\item For an arc~$\arc \in \arcs_n$, the \defn{$\arc$-Cambrian congruence} \vincent{todo}
+\item For~$\decoration \in \Decorations^n$, the \defn{$\decoration$-permutree congruence}~$\equiv_\decoration$ is defined by the ideal~$\arcs_\decoration$ of arcs which do not pass above the points~$j$ with~$\decoration_j \in \{\upCirc, \upDownCirc\}$ nor below the points~$j$ with~$\decoration_j \in \{\downCirc, \upDownCirc\}$. Its congruence classes correspond to $\decoration$-permutrees~\cite{PilaudPons-permutrees}. It can also be seen as the transitive closure of the rewriting rules~$U i k V j W \equiv_\decoration U k i V j W$ for~$i < j < k$ with~$\decoration_j \in \{\downCirc, \upDownCirc\}$ and~$U j V i k W \equiv_\decoration U j V k i W$ for~$i < j < k$ with~$\decoration_j \in \{\upCirc, \upDownCirc\}$.
+\label{item:permutreeCongruence}
+\item The \defn{Baxter congruence}~$\equiv_\textrm{Bax}$ is defined by the ideal of arcs that do not cross the horizontal axis, \ie~$\arcs_\textrm{Bax} = \set{(a, b, A, B) \in \arcs_n}{A = \varnothing \text{ or } B = \varnothing}$. Its congruence classes correspond to diagonal rectangulations~\cite{LawReading} or equivalently pairs of twin binary trees~\cite{Giraudo}, which are counted by the Baxter numbers. It can also be seen as the transitive closure of the rewriting rule~$U j V i \ell W k X \equiv_{\textrm{Bax}} U j V \ell i W k X$ for~$i < j, k < \ell$.
+\label{item:BaxterCongruence}
+\item For~$p \ge 1$, the \defn{$p$-recoil congruence}~$\equiv_{p\textrm{-rec}}$ is defined by the ideal of arcs of length at most~$p$, \ie~$\arcs_{p\textrm{-rec}} = \set{(a, b, A, B) \in \arcs_n}{b-a \le p}$. Its congruence classes correspond to acyclic orientations of the graph on~$[n]$ with edges~$(a,b)$ for~$|a-b| \le p$. It can also be seen as the transitive closure of the rewriting rule~$U i j V \equiv_{p\textrm{-rec}} U j i V$ for~$|i - j| > p$. See \cite{Reading-HopfAlgebras, Pilaud-brickAlgebra}.
+\item For~$p \ge 1$, the \defn{$p$-twist congruence}~$\equiv_{p\textrm{-twist}}$ is defined by the ideal of arcs passing below at most~$p$ points, \ie~$\arcs_{p\textrm{-twist}} = \set{(a, b, A, B) \in \arcs_n}{|B| \le p}$. Its congruence classes correspond to certain acyclic pipe dreams~\cite{Pilaud-brickAlgebra}. It can also be seen as the transitive closure of the rewriting rule~$U i k V_1 j_1 \dots V_p j_p W \equiv_{p\textrm{-twist}} U k i V_1 j_1 \dots V_p j_p W$ for~$i < j_1, \dots, j_p < k$.
+\item The graph associahedra congruences of~\cite{BarnardMcConville}. \vincent{todo}
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%
+
+\subsection{Poset insertion map}
+\label{subsec:insertionMap}
+
+For a fixed lattice congruence~$\equiv$ of the weak order, we describe in this section the lattice morphism from the weak order to its quotient~$\f{S}/{\equiv}$, sending a permutation of~$\f{S}_n$ to a $\equiv$-poset.
+We provide two distinct approaches to describe this map:
+\begin{enumerate}[(i)]
+\item the one-step approach of~\cite[Sect.~2.4]{Pilaud-arcDiagramAlgebra},
+\item a sweeping algorithm generalizing the binary tree insertion of~\cite{HivertNovelliThibon-algebraBinarySearchTrees}, which was only mentioned in~\cite[Sect.~2.4]{Pilaud-arcDiagramAlgebra} and is described in details for the first time in this paper.
+\end{enumerate}
+\vincent{Not sure whether we really want / need to keep both...}
+
+\subsubsection{Direct description}
+
+We still represent a permutation~$\sigma$ by its table~$\set{(\sigma_i, i)}{i \in [n]}$.
+We consider the set~$\boxslash(\sigma)$ of pairs of positions such that the rectangle with bottom left corner~$(\sigma_i, i)$ and top right corner~$(\sigma_j, j)$ contains no other point~$(\sigma_k, k)$ of the permutation table of~$\sigma$, that is,
+\[
+\boxslash(\sigma) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \sigma_i < \sigma_j \text{ and } \sigma({]i,j[}) \cap {]\sigma_i, \sigma_j[} = \varnothing}.
+\]
+For~$(i, j) \in \boxslash(\sigma)$, we define an arc~$\alpha(i, j, \sigma)$ by
+\[
+\overline{\alpha}(i, j, \sigma) \eqdef (\sigma_i, \sigma_j, \set{\sigma_k}{k < i \text{ and } \sigma_k \in {]\sigma_i, \sigma_j[}}, \set{\sigma_k}{j < k \text{ and } \sigma_k \in {]\sigma_i, \sigma_j[}}).
+\]
+Moreover, we order~$\boxslash(\sigma)$ by the slope of the diagonal joining~$(\sigma_i, i)$ to~$(\sigma_j, j)$, that is, $(i, j) \prec (k,\ell)$ if~$i \le k < \ell \le j$ and~$\sigma_k \le \sigma_i < \sigma_j \le \sigma_\ell$.
+Finally, we define~$\boxslash_\equiv(\sigma)$ to be the subset of $\prec$-maximal elements in~$\set{(i, j) \in \boxslash(\sigma)}{\overline{\alpha}(i, j, \sigma) \in \arcs_\equiv}$.
+
+Symmetrically, we define~$\boxbslash(\sigma) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \sigma_i > \sigma_j \text{ and } \sigma({]i,j[}) \cap {]\sigma_j, \sigma_i[} = \varnothing}$, we associate an arc~$\underline{\alpha}(i, j, \sigma) \eqdef (\sigma_j, \sigma_i, \set{\sigma_k}{k < i \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}}, \set{\sigma_k}{j < k \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}})$ to each~${(i,j) \in \boxbslash(\sigma)}$, and we let~$\boxbslash_\equiv(\sigma)$ be the $\prec$-maximal elements in~$\set{(i, j) \in \boxbslash(\sigma)}{\underline{\alpha}(i, j, \sigma) \in \arcs_\equiv}$.
+
+\begin{proposition}[{\cite[Sect.~2.4]{Pilaud-arcDiagramAlgebra}}]
+\label{prop:insertionMap}
+The 
+
+The $\equiv$-poset~$\preccurlyeq$ corresponding to the $\equiv$-congruence class of a permutation~$\sigma$ has cover relations~$\sigma_i \preccurlyeq \sigma_j$ for~$(i,j) \in \boxslash_\equiv(\sigma)$ and~$\sigma_j \preccurlyeq \sigma_i$ for~$(i,j) \in \boxbslash_\equiv(\sigma)$.
+\end{proposition}
+
+\begin{corollary}
+\label{coro:insertionMap}
+The $\equiv$-poset~$\preccurlyeq$ corresponding to the $\equiv$-congruence class of a permutation~$\sigma$ has cover relations~$\sigma_i \preccurlyeq \sigma_j$ for~$(i,j) \in \boxslash_\equiv(\sigma)$ and~$\sigma_j \preccurlyeq \sigma_i$ for~$(i,j) \in \boxbslash_\equiv(\sigma)$.
+\end{corollary}
+
+\begin{figure}
+	\capstart
+	\centerline{\includegraphics[scale=.85]{arcDiagramsQuotients}}
+	\caption{The posets (top) corresponding to the $\equiv_\arcs$-congruence class of the permutation~$\sigma = 2537146$ for different arc ideals (bottom).}
+	\label{fig:arcDiagramsQuotients}
+\end{figure}
+
+\subsubsection{Sweeping algorithm}
+\vincent{todo}
+
+%%%%%%%%%%%%%%%%%%%
+
+\subsection{Preposet insertion map}
+\label{subsec:insertionMap}
+
+
+%%%%%%%%%%%%%%%%%%%
+
+\subsection{Simple congruences}
+\label{subsec:simpleCongruences}
+
+This paper focusses on the following congruences of the weak order.
+
+\begin{definition}[{\cite[Sect.~4.4]{HoangMutze}}]
+\label{def:simpleCongruence}
+A lattice congruence~$\equiv$ of the weak order is \defn{simple} if all maximal (in the arc poset) arcs of~$\arcs_n \ssm \arcs_\equiv$ are up arcs (of the form~$(a, b, {]a,b[}, \varnothing)$) or down arcs (of the form~$(a, b, \varnothing, {]a,b[})$).
+\end{definition}
+
+\begin{example}
+Classical examples of simple congruences of the weak order are
+\begin{itemize}
+\item the trivial congruence,
+\item the recoil congruence
+\item the sylvester congruence~\cite{Tonks, HivertNovelliThibon-algebraBinarySearchTrees},
+\item the Cambrian congruences~\cite{Reading-CambrianLattices, ChatelPilaud},
+\item the permutree congruences~\cite{PilaudPons-permutrees},
+\item the graph associahedra congruences of~\cite{BarnardMcConville}.
+\end{itemize}
+A good example of a congruence which is not simple is the Baxter congruence~\cite{LawReading, Giraudo} whose quotient corresponds to diagonal rectangulations of a square. Its maximal non arcs are all arcs which are neither up nor down arcs.
+\end{example}
+
+\begin{proposition}
+\label{prop:simpleCongruenceMeetSemilattice}
+The set of simple congruences induces a meet subsemilattice of the congruence lattice of the weak order
+\end{proposition}
+
+\begin{proof}
+For two congruences~$\equiv$ and~$\equiv'$, the non arcs of~${\equiv} \meet {\equiv'}$ are
+\[
+\arcs_n \ssm \arcs_{{\equiv} \meet {\equiv'}} = \arcs_n \ssm (\arcs_{\equiv} \cap \arcs_{\equiv'}) = (\arcs_n \ssm \arcs_{\equiv}) \cup (\arcs_n \ssm \arcs_{\equiv'})
+\]
+so that any maximal non arc of~${\equiv} \meet {\equiv'}$ is a maximal non arc of~${\equiv}$ or a maximal non arc of~${\equiv'}$.
+\end{proof}
+
+\begin{remark}
+Note that the set of simple congruences does not induces a sublattice of the congruence lattice.
+For instance, the Baxter congruence is not simple, while it is the join (in the congruence lattice) of the sylvester and anti-sylvester congruence (where the allowed arcs are exactly the down arcs).
+\end{remark}
+
+\begin{remark}
+As already observed in~\cite[Sect.~4.4]{HoangMutze}, the number of simple congruences of the weak order on~$\f{S}_n$ is~$C_n^2$, where~$C_{n-1} \eqdef \frac{1}{n+1} \binom{2n}{n}$ is the Catalan number.
+\end{remark}
+
+One of the contributions of the present paper is a simple combinatorial proof of the following statement.
+This statement was originally proved by H.~Hoang and T.~Mütze in~\cite[Sect.~4.4]{HoangMutze} with a purely combinatorial (but slightly involved) proof.
+In their paper on the lattice theory of torsion classes, L.~Demonet, O.~Iyama, N.~Reading, I.~Reiten, and H.~Thomas provided an alternative proof~\cite[Sect.~6.3]{DemonetIyamaReadingReitenThomas} in terms of quiver representation theory.
+
+\begin{theorem}[{\cite[Sect.~4.4]{HoangMutze} \& \cite[Sect.~6.3]{DemonetIyamaReadingReitenThomas}}]
+\label{thm:simpleCongruences}
+The following assertions are equivalent for a lattice congruence~$\equiv$ of the weak order:
+\begin{enumerate}[(i)]
+\item $\equiv$ is a simple congruence,
+\item the Hasse diagram of any $\equiv$-poset is a tree,
+\item the Hasse diagram of the lattice quotient~$\f{S}_n/{\equiv}$ is regular (\ie constant degree),
+\item the quotient fan~$\quotientFan$ is a simplicial fan,
+\item the quotientope~$\Quotientope$ is a simple polytope.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The equivalences (ii) $\iff$ (iii) $\iff$ (iv) $\iff$ (v) are standard.
+
+(i)~$\Longrightarrow$~(ii): See \cref{subsec:posetsSimpleCongruences}.
+
+(ii)~$\Longrightarrow$~(i): Assume that~$\equiv$ has a minimal non arc~$\alpha \eqdef (i, j, A, B)$ with~$A \ne \varnothing \ne B$, and let~$a \eqdef \max(A)$ and~$b \eqdef \min(B)$. Then the four arcs
+\[
+(i, a, A, {]i,a[} \cap B)
+\qquad
+(a, j, \varnothing, {]a,j[} \cap B)
+\qquad
+(i, b, {]i,a[} \cap A, \varnothing)
+\qquad\text{and}\qquad
+(b, j, {]b,j[} \cap A, B)
+\]
+all belong to~$\arcs_\equiv$ (otherwise, $\alpha$ would not be a minimal non arc).
+Hence, if~$\preccurlyeq$ denotes the  for the permutation~$\sigma$ with arc diagram~$\{\alpha\}$, we obtain that ... \vincent{todo}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Separating trees and posets of simple congruences}
+\label{sec:separatingTreesPostesSimpleCongruences}
+
+%%%%%%%%%%%%%%%%%%%
+
+\subsection{Separating trees}
 \label{sec:separatingTrees}
 
-\vincent{parent, children, ancestor, descendant}
+For a vertex~$v$ in a directed tree~$T$, we call \defn{children} (resp.~\defn{parents}) of~$v$ the sources of the incoming arcs (resp.~the targets of the outgoing arcs) at~$v$ and \defn{descendants} (resp.~\defn{ancestor}) \defn{subtrees} of~$v$ the subtrees attached to them.
+This paper focusses on the following family of trees.
 
 \begin{definition}
 \label{def:separatingTree}
-A \defn{separating tree} is an oriented tree on~$[n]$ such that
+A \defn{separating tree} is a directed tree on~$[n]$ such that
 \begin{itemize}
 \item each node has at most two parents and at most two children,
-\item node~$j$ with two parents (resp.~children) separates its two ancestor (resp.~descendant) subtrees, meaning that all nodes in the left subtree are smaller than~$j$ while all nodes in the right subtree are larger than~$j$.
+\item a node~$j$ with two parents (resp.~children) separates its two ancestor (resp.~descendant) subtrees, meaning that all nodes in the left subtree are smaller than~$j$ while all nodes in the right subtree are larger than~$j$.
 \end{itemize}
 \end{definition}
 
-To represent separating trees, ...
-\vincent{todo}
+\cref{fig:separatingTrees} represents some separating trees. We use the following conventions:
+\begin{itemize}
+\item all edges are oriented from bottom to top, so that we omit to add arrows to specify the direction of the edges,
+\item the vertices are ordered increasingly from left to right,
+\item we often place a red wall above each node with two parents and below each node with two children.
+\end{itemize}
 \vincent{add a figure with examples of separating trees.}
 
 \begin{remark}
@@ -235,7 +623,7 @@ Consider a separating tree~$T$ and let~$1 \le i < j < k \le n$. Then
 In a separating tree, there is no edge passing above a node with two parent or below a node with two children.
 \end{corollary}
 
-In other words, we can draw a separating red wall above each node with two parents and below each node with two children, and the edges of the separating tree will never cross the red walls.
+In other words, when we draw a red wall above each node with two parents and below each node with two children, the edges of the separating tree never cross the red walls.
 
 \begin{lemma}
 \label{lem:separatingTree2}
@@ -246,58 +634,23 @@ Consider a node~$j$ with two parents (resp.~children) in a separating tree~$T$, 
 \vincent{todo}
 \end{proof}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Simple congruences}
-\label{sec:simpleCongruences}
-
-%%%%%%%%%%%%%%%%%%%
-
-\subsection{Background on lattice congruences of the weak order}
-\label{subsec:backgroundLatticeCongruences}
-
-%%%%%%%%%%%%%%%%%%%
-
-\subsection{Insertion map}
-\label{subsec:insertionMap}
+\begin{remark}
+The number of separating trees with~$n$ nodes is given by the following table:
+\[
+\begin{array}{c|ccccccccc}
+n & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & \dots \\
+\hline
+\#\text{ separating trees} & 1 & 2 & 8 & 42 & 264 & 1898 & 15266 & 135668 & \dots
+\end{array}
+\]
+\end{remark}
 
 %%%%%%%%%%%%%%%%%%%
 
-\subsection{Simple congruences}
-\label{subsec:simpleCongruences}
+\subsection{Posets of simple congruences}
+\label{subsec:posetsSimpleCongruences}
 
-\begin{definition}
-\label{def:simpleCongruence}
-A lattice congruence of the weak order is \defn{simple} if the minimal (for the subarc order) arcs not contained in its arc ideal are up arcs (of the form~$(a, b, {]a,b[}, \varnothing)$) or down arcs (of the form~$(a, b, \varnothing, {]a,b[})$).
-\end{definition}
-
-\begin{example}
-Classical examples of simple congruences of the weak order are
-\begin{itemize}
-\item the trivial congruence,
-\item the Sylvester congruences~\cite{Tonks, HivertNovelliThibon-algebraBinarySearchTrees},
-\item the Cambrian congruences~\cite{Reading-CambrianLattices, ChatelPilaud},
-\item the permutree congruences~\cite{PilaudPons-permutrees},
-\item the graph associahedra congruences of~\cite{BarnardMcConville}.
-\end{itemize}
-A good example of a congruence which is not simple is the Baxter congruence~\cite{LawReading, Giraudo} whose quotient corresponds to diagonal rectangulations of a square.
-\end{example}
-
-The main result of this section is a simple combinatorial proof of the following statement.
-
-\begin{theorem}[{\cite[Thm.~??]{HoangMutze} \& \cite[Thm.~??]{DemonetIyamaReadingReitenThomas}}]
-The following assertions are equivalent for a lattice congruence~$\equiv$ of the weak order:
-\begin{enumerate}[(i)]
-\item $\equiv$ is a simple congruence,
-\item the Hasse diagram of any $\equiv$-poset is a tree,
-\item the Hasse diagram of the lattice quotient~$\f{S}_n/{\equiv}$ is regular (\ie constant degree),
-\item the quotient fan~$\QuotientFan$ is a simplicial fan,
-\item the quotientope~$\Quotientope$ is a simple polytope.
-\end{enumerate}
-\end{theorem}
-
-This statement was originally proved by H.~Hoang and T.~Mütze in~\cite{HoangMutze} with a purely combinatorial (but slightly involved) proof.
-In their paper on the lattice theory of torsion classes~\cite{DemonetIyamaReadingReitenThomas}, L.~Demonet, O.~Iyama, N.~Reading, I.~Reiten, and H.~Thomas provided an alternative proof in terms of quiver representation theory.
+We now provide a short combinatorial proof of the implication~(i)~$\Longrightarrow$~(ii) of \cref{thm:simpleCongruences}.
 Our proof is a very elementary approach just based on the insertion map described in~\cref{subsec:insertionMap}.
 In fact, we prove the following stronger statement on the $\equiv$-posets of a simple congruence~$\equiv$.
 
@@ -310,7 +663,7 @@ If~$\equiv$ is a simple congruence of the weak order, then all the Hasse diagram
 \vincent{todo}
 \end{proof}
 
-In fact, we can actually characterize the $\equiv$-posets of a simple congruence~$\equiv$.
+We can actually characterize the $\equiv$-posets of a simple congruence~$\equiv$.
 For this, we need the following two definitions.
 
 \begin{definition}
@@ -350,10 +703,61 @@ For a simple congruence~$\equiv$ of the weak order, the $\equiv$-posets are prec
 \vincent{todo}
 \end{proof}
 
+
+\cref{prop:admissibleSeparatingTrees} characterizes the separating trees~$T$ which are $\equiv$-posets for a given lattice congruence~$\equiv$.
+We can also derive the lattice congruences~$\equiv$ for which a given separating tree~$T$ is an $\equiv$-poset.
+
+\begin{proposition}
+\label{prop:whichCongruences}
+The set of lattice congruences~$\equiv$ for which a given tree~$T$ is $\equiv$-admissible forms an interval~$[\equiv_\circ, \equiv_\bullet]$ in the simple congruence lattice, where
+\begin{itemize}
+\item $\equiv_\circ$ is the congruence where ...
+\item $\equiv_\bullet$ is the congruence where ...
+\end{itemize}
+\vincent{todo}
+\end{proposition}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Schröder separating trees}
-\label{sec:SchroderSeparatingTrees}
+\section{Schröder separating trees and preposets of simple congruences}
+\label{sec:SchroderSeparatingTreesPreposetsSimpleCongruences}
+
+%%%%%%%%%%%%%%%%%%%
+
+\subsection{Schröder separating trees}
+\label{subsec:SchroderSeparatingTrees}
+
+\begin{definition}
+\label{def:ShcroderSeparatingTree}
+A \defn{Schröder separating tree} is a directed tree on the parts of a set partition of~$[n]$ such that for any two ancestor (resp.~descendant) subtrees of a node~$J$ are separated by an integer~$j \in J$, meaning that all integers that appear in a node of one subtree are smaller than~$j$, while all integers that appear in a node of the other subtree are larger than~$j$.
+\end{definition}
+
+\begin{lemma}
+\label{lem:contractionSchroderSeparatingTree}
+Schröder separating trees are stable by contraction.
+\end{lemma}
+
+\begin{proof}
+\vincent{todo}
+\end{proof}
+
+\begin{remark}
+The separating trees of \cref{def:separatingTrees} are precisely the Schröder separating trees on~$n$ nodes, or equivalently those where all the parts of the partition of~$[n]$ are singletons, or equivalently those which are contraction minimal.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%
+
+\subsection{Preposets of simple congruences}
+\label{subsec:preposetsSimpleCongruences}
+
+\begin{definition}
+\label{def:admissibleSchroderSeparatingTrees}
+Fix a simple lattice congruence~$\equiv$ of the weak order.
+A Schröder separating tree~$T$ is \defn{$\equiv$-admissible} if ...
+\vincent{todo}
+\end{definition}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
