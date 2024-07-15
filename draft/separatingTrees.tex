@@ -502,37 +502,37 @@ We provide two distinct approaches to describe this map:
 
 \Vincent{Not sure whether we really want / need to keep both...}
 
+%\subsubsection{Direct description}
+%
+%\Vincent{Not sure that it is the good presentation... For the next section, we need the other direction.}
+%
+%We still represent a permutation~$\sigma$ by its table~$\set{(\sigma_i, i)}{i \in [n]}$.
+%We consider the set~$\boxslash(\sigma)$ of pairs of positions~$(i,j)$ such that the rectangle with bottom left corner~$(\sigma_i, i)$ and top right corner~$(\sigma_j, j)$ contains no other point~$(\sigma_k, k)$ of the permutation table of~$\sigma$, that is,
+%\[
+%\boxslash(\sigma) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \sigma_i < \sigma_j \text{ and } \sigma({]i,j[}) \cap {]\sigma_i, \sigma_j[} = \varnothing}.
+%\]
+%For~$(i, j) \in \boxslash(\sigma)$, we define an arc~$\alpha(i, j, \sigma)$ by
+%\[
+%\arcUp(i, j, \sigma) \eqdef (\sigma_i, \sigma_j, \set{\sigma_k}{k < i \text{ and } \sigma_k \in {]\sigma_i, \sigma_j[}}, \set{\sigma_k}{j < k \text{ and } \sigma_k \in {]\sigma_i, \sigma_j[}}).
+%\]
+%Moreover, we order~$\boxslash(\sigma)$ by the slope of the diagonal joining~$(\sigma_i, i)$ to~$(\sigma_j, j)$, that is, $(i, j) \prec (k,\ell)$ if~$i \le k < \ell \le j$ and~$\sigma_k \le \sigma_i < \sigma_j \le \sigma_\ell$.
+%Finally, we define~$\boxslash_\equiv(\sigma)$ to be the subset of $\prec$-maximal elements in~$\set{(i, j) \in \boxslash(\sigma)}{\arcUp(i, j, \sigma) \in \arcs_\equiv}$.
+%
+%Symmetrically, we define~$\boxbslash(\sigma) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \sigma_i > \sigma_j \text{ and } \sigma({]i,j[}) \cap {]\sigma_j, \sigma_i[} = \varnothing}$, we associate an arc~$\arcDown(i, j, \sigma) \eqdef (\sigma_j, \sigma_i, \set{\sigma_k}{k < i \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}}, \set{\sigma_k}{j < k \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}})$ to each~${(i,j) \in \boxbslash(\sigma)}$, and we let~$\boxbslash_\equiv(\sigma)$ be the $\prec$-maximal elements in~$\set{(i, j) \in \boxbslash(\sigma)}{\arcDown(i, j, \sigma) \in \arcs_\equiv}$.
+%
+%\begin{proposition}[{\cite[Sect.~2.4]{Pilaud-arcDiagramAlgebra}}]
+%\label{prop:insertionMap}
+%The noncrossing arc diagram~$\arcDiagramUp(\sigma)$ (resp.~$\arcDiagramDown(\sigma)$) contains exactly the arcs~$\arcUp(i,j,\sigma)$ for all~$(i,j) \in \boxslash_\equiv(\sigma)$ (resp.~the arcs~$\arcDown(i,j,\sigma)$ for all~$(i,j) \in \boxbslash_\equiv(\sigma)$.
+%\end{proposition}
+%
+%\begin{corollary}
+%\label{coro:insertionMap}
+%The $\equiv$-poset~$\preccurlyeq_\sigma^\equiv$ corresponding to the $\equiv$-congruence class of a permutation~$\sigma$ has cover relations~$\sigma_i \preccurlyeq_\sigma^\equiv \sigma_j$ for~$(i,j) \in \boxslash_\equiv(\sigma) \cup \boxbslash_\equiv(\sigma)$.
+%\end{corollary}
+
 \subsubsection{Direct description}
 
-\Vincent{Not sure that it is the good presentation... For the next section, we need the other direction.}
-
-We still represent a permutation~$\sigma$ by its table~$\set{(\sigma_i, i)}{i \in [n]}$.
-We consider the set~$\boxslash(\sigma)$ of pairs of positions~$(i,j)$ such that the rectangle with bottom left corner~$(\sigma_i, i)$ and top right corner~$(\sigma_j, j)$ contains no other point~$(\sigma_k, k)$ of the permutation table of~$\sigma$, that is,
-\[
-\boxslash(\sigma) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \sigma_i < \sigma_j \text{ and } \sigma({]i,j[}) \cap {]\sigma_i, \sigma_j[} = \varnothing}.
-\]
-For~$(i, j) \in \boxslash(\sigma)$, we define an arc~$\alpha(i, j, \sigma)$ by
-\[
-\arcUp(i, j, \sigma) \eqdef (\sigma_i, \sigma_j, \set{\sigma_k}{k < i \text{ and } \sigma_k \in {]\sigma_i, \sigma_j[}}, \set{\sigma_k}{j < k \text{ and } \sigma_k \in {]\sigma_i, \sigma_j[}}).
-\]
-Moreover, we order~$\boxslash(\sigma)$ by the slope of the diagonal joining~$(\sigma_i, i)$ to~$(\sigma_j, j)$, that is, $(i, j) \prec (k,\ell)$ if~$i \le k < \ell \le j$ and~$\sigma_k \le \sigma_i < \sigma_j \le \sigma_\ell$.
-Finally, we define~$\boxslash_\equiv(\sigma)$ to be the subset of $\prec$-maximal elements in~$\set{(i, j) \in \boxslash(\sigma)}{\arcUp(i, j, \sigma) \in \arcs_\equiv}$.
-
-Symmetrically, we define~$\boxbslash(\sigma) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \sigma_i > \sigma_j \text{ and } \sigma({]i,j[}) \cap {]\sigma_j, \sigma_i[} = \varnothing}$, we associate an arc~$\arcDown(i, j, \sigma) \eqdef (\sigma_j, \sigma_i, \set{\sigma_k}{k < i \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}}, \set{\sigma_k}{j < k \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}})$ to each~${(i,j) \in \boxbslash(\sigma)}$, and we let~$\boxbslash_\equiv(\sigma)$ be the $\prec$-maximal elements in~$\set{(i, j) \in \boxbslash(\sigma)}{\arcDown(i, j, \sigma) \in \arcs_\equiv}$.
-
-\begin{proposition}[{\cite[Sect.~2.4]{Pilaud-arcDiagramAlgebra}}]
-\label{prop:insertionMap}
-The noncrossing arc diagram~$\arcDiagramUp(\sigma)$ (resp.~$\arcDiagramDown(\sigma)$) contains exactly the arcs~$\arcUp(i,j,\sigma)$ for all~$(i,j) \in \boxslash_\equiv(\sigma)$ (resp.~the arcs~$\arcDown(i,j,\sigma)$ for all~$(i,j) \in \boxbslash_\equiv(\sigma)$.
-\end{proposition}
-
-\begin{corollary}
-\label{coro:insertionMap}
-The $\equiv$-poset~$\preccurlyeq_\sigma^\equiv$ corresponding to the $\equiv$-congruence class of a permutation~$\sigma$ has cover relations~$\sigma_i \preccurlyeq_\sigma^\equiv \sigma_j$ for~$(i,j) \in \boxslash_\equiv(\sigma) \cup \boxbslash_\equiv(\sigma)$.
-\end{corollary}
-
-\subsubsection{Direct description}
-
-\Vincent{Alternative presentation using values instead of positions.}
+%\Vincent{Alternative presentation using values instead of positions.}
 
 We still represent a permutation~$\sigma$ by its table, where we have a point~$(\sigma_p, p)$ for each position~$p \in [n]$, or equivalently a point~$(i, \sigma^{-1}_i)$ for each value~$i \in [n]$.
 We consider the set~$\boxslash(\sigma)$ of pairs of values~$(i,j)$ such that the rectangle with bottom left corner~$(i, \sigma^{-1}_i)$ and top right corner~$(j, \sigma^{-1}_j)$ contains no other point~$(k, \sigma^{-1}_k)$ of the permutation table of~$\sigma$, that is,
@@ -753,15 +753,36 @@ We conclude that $T$ contains a directed path either from~$i$ to~$j$, or from~$j
 The second part of the statement is symmetric.
 \end{proof}
 
-\begin{corollary}
-\label{coro:separatingTree1}
-In a separating tree, there is no edge passing above a node with two parent or below a node with two children.
-\end{corollary}
-
-In other words, when we draw a red wall above each node with two parents and below each node with two children, the edges of the separating tree never cross the red walls.
+%\begin{corollary}
+%\label{coro:separatingTree1}
+%In a separating tree, there is no edge passing above a node with two parent or below a node with two children.
+%\end{corollary}
 
 \begin{lemma}
 \label{lem:separatingTree2}
+Let~$G$ be a directed graph on~$[n]$ drawn such that the nodes are ordered increasingly from left to right, and the edges are oriented from bottom to top.
+Then~$G$ is a separated tree~if~and~only~if
+\begin{enumerate}[(i)]
+\item each node~$j$ of~$G$ has at most one incoming (resp.~outgoing) neighbor~$i < j$ and at most one incoming (resp.~outgoing) neighbor~$k > j$,
+\item if~$i < j < k$ and~$j$ has two parents (resp.~children) and~$i-k$ is an edge of~$G$, then~$i-k$ passes below (resp.~above)~$j$.
+\end{enumerate}
+In other words, when we draw a red wall above each node with two parents and below each node with two children, the edges of the separating tree never cross the red walls.
+%In a separating tree, there is no edge passing above a node with two parent or below a node with two children.
+\end{lemma}
+
+\begin{proof}
+First, if~$G$ is a separating tree, then it satisfies~(i) by definition and~(ii) by a direct application of \cref{lem:separatingTree1}.
+Conversely, assume that~$G$ satisfies~(i) and~(ii).
+Assume that~$G$ contains a (non oriented) cycle~$C$, and let~$j$ be the topmost vertex of~$C$.
+Hence~$j$ has two incoming edges~$p \to j$ and~$q \to j$, and we can assume that~$p < j < q$ by Condition~(i).
+Therefore, $C$ has an edge~$i-k$ with~$i < j < k$ to connect~$p$ with~$q$.
+As~$j$ is the topmost vertex of~$C$, the edge~$i-k$ passes below~$j$, contradicting Condition~(ii).
+We conclude that~$G$ is a tree.
+\vincent{todo: close this proof}
+\end{proof}
+
+\begin{lemma}
+\label{lem:separatingTree3}
 Consider a node~$j$ with two children (resp.~parents) in a separating tree~$T$, and denote by~$M$ the maximum of the left descendant (resp.~ancestor) subtree of~$j$ and by~$m$ the minimum of the right descendant (resp.~ancestor) subtree of~$j$. Then for each~$k$ with~$M < k < m$, there is a directed path from~$j$ to~$k$ (resp.~from~$k$ to~$j$).
 \end{lemma}
 
@@ -800,23 +821,25 @@ If~$\equiv$ is a simple congruence of the weak order, then all the Hasse diagram
 \end{proposition}
 
 \begin{proof}
-Assume by means of contradiction that $\equiv$ is simple but that there is a $\equiv$-poset~$\preccurlyeq^\equiv_\sigma$ whose Hasse diagram contains a cycle~$C$.
-We draw this Hasse diagram on the table~$(i, \sigma^{-1}_i)$ of the permutation~$\sigma$.
-Let~$j$ be the topmost node of~$C$.
-Hence~$j$ has two incoming edges~$i \to j$ and~$k \to j$, one arising from an ascent of~$\sigma$, and one arising from a descent of~$\sigma$, so that~$i < j < k$.
-Assume for instance that~$i$ appears below~$k$, meaning $\sigma^{-1}_i < \sigma^{-1}_k$ (the other case is symmetric).
-Consider the leftmost point~$\ell$ of the table of~$\sigma$ in rectangle~${]i, k]} \times {]\sigma^{-1}_i < \sigma^{-1}_k]}$.
-Note that~$j < \ell \le k$ as~$(i,j) \in \boxslash(\sigma)$, and that~$(i,\ell) \in \boxslash(\sigma)$.
-As~$(i, \ell) \prec (i,j)$ and~$(i,j) \in \boxslash_\equiv(\sigma)$ we therefore obtain that~$\arcUp(i, \ell, \sigma) \notin \arcs_\equiv$.
-Let~$\alpha \eqdef (u, v, U, V)$ be a maximal (in the arc poset) arc of~$\arcs_n \ssm \arcs_\equiv$ which is a subarc of~$\arcUp(i, \ell, \sigma)$.
-As~$\arcUp(i, j, \sigma)$ and~$\arcUp(j, k, \sigma)$ both belong to~$\arcs_\equiv$, we have~$i \le u < j < v \le \ell$.
+Assume that $\equiv$ is simple, and consider the Hasse diagram~$H$ of an $\equiv$-poset~$\preccurlyeq^\equiv_\sigma$.
+We check the two conditions of \cref{lem:separatingTree2}.
+
+First, for each $j \in [n]$, there is at most one~$i \in [n]$ such that~$(i,j) \in \boxslash_\equiv(\sigma)$, so that~$G$ has at most one incoming neighbor~$i < j$ in~$H$.
+Similarly, each $j \in [n]$ has at most one incoming neighbor~$k > j$.
+(Note that this part holds for all congruences, not only the simple ones.)
+
+Second, assume that~$i < j < k$ are such that~$j$ has two children~$p < j < q$, and~$i$ and~$k$ appear before~$j$ in~$\sigma$.
+Assume for instance that~$p$ appears before~$q$ in~$\sigma$ (the other case is symmetric).
+Consider the leftmost point~$r$ of the table of~$\sigma$ in the rectangle~${]p, q]} \times {]\sigma^{-1}_p < \sigma^{-1}_q]}$.
+Note that~${j < r \le q}$ as~$(p,j) \in \boxslash(\sigma)$, and that~$(p,r) \in \boxslash(\sigma)$.
+As~$(p, r) \prec (p, j)$ and~$(p, j) \in \boxslash_\equiv(\sigma)$ we therefore obtain that~$\arcUp(p, r, \sigma) \notin \arcs_\equiv$.
+Let~$\alpha \eqdef (u, v, U, V)$ be a maximal (in the arc poset) arc of~$\arcs_n \ssm \arcs_\equiv$ which is a subarc of~$\arcUp(p, r, \sigma)$.
+As~$\arcUp(p, j, \sigma)$ and~$\arcUp(j, q, \sigma)$ both belong to~$\arcs_\equiv$, we have~$p \le u < j < v \le r$.
 As~$\equiv$ is a simple congruence, we have either~$U = \varnothing$ or~$V = \varnothing$.
-If~$V = \varnothing$, then~$U = {]u,v[} \ni j$, contradicting that~$\alpha$ is a subarc of~$\arcUp(i, \ell, \sigma)$.
-Hence, $U = \varnothing$ and~$V = {]u,v[}$, so that all points of~$V$ appear above~$j$.
-Consider now an edge~$p - q$ of~$C$ with~$p < j < q$ (there is at least one such edge to connect~$i$ to~$k$).
-As~$j$ is the top vertex of~$C$, the edge~$p-q$ passes below~$j$, hence below all points of~$V$.
-This implies that~$\alpha = (u, v, \varnothing, {]u,v[})$ is a subarc of~$\arcUp(p, q, \sigma)$ and~$\arcDown(p, q, \sigma)$.
-Hence,~$p-q$ cannot be an edge of~$\preccurlyeq^\equiv_\sigma$, a contradiction.
+If~$V = \varnothing$, then~$U = {]u,v[} \ni j$, contradicting that~$\alpha$ is a subarc of~$\arcUp(p, r, \sigma)$.
+Hence, $U = \varnothing$ and~$V = {]u,v[}$, so that all points of~$V$ appear after~$j$ in~$\sigma$, hence after~$i$ and~$k$.
+This implies that~$\alpha = (u, v, \varnothing, {]u,v[})$ is a subarc of~$\arcUp(i, k, \sigma)$ and~$\arcDown(i, k, \sigma)$.
+Hence,~$i-k$ cannot be an edge of~$H$.
 \end{proof}
 
 We can actually characterize the $\equiv$-posets of a simple congruence~$\equiv$.
