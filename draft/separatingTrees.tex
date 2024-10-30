@@ -284,7 +284,7 @@ See \cref{fig:noncrossingArcDiagrams} for illustrations.
 Consider now a permutation~$\sigma$ of~$[n]$, and its \defn{permutation table} containing the points~$(\sigma_p, p)$ for~$p \in [n]$.
 (This unusual choice of orientation is necessary to fit later with the existing constructions ~\cite{LodayRonco, HivertNovelliThibon-algebraBinarySearchTrees, ChatelPilaud, PilaudPons-permutrees}.)
 We draw segments between any two consecutive dots~$(\sigma_p, p)$ and~$(\sigma_{p+1}, p+1)$, colored blue if~$\sigma_p < \sigma_{p+1}$ is an \defn{ascent} and red if~$\sigma_p > \sigma_{p+1}$ is a \defn{descent}.
-We then move all dots down to the horizontal axis, allowing the segments to curve, but not to cross each other nor to pass through any dot, as illustrated in \cref{fig:noncrossingArcDiagrams}.
+We then let all dots fall down to the horizontal axis, allowing the segments to curve, but not to cross each other nor to pass through any dot, as illustrated in \cref{fig:noncrossingArcDiagrams}.
 The resulting set of blue (resp.~red) arcs is a noncrossing arc diagram~$\arcDiagramUp[](\sigma)$ (resp.~$\arcDiagramDown[](\sigma)$).
 
 \begin{theorem}[\cite{Reading-arcDiagrams}]
@@ -293,7 +293,7 @@ The maps~$\arcDiagramUp[](\sigma)$ and~$\arcDiagramDown[](\sigma)$ are bijection
 
 The map~$\arcDiagramUp[]$ (resp.~$\arcDiagramDown[]$) is particularly adapted to understand canonical meet (resp.~join) representations in the weak order.
 Namely, each single arc corresponds to a meet (resp.~join) irreducible permutation, \ie with a single ascent (resp.~descent), and the arc diagram~$\arcDiagramUp[](\sigma)$ (resp.~$\arcDiagramDown[](\sigma)$) of a permutation corresponds to the canonical meet (resp.~join) representation of~$\sigma$.
-%While the description of lattice quotients of the weak order below is based on this fact, we do not strictly need it in this paper.
+While the description of lattice quotients of the weak order below is based on this fact, we do not strictly need it in this paper.
 
 \begin{figure}
 	\capstart
@@ -380,10 +380,11 @@ The cones obtained by glueing together the maximal cones of the braid fan~$\brai
 \end{theorem}
 
 Each cone of the quotient fan~$\quotientFan$ is the \defn{preposet cone} $\Cone({\preccurlyeq}) \eqdef \set{\b{x} \in \R^n}{x_i \le x_j \text{ for all } i \preccurlyeq j}$ of some preposet~$\preccurlyeq$ on~$[n]$.
+We call \defn{$\equiv$-preposets} (resp.~\defn{$\equiv$-posets}) the preposets (resp.~posets) whose cone is a cone of~$\quotientFan$.
+
 The cone~$\Cone(\preccurlyeq)$ is the union of the cones~$\Cone(\mu)$ of the braid fan~$\braidFan$ over all ordered set partitions~$\mu$ of~$[n]$ such that~$i \preccurlyeq j$ implies $i \preccurlyeq_\mu j$ for all~$i,j \in [n]$.
 For an ordered set partition~$\mu$ of~$[n]$, we denote by~$\preccurlyeq^\equiv_\mu$ the preposet on~$[n]$ such that~$\Cone(\preccurlyeq^\equiv_\mu)$ is the smallest cone of~$\quotientFan$ containing the braid cone~$\Cone(\mu)$.
 In particular, the maximal cones of~$\quotientFan$ are poset cones of certain posets whose sets of linear extensions give the congruence classes of~$\equiv$, and the only cone of~$\quotientFan$ containing the braid cone~$\Cone(\sigma)$ of a permutation~$\sigma$ is the cone~$\Cone(\preccurlyeq^\equiv_\sigma)$ of the poset~$\preccurlyeq^\equiv_\sigma$ described in~\cref{subsec:latticeCongruencesArcIdeals}.
-We call \defn{$\equiv$-preposets} (resp.~\defn{$\equiv$-posets}) the preposets (resp.~posets) whose cone is a cone of~$\quotientFan$.
 
 Finally, we recall the following result of~\cite{PilaudSantos-quotientopes, PadrolPilaudRitter}.
 In this paper, we will not use the precise construction, only the fact that these polytopes exist.
@@ -399,7 +400,7 @@ The Hasse diagram of the quotient lattice~$\f{S}_n / {\equiv}$ is the dual graph
 \begin{example}
 \label{exm:sylvesterFanAssociahedron}
 For the sylvester congruence~$\equiv_\textrm{sylv}$ of \cref{exm:sylvesterCongruence}, the quotient fan~$\quotientFan[\textrm{sylv}]$ has a cone~$\Cone(S) \eqdef \set{\b{x} \in \hyp}{\b{x}_a \le \b{x}_b \text{ if there is a directed path from } a \text{ to } b \text{ in } S}$ for each Schröder tree~$S$ with $n+1$ leaves.
-In particular, $\quotientFan[\textrm{sylv}]$ has a chamber for each binary tree with $n$ nodes (or equivalently $n+1$ leaves).
+In particular, $\quotientFan[\textrm{sylv}]$ has a chamber for each binary tree with $n+1$ leaves (or equivalently $n$ nodes).
 \cref{fig:Tamari4}\,(middle) illustrates the quotient fan~$\quotientFan[\textrm{sylv}]$ for~$n = 4$.
 The quotient fan~$\quotientFan[\equiv_\textrm{sylv}]$ is the normal fan of the classical associahedron~$\Asso$ of~\cite{ShniderSternberg, Loday}, defined equivalently as the convex hull of the points~$\sum_{j \in [n]} \ell(T,j) \, r(T,j) \, \b{e}_j$ for all binary trees~$T$ on~$n$ nodes, where $\ell(T,j)$ and~$r(T,j)$ respectively denote the numbers of leaves in the left and right subtrees of the node~$j$ of~$T$ (labeled in inorder).
 \cref{fig:Tamari4}\,(right) shows the associahedron~$\Asso[4]$.
