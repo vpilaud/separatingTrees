@@ -81,6 +81,7 @@
 \DeclareMathOperator{\sign}{sign} % sign
 \DeclareMathOperator{\suppmin}{\mu} % support minimal
 \DeclareMathOperator{\inv}{inv} % inversions
+\DeclareMathOperator{\des}{des} % descents
 
 % others
 \newcommand{\ie}{\textit{i.e.}~} % id est
@@ -137,6 +138,7 @@
 % arc diagrams
 \newcommand{\arc}{\alpha} % arc
 \newcommand{\arcs}{{\mathcal{A}}} % arcs
+\newcommand{\nonarcs}{{\mathcal{B}}} % non-arcs
 \newcommand{\meet}{\wedge} % meet
 \newcommand{\join}{\vee} % join
 \newcommand{\decoration}{{\b{\delta}}} % decoration
@@ -317,6 +319,7 @@ Hence, the Hasse diagram of the poset~$\preccurlyeq^\equiv_\sigma$ is obtained b
 
 We now denote by~$\arcs_\equiv$ the set of arcs corresponding via~$\arcDiagramDown[]$ to permutations with a single descent and minimal in their class, or equivalently, via~$\arcDiagramUp[]$ to permutations with a single ascent and maximal in their class.
 This set~$\arcs_\equiv$ enables us to describe completely the lattice quotient~$\f{S}_n / {\equiv}$.
+%It will also be convenient to consider the complement~$\nonarcs_\equiv \eqdef \arcs_n \ssm \arcs_\equiv$.
 
 \begin{proposition}
 The quotient~$\f{S}_n/{\equiv}$ is isomorphic (as a poset) to the subposet of the weak order induced by the permutations which are minimal (resp.~maximal) in their class, which are precisely the permutations~$\sigma$ for which all arcs in the noncrossing arc diagram~$\arcDiagramDown[](\sigma)$ (resp.~$\arcDiagramUp[](\sigma)$) belong~to~$\arcs_\equiv$.
@@ -415,10 +418,10 @@ The quotient fan~$\quotientFan[\equiv_\textrm{sylv}]$ is the normal fan of the c
 
 %%%%%%%%%%%%%%%%%%%
 
-\subsection{Famous congruences}
-\label{subsec:famousCongruences}
+\subsection{Relevant congruences}
+\label{subsec:relevantCongruences}
 
-We briefly gather some famous congruences of the weak order:
+We briefly gather some relevant congruences of the weak order:
 \vincent{Not sure we need all of them}
 
 \begin{enumerate}
@@ -457,6 +460,13 @@ Its congruence classes correspond to $\decoration$-permutrees~\cite{PilaudPons-p
 It can also be seen as the transitive closure of the rewriting rules~$U i k V j W \equiv_\decoration U k i V j W$ for~$i < j < k$ with~$\decoration_j \in \{\downCirc, \upDownCirc\}$ and~$U j V i k W \equiv_\decoration U j V k i W$ for~$i < j < k$ with~$\decoration_j \in \{\upCirc, \upDownCirc\}$.
 The quotient~$\f{S}_n / {\equiv_\decoration}$ is the \defn{$\decoration$-permutree lattice}~\cite{PilaudPons-permutrees}.
 The quotient fan~$\quotientFan[\decoration]$ is the \defn{$\decoration$-permutree fan} of~\cite{PilaudPons-permutrees} and the quotientope~$\Quotientope[\decoration]$ is the \defn{$\decoration$-permutreehedron} of~\cite{PilaudPons-permutrees}.
+
+\item \label{item:abSashesCongruence}
+For~$a, b \ge 2$ define the \defn{$(a,b)$-sashes congruence}~$\equiv^s_{a,b}$ by the ideal~$\arcs^s_{a,b}$ of arcs which do not pass above $a$ consecutive points, nor below $b$ consecutive points.
+\vincent{todo}
+
+%\item \label{item:abTwistCongruence}
+%For~$a, b \ge 2$ define the \defn{$(a,b)$-twist congruence}~$\equiv^t_{a,b}$ by the ideal~$\arcs^t_{a,b}$ of arcs which do not pass above $a$ points, nor below $b$ points.
 
 \item \label{item:BaxterCongruence}
 The \defn{Baxter congruence}~$\equiv_\textrm{Bax}$ is defined by the ideal of arcs that do not cross the horizontal axis, \ie~$\arcs_\textrm{Bax} = \set{(i, j, A, B) \in \arcs_n}{A = \varnothing \text{ or } B = \varnothing}$.
@@ -545,9 +555,18 @@ For~$(i, j) \in \boxslash(\sigma)$, we define an arc~$\alpha(i, j, \sigma)$ by
 \arcUp(i, j, \sigma) \eqdef (i, j, \set{k}{i < k < j \text{ and } \sigma^{-1}_k < \sigma^{-1}_i}, \set{k}{i < k < j \text{ and } \sigma^{-1}_j < \sigma^{-1}_k}).
 \]
 Moreover, we order~$\boxslash(\sigma)$ by $(i, j) \prec (k,\ell)$ if~$i \le k < \ell \le j$ and~$\sigma^{-1}_k \le \sigma^{-1}_i < \sigma^{-1}_j \le \sigma^{-1}_\ell$.
+In other words, $(i, j) \prec (k, \ell)$ if the corresponding corresponding segments either cross, or share their left endpoint or share their right endpoint, and the slope of~$(i, j)$ is smaller than the slope of~$(k, \ell)$.
 Finally, we define~$\boxslash_\equiv(\sigma)$ to be the subset of $\prec$-minimal elements in~$\set{(i, j) \in \boxslash(\sigma)}{\arcUp(i, j, \sigma) \in \arcs_\equiv}$.
 
-Symmetrically, define~$\boxbslash(\sigma) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \sigma^{-1}_i > \sigma^{-1}_j \text{ and } \sigma^{-1}({]i,j[}) \cap {[\sigma^{-1}_j, \sigma^{-1}_i]} = \varnothing}$, associate an arc~$\arcDown(i, j, \sigma) \eqdef (i, j, \set{k}{i < k < j \text{ and } \sigma^{-1}_k < \sigma^{-1}_j}, \set{k}{i < k < j \text{ and } \sigma^{-1}_i < \sigma^{-1}_k})$ to each~${(i,j) \in \boxbslash(\sigma)}$, and let~$\boxbslash_\equiv(\sigma)$ be the $\prec$-minimal elements in~$\set{(i, j) \in \boxbslash(\sigma)}{\arcDown(i, j, \sigma) \in \arcs_\equiv}$.
+Symmetrically, define
+\[
+\boxbslash(\sigma) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \sigma^{-1}_i > \sigma^{-1}_j \text{ and } \sigma^{-1}({]i,j[}) \cap {[\sigma^{-1}_j, \sigma^{-1}_i]} = \varnothing},
+\]
+associate an arc
+\[
+\arcDown(i, j, \sigma) \eqdef (i, j, \set{k}{i < k < j \text{ and } \sigma^{-1}_k < \sigma^{-1}_j}, \set{k}{i < k < j \text{ and } \sigma^{-1}_i < \sigma^{-1}_k})
+\]
+to each~${(i,j) \in \boxbslash(\sigma)}$, and let~$\boxbslash_\equiv(\sigma)$ be the $\prec$-minimal elements in~$\set{(i, j) \in \boxbslash(\sigma)}{\arcDown(i, j, \sigma) \in \arcs_\equiv}$ for the order~$\prec$ on~$\boxbslash(\sigma)$ defined by $(i, j) \prec (k,\ell)$ if~$i \le k < \ell \le j$ and~$\sigma^{-1}_\ell \le \sigma^{-1}_j < \sigma^{-1}_i \le \sigma^{-1}_k$.
 
 \begin{proposition}[{\cite[Sect.~2.4]{Pilaud-arcDiagramAlgebra}}]
 \label{prop:insertionMap}
@@ -590,23 +609,28 @@ For~$(i, j) \in \boxslash(\mu)$, we define an arc~$\alpha(i, j, \mu)$ by
 Moreover, we order~$\boxslash(\mu)$ by $(i, j) \prec (k,\ell)$ if~$i \le k < \ell \le j$ and~$\mu^{-1}_k \le \mu^{-1}_i < \mu^{-1}_j \le \mu^{-1}_\ell$.
 Finally, we define~$\boxslash_\equiv(\mu)$ to be the subset of $\prec$-minimal elements in~$\set{(i, j) \in \boxslash(\mu)}{\arcUp(i, j, \mu) \in \arcs_\equiv}$.
 
-Symmetrically, define~$\boxbslash(\mu) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \mu^{-1}_i \ge \mu^{-1}_j \text{ and } \mu^{-1}({]i,j[}) \cap {[\mu^{-1}_j, \mu^{-1}_i]} = \varnothing}$, associate an arc~$\arcDown(i, j, \mu) \eqdef (i, j, \set{k}{i < k < j \text{ and } \mu^{-1}_k < \mu^{-1}_j}, \set{k}{i < k < j \text{ and } \mu^{-1}_i < \mu^{-1}_k})$ to each~${(i,j) \in \boxbslash(\mu)}$, and let~$\boxbslash_\equiv(\mu)$ be the $\prec$-minimal elements in~$\set{(i, j) \in \boxbslash(\mu)}{\arcDown(i, j, \mu) \in \arcs_\equiv}$.
+Symmetrically, define
+\[
+\boxbslash(\mu) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \mu^{-1}_i \ge \mu^{-1}_j \text{ and } \mu^{-1}({]i,j[}) \cap {[\mu^{-1}_j, \mu^{-1}_i]} = \varnothing},
+\]
+associate an arc
+\[
+\arcDown(i, j, \mu) \eqdef (i, j, \set{k}{i < k < j \text{ and } \mu^{-1}_k < \mu^{-1}_j}, \set{k}{i < k < j \text{ and } \mu^{-1}_i < \mu^{-1}_k})
+\]
+to each~${(i,j) \in \boxbslash(\mu)}$, and let~$\boxbslash_\equiv(\mu)$ be the $\prec$-minimal elements in~$\set{(i, j) \in \boxbslash(\mu)}{\arcDown(i, j, \mu) \in \arcs_\equiv}$ for the order~$\prec$ on~$\boxbslash(\sigma)$ defined by $(i, j) \prec (k,\ell)$ if~$i \le k < \ell \le j$ and~$\mu^{-1}_\ell \le \mu^{-1}_j < \mu^{-1}_i \le \mu^{-1}_k$.
 
-%\begin{proposition}
-%\label{prop:insertionMapFaces}
-%The noncrossing arc diagram~$\arcDiagramUp(\sigma)$ (resp.~$\arcDiagramDown(\sigma)$) contains exactly the arcs~$\arcUp(i,j,\sigma)$ for all~$(i,j) \in \boxslash_\equiv(\sigma)$ (resp.~the arcs~$\arcDown(i,j,\sigma)$ for all~$(i,j) \in \boxbslash_\equiv(\sigma)$.
-%\end{proposition}
+Remember from \cref{subsec:quotientFansQuotientopes} that for an ordered partition~$\mu$ of~$[n]$, there is a unique $\equiv$-preposet~$\preccurlyeq^\equiv_\mu$ such that the preposet cone~$\Cone(\preccurlyeq^\equiv_\mu)$ is the smallest cone of~$\quotientFan$ containing the braid cone~$\Cone(\mu)$.
 
 \begin{corollary}
 \label{coro:insertionMapFaces}
-For an ordered partition~$\mu$ of~$[n]$, the $\equiv$-preposet~$\preccurlyeq^\equiv_\mu$ such that~$\Cone(\mu)$ is contained in~$\Cone(\preccurlyeq^\equiv_\mu)$ has cover relations~$i \preccurlyeq^\equiv_\mu j$ for~$(i,j) \in \boxslash_\equiv(\mu)$ and~$j \preccurlyeq^\equiv_\mu i$ for all~$(i,j) \in \boxbslash_\equiv(\mu)$.
+The $\equiv$-preposet~$\preccurlyeq^\equiv_\mu$ given by an ordered partition~$\mu$ of~$[n]$ has cover relations~$i \preccurlyeq^\equiv_\mu j$ for~$(i,j) \in \boxslash_\equiv(\mu)$ and~$j \preccurlyeq^\equiv_\mu i$ for all~$(i,j) \in \boxbslash_\equiv(\mu)$.
 \end{corollary}
 
 \begin{figure}
 	\capstart
 	\centerline{\includegraphics[scale=.85]{arcDiagramsQuotients}}
-	\caption{The posets (top) corresponding to the $\equiv_\arcs$-congruence class of the permutation~$\sigma = 2537146$ for different arc ideals (bottom).}
-	\label{fig:arcDiagramsQuotients}
+	\caption{The preposets (top) corresponding to the $\equiv_\arcs$-congruence class of the ordered partition~$\mu = ???$ for different arc ideals (bottom).}
+	\label{fig:arcDiagramsFacesQuotients}
 \end{figure}
 
 \Vincent{Should we also include a sweeping description for the preposet insertion map?}
@@ -623,6 +647,12 @@ This paper focusses on the following congruences of the weak order.
 A lattice congruence~$\equiv$ of the weak order is \defn{simple} if all maximal (in the arc poset) arcs of~$\arcs_n \ssm \arcs_\equiv$ are up arcs (of the form~$(a, b, {]a,b[}, \varnothing)$) or down arcs (of the form~$(a, b, \varnothing, {]a,b[})$).
 \end{definition}
 
+\begin{remark}
+\label{rem:bridges}
+Define the \defn{up} (resp.~\defn{down}) \defn{bridges} of an arc~$\arc \eqdef (i, j, A, B)$ as the up (resp.~down) arcs~$(k, \ell, {]k, \ell[}, \varnothing)$ (resp.~$(k, \ell, \varnothing, {]k, \ell[})$) such that~$]k,\ell[$ is an inclusion maximal interval of~$A$ (resp.~of~$B$).
+Then for a simple congruence~$\equiv$, the arc~$\arc$ belongs to~$\arcs_\equiv$ if and only if all its bridges belong to~$\arcs_\equiv$.
+\end{remark}
+
 \begin{example}
 Classical examples of simple congruences of the weak order are
 \begin{itemize}
@@ -631,9 +661,10 @@ Classical examples of simple congruences of the weak order are
 \item the recoil congruence,
 \item the Cambrian congruences~\cite{Reading-CambrianLattices, ChatelPilaud},
 \item the permutree congruences~\cite{PilaudPons-permutrees},
+\item the $(k,\ell)$-sashes congruences~\cite{LaniniNovelli},
 \item the graph associahedra congruences of~\cite{BarnardMcConville}.
 \end{itemize}
-A good example of a congruence which is not simple is the Baxter congruence~\cite{LawReading, Giraudo} whose quotient corresponds to diagonal rectangulations of a square. Its maximal non arcs are all arcs which are neither up nor down arcs.
+A good example of a congruence which is not simple is the Baxter congruence~\cite{LawReading, Giraudo} whose quotient corresponds to diagonal rectangulations of a square. Its arcs are all up or down arcs, so that its maximal non arcs are all arcs of the form~$(i, i+3, {]i+1[}, {]i+2[})$ or~$(i, i+3, {]i+2[}, {]i+1[})$ for~$i \in [n-3]$.
 \end{example}
 
 \begin{proposition}
@@ -644,7 +675,9 @@ The set of simple congruences induces a meet subsemilattice of the congruence la
 \begin{proof}
 For two congruences~$\equiv$ and~$\equiv'$, the non arcs of~${\equiv} \meet {\equiv'}$ are
 \[
+%\nonarcs_{{\equiv} \meet {\equiv'}} = 
 \arcs_n \ssm \arcs_{{\equiv} \meet {\equiv'}} = \arcs_n \ssm (\arcs_{\equiv} \cap \arcs_{\equiv'}) = (\arcs_n \ssm \arcs_{\equiv}) \cup (\arcs_n \ssm \arcs_{\equiv'})
+% = \nonarcs_{\equiv} \cup \nonarcs_{\equiv'}
 \]
 so that any maximal non arc of~${\equiv} \meet {\equiv'}$ is a maximal non arc of~${\equiv}$ or a maximal non arc of~${\equiv'}$.
 \end{proof}
@@ -728,7 +761,7 @@ A \defn{separating tree} is a directed tree on~$[n]$ such that
 \begin{remark}
 Readers familiar with~\cite{PilaudPons-permutrees} might wonder what differs between permutrees and separating trees.
 The subtle distinction is that empty ancestor or descendant subtrees are allowed in permutrees and not in separating trees.
-For instance, a in a separating tree, it is impossible to say that a node has two children, one of which is empty.
+For instance, in a separating tree, it is impossible to say that a node has two children, one of which is empty.
 \end{remark}
 
 We gather in this section some structural lemmas about separating trees.
@@ -764,7 +797,7 @@ The second part of the statement is symmetric.
 Let~$G$ be a directed graph on~$[n]$ drawn such that the nodes are ordered increasingly from left to right, and the edges are oriented from bottom to top.
 Then~$G$ is a separated tree~if~and~only~if
 \begin{enumerate}[(i)]
-\item each node~$j$ of~$G$ has at most one incoming (resp.~outgoing) neighbor~$i < j$ and at most one incoming (resp.~outgoing) neighbor~$k > j$,
+\item each node~$j$ of~$G$ has at most one outgoing (resp.~incoming) neighbor~$i < j$ and at most one outgoing (resp.~incoming) neighbor~$k > j$,
 \item if~$i < j < k$ and~$j$ has two parents (resp.~children) and~$i-k$ is an edge of~$G$, then~$i-k$ passes below (resp.~above)~$j$.
 \end{enumerate}
 In other words, when we draw a red wall above each node with two parents and below each node with two children, the edges of the separating tree never cross the red walls.
@@ -784,7 +817,7 @@ We conclude that~$G$ is a tree.
 
 \begin{lemma}
 \label{lem:separatingTree3}
-Consider a node~$j$ with two children (resp.~parents) in a separating tree~$T$, and denote by~$M$ the maximum of the left descendant (resp.~ancestor) subtree of~$j$ and by~$m$ the minimum of the right descendant (resp.~ancestor) subtree of~$j$. Then for each~$k$ with~$M < k < m$, there is a directed path from~$j$ to~$k$ (resp.~from~$k$ to~$j$).
+Consider a node~$j$ with two parents (resp.~children) in a separating tree~$T$, and denote by~$M$ the maximum of the left ancestor (resp.~descendant) subtree of~$j$ and by~$m$ the minimum of the right ancestor(resp.~descendant) subtree of~$j$. Then for each~$k$ with~$M < k < m$, there is a directed path from~$k$ to~$j$ (resp.~from~$j$ to~$k$).
 \end{lemma}
 
 \begin{proof}
@@ -818,11 +851,13 @@ In fact, we prove the following stronger statement on the $\equiv$-posets of a s
 
 \begin{proposition}
 \label{prop:simpleImpliesSeparatingTrees}
-If~$\equiv$ is a simple congruence of the weak order, then all the Hasse diagram of any $\equiv$-poset is a separating tree.
+If~$\equiv$ is a simple congruence of the weak order, then the Hasse diagram of any $\equiv$-poset is a separating tree.
 \end{proposition}
 
 \begin{proof}
-Assume that $\equiv$ is simple, and consider the Hasse diagram~$H$ of an $\equiv$-poset~$\preccurlyeq^\equiv_\sigma$.
+Assume that $\equiv$ is simple, and consider the Hasse diagram~$H$ of an $\equiv$-poset~$\preccurlyeq$.
+Pick a permutation~$\preccurlyeq^\equiv_\sigma$.
+By \cref{coro:insertionMap}, we obtain~$H$ starting from the permutation table 
 We check the two conditions of \cref{lem:separatingTree2}.
 
 First, for each $j \in [n]$, there is at most one~$i \in [n]$ such that~$(i,j) \in \boxslash_\equiv(\sigma)$, so that~$G$ has at most one incoming neighbor~$i < j$ in~$H$.
@@ -847,56 +882,89 @@ We can actually characterize the $\equiv$-posets of a simple congruence~$\equiv$
 For this, we need the following two definitions.
 
 \begin{definition}
-\label{lem:edgeIsArc}
-From \cref{lem:separatingTree1}, each edge in a separating tree~$T$ actually defines an arc. Namely
-\begin{itemize}
-\item each edge~$i \leftarrow k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$k$ (resp.~$i$ to~$j$),
-\item each edge~$i \to k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$i$ (resp.~$k$ to~$j$).
-\end{itemize}
+\label{def:edgeIsArc}
+From \cref{lem:separatingTree1}, each edge in a separating tree~$T$ actually defines an arc. Namely an edge~$i - k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to the edge~$i-k$ (resp.~from the edge~$i-k$ to~$j$).
+%\begin{itemize}
+%\item each edge~$i \leftarrow k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$k$ (resp.~$i$ to~$j$),
+%\item each edge~$i \to k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$i$ (resp.~$k$ to~$j$).
+%\end{itemize}
 \end{definition}
+
+In the sequel, we therefore always implicitly consider an edge in a separating tree as an arc.
 
 \begin{definition}
 \label{def:admissibleSeparatingTrees}
 Fix a (simple) lattice congruence~$\equiv$ of the weak order.
 A separating tree~$T$ is \defn{$\equiv$-admissible} if
 \begin{enumerate}[(i)]
-\item all edges of~$T$ are allowed arcs in~$\equiv$,
-\item if a node~$j$ of~$T$ has two parents, and $M$ (resp.~$m$) denotes the maximum (resp.~minimum) of the left (resp.~right) ancestor subtree of~$j$, then the up arc~$(M, m, {]M,m[}, \varnothing)$ is forbidden~in~$\equiv$,
-\item if a node~$j$ of~$T$ has two children, and $M$ (resp.~$m$) denotes the maximum (resp.~minimum) of the left (resp.~right) descendant subtree of~$j$, then the down arc~$(M, m, \varnothing, {]M,m[})$ is forbidden in~$\equiv$.
+\item all edges of~$T$ are arcs in~$\arcs_\equiv$,
+\item if a node~$j$ of~$T$ has two parents, and $M$ (resp.~$m$) denotes the maximum (resp.~minimum) of the left (resp.~right) ancestor subtree of~$j$, then the up arc~$(M, m, {]M,m[}, \varnothing)$ is not~in~$\arcs_\equiv$,
+\item if a node~$j$ of~$T$ has two children, and $M$ (resp.~$m$) denotes the maximum (resp.~minimum) of the left (resp.~right) descendant subtree of~$j$, then the down arc~$(M, m, \varnothing, {]M,m[})$ is not in~$\arcs_\equiv$.
 \end{enumerate}
 \end{definition}
 
 \begin{lemma}
+\label{lem:admissibleSeparatingTreesWithCommonLinearExtensions}
 If~$T$ and~$T'$ are two $\equiv$-admissible separating trees with a common linear extension, then~${T = T'}$.
 \end{lemma}
 
 \begin{proof}
-\vincent{todo}
+Assume that~$T$ and~$T'$ are two distinct $\equiv$-admissible separating trees. 
+As they are trees on~$[n]$, they both have~$n-1$ edges, hence there is an edge of~$T$ which is not an edge of~$T'$.
+Assume for instance that there are~$1 \le p < q \le n$ such that there is an edge from~$p$ and~$q$ in~$T$ which is not in~$T'$.
+If there is an edge from~$q$ to~$p$ in~$T'$, then $T$ and~$T'$ cannot have a common linear extension.
+Otherwise, $p$ and~$q$ are incomparable in~$T'$.
+As~$T'$ is a tree, there is an undirected path~$\pi$ from~$p$ to~$q$ in~$T'$.
+Let~$j$ be the last node along~$\pi$ where~$\pi$ has either two incoming edges, or two outgoing edges.
+By symmetry, we can assume that~$\pi$ has two outcoming edges at~$j$.
+Let~$M$ (resp.~$m$) denotes the maximum (resp.~minimum) of the left (resp.~right) ancestor subtree of~$j$ in~$T'$.
+Note that~$p \le M < j < m \le q$ since~$T'$ is separating.
+For any~$k \in {]M,m[}$, \cref{lem:separatingTree3} ensures the existence of a path from~$k$ to~$j$ in~$T'$, hence from~$k$ to~$q$.
+Consider now the arc between~$p$ and~$q$ in~$T$, and let~$(p, q, A, B)$ denote the corresponding arc defined in \cref{def:edgeIsArc}.
+As~$T$ and~$T'$ are both $\equiv$-admissible, we obtain that~$\arcs_\equiv$ contains~$(p, q, A, B)$ but not~$(M, m, {]M,m[}, \varnothing)$.
+As~$p \le M < m \le q$, this implies that there is~$k \in {]M,m[} \ssm A$.
+By \cref{lem:separatingTree1}, there is a path from~$q$ to~$k$ in~$T$.
+We conclude that there is a path from~$q$ to~$k$ in~$T$, and from~$k$ to~$q$ in~$T'$, so that~$T$ and~$T'$ cannot have a common linear extension.
 \end{proof}
 
 \begin{proposition}
 \label{prop:admissibleSeparatingTrees}
-For a simple congruence~$\equiv$ of the weak order, the $\equiv$-posets are precisely the (linear extensions of the) $\equiv$-admissible separating trees.
+For a simple congruence~$\equiv$ of the weak order, the (Hasse diagrams of the) $\equiv$-posets are precisely the $\equiv$-admissible separating trees.
+\end{proposition}
+
+\begin{proof}
+Consider first a $\equiv$-poset.
+By \cref{prop:simpleImpliesSeparatingTrees}, its Hasse diagram is a separating tree~$T$, and we just need to prove that~$T$ is $\equiv$-admissible.
+Condition~(i) of \cref{def:admissibleSeparatingTrees} is immediate by \cref{coro:insertionMap}.
+Assume now that a node~$j$ of~$T$ has two parents, and $M$ (resp.~$m$) denotes the maximum (resp.~minimum) of the left (resp.~right) ancestor subtree of~$j$.
+Since~$M$ and~$m$ are incomparable in~$T$, there exists a linear extension~$\sigma$ of~$T$ in which~$M$ appears just before~$m$.
+It follows that~$(M,m) \in \boxslash_\sigma$ and is minimal for~$\prec$.
+As $M$ (resp.~$m$) is the maximum (resp.~minimum) of the left (resp.~right) ancestor subtree of~$j$, we obtain that~$\arcUp(i, j, \sigma) = (M, m, {[M,m]}, \varnothing)$ by \cref{lem:separatingTree3}.
+As~$(M,m)$ is not an edge of~$T$, we conclude that~$\arcUp(i, j, \sigma) \notin \arcs_\equiv$.
+This shows Condition~(ii) of \cref{def:admissibleSeparatingTrees}, and Condition~(iii) follows by symmetric.
+
+Assume now that~$T$ is a $\equiv$-admissible separating tree, let~$\sigma$ be any linear extension of~$T$, and let~$T'$ be the tree obtained by insertion of $\sigma$ according to \cref{subsec:insertionMap}.
+By the previous paragraph, we obtain that~$T'$ is a $\equiv$-admissible separating tree.
+As~$\sigma$ is a linear extension of both~$T$ and~$T'$, we obtain by \cref{lem:admissibleSeparatingTreesWithCommonLinearExtensions} that~$T = T'$, and we conclude that~$T$ is the Hasse diagram of a $\equiv$-poset.
+\end{proof}
+
+\cref{prop:admissibleSeparatingTrees} characterizes the separating trees~$T$ which are $\equiv$-posets for a given lattice congruence~$\equiv$.
+We can also obtain the lattice congruences~$\equiv$ for which a given separating tree~$T$ is an $\equiv$-poset.
+Recall from \cref{rem:bridges} that the  \defn{up} (resp.~\defn{down}) \defn{bridges} of an arc~$\arc \eqdef (i, j, A, B)$ as the up (resp.~down) arcs~$(k, \ell, {]k, \ell[}, \varnothing)$ (resp.~$(k, \ell, \varnothing, {]k, \ell[})$) such that~$]k,\ell[$ is an inclusion maximal interval of~$A$ (resp.~of~$B$).
+
+
+\begin{proposition}
+\label{prop:whichCongruences}
+The set of simple lattice congruences~$\equiv$ for which a given separating tree~$T$ is $\equiv$-admissible forms an interval~$[\equiv_\circ, \equiv_\bullet]$ in the simple congruence lattice, where
+\begin{itemize}
+\item $\equiv_\circ$ is the congruence where~$\arcs_n \ssm \arcs_\equiv$ is the lower ideal of the arc poset generated by all up and down arcs which are not subarcs of bridges of the edges of~$T$,
+\item $\equiv_\bullet$ is the congruence where~$\arcs_n \ssm \arc_\equiv$ is the lower ideal of the arc poset generated by the up arcs~$(M, m, {]M,m[}, \varnothing)$ where~$M$ (resp.~$m$) is the maximum (resp.~minimum) of the left (resp.~right) ancestor subtree of a node~$j$ of~$T$ with two parents, and the down arcs~$(M, m, \varnothing, {]M,m[})$ where~$M$ (resp.~$m$) denotes the maximum (resp.~minimum) of the left (resp.~right) descendant subtree of a node~$j$ of~$T$ with two children.
+\end{itemize}
 \end{proposition}
 
 \begin{proof}
 \vincent{todo}
 \end{proof}
-
-
-\cref{prop:admissibleSeparatingTrees} characterizes the separating trees~$T$ which are $\equiv$-posets for a given lattice congruence~$\equiv$.
-We can also derive the lattice congruences~$\equiv$ for which a given separating tree~$T$ is an $\equiv$-poset.
-
-\begin{proposition}
-\label{prop:whichCongruences}
-The set of lattice congruences~$\equiv$ for which a given tree~$T$ is $\equiv$-admissible forms an interval~$[\equiv_\circ, \equiv_\bullet]$ in the simple congruence lattice, where
-\begin{itemize}
-\item $\equiv_\circ$ is the congruence where ...
-\item $\equiv_\bullet$ is the congruence where ...
-\end{itemize}
-\vincent{todo}
-\end{proposition}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -938,11 +1006,27 @@ A Schröder separating tree~$T$ is \defn{$\equiv$-admissible} if ...
 \vincent{todo}
 \end{definition}
 
+\begin{lemma}
+\label{lem:contractionSchroderSeparatingTree}
+$\equiv$-admissible Schröder separating trees are stable by contraction.
+\end{lemma}
+
+\begin{remark}
+The number of $\equiv$-admissible Schröder separating trees is
+\[
+\sum_T 2^{\#\des(T)}
+\]
+where the sum ranges over all $\equiv$-admissible separating trees, and~$\des(T)$ denotes the descents of~$T$ (\ie~the edges~$i \leftarrow j$ with~$1 \le i < j \le j$).
+\end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Hopf algebra}
 \label{sec:HopfAlgebra}
+
+explain product combinatorially \\
+coproduct obtained by horizontal cut and product \\
+lattice structure provides a multiplicative basis
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -953,6 +1037,8 @@ A Schröder separating tree~$T$ is \defn{$\equiv$-admissible} if ...
 
 \addtocontents{toc}{\vspace{.1cm}}
 \section*{Acknowledgments}
+
+Pierre-Guy Plamondon and Yann Palu.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
