@@ -226,6 +226,10 @@ VP was partially supported by the Spanish project PID2022-137283NB-C21 of MCIN/A
 \section{Introduction}
 \label{sec:introduction}
 
+The vertices of the quotientope~$\Quotientope$ correspond to non-crossing arc diagrams in~$\arcs$, the facets~$\Quotientope$ correspond to admissible bipartition of~$[n]$ \cite{AlbertinPilaudRitter}, and the intervals in the quotient~$\f{S}_n/{\equiv}$ correspond to semi-crossing arc bidiagrams~\cite{AlbertinPilaud} in~$\arcs$ (introduced in the context of the canonical complex of the weak order).
+In contrast, there is no combinatorial model for the faces of a quotientope in general.
+In this paper, we provide the first combinatorial model for all faces of the quotientope~$\Quotientope$ when~$\equiv$ is a simple congruence.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \clearpage
@@ -593,6 +597,7 @@ The $\equiv$-poset~$\preccurlyeq$ corresponding to the $\equiv$-congruence class
 \subsection{Preposet insertion map}
 \label{subsec:insertionMap}
 
+\vincent{I am not even sure we need this section anymore...}
 In this section, we describe the map sending an ordered partition~$\mu$ of~$[n]$ to the preposet~$\preccurlyeq_\mu^\equiv$.
 While similar to the insertion map of \cref{subsec:insertionMap}, it was not considered in~\cite{Pilaud-arcDiagramAlgebra}.
 
@@ -733,6 +738,8 @@ Hence, the Hasse diagram of the $\equiv$-poset~$\preccurlyeq_\sigma^\equiv$ is n
 \section{Separating trees and posets of simple congruences}
 \label{sec:separatingTreesPostesSimpleCongruences}
 
+In this section, we define separating trees which provide a combinatorial model for the vertices of all simple quotientopes.
+
 %%%%%%%%%%%%%%%%%%%
 
 \subsection{Separating trees}
@@ -765,10 +772,11 @@ For instance, in a separating tree, it is impossible to say that a node has two 
 \end{remark}
 
 We gather in this section some structural lemmas about separating trees.
+We start with two lemmas ensuring the existence of certain paths in a separating tree.
 
 \begin{lemma}
 \label{lem:separatingTree1}
-Consider a separating tree~$T$ and let~$1 \le i < j < k \le n$. Then
+Consider three nodes~$1 \le i < j < k \le n$ in a separating tree~$T$. Then
 \begin{itemize}
 \item if~$i \leftarrow k$ is an arc of~$T$, then there is a directed path in~$T$ joining either~$i$ to~$j$, or~$j$ to~$k$,
 \item if~$i \to k$ is an arc of~$T$, then there is a directed path in~$T$ joining either~$j$ to~$i$, or~$k$ to~$j$.
@@ -787,10 +795,33 @@ We conclude that $T$ contains a directed path either from~$i$ to~$j$, or from~$j
 The second part of the statement is symmetric.
 \end{proof}
 
+\begin{lemma}
+\label{lem:separatingTree3}
+Consider a node~$j$ with two parents (resp.~children) in a separating tree~$T$, and denote by~$M$ the maximum of the left ancestor (resp.~descendant) subtree of~$j$ and by~$m$ the minimum of the right ancestor(resp.~descendant) subtree of~$j$. Then for each~$k$ with~$M < k < m$, there is a directed path from~$k$ to~$j$ (resp.~from~$j$ to~$k$).
+\end{lemma}
+
+\begin{proof}
+Assume that~$j$ has two children, the proof for two parents is symmetric.
+As~$T$ is a tree, there is a (a priori undirected) path~$\pi$ between~$j$ and~$k$.
+As~$M < k < m$, $k$ is not a descendant of~$j$, so that the path~$\pi$ starts with an outgoing edge at~$j$.
+If~$\pi$ is not a directed path, then there exists some node~$\ell$ along~$\pi$ such that~$\pi$ has either two incoming or two outgoing edges at~$\ell$.
+This contradicts the separating property, as $M < k < m$ so that~$\ell$ cannot separate~$k$ from~$\{M,m\}$.
+We conclude that~$\pi$ is a directed path from~$j$ to~$k$.
+\end{proof}
+
+From \cref{lem:separatingTree1}, we observe that each edge in a separating tree actually defines an arc.
+
+\begin{definition}
+\label{def:arcsSeparatingTree}
+The \defn{arcs} of a separating tree~$T$ are the arcs of the form~$(i, k, A, B)$, where~$i < k$ form an edge of~$T$ and~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$i-k$ (resp.~$i-k$ to~$j$).
+\end{definition}
+
 %\begin{corollary}
 %\label{coro:separatingTree1}
 %In a separating tree, there is no edge passing above a node with two parent or below a node with two children.
 %\end{corollary}
+
+Finally, we give a planar characterization of separating tree which will be useful in the proof of \cref{prop:simpleImpliesSeparatingTrees}.
 
 \begin{lemma}
 \label{lem:separatingTree2}
@@ -813,20 +844,6 @@ Therefore, $C$ has an edge~$i-k$ with~$i < j < k$ to connect~$p$ with~$q$.
 As~$j$ is the topmost vertex of~$C$, the edge~$i-k$ passes below~$j$, contradicting Condition~(ii).
 We conclude that~$G$ is a tree.
 \vincent{todo: close this proof}
-\end{proof}
-
-\begin{lemma}
-\label{lem:separatingTree3}
-Consider a node~$j$ with two parents (resp.~children) in a separating tree~$T$, and denote by~$M$ the maximum of the left ancestor (resp.~descendant) subtree of~$j$ and by~$m$ the minimum of the right ancestor(resp.~descendant) subtree of~$j$. Then for each~$k$ with~$M < k < m$, there is a directed path from~$k$ to~$j$ (resp.~from~$j$ to~$k$).
-\end{lemma}
-
-\begin{proof}
-Assume that~$j$ has two children, the proof for two parents is symmetric.
-As~$T$ is a tree, there is a (a priori undirected) path~$\pi$ between~$j$ and~$k$.
-As~$M < k < m$, $k$ is not a descendant of~$j$, so that the path~$\pi$ starts with an outgoing edge at~$j$.
-If~$\pi$ is not a directed path, then there exists some node~$\ell$ along~$\pi$ such that~$\pi$ has either two incoming or two outgoing edges at~$\ell$.
-This contradicts the separating property, as $M < k < m$ so that~$\ell$ cannot separate~$k$ from~$\{M,m\}$.
-We conclude that~$\pi$ is a directed path from~$j$ to~$k$.
 \end{proof}
 
 \begin{remark}
@@ -855,9 +872,9 @@ If~$\equiv$ is a simple congruence of the weak order, then the Hasse diagram of 
 \end{proposition}
 
 \begin{proof}
-Assume that $\equiv$ is simple, and consider the Hasse diagram~$H$ of an $\equiv$-poset~$\preccurlyeq$.
-Pick a permutation~$\preccurlyeq^\equiv_\sigma$.
-By \cref{coro:insertionMap}, we obtain~$H$ starting from the permutation table 
+Assume that $\equiv$ is simple, and consider the Hasse diagram~$H$ of a $\equiv$-poset~$\preccurlyeq$.
+Pick a linear extension~$\sigma$ of~$H$.
+By \cref{coro:insertionMap}, we obtain~$H$ starting from the permutation table of~$\sigma$.
 We check the two conditions of \cref{lem:separatingTree2}.
 
 First, for each $j \in [n]$, there is at most one~$i \in [n]$ such that~$(i,j) \in \boxslash_\equiv(\sigma)$, so that~$G$ has at most one incoming neighbor~$i < j$ in~$H$.
@@ -879,27 +896,26 @@ Hence,~$i-k$ cannot be an edge of~$H$.
 \end{proof}
 
 We can actually characterize the $\equiv$-posets of a simple congruence~$\equiv$.
-For this, we need the following two definitions.
+Recall that we have defined the arcs of a separating tree in \cref{def:arcsSeparatingTree}.
 
-\begin{definition}
-\label{def:edgeIsArc}
-From \cref{lem:separatingTree1}, each edge in a separating tree~$T$ actually defines an arc. Namely an edge~$i - k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to the edge~$i-k$ (resp.~from the edge~$i-k$ to~$j$).
-%\begin{itemize}
-%\item each edge~$i \leftarrow k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$k$ (resp.~$i$ to~$j$),
-%\item each edge~$i \to k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$i$ (resp.~$k$ to~$j$).
-%\end{itemize}
-\end{definition}
-
-In the sequel, we therefore always implicitly consider an edge in a separating tree as an arc.
+%\begin{definition}
+%\label{def:arcsSeparatingTree}
+%From \cref{lem:separatingTree1}, each edge in a separating tree~$T$ actually defines an arc. Namely an edge~$i - k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$i-k$ (resp.~$i-k$ to~$j$).
+%%\begin{itemize}
+%%\item each edge~$i \leftarrow k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$k$ (resp.~$i$ to~$j$),
+%%\item each edge~$i \to k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$i$ (resp.~$k$ to~$j$).
+%%\end{itemize}
+%\end{definition}
+%
+%In the sequel, we therefore always implicitly consider an edge in a separating tree as an arc.
 
 \begin{definition}
 \label{def:admissibleSeparatingTrees}
-Fix a (simple) lattice congruence~$\equiv$ of the weak order.
-A separating tree~$T$ is \defn{$\equiv$-admissible} if
+Fix a lattice congruence~$\equiv$ of the weak order.
+A separating tree~$T$ is \defn{$\equiv$-admissible}~if
 \begin{enumerate}[(i)]
-\item all edges of~$T$ are arcs in~$\arcs_\equiv$,
-\item if a node~$j$ of~$T$ has two parents, and $M$ (resp.~$m$) denotes the maximum (resp.~minimum) of the left (resp.~right) ancestor subtree of~$j$, then the up arc~$(M, m, {]M,m[}, \varnothing)$ is not~in~$\arcs_\equiv$,
-\item if a node~$j$ of~$T$ has two children, and $M$ (resp.~$m$) denotes the maximum (resp.~minimum) of the left (resp.~right) descendant subtree of~$j$, then the down arc~$(M, m, \varnothing, {]M,m[})$ is not in~$\arcs_\equiv$.
+\item all arcs of~$T$ are in~$\arcs_\equiv$,
+\item if a node~$j$ of~$T$ has two distinct ancestor (resp.~descendant) subtrees~$L$ and~$R$ with~$L < R$, and $M \eqdef \max(L)$ while~$m \eqdef \min(R)$, then the up arc~$(M, m, {]M,m[}, \varnothing)$ (resp.~the down arc~$(M, m, \varnothing, {]M,m[})$) is not~in~$\arcs_\equiv$.
 \end{enumerate}
 \end{definition}
 
@@ -920,7 +936,7 @@ By symmetry, we can assume that~$\pi$ has two outcoming edges at~$j$.
 Let~$M$ (resp.~$m$) denotes the maximum (resp.~minimum) of the left (resp.~right) ancestor subtree of~$j$ in~$T'$.
 Note that~$p \le M < j < m \le q$ since~$T'$ is separating.
 For any~$k \in {]M,m[}$, \cref{lem:separatingTree3} ensures the existence of a path from~$k$ to~$j$ in~$T'$, hence from~$k$ to~$q$.
-Consider now the arc between~$p$ and~$q$ in~$T$, and let~$(p, q, A, B)$ denote the corresponding arc defined in \cref{def:edgeIsArc}.
+Consider now the arc between~$p$ and~$q$ in~$T$, and let~$(p, q, A, B)$ denote the corresponding arc defined in \cref{def:arcsSeparatingTree}.
 As~$T$ and~$T'$ are both $\equiv$-admissible, we obtain that~$\arcs_\equiv$ contains~$(p, q, A, B)$ but not~$(M, m, {]M,m[}, \varnothing)$.
 As~$p \le M < m \le q$, this implies that there is~$k \in {]M,m[} \ssm A$.
 By \cref{lem:separatingTree1}, there is a path from~$q$ to~$k$ in~$T$.
@@ -929,7 +945,7 @@ We conclude that there is a path from~$q$ to~$k$ in~$T$, and from~$k$ to~$q$ in~
 
 \begin{proposition}
 \label{prop:admissibleSeparatingTrees}
-For a simple congruence~$\equiv$ of the weak order, the (Hasse diagrams of the) $\equiv$-posets are precisely the $\equiv$-admissible separating trees.
+If~$\equiv$ is a simple congruence of the weak order, then the Hasse diagrams of the $\equiv$-posets are precisely the $\equiv$-admissible separating trees.
 \end{proposition}
 
 \begin{proof}
@@ -966,19 +982,37 @@ The set of simple lattice congruences~$\equiv$ for which a given separating tree
 \vincent{todo}
 \end{proof}
 
+%%%%%%%%%%%%%%%%%%%
+
+\subsection{Rotations in $\equiv$-admissible separating trees}
+
+\vincent{todo}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Schröder separating trees and preposets of simple congruences}
 \label{sec:SchroderSeparatingTreesPreposetsSimpleCongruences}
+
+In this section, we introduce Schröder separating trees which provide a combinatorial description of all faces of the simple quotientopes.
 
 %%%%%%%%%%%%%%%%%%%
 
 \subsection{Schröder separating trees}
 \label{subsec:SchroderSeparatingTrees}
 
+We now define the higher dimensional analogue of separating trees.
+
 \begin{definition}
 \label{def:ShcroderSeparatingTree}
-A \defn{Schröder separating tree} is a directed tree on the parts of a set partition of~$[n]$ such that for any two ancestor (resp.~descendant) subtrees of a node~$J$ are separated by an integer~$j \in J$, meaning that all integers that appear in a node of one subtree are smaller than~$j$, while all integers that appear in a node of the other subtree are larger than~$j$.
+A \defn{Schröder separating tree} is a directed tree on the parts of a set partition of~$[n]$ such that for any two distinct ancestor (resp.~descendant) subtrees of a node~$J$ are separated by an integer~$j \in J$, meaning that all integers that appear in a node of one subtree are smaller than~$j$, while all integers that appear in a node of the other subtree are larger than~$j$.
+\end{definition}
+
+\begin{remark}
+Note that the separating trees are precisely the Schröder separating trees with $n$ nodes (or equivalently, where each node of~$S$ is a singleton).
+\end{remark}
+
+\begin{definition}
+The \defn{contraction} of an edge~$e$ in a Schröder separating tree~$S$ is the tree obtained by contracting the edge~$e$ and labeling the resulting node with the union of the labels of the endpoints~of~$e$.
 \end{definition}
 
 \begin{lemma}
@@ -987,29 +1021,158 @@ Schröder separating trees are stable by contraction.
 \end{lemma}
 
 \begin{proof}
-\vincent{todo}
+Consider the contraction~$R$ of an edge~$J_\circ \to J_\bullet$ in a Schröder separating tree~$S$.
+By definition, $R$ is a directed tree on the parts of a partition of~$[n]$.
+Consider now two distinct ancestor subtrees~$X$ and~$Y$ of a node~$J$ of~$R$ (the case of descendant subtrees is symmetric).
+If~$J \ne J_\circ \sqcup J_\bullet$, we have nothing to prove, so we assume that~$J = J_\circ \sqcup J_\bullet$.
+If~$X$ and~$Y$ were both ancestor subtrees of~$J_\circ$ (or similarly of~$J_\bullet$), there is nothing to prove.
+Hence, assume that~$X$ was an ancestor subtree of~$J_\circ$ while~$Y$ was an ancestor subtree of~$J_\bullet$.
+Then~$Y$ is contained in the descendant subtree~$Z$ of~$J_\circ$ in~$S$ containing~$J_\bullet$.
+As~$S$ is a Schröder separating tree, there is~$j \in J_\circ$ separating~$X$ from~$Z$.
+As~$Y \subset Z$, the subtrees~$X$ and~$Y$ of~$R$ are separated by~$j \in J$.
+We conclude that~$R$ is indeed a Schröder separating tree.
 \end{proof}
 
-\begin{remark}
-The separating trees of \cref{def:separatingTrees} are precisely the Schröder separating trees on~$n$ nodes, or equivalently those where all the parts of the partition of~$[n]$ are singletons, or equivalently those which are contraction minimal.
-\end{remark}
+\begin{lemma}
+\label{lem:decontractionSchroderSeparatingTree}
+The contraction minimal Schröder separating trees are precisely the separating trees.
+\end{lemma}
+
+\begin{proof}
+A separating tree is clearly a contraction minimal Schröder separating tree.
+Conversely, consider a Schröder separating tree~$S$ which is not contraction minimal.
+Then it has a node~$J$ with~$|J| > 1$.
+Let~$J = J_\circ \sqcup J_\bullet$ for some arbitrary~$J_\circ \ne \varnothing \ne J_\bullet$ with~$J_\circ < J_\bullet$.
+Let~$T$ be the tree obtained by splitting the node~$J$ of~$S$ into two nodes~$J_\circ$ and~$J_\bullet$, adding an edge~$J_\circ \to J_\bullet$, and attaching each ancestor (resp.~descendant) subtree~$X$ of~$J$ to~$J_\circ$ if~$\max(X) < \max(J_\circ)$ (resp.~if~$\min(X) < \min(J_\bullet)$) and to~$J_\bullet$ otherwise.
+By definition, $T$ is a tree on the parts of a partition of~$[n]$, and $S$ is the contraction of the edge~$J_\circ \to J_\bullet$ in the tree~$T$, so we just need to check that~$T$ is a Schröder separating tree.
+Consider two distinct ancestor subtrees~$X$ and~$Y$ of a node~$J$ of~$T$ (the case of descendant subtrees is symmetric).
+if~$J \notin \{J_\circ, J_\bullet\}$, there is nothing to prove.
+Assume first that~$J = J_\bullet$.
+We thus obtain that $X$ and~$Y$ were ancestor subtrees of~$J$ in~$S$.
+As~$S$ is a Schröder separating tree, there is~$j \in J$ separating~$X$ and~$Y$.
+As~$X$ and~$Y$ were attached to~$J_\bullet$, we have~$\max(J_\circ) < \max(X)$ and~$\max(J_\circ) < \max(Y)$, from which we deduce that~$j \in J_\bullet = J$.
+Assume now that~$J = J_\circ$.
+If neither~$X$ nor~$Y$ contain~$J_\bullet$, then they were both ancestor subtrees of~$J$ in~$S$.
+As~$S$ is a Schröder separating tree, there is~$j \in J$ separating~$X$ and~$Y$.
+As~$X$ and~$Y$ were attached to~$J_\circ$, we have~$\max(X) < \max(J_\circ)$ and~$\max(Y) < \max(J_\circ)$, from which we deduce that~$j \in J_\circ = J$.
+If say~$Y$ contains~$J_\bullet$, then~$X$ does not so that~$\max(X) < \max(J_\circ)$, and~$\max(J_\circ)$ separates $X$ from~$Y$.
+\end{proof}
+
+The following statement and definition are the analogues of \cref{lem:separatingTree1,def:arcsSeparatingTree}.
+
+\begin{lemma}
+\label{lem:SchroderSeparatingTree1}
+Consider three vertices~$I,J,K$ in a Schröder separating tree~$S$ such that there is~$i \in I$, $j \in J$ and~$k \in K$ with~$i < j < k$.
+If~$I = K$ or~$I - K$ is an arc of~$S$, then there is a directed path in~$S$ joining either~$I-K$ to~$J$, or~$J$ to~$I-K$.
+%\begin{itemize}
+%\item if~$I = K$ or~$I \leftarrow K$ is an arc of~$S$, then there is a directed path in~$S$ joining either~$I$ to~$J$, or~$J$ to~$K$,
+%\item if~$I = K$ or~$I \to K$ is an arc of~$S$, then there is a directed path in~$S$ joining either~$J$ to~$I$, or~$K$ to~$J$.
+%\end{itemize}
+\end{lemma}
+
+\begin{proof}
+The proof is identical to that of~\cref{lem:separatingTree1}.
+As~$S$ is a tree, there is a (a priori undirected) path~$\pi$ between~$I-K$ and~$J$ in~$S$.
+If~$\pi$ is not directed, then there exists some node~$L$ along~$\pi$ such that~$\pi$ has either two incoming or two outgoing edges at~$\pi$.
+This would contradict the separating property at~$J$ since~$i < j < k$.
+\end{proof}
+
+\begin{definition}
+\label{def:arcsSchroderSeparatingTree}
+The \defn{arcs} of a Schröder separating tree~$S$ are the arcs of the form~$(i, k, A, B)$, where~$i < k$ and~$A \sqcup B = {]i,k[}$ are such that
+\begin{itemize}
+\item the nodes~$I$ and~$K$ of~$S$ with~$i \in I$ and~$k \in K$ either coincide or form an edge in~$S$, and moreover~${]i,k[} \cap (I \cup K) = \varnothing$, 
+\item $A$ (resp.~$B$) is the set of integers~$j \in {]i,k[}$ contained in a node~$J$ of~$S$ such that there is a directed path in~$S$ joining~$J$ to~$I-K$ (resp.~$I-K$ to~$J$).
+\end{itemize}
+\end{definition}
+
+Note that the number of arcs of a Schröder separating tree on~$[n]$ is at least~$n-1$ but can be larger.
 
 %%%%%%%%%%%%%%%%%%%
 
 \subsection{Preposets of simple congruences}
 \label{subsec:preposetsSimpleCongruences}
 
+The following statement is the analogue of \cref{prop:simpleImpliesSeparatingTrees}.
+
+\begin{proposition}
+\label{prop:simpleImpliesSchroderSeparatingTrees}
+If~$\equiv$ is a simple congruence of the weak order, then the Hasse diagram of any $\equiv$-preposet is a Schröder separating tree.
+\end{proposition}
+
+\begin{proof}
+As~$\equiv$ is a simple congruence, the Hasse diagrams of the $\equiv$-preposets are precisely the contractions of the Hasse diagrams of its $\equiv$-posets.
+The statement thus immediately follows from \cref{prop:simpleImpliesSeparatingTrees,lem:contractionSchroderSeparatingTree}.
+\end{proof}
+
+We now aim at characterizing the $\equiv$-preposets of a simple congruence~$\equiv$, analoguously to \cref{def:admissibleSeparatingTrees}.
+Recall that we have defined the arcs of a Schröder separating tree in \cref{def:arcsSchroderSeparatingTree}.
+
 \begin{definition}
 \label{def:admissibleSchroderSeparatingTrees}
 Fix a simple lattice congruence~$\equiv$ of the weak order.
-A Schröder separating tree~$T$ is \defn{$\equiv$-admissible} if ...
-\vincent{todo}
+A Schröder separating tree~$S$ is \defn{$\equiv$-admissible} if
+\begin{itemize}
+\item all arcs of~$S$ are in~$\arcs_\equiv$,
+\item if a node~$J$ has two distinct ancestor (resp.~descendants) subtrees~$L$ and~$R$ with~$L < R$, and $M \eqdef \max(L)$ while~$m \eqdef \min(R)$, then the up arc~$(M, m, {]M,m[}, \varnothing)$ (resp.~the down arc~$(M, m, \varnothing, {]M,m[})$) is not~in~$\arcs_\equiv$.
+\end{itemize}
 \end{definition}
 
+\begin{remark}
+Note that the $\equiv$-admissible separating trees are precisely the $\equiv$-admissible Schröder separating trees with $n$ nodes (or equivalently, where each node of~$S$ is a singleton).
+\end{remark}
+
 \begin{lemma}
-\label{lem:contractionSchroderSeparatingTree}
+\label{lem:contractionAdmissibleSchroderSeparatingTree}
 $\equiv$-admissible Schröder separating trees are stable by contraction.
 \end{lemma}
+
+\begin{proof}
+Consider the contraction~$R$ of an edge~$J_\circ \to J_\bullet$ in a $\equiv$-admissible Schröder separating tree~$S$.
+We have seen in \cref{lem:contractionSchroderSeparatingTree} that~$R$ is a Schröder separating tree, so we just need to check that~$R$ is $\equiv$-admissible.
+
+Consider first an arc~$(i,k,A,B)$ of~$R$.
+Let~$I$ and~$K$ be the nodes of~$R$ such that~$i \in I$ and~$k \in K$, and similarly let~$I'$ and~$K'$ be the nodes of~$S$ such that~$i \in I'$ and~$k \in K'$.
+By \cref{def:arcsSchroderSeparatingTree}, $I$ and~$K$ either coincide or form an edge of~$R$, and~${]i,k[} \cap (I \cup K) = \varnothing$.
+Assume first that~$I'$ and~$K'$ coincide or form an edge of~$S$.
+Since~${]i,k[} \cap (I' \cup K') \subseteq {]i,k[} \cap (I \cup K) = \varnothing$ and any directed path in~$S$ contracts to a directed path in~$R$, we then obtain that~$(i,k,A,B)$ is also an arc of~$S$, hence belongs to~$\arcs_\equiv$ since $S$ is $\equiv$-admissible.
+Assume now that~$I'$ and~$K'$ are distinct and not connected in~$S$.
+Up to symmetry, we can then assume that~$I = J_\circ \cup J_\bullet$, that~$I' = J_\circ$ and that~$K = K'$ is a neighbor of~$J_\bullet$ in~$S$.
+Since~${]i,k[} \cap (I \cup K) = \varnothing$, we have~$i < k < j$ or~$j < i < k$  for all~$j \in J_\bullet$.
+Since~$S$ is a Schröder separating tree, we thus obtain that~$S$ contains the path~$I' \to J_\bullet \to K'$.
+Assume for instance that there is~$j \in J_\bullet$ with~$i < k < j$.
+As~$i \in I'$ and~$j \in J_\bullet$ and~$I' \to J_\bullet$ in~$S$, we obtain an arc~$(i, j, A', B')$ of~$S$, which is thus in~$\arcs_\equiv$ since $S$ is $\equiv$-admissible.
+As~$i < k < j$ and any directed path in~$S$ contracts to a directed path in~$R$, we obtain that~$(i,k,A,B)$ is a subarc of~$(i,j,A',B')$, thus also belongs to~$\arcs_\equiv$.
+
+\vincent{todo}
+\end{proof}
+
+\begin{lemma}
+\label{lem:decontractionAdmissibleSchroderSeparatingTree}
+The contraction minimal $\equiv$-admissible Schröder separating trees are precisely the $\equiv$-admissible separating trees.
+\end{lemma}
+
+\begin{proof}
+A $\equiv$-admissible separating tree is clearly a contraction minimal $\equiv$-admissible Schröder separating tree.
+Conversely, consider a $\equiv$-admissible Schröder separating tree~$S$ which is not contraction minimal.
+Then it has a node~$J$ with~$|J| > 1$.
+Let~$J = J_\circ \sqcup J_\bullet$ for some arbitrary~$J_\circ \ne \varnothing \ne J_\bullet$ with~$J_\circ < J_\bullet$.
+Let~$T$ be the tree obtained by splitting the node~$J$ of~$S$ into two nodes~$J_\circ$ and~$J_\bullet$, adding an edge~$J_\circ \to J_\bullet$, and attaching each ancestor (resp.~descendant) subtree~$X$ of~$J$ to~$J_\circ$ if~$\max(X) < \max(J_\circ)$ (resp.~if~$\min(X) < \min(J_\bullet)$) and to~$J_\bullet$ otherwise.
+Then $S$ is the contraction of the edge~$J_\circ \to J_\bullet$ in~$T$, and we have seen in the proof of \cref{lem:decontractionSchroderSeparatingTree} that~$T$ is a Schröder separating tree, so we just need to prove that it is $\equiv$-admissible.
+\vincent{todo}
+\end{proof}
+
+%The following statement is the analogue of \cref{prop:admissibleSeparatingTrees}, and characterizes the $\equiv$-preposets of a simple congruence~$\equiv$.
+
+\begin{proposition}
+\label{prop:admissibleSchroderSeparatingTrees}
+If~$\equiv$ is a simple congruence of the weak order, then the Hasse diagrams of the $\equiv$-preposets are precisely the $\equiv$-admissible Schröder separating trees.
+\end{proposition}
+
+\begin{proof}
+As $\equiv$ is a simple congruence, the Hasse diagrams of the $\equiv$-preposets are precisely the (iterated) contractions of the Hasse diagrams of the $\equiv$-posets.
+The statement thus follows from \cref{prop:admissibleSeparatingTrees,lem:contractionAdmissibleSchroderSeparatingTree,lem:decontractionAdmissibleSchroderSeparatingTree}.
+\end{proof}
 
 \begin{remark}
 The number of $\equiv$-admissible Schröder separating trees is
@@ -1038,7 +1201,7 @@ lattice structure provides a multiplicative basis
 \addtocontents{toc}{\vspace{.1cm}}
 \section*{Acknowledgments}
 
-Pierre-Guy Plamondon and Yann Palu.
+VP is grateful to Pierre-Guy Plamondon and Yann Palu for various working sessions which led to the presentation of \cref{subsec:representationTheory}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
