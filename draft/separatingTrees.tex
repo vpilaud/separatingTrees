@@ -1007,6 +1007,8 @@ We now define the higher dimensional analogue of separating trees.
 A \defn{Schröder separating tree} is a directed tree on the parts of a set partition of~$[n]$ such that for any two distinct ancestor (resp.~descendant) subtrees of a node~$J$ are separated by an integer~$j \in J$, meaning that all integers that appear in a node of one subtree are smaller than~$j$, while all integers that appear in a node of the other subtree are larger than~$j$.
 \end{definition}
 
+\vincent{add a figure with examples of Schröder separating trees.}
+
 \begin{remark}
 Note that the separating trees are precisely the Schröder separating trees with $n$ nodes (or equivalently, where each node of~$S$ is a singleton).
 \end{remark}
@@ -1144,7 +1146,13 @@ Assume for instance that there is~$j \in J_\bullet$ with~$i < k < j$.
 As~$i \in I'$ and~$j \in J_\bullet$ and~$I' \to J_\bullet$ in~$S$, we obtain an arc~$(i, j, A', B')$ of~$S$, which is thus in~$\arcs_\equiv$ since $S$ is $\equiv$-admissible.
 As~$i < k < j$ and any directed path in~$S$ contracts to a directed path in~$R$, we obtain that~$(i,k,A,B)$ is a subarc of~$(i,j,A',B')$, thus also belongs to~$\arcs_\equiv$.
 
-\vincent{todo}
+Consider now a node~$J$ of~$R$ with two distinct ancestor subtrees~$L$ and~$R$ with~$L < R$, and let~$M \eqdef \max(L)$ and~$m \eqdef \min(R)$.
+If~$L$ and~$R$ are both ancestor subtrees of the same node of~$S$, then the up arc~$(M, m, {]M,m[}, \varnothing)$ is not in~$\arcs$ since~$S$ is $\equiv$-admissible.
+Otherwise, we have~${J = J_\circ \cup J_\bullet}$, and $L$ is a descendant subtree of~$J_\circ$ while~$R$ is a descendant subtree of~$J_\bullet$ (or the opposite).
+Let~$L'$ be the descendant subtree of~$J_\bullet$ in~$S$ containing~$L$, and let~$M' \eqdef \max(L')$.
+As~${L \subseteq L'}$, we have $M < M'$, so that the arc~$(M', m, {]M',m[}, \varnothing)$ is a subarc of the arc~$(M, m, {]M,m[}, \varnothing)$.
+We conclude that the arc~$(M, m, {]M,m[}, \varnothing)$ is not in~$\arcs$ since its subarc~$(M', m, {]M',m[}, \varnothing)$ is not in~$\arcs$ since~$S$ is $\equiv$-admissible.
+The proof is symmetrical for a node~$J$ with two distinct descendant subtrees.
 \end{proof}
 
 \begin{lemma}
@@ -1156,7 +1164,7 @@ The contraction minimal $\equiv$-admissible Schröder separating trees are preci
 A $\equiv$-admissible separating tree is clearly a contraction minimal $\equiv$-admissible Schröder separating tree.
 Conversely, consider a $\equiv$-admissible Schröder separating tree~$S$ which is not contraction minimal.
 Then it has a node~$J$ with~$|J| > 1$.
-Let~$J = J_\circ \sqcup J_\bullet$ for some arbitrary~$J_\circ \ne \varnothing \ne J_\bullet$ with~$J_\circ < J_\bullet$.
+Let~$J = J_\circ \sqcup J_\bullet$ for some arbitrary~${J_\circ \ne \varnothing \ne J_\bullet}$ with~$J_\circ < J_\bullet$.
 Let~$T$ be the tree obtained by splitting the node~$J$ of~$S$ into two nodes~$J_\circ$ and~$J_\bullet$, adding an edge~$J_\circ \to J_\bullet$, and attaching each ancestor (resp.~descendant) subtree~$X$ of~$J$ to~$J_\circ$ if~$\max(X) < \max(J_\circ)$ (resp.~if~$\min(X) < \min(J_\bullet)$) and to~$J_\bullet$ otherwise.
 Then $S$ is the contraction of the edge~$J_\circ \to J_\bullet$ in~$T$, and we have seen in the proof of \cref{lem:decontractionSchroderSeparatingTree} that~$T$ is a Schröder separating tree, so we just need to prove that it is $\equiv$-admissible.
 \vincent{todo}
