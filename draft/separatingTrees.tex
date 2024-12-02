@@ -843,7 +843,16 @@ Hence~$j$ has two incoming edges~$p \to j$ and~$q \to j$, and we can assume that
 Therefore, $C$ has an edge~$i-k$ with~$i < j < k$ to connect~$p$ with~$q$.
 As~$j$ is the topmost vertex of~$C$, the edge~$i-k$ passes below~$j$, contradicting Condition~(ii).
 We conclude that~$G$ is a tree.
-\vincent{todo: close this proof}
+Consider now a node~$j$ of~$G$.
+By~(i), $j$ has at most two parents and at most two children.
+We now prove by induction on~$j$ that if~$j$ has two parents (resp.~children), then all nodes in its left ancestor (resp.~descendant) subtree are smaller than~$j$.
+Assume by contradiction that this subtree contains some~$k$ larger than~$j$, and consider the path~$\pi$ from~$j$ to~$k$ in~$G$.
+Along this path, there is an edge~$i - k$ with~$i < j < k$.
+By~(ii), this edge must pass below~$j$.
+Therefore, the path~$\pi$ is not a directed path from~$j$ to~$k$.
+Hence, there exists a node~$i < j$ along~$\pi$ such that~$\pi$ has two incoming arrows at~$i$, and $k$ belong to the left descendant subtree of~$i$.
+By induction, we obtain that~$k < i < j$, contradicting our assumption.
+We conclude that~$G$ is indeed a separating tree.
 \end{proof}
 
 \begin{remark}
@@ -1023,16 +1032,16 @@ Schröder separating trees are stable by contraction.
 \end{lemma}
 
 \begin{proof}
-Consider the contraction~$R$ of an edge~$J_\circ \to J_\bullet$ in a Schröder separating tree~$S$.
-By definition, $R$ is a directed tree on the parts of a partition of~$[n]$.
-Consider now two distinct ancestor subtrees~$X$ and~$Y$ of a node~$J$ of~$R$ (the case of descendant subtrees is symmetric).
-If~$J \ne J_\circ \sqcup J_\bullet$, we have nothing to prove, so we assume that~$J = J_\circ \sqcup J_\bullet$.
+Consider the contraction~$T$ of an edge~$J_\circ \to J_\bullet$ in a Schröder separating tree~$S$, and denote by~$J_{\circ\bullet} \eqdef J_\circ \sqcup J_\bullet$ the merged node.
+By definition, $T$ is a directed tree on the parts of a partition of~$[n]$.
+Consider now two distinct ancestor subtrees~$X$ and~$Y$ of a node~$J$ of~$T$ (the case of descendant subtrees is symmetric).
+If~$J \ne J_{\circ\bullet}$, we have nothing to prove, so we assume that~$J = J_{\circ\bullet}$.
 If~$X$ and~$Y$ were both ancestor subtrees of~$J_\circ$ (or similarly of~$J_\bullet$), there is nothing to prove.
 Hence, assume that~$X$ was an ancestor subtree of~$J_\circ$ while~$Y$ was an ancestor subtree of~$J_\bullet$.
 Then~$Y$ is contained in the descendant subtree~$Z$ of~$J_\circ$ in~$S$ containing~$J_\bullet$.
 As~$S$ is a Schröder separating tree, there is~$j \in J_\circ$ separating~$X$ from~$Z$.
-As~$Y \subset Z$, the subtrees~$X$ and~$Y$ of~$R$ are separated by~$j \in J$.
-We conclude that~$R$ is indeed a Schröder separating tree.
+As~$Y \subset Z$, the subtrees~$X$ and~$Y$ of~$T$ are separated by~$j \in J$.
+We conclude that~$T$ is indeed a Schröder separating tree.
 \end{proof}
 
 \begin{lemma}
@@ -1043,21 +1052,37 @@ The contraction minimal Schröder separating trees are precisely the separating 
 \begin{proof}
 A separating tree is clearly a contraction minimal Schröder separating tree.
 Conversely, consider a Schröder separating tree~$S$ which is not contraction minimal.
-Then it has a node~$J$ with~$|J| > 1$.
-Let~$J = J_\circ \sqcup J_\bullet$ for some arbitrary~$J_\circ \ne \varnothing \ne J_\bullet$ with~$J_\circ < J_\bullet$.
-Let~$T$ be the tree obtained by splitting the node~$J$ of~$S$ into two nodes~$J_\circ$ and~$J_\bullet$, adding an edge~$J_\circ \to J_\bullet$, and attaching each ancestor (resp.~descendant) subtree~$X$ of~$J$ to~$J_\circ$ if~$\max(X) < \max(J_\circ)$ (resp.~if~$\min(X) < \min(J_\bullet)$) and to~$J_\bullet$ otherwise.
+Then it has a node~$J_{\circ\bullet}$ with~$|J_{\circ\bullet}| > 1$.
+Let~$J_{\circ\bullet} = J_\circ \sqcup J_\bullet$ for some arbitrary~$J_\circ \ne \varnothing \ne J_\bullet$ with~$J_\circ < J_\bullet$.
+Let~$T$ be the tree obtained by splitting the node~$J_{\circ\bullet}$ of~$S$ into two nodes~$J_\circ$ and~$J_\bullet$, adding an edge~$J_\circ \to J_\bullet$, and attaching each ancestor (resp.~descendant) subtree~$X$ of~$J_{\circ\bullet}$ to~$J_\circ$ if~$\max(X) < \max(J_\circ)$ (resp.~if~$\min(X) < \min(J_\bullet)$) and to~$J_\bullet$ otherwise.
 By definition, $T$ is a tree on the parts of a partition of~$[n]$, and $S$ is the contraction of the edge~$J_\circ \to J_\bullet$ in the tree~$T$, so we just need to check that~$T$ is a Schröder separating tree.
 Consider two distinct ancestor subtrees~$X$ and~$Y$ of a node~$J$ of~$T$ (the case of descendant subtrees is symmetric).
 if~$J \notin \{J_\circ, J_\bullet\}$, there is nothing to prove.
 Assume first that~$J = J_\bullet$.
-We thus obtain that $X$ and~$Y$ were ancestor subtrees of~$J$ in~$S$.
-As~$S$ is a Schröder separating tree, there is~$j \in J$ separating~$X$ and~$Y$.
+We thus obtain that $X$ and~$Y$ were ancestor subtrees of~$J_{\circ\bullet}$ in~$S$.
+As~$S$ is a Schröder separating tree, there is~$j \in J_{\circ\bullet}$ separating~$X$ and~$Y$.
 As~$X$ and~$Y$ were attached to~$J_\bullet$, we have~$\max(J_\circ) < \max(X)$ and~$\max(J_\circ) < \max(Y)$, from which we deduce that~$j \in J_\bullet = J$.
 Assume now that~$J = J_\circ$.
-If neither~$X$ nor~$Y$ contain~$J_\bullet$, then they were both ancestor subtrees of~$J$ in~$S$.
-As~$S$ is a Schröder separating tree, there is~$j \in J$ separating~$X$ and~$Y$.
+If neither~$X$ nor~$Y$ contain~$J_\bullet$, then they were both ancestor subtrees of~$J_{\circ\bullet}$ in~$S$.
+As~$S$ is a Schröder separating tree, there is~$j \in J_{\circ\bullet}$ separating~$X$ and~$Y$.
 As~$X$ and~$Y$ were attached to~$J_\circ$, we have~$\max(X) < \max(J_\circ)$ and~$\max(Y) < \max(J_\circ)$, from which we deduce that~$j \in J_\circ = J$.
 If say~$Y$ contains~$J_\bullet$, then~$X$ does not so that~$\max(X) < \max(J_\circ)$, and~$\max(J_\circ)$ separates $X$ from~$Y$.
+
+\vincent{todo: I need to redo this proof here with the new splitting rule...}
+Let~$T$ be the tree obtained by splitting the node~$J_{\circ\bullet}$ of~$S$ into an edge~$J_\circ \to J_\bullet$, and attaching each ancestor subtree~$X$ of~$J_{\circ\bullet}$ to~$J_\circ$ if there is an ancestor subtree~$Y$ of~$J_{\circ\bullet}$ with~$X < Y < \min(J_\bullet)$ and to~$J_\bullet$ otherwise, and similarly each descendant subtree~$X$ of~$J_{\circ\bullet}$ to~$J_\bullet$ if there is a descendant subtree~$Y$ of~$J_{\circ\bullet}$ with~$\max(J_\circ) < Y < X$ and to~$J_\circ$ otherwise.
+By definition, $T$ is a tree on the parts of a partition of~$[n]$, and $S$ is the contraction of the edge~$J_\circ \to J_\bullet$ in the tree~$T$, so we just need to check that~$T$ is a Schröder separating tree.
+Consider two distinct ancestor subtrees~$X$ and~$Y$ of a node~$J$ of~$T$ (the case of descendant subtrees is symmetric).
+if~$J \notin \{J_\circ, J_\bullet\}$, there is nothing to prove.
+Assume first that~$J = J_\bullet$.
+We thus obtain that $X$ and~$Y$ were ancestor subtrees of~$J_{\circ\bullet}$ in~$S$.
+As~$S$ is a Schröder separating tree, there is~$j \in J_{\circ\bullet}$ separating~$X$ and~$Y$.
+As~$X$ and~$Y$ were attached to~$J_\bullet$, we have~$\max(J_\circ) < \max(X)$ and~$\max(J_\circ) < \max(Y)$, from which we deduce that~$j \in J_\bullet = J$.
+Assume now that~$J = J_\circ$.
+If neither~$X$ nor~$Y$ contain~$J_\bullet$, then they were both ancestor subtrees of~$J_{\circ\bullet}$ in~$S$.
+As~$S$ is a Schröder separating tree, there is~$j \in J_{\circ\bullet}$ separating~$X$ and~$Y$.
+As~$X$ and~$Y$ were attached to~$J_\circ$, we have~$\max(X) < \max(J_\circ)$ and~$\max(Y) < \max(J_\circ)$, from which we deduce that~$j \in J_\circ = J$.
+If say~$Y$ contains~$J_\bullet$, then~$X$ does not so that~$\max(X) < \max(J_\circ)$, and~$\max(J_\circ)$ separates $X$ from~$Y$.
+
 \end{proof}
 
 The following statement and definition are the analogues of \cref{lem:separatingTree1,def:arcsSeparatingTree}.
@@ -1130,25 +1155,26 @@ $\equiv$-admissible Schröder separating trees are stable by contraction.
 \end{lemma}
 
 \begin{proof}
-Consider the contraction~$R$ of an edge~$J_\circ \to J_\bullet$ in a $\equiv$-admissible Schröder separating tree~$S$.
-We have seen in \cref{lem:contractionSchroderSeparatingTree} that~$R$ is a Schröder separating tree, so we just need to check that~$R$ is $\equiv$-admissible.
+Consider the contraction~$T$ of an edge~$J_\circ \to J_\bullet$ in a $\equiv$-admissible Schröder separating tree~$S$, and denote by~$J_{\circ\bullet} \eqdef J_\circ \sqcup J_\bullet$ the merged node.
+We have seen in \cref{lem:contractionSchroderSeparatingTree} that~$T$ is a Schröder separating tree, so we just need to check that~$T$ is $\equiv$-admissible.
 
-Consider first an arc~$(i,k,A,B)$ of~$R$.
-Let~$I$ and~$K$ be the nodes of~$R$ such that~$i \in I$ and~$k \in K$, and similarly let~$I'$ and~$K'$ be the nodes of~$S$ such that~$i \in I'$ and~$k \in K'$.
-By \cref{def:arcsSchroderSeparatingTree}, $I$ and~$K$ either coincide or form an edge of~$R$, and~${]i,k[} \cap (I \cup K) = \varnothing$.
+Consider first an arc~$(i,k,A,B)$ of~$T$.
+Let~$I$ and~$K$ be the nodes of~$T$ such that~$i \in I$ and~$k \in K$, and similarly let~$I'$ and~$K'$ be the nodes of~$S$ such that~$i \in I'$ and~$k \in K'$.
+Note that~$I' \subseteq I$ and~$K' \subseteq K$.
+By \cref{def:arcsSchroderSeparatingTree}, $I$ and~$K$ either coincide or form an edge of~$T$, and~${]i,k[} \cap (I \cup K) = \varnothing$.
 Assume first that~$I'$ and~$K'$ coincide or form an edge of~$S$.
-Since~${]i,k[} \cap (I' \cup K') \subseteq {]i,k[} \cap (I \cup K) = \varnothing$ and any directed path in~$S$ contracts to a directed path in~$R$, we then obtain that~$(i,k,A,B)$ is also an arc of~$S$, hence belongs to~$\arcs_\equiv$ since $S$ is $\equiv$-admissible.
+Since~${]i,k[} \cap (I' \cup K') \subseteq {]i,k[} \cap (I \cup K) = \varnothing$ and any directed path in~$S$ contracts to a directed path in~$T$, we then obtain that~$(i,k,A,B)$ is also an arc of~$S$, hence belongs to~$\arcs_\equiv$ since $S$ is $\equiv$-admissible.
 Assume now that~$I'$ and~$K'$ are distinct and not connected in~$S$.
-Up to symmetry, we can then assume that~$I = J_\circ \cup J_\bullet$, that~$I' = J_\circ$ and that~$K = K'$ is a neighbor of~$J_\bullet$ in~$S$.
+Up to symmetry, we can then assume that~$I = J_{\circ\bullet}$, that~$I' = J_\circ$ and that~$K = K'$ is a neighbor of~$J_\bullet$ in~$S$.
 Since~${]i,k[} \cap (I \cup K) = \varnothing$, we have~$i < k < j$ or~$j < i < k$  for all~$j \in J_\bullet$.
 Since~$S$ is a Schröder separating tree, we thus obtain that~$S$ contains the path~$I' \to J_\bullet \to K'$.
 Assume for instance that there is~$j \in J_\bullet$ with~$i < k < j$.
 As~$i \in I'$ and~$j \in J_\bullet$ and~$I' \to J_\bullet$ in~$S$, we obtain an arc~$(i, j, A', B')$ of~$S$, which is thus in~$\arcs_\equiv$ since $S$ is $\equiv$-admissible.
-As~$i < k < j$ and any directed path in~$S$ contracts to a directed path in~$R$, we obtain that~$(i,k,A,B)$ is a subarc of~$(i,j,A',B')$, thus also belongs to~$\arcs_\equiv$.
+As~$i < k < j$ and any directed path in~$S$ contracts to a directed path in~$T$, we obtain that~$(i,k,A,B)$ is a subarc of~$(i,j,A',B')$, thus also belongs to~$\arcs_\equiv$.
 
-Consider now a node~$J$ of~$R$ with two distinct ancestor subtrees~$L$ and~$R$ with~$L < R$, and let~$M \eqdef \max(L)$ and~$m \eqdef \min(R)$.
+Consider now a node~$J$ of~$T$ with two distinct ancestor subtrees~$L$ and~$R$ with~$L < R$, and let~$M \eqdef \max(L)$ and~$m \eqdef \min(R)$.
 If~$L$ and~$R$ are both ancestor subtrees of the same node of~$S$, then the up arc~$(M, m, {]M,m[}, \varnothing)$ is not in~$\arcs$ since~$S$ is $\equiv$-admissible.
-Otherwise, we have~${J = J_\circ \cup J_\bullet}$, and $L$ is a descendant subtree of~$J_\circ$ while~$R$ is a descendant subtree of~$J_\bullet$ (or the opposite).
+Otherwise, we have~$J = J_{\circ\bullet}$, and $L$ is a descendant subtree of~$J_\circ$ while~$R$ is a descendant subtree of~$J_\bullet$ (or the opposite).
 Let~$L'$ be the descendant subtree of~$J_\bullet$ in~$S$ containing~$L$, and let~$M' \eqdef \max(L')$.
 As~${L \subseteq L'}$, we have $M < M'$, so that the arc~$(M', m, {]M',m[}, \varnothing)$ is a subarc of the arc~$(M, m, {]M,m[}, \varnothing)$.
 We conclude that the arc~$(M, m, {]M,m[}, \varnothing)$ is not in~$\arcs$ since its subarc~$(M', m, {]M',m[}, \varnothing)$ is not in~$\arcs$ since~$S$ is $\equiv$-admissible.
@@ -1163,11 +1189,24 @@ The contraction minimal $\equiv$-admissible Schröder separating trees are preci
 \begin{proof}
 A $\equiv$-admissible separating tree is clearly a contraction minimal $\equiv$-admissible Schröder separating tree.
 Conversely, consider a $\equiv$-admissible Schröder separating tree~$S$ which is not contraction minimal.
-Then it has a node~$J$ with~$|J| > 1$.
-Let~$J = J_\circ \sqcup J_\bullet$ for some arbitrary~${J_\circ \ne \varnothing \ne J_\bullet}$ with~$J_\circ < J_\bullet$.
-Let~$T$ be the tree obtained by splitting the node~$J$ of~$S$ into two nodes~$J_\circ$ and~$J_\bullet$, adding an edge~$J_\circ \to J_\bullet$, and attaching each ancestor (resp.~descendant) subtree~$X$ of~$J$ to~$J_\circ$ if~$\max(X) < \max(J_\circ)$ (resp.~if~$\min(X) < \min(J_\bullet)$) and to~$J_\bullet$ otherwise.
+Then it has a node~$J_{\circ\bullet}$ with~$|J_{\circ\bullet}| > 1$.
+Let~$J_{\circ\bullet} = J_\circ \sqcup J_\bullet$ for some arbitrary~${J_\circ \ne \varnothing \ne J_\bullet}$ with~$J_\circ < J_\bullet$.
+Let~$T$ be the tree obtained by splitting the node~$J_{\circ\bullet}$ of~$S$ into an edge~$J_\circ \to J_\bullet$, and attaching each ancestor subtree~$X$ of~$J_{\circ\bullet}$ to~$J_\circ$ if there is an ancestor subtree~$Y$ of~$J_{\circ\bullet}$ with~$X < Y < \min(J_\bullet)$ and to~$J_\bullet$ otherwise, and similarly each descendant subtree~$X$ of~$J_{\circ\bullet}$ to~$J_\bullet$ if there is a descendant subtree~$Y$ of~$J_{\circ\bullet}$ with~$\max(J_\circ) < Y < X$ and to~$J_\circ$ otherwise.
 Then $S$ is the contraction of the edge~$J_\circ \to J_\bullet$ in~$T$, and we have seen in the proof of \cref{lem:decontractionSchroderSeparatingTree} that~$T$ is a Schröder separating tree, so we just need to prove that it is $\equiv$-admissible.
-\vincent{todo}
+
+Consider first an arc~$(i,k,A,B)$ of~$T$.
+Let~$I$ and~$K$ be the nodes of~$T$ such that~$i \in I$ and~$k \in K$, and similarly let~$I'$ and~$K'$ be the nodes of~$S$ such that~$i \in I'$ and~$k \in K'$.
+Note that~$I \subseteq I'$ and~${K \subseteq K'}$.
+By \cref{def:arcsSchroderSeparatingTree}, $I$ and~$K$ either coincide or form an edge of~$T$, and~${{]i,k[} \cap (I \cup K) = \varnothing}$.
+Hence, $I'$ and~$K'$ either coincide or form an edge of~$S$.
+Moreover, if~$I \ne I'$ or~$K \ne K'$, we have either~$I' = K' = I \cup K = J$ or~$I' = J \ne K = K'$ or~$I = I' \ne J = K'$.
+In the first case, ${]i,k[} \cap (I' \cup K') = {]i,k[} \cap (I \cup K) = \varnothing$.
+In the second case, since~$I$ and~$K$ form an edge of~$T$, we obtain by construction that~$I = J_\circ$ and~$\max(K) < \max(J_\circ) < \min(J_\bullet)$ or~$I = J_\bullet$ and~$\max(J_\circ) < \max(K)$, from which we deduce that~$I' \cap K' = J \cap K = I \cap K$, hence~${]i,k[} \cap (I' \cup K') = {]i,k[} \cap (I \cup K) = \varnothing$.
+The third case is symmetrical.
+We conclude that~$(i,k,A,B)$ is also an arc of~$S$, hence it belongs to~$\arcs$ since~$S$ is $\equiv$-separating.
+
+Consider now a node~$J$ of~$T$ with two distinct ancestor subtrees~$L$ and~$R$ with~$L < R$, and let~$M \eqdef \max(L)$ and~$m \eqdef \min(R)$.
+\vincent{todo: I have a problem here...}
 \end{proof}
 
 %The following statement is the analogue of \cref{prop:admissibleSeparatingTrees}, and characterizes the $\equiv$-preposets of a simple congruence~$\equiv$.
