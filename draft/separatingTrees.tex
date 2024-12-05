@@ -592,53 +592,53 @@ The $\equiv$-poset~$\preccurlyeq$ corresponding to the $\equiv$-congruence class
 \subsubsection{Sweeping algorithm}
 \vincent{todo}
 
-%%%%%%%%%%%%%%%%%%%
-
-\subsection{Preposet insertion map}
-\label{subsec:insertionMap}
-
-\vincent{I am not even sure we need this section anymore...}
-In this section, we describe the map sending an ordered partition~$\mu$ of~$[n]$ to the preposet~$\preccurlyeq_\mu^\equiv$.
-While similar to the insertion map of \cref{subsec:insertionMap}, it was not considered in~\cite{Pilaud-arcDiagramAlgebra}.
-
-Recall that an ordered partition~$\mu \eqdef \mu_1 | \mu_2 | \dots | \mu_k$ of~$[n]$ with~$k$ parts can also be seen as a surjection~$\mu^{-1}$ from~$[n]$ to~$[k]$, where~$\mu^{-1}(i) = j$ if~$i \in \mu_j$.
-We represent an ordered partition~$\mu$ by its table~$\set{(i, \mu^{-1}(i))}{i \in [n]}$, whose $j$th row represents the block~$\mu_j$.
-We consider the set~$\boxslash(\mu)$ of all pairs of values~$(i,j)$ such that the (possibly flat) rectangle with bottom left corner~$(i, \mu^{-1}_i)$ and top right corner~$(j, \mu^{-1}_j)$ contains no other point~$(k, \mu^{-1}_k)$ of the  table of~$\mu$, that is,
-\[
-\boxslash(\mu) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \mu^{-1}_i \le \mu^{-1}_j \text{ and } \mu^{-1}(]i, j[) \cap {[\mu^{-1}_i, \mu^{-1}_j]} = \varnothing}.
-\]
-For~$(i, j) \in \boxslash(\mu)$, we define an arc~$\alpha(i, j, \mu)$ by
-\[
-\arcUp(i, j, \mu) \eqdef (i, j, \set{k}{i < k < j \text{ and } \mu^{-1}_k < \mu^{-1}_i}, \set{k}{i < k < j \text{ and } \mu^{-1}_j < \mu^{-1}_k}).
-\]
-Moreover, we order~$\boxslash(\mu)$ by $(i, j) \prec (k,\ell)$ if~$i \le k < \ell \le j$ and~$\mu^{-1}_k \le \mu^{-1}_i < \mu^{-1}_j \le \mu^{-1}_\ell$.
-Finally, we define~$\boxslash_\equiv(\mu)$ to be the subset of $\prec$-minimal elements in~$\set{(i, j) \in \boxslash(\mu)}{\arcUp(i, j, \mu) \in \arcs_\equiv}$.
-
-Symmetrically, define
-\[
-\boxbslash(\mu) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \mu^{-1}_i \ge \mu^{-1}_j \text{ and } \mu^{-1}({]i,j[}) \cap {[\mu^{-1}_j, \mu^{-1}_i]} = \varnothing},
-\]
-associate an arc
-\[
-\arcDown(i, j, \mu) \eqdef (i, j, \set{k}{i < k < j \text{ and } \mu^{-1}_k < \mu^{-1}_j}, \set{k}{i < k < j \text{ and } \mu^{-1}_i < \mu^{-1}_k})
-\]
-to each~${(i,j) \in \boxbslash(\mu)}$, and let~$\boxbslash_\equiv(\mu)$ be the $\prec$-minimal elements in~$\set{(i, j) \in \boxbslash(\mu)}{\arcDown(i, j, \mu) \in \arcs_\equiv}$ for the order~$\prec$ on~$\boxbslash(\sigma)$ defined by $(i, j) \prec (k,\ell)$ if~$i \le k < \ell \le j$ and~$\mu^{-1}_\ell \le \mu^{-1}_j < \mu^{-1}_i \le \mu^{-1}_k$.
-
-Remember from \cref{subsec:quotientFansQuotientopes} that for an ordered partition~$\mu$ of~$[n]$, there is a unique $\equiv$-preposet~$\preccurlyeq^\equiv_\mu$ such that the preposet cone~$\Cone(\preccurlyeq^\equiv_\mu)$ is the smallest cone of~$\quotientFan$ containing the braid cone~$\Cone(\mu)$.
-
-\begin{corollary}
-\label{coro:insertionMapFaces}
-The $\equiv$-preposet~$\preccurlyeq^\equiv_\mu$ given by an ordered partition~$\mu$ of~$[n]$ has cover relations~$i \preccurlyeq^\equiv_\mu j$ for~$(i,j) \in \boxslash_\equiv(\mu)$ and~$j \preccurlyeq^\equiv_\mu i$ for all~$(i,j) \in \boxbslash_\equiv(\mu)$.
-\end{corollary}
-
-\begin{figure}
-	\capstart
-	\centerline{\includegraphics[scale=.85]{arcDiagramsQuotients}}
-	\caption{The preposets (top) corresponding to the $\equiv_\arcs$-congruence class of the ordered partition~$\mu = ???$ for different arc ideals (bottom).}
-	\label{fig:arcDiagramsFacesQuotients}
-\end{figure}
-
-\Vincent{Should we also include a sweeping description for the preposet insertion map?}
+%%%%%%%%%%%%%%%%%%%%
+%
+%\subsection{Preposet insertion map}
+%\label{subsec:insertionMap}
+%
+%\vincent{I am not even sure we need this section anymore...}
+%In this section, we describe the map sending an ordered partition~$\mu$ of~$[n]$ to the preposet~$\preccurlyeq_\mu^\equiv$.
+%While similar to the insertion map of \cref{subsec:insertionMap}, it was not considered in~\cite{Pilaud-arcDiagramAlgebra}.
+%
+%Recall that an ordered partition~$\mu \eqdef \mu_1 | \mu_2 | \dots | \mu_k$ of~$[n]$ with~$k$ parts can also be seen as a surjection~$\mu^{-1}$ from~$[n]$ to~$[k]$, where~$\mu^{-1}(i) = j$ if~$i \in \mu_j$.
+%We represent an ordered partition~$\mu$ by its table~$\set{(i, \mu^{-1}(i))}{i \in [n]}$, whose $j$th row represents the block~$\mu_j$.
+%We consider the set~$\boxslash(\mu)$ of all pairs of values~$(i,j)$ such that the (possibly flat) rectangle with bottom left corner~$(i, \mu^{-1}_i)$ and top right corner~$(j, \mu^{-1}_j)$ contains no other point~$(k, \mu^{-1}_k)$ of the  table of~$\mu$, that is,
+%\[
+%\boxslash(\mu) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \mu^{-1}_i \le \mu^{-1}_j \text{ and } \mu^{-1}(]i, j[) \cap {[\mu^{-1}_i, \mu^{-1}_j]} = \varnothing}.
+%\]
+%For~$(i, j) \in \boxslash(\mu)$, we define an arc~$\alpha(i, j, \mu)$ by
+%\[
+%\arcUp(i, j, \mu) \eqdef (i, j, \set{k}{i < k < j \text{ and } \mu^{-1}_k < \mu^{-1}_i}, \set{k}{i < k < j \text{ and } \mu^{-1}_j < \mu^{-1}_k}).
+%\]
+%Moreover, we order~$\boxslash(\mu)$ by $(i, j) \prec (k,\ell)$ if~$i \le k < \ell \le j$ and~$\mu^{-1}_k \le \mu^{-1}_i < \mu^{-1}_j \le \mu^{-1}_\ell$.
+%Finally, we define~$\boxslash_\equiv(\mu)$ to be the subset of $\prec$-minimal elements in~$\set{(i, j) \in \boxslash(\mu)}{\arcUp(i, j, \mu) \in \arcs_\equiv}$.
+%
+%Symmetrically, define
+%\[
+%\boxbslash(\mu) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \mu^{-1}_i \ge \mu^{-1}_j \text{ and } \mu^{-1}({]i,j[}) \cap {[\mu^{-1}_j, \mu^{-1}_i]} = \varnothing},
+%\]
+%associate an arc
+%\[
+%\arcDown(i, j, \mu) \eqdef (i, j, \set{k}{i < k < j \text{ and } \mu^{-1}_k < \mu^{-1}_j}, \set{k}{i < k < j \text{ and } \mu^{-1}_i < \mu^{-1}_k})
+%\]
+%to each~${(i,j) \in \boxbslash(\mu)}$, and let~$\boxbslash_\equiv(\mu)$ be the $\prec$-minimal elements in~$\set{(i, j) \in \boxbslash(\mu)}{\arcDown(i, j, \mu) \in \arcs_\equiv}$ for the order~$\prec$ on~$\boxbslash(\sigma)$ defined by $(i, j) \prec (k,\ell)$ if~$i \le k < \ell \le j$ and~$\mu^{-1}_\ell \le \mu^{-1}_j < \mu^{-1}_i \le \mu^{-1}_k$.
+%
+%Remember from \cref{subsec:quotientFansQuotientopes} that for an ordered partition~$\mu$ of~$[n]$, there is a unique $\equiv$-preposet~$\preccurlyeq^\equiv_\mu$ such that the preposet cone~$\Cone(\preccurlyeq^\equiv_\mu)$ is the smallest cone of~$\quotientFan$ containing the braid cone~$\Cone(\mu)$.
+%
+%\begin{corollary}
+%\label{coro:insertionMapFaces}
+%The $\equiv$-preposet~$\preccurlyeq^\equiv_\mu$ given by an ordered partition~$\mu$ of~$[n]$ has cover relations~$i \preccurlyeq^\equiv_\mu j$ for~$(i,j) \in \boxslash_\equiv(\mu)$ and~$j \preccurlyeq^\equiv_\mu i$ for all~$(i,j) \in \boxbslash_\equiv(\mu)$.
+%\end{corollary}
+%
+%\begin{figure}
+%	\capstart
+%	\centerline{\includegraphics[scale=.85]{arcDiagramsQuotients}}
+%	\caption{The preposets (top) corresponding to the $\equiv_\arcs$-congruence class of the ordered partition~$\mu = ???$ for different arc ideals (bottom).}
+%	\label{fig:arcDiagramsFacesQuotients}
+%\end{figure}
+%
+%\Vincent{Should we also include a sweeping description for the preposet insertion map?}
 
 %%%%%%%%%%%%%%%%%%%
 
@@ -790,14 +790,14 @@ We start with two lemmas ensuring the existence of certain paths in a separating
 \label{lem:separatingTree1}
 Consider three nodes~$1 \le i < j < k \le n$ in a separating tree~$T$. Then
 \begin{itemize}
-\item if~$i \leftarrow k$ is an arc of~$T$, then there is a directed path in~$T$ joining either~$i$ to~$j$, or~$j$ to~$k$,
-\item if~$i \to k$ is an arc of~$T$, then there is a directed path in~$T$ joining either~$j$ to~$i$, or~$k$ to~$j$.
+\item if~$i \leftarrow k$ is an edge of~$T$, then there is a directed path in~$T$ joining either~$i$ to~$j$, or~$j$ to~$k$,
+\item if~$i \to k$ is an edge of~$T$, then there is a directed path in~$T$ joining either~$j$ to~$i$, or~$k$ to~$j$.
 \end{itemize}
 %A symmetric statement holds for an arc~$i \leftarrow k$.
 \end{lemma}
 
 \begin{proof}
-Assume that~$1 \le i < j < k \le n$ and~$i \leftarrow k$ is an arc of~$T$.
+Assume that~$1 \le i < j < k \le n$ and~$i \leftarrow k$ is an edge of~$T$.
 As~$T$ is a tree, there is a (a priori undirected) path~$\pi$ joining~$j$ and the edge~$i \leftarrow k$.
 If~$\pi$ is not a directed path, then there exists some node~$\ell$ along~$\pi$ such that~$\pi$ has either two incoming or two outgoing edges at~$\ell$.
 This contradicts the separating property, as $i < j < k$ so that~$\ell$ cannot separate~$j$ from~$\{i,k\}$.
@@ -834,11 +834,8 @@ The \defn{mandatory arcs} of a separating tree~$T$ are the arcs of the form~$(i,
 The \defn{forbidden up} (resp.~\defn{down}) \defn{arcs} of a separating tree~$T$ are the up arcs~$u(M, m)$ (resp.~down arcs~$d(M, m)$), with~$M \eqdef \max(L)$ and~$m \eqdef \min(R)$ where~$L$ and~$R$ are two ancestor (resp.~descendant) subtrees of a node~$j$ of~$T$ with~$L < R$.
 \end{definition}
 
-
-%\begin{corollary}
-%\label{coro:separatingTree1}
-%In a separating tree, there is no edge passing above a node with two parent or below a node with two children.
-%\end{corollary}
+\begin{example}
+\end{example}
 
 Finally, we give a planar characterization of separating tree which will be useful in the proof of \cref{prop:simpleImpliesSeparatingTrees}.
 
@@ -1002,11 +999,14 @@ The simple lattice congruences~$\equiv$ for which a given separating tree~$T$ is
 Immediately follows from \cref{def:admissibleSeparatingTrees,prop:admissibleSeparatingTrees}.
 \end{proof}
 
+\begin{example}
+\end{example}
+
 %%%%%%%%%%%%%%%%%%%
 
-\subsection{Rotations in $\equiv$-admissible separating trees}
-
-\vincent{todo}
+%\subsection{Rotations in $\equiv$-admissible separating trees}
+%
+%\vincent{todo?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1105,10 +1105,10 @@ The following statement is the analogue of \cref{lem:separatingTree1}.
 \begin{lemma}
 \label{lem:SchroderSeparatingTree1}
 Consider three vertices~$I,J,K$ in a Schröder separating tree~$S$ such that there is~$i \in I$, $j \in J$ and~$k \in K$ with~$i < j < k$.
-If~$I = K$ or~$I - K$ is an arc of~$S$, then there is a directed path in~$S$ joining either~$I-K$ to~$J$, or~$J$ to~$I-K$.
+If~$I = K$ or~$I - K$ is an edge of~$S$, then there is a directed path in~$S$ joining either~$I-K$ to~$J$, or~$J$ to~$I-K$.
 %\begin{itemize}
-%\item if~$I = K$ or~$I \leftarrow K$ is an arc of~$S$, then there is a directed path in~$S$ joining either~$I$ to~$J$, or~$J$ to~$K$,
-%\item if~$I = K$ or~$I \to K$ is an arc of~$S$, then there is a directed path in~$S$ joining either~$J$ to~$I$, or~$K$ to~$J$.
+%\item if~$I = K$ or~$I \leftarrow K$ is an edge of~$S$, then there is a directed path in~$S$ joining either~$I$ to~$J$, or~$J$ to~$K$,
+%\item if~$I = K$ or~$I \to K$ is an edge of~$S$, then there is a directed path in~$S$ joining either~$J$ to~$I$, or~$K$ to~$J$.
 %\end{itemize}
 \end{lemma}
 
@@ -1126,7 +1126,7 @@ The following  definitions are the analogues of \cref{def:arcsSeparatingTree,def
 The \defn{mandatory arcs} of a Schröder separating tree~$S$ are the arcs of the form~$(i, k, A, B)$, where~$i < k$ and~$A \sqcup B = {]i,k[}$ are such that
 \begin{itemize}
 \item the nodes~$I$ and~$K$ of~$S$ with~$i \in I$ and~$k \in K$ either coincide or form an edge in~$S$, and moreover~${]i,k[} \cap (I \cup K) = \varnothing$, 
-\item $A$ (resp.~$B$) is the set of integers~$j \in {]i,k[}$ contained in a node~$J$ of~$S$ such that there is a directed path in~$S$ joining~$J$ to~$I-K$ (resp.~$I-K$ to~$J$).
+\item $A$ (resp.~$B$) is the set of integers~$j \in {]i,k[}$ contained in a node~$J$ of~$S$ such that there is a directed path in~$S$ joining~$J$ to~$\{I,K\}$ (resp.~$\{I,K\}$ to~$J$).
 \end{itemize}
 \end{definition}
 
@@ -1187,7 +1187,7 @@ Let~$I$ and~$K$ be the nodes of~$T$ such that~$i \in I$ and~$k \in K$, and simil
 Note that~$I' \subseteq I$ and~$K' \subseteq K$.
 By \cref{def:arcsSchroderSeparatingTree}, $I$ and~$K$ either coincide or form an edge of~$T$, and~${{]i,k[} \cap (I \cup K) = \varnothing}$.
 Assume first that~$I'$ and~$K'$ coincide or form an edge of~$S$.
-Since~${{]i,k[} \cap (I' \cup K') \subseteq {]i,k[} \cap (I \cup K) = \varnothing}$ and any directed path in~$S$ contracts to a directed path in~$T$, we then obtain that~$(i,k,A,B)$ is also an arc of~$S$, hence belongs to~$\arcs_\equiv$ since~$S$ is $\equiv$-admissible.
+Since~${{]i,k[} \cap (I' \cup K') \subseteq {]i,k[} \cap (I \cup K) = \varnothing}$ and any directed path in~$S$ contracts to a directed path in~$T$, we then obtain that~$(i,k,A,B)$ is also a mandatory arc of~$S$, hence belongs to~$\arcs_\equiv$ since~$S$ is $\equiv$-admissible.
 Assume now that~$I'$ and~$K'$ are distinct and not connected in~$S$.
 Up to symmetry, we can then assume that~$I = J_{\circ\bullet}$, that~$I' = J_\circ$ and that~$K = K'$ is a neighbor of~$J_\bullet$ in~$S$.
 Since~${]i,k[} \cap (I \cup K) = \varnothing$, we have~$i < k < j$ or~$j < i < k$  for all~$j \in J_\bullet$.
@@ -1250,34 +1250,54 @@ Since~$X$ is attached to~$J_\bullet$, we have two options:
 
 Consider now a mandatory arc~$(i,k,A,B)$ of~$T$.
 Let~$I$ and~$K$ be the nodes of~$T$ such that~$i \in I$ and~$k \in K$, and similarly let~$I'$ and~$K'$ be the nodes of~$S$ such that~$i \in I'$ and~$k \in K'$.
+Note that~$I \subseteq I'$ and~$K \subseteq K'$.
+Moreover, either~$I = I'$ or~$I \in \{J_\circ, J_\bullet\}$ and~$I' = J_{\circ\bullet}$ and similarly for~$K$ and~$K'$.
 By \cref{def:arcsSchroderSeparatingTree}, $I$ and~$K$ either coincide or form an edge of~$T$, and~${{]i,k[} \cap (I \cup K) = \varnothing}$.
 Hence, $I'$ and~$K'$ either coincide or form an edge of~$S$.
-Moreover, as $T$ is the contraction of~$J_\circ \to J_\bullet$ in~$S$, we have~$I = I'$ or~$I \in \{J_\circ, J_\bullet\}$ and~$I' = J_{\circ\bullet}$ and similarly for~$K$ and~$K'$.
-We distinguish four cases:
+If we have~${]i,k[} \cap (I' \cup K') = \varnothing$, then we obtain that $(i,k,A,B)$ is a mandatory arc of~$S$ since any directed path in~$T$ contracts to a directed path in~$S$.
+As $S$ is $\equiv$-admissible, we therefore obtain that~$(i,k,A,B)$ is in~$\arcs_\equiv$ as desired.
+Hence, we can assume that~${]i,k[} \cap (I' \cup K') \ne \varnothing$.
+Note that this cannot happen if~$I = I'$ and~$K = K'$ (since we would have~$I \cup K = I' \cup K'$), nor if~$I \ne I'$ and~$K \ne K'$ (because, if~$I \ne K$ then~$I \cup K = J_{\circ\bullet} = I' \cup K'$, while if~$I = K$ then~${]i,k[} \subseteq I \subseteq I'$ so that~${]i,k[} \cap (I' \cup K') = {]i,k[} \cap I = \varnothing$).
+Hence, we can assume by symmetry that~$I = J_\circ$ and~$I' = J_{\circ\bullet}$ while~$K = K'$ is a neighbor of~$J_\circ$ in~$T$ distinct from~$J_\circ$ and~$J_\bullet$.
+Moreover, we must have~$i < \min(J_\bullet) < k$, so that~$i = \max(J_\circ)$ and~$k = \min(K \ssm [i])$ since~${{]i,k[} \cap (I \cup K) = \varnothing}$.
+Since~$\max(J_\circ) = i < k \in K$, the definition of~$T$ prevents~$K$ to be a parent of~$J_\circ$.
+Hence, $K$ is a child of~$J_\circ$, and we let~$X$ be the descendant subtree of~$J_\circ$ containing~$K$, and~$m \eqdef \min(X)$.
+Note that the down arc~$d(i,m)$ is a subarc of~$(i,k,A,B)$.
+We moreover claim that it is always in~$\arcs_\equiv$.
+Indeed, the definition of~$T$ leaves us with two possibilities:
 \begin{itemize}
-\item If~$I = I'$ and~$K = K'$, then $I' \cup K' = I \cup K$ so that~${]i,k[} \cap (I' \cup K') = {]i,k[} \cap (I \cup K) = \varnothing$.
-\item If~$I \ne I'$ and~$K \ne K'$, then~$I' = J_{\circ\bullet} = K'$. If~$I \ne K$, then~$I \cup K = J_{\circ\bullet} = I' \cup K'$ so that~${]i,k[} \cap (I' \cup K') = {]i,k[} \cap (I \cup K) = \varnothing$. If~$I = K = J_\circ$, then~${]i,k[} \subseteq J_\circ$, so that~${]i,k[} \cap (I' \cup K') = {]i,k[} \cap J_{\circ\bullet} = {]i,k[} \cap J_\circ = {]i,k[} \cap (I \cup K) = \varnothing$. Idem if~$I = K = J_\bullet$.
-\item If~$I \ne I'$ and~$K = K'$, then~$I-K$ form an edge of~$T$. Assume for instance that~$I = J_\circ$ (the case~$I = J_\bullet$ is symmetrical). If the edge~$J_\circ-K$ of $T$ is oriented~$J_\circ \to K$, then~$K < \max(J_\circ)$ so that~${]i,k[} \cap J_\bullet = \varnothing$, hence~${]i,k[} \cap (I' \cup K') = {]i,k[} \cap (J_{\circ\bullet} \cup K) = {]i,k[} \cap (J_\circ \cup K) = {]i,k[} \cap (I \cup K) = \varnothing$. If the edge~$J_\circ-K$ of $T$ is oriented~$J_\circ \leftarrow K$, then
-\vincent{todo: I have a problem here...}
+\item If~$\min(J_\bullet) \not< X$, then~$m < \min(J_\bullet)$, hence~$d(i,m)$ is a subarc of the mandatory arc of~$S$ defined by the two consecutive elements~$\max(J_\circ)$ and~$\min(J_\bullet)$ of~$J_{\circ\bullet}$, which is in~$\arcs_\equiv$ since~$S$ is $\equiv$-admissible.
+\item If~$\min(J_\bullet) < X$ then~$d(i,m) = d(\max(J_\circ), \min(X))$ is in~$\arcs_\equiv$ by construction of~$T$.
 \end{itemize}
-%
-%
-%If~$I = I'$ and~$K = K'$, or if~$I' = K' = I \cup K = J_{\circ\bullet}$, then we have~$I' \cup K' = I \cup K$.
-%Otherwise, we can assume by symmetry that~$I = J_\circ$, $I' = J_{\circ\bullet}$, and~$K = K' \ne J_{\circ\bullet}$.
-%
-%
-%if~$I \ne I'$ or~$K \ne K'$, we have either~$I' = K' = I \cup K = J_{\circ\bullet}$ or~$I' = J_{\circ\bullet} \ne K = K'$ or~${I = I' \ne J_{\circ\bullet} = K'}$.
-%In the first case, ${]i,k[} \cap (I' \cup K') = {]i,k[} \cap (I \cup K) = \varnothing$.
-%In the second case, assume for instance that~$I = J_\circ$ (the case where~$I = J_\bullet$ is symmetric).
-%
-%
-%
-%since~$I$ and~$K$ form an edge of~$T$, we obtain by construction of~$T$ that~$I = J_\circ$ and~$K < \max(J_\circ) < \min(J_\bullet)$ or~$I = J_\bullet$ and~$K \not< \max(J_\circ)$, from which we deduce that~$I' \cup K' = J_{\circ\bullet} \cup K = I \cup K$, hence~${]i,k[} \cap (I' \cup K') = {]i,k[} \cap (I \cup K) = \varnothing$.
-%The third case is symmetrical.
-We conclude that~$(i,k,A,B)$ is also an arc of~$S$, hence it belongs to~$\arcs$ since~$S$ is $\equiv$-separating.
+We now consider two increasing sequences~$i = a_0 < \dots < a_r = k$ and~$i = b_0 < \dots < b_s = k$ of elements of~$[i,k]$, where
+\begin{itemize}
+\item $m = a_1 < \dots < a_r = k$ are such that for all~$j \in [s-1]$, the nodes~$A_j$ and~$A_{j+1}$ of~$S$ containing~$a_j$ and~$a_{j+1}$ either coincide or form an edge of~$S$, and~${{]a_j, a_{j+1}[} \cap (A_j \cup A_{j+1}) = \varnothing}$,
+\item $b_1 < \dots < b_{s-1}$ denote the elements of~${]i,k[} \cap J_\bullet$.
+\end{itemize}
+Note that~$\{a_1, \dots, a_{r-1}\} \subseteq A$ while~$\{b_1, \dots, b_{s-1}\} \subseteq B$.
+Moreover, $(a_{j-1}, a_j)$ defines a mandatory arc~$\alpha_j$ of~$S$ for each~$j \in [2,r]$ (because $a_{j-1}$ and~$a_j$ are consecutive either in a common node of~$S$ or in neighbors in~$S$).
+Similarly, $(b_{j-1}, b_j)$ defines a mandatory arc~$\beta_j$ of~$S$ for each~$j \in [s]$ (because $b_{j-1}$ and~$b_j$ are consecutive in the node~$J_{\circ\bullet}$ of~$S$ for~$j \in [s-1]$, and $a_{s-1} \in J_{\circ\bullet}$ while $a_s = k \in K$ are consecutive in neighbors of~$S$).
+Moreover, all these arcs are subarcs of~$(i,k,A,B)$ and belong to~$\arcs_\equiv$ since~$S$ is $\equiv$-admissible.
+Finally, we have seen that~$\alpha_1 \eqdef d(a_0,a_1) = d(i,m)$ is a subarc of~$(i,k,A,B)$ and belongs to~$\arcs_\equiv$.
+Assume now by means of contadiction that~$(i,k,A,B)$ is not in~$\arcs_\equiv$.
+Let~$i \le p < q \le k$ be such that the subarc~$\gamma \eqdef (p, q, A \cap {]p,q[}, B \cap {]p,q[})$ of~$(i,k,A,B)$ is minimal in~$\arcs \ssm \arcs_\equiv$ for the subarc order.
+There is no~$j \in [r]$ (resp.~$j \in [s]$) such that~${a_{j-1} \le p < q \le a_j}$ (resp.~$b_{j-1} \le p < q \le b_j$) since~$\alpha_j$ (resp.~$\beta_j$) is a subarc of~$(i,k,A,B)$ and belongs to~$\arcs_\equiv$.
+%Similarly, there is no~$i \in [s]$ such that~$b_{i-1} \le p < q \le b_i$, since~$\beta_i$ is a subarc of~$(i,k,A,B)$ and belong to~$\arcs_\equiv$.
+Hence, there is~$j \in [r-1]$ (resp.~$j \in [s-1]$) such that~$p < a_j < q$ (resp.~$p < b_j < q$).
+Since~$\{a_1, \dots, a_{r-1}\} \subseteq A$ while~$\{b_1, \dots, b_{s-1}\} \subseteq B$, the subarc~$\gamma$ of~$(i,k,A,B)$ is neither an up arc, nor a down arc.
+This contradicts our assumption that~$\equiv$ is a simple congruence.
+We finally conclude that the mandatory arc~$(i,k,A,B)$ indeed belongs to~$\arcs_\equiv$.
 
-Consider now a node~$J$ of~$T$ with two ancestor subtrees~$L$ and~$R$ with~$L < R$, and let~$M \eqdef \max(L)$ and~$m \eqdef \min(R)$.
-\vincent{todo: I have a problem here...}
+Consider now a forbidden up arc~$u(M,m)$ of~$T$.
+Let~$J$ be the node of~$T$ with two ancestor subtrees~$L$ and~$R$ with~$L < R$ such that~$M = \max(L)$ and~$m = \min(R)$.
+If~$L$ and~$R$ are both ancestor subtrees of the same node of~$S$, then the up arc~$u(M,m)$ is not in~$\arcs_\equiv$ since~$S$ is \mbox{$\equiv$-admissible}.
+Hence, we can assume that~$J = J_\circ$ and~$L \not\supseteq J_\bullet$ while~$R \supseteq J_\bullet$.
+Since~$L$ is attached to~$J_\circ$, the up arc~$u(\max(L), \min(J_\bullet))$ is not in~$\arcs_\equiv$.
+We can thus assume that~$m < \min(J_\bullet)$.
+Let~$Y$ be the ancestor subtree of~$J_\bullet$ containing~$m$.
+Then~$L$ and~$Y$ are distinct ancestor subtrees of~$J_{\circ\bullet}$ in~$S$ with~$L < Y$ and~$M = \max(L)$ while~$m = \min(Y)$, so that~$u(M,m)$ is a forbidden up arc of~$S$.
+Since~$S$ is $\equiv$-admissible, we conclude that~$u(M,m)$ is not in~$\arcs_\equiv$.
+The proof is symmetrical for the forbidden down arcs.
 \end{proof}
 
 %The following statement is the analogue of \cref{prop:admissibleSeparatingTrees}, and characterizes the $\equiv$-preposets of a simple congruence~$\equiv$.
