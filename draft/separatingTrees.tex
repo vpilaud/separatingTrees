@@ -257,11 +257,11 @@ Namely, given a separating tree~$T$, each edge of~$T$ defines a mandatory arc wh
 We prove that the separating tree~$T$ appears for the congruence~$\equiv$ if and only if~$\equiv$ contracts the forbidden arcs of~$T$ but not the mandatory arcs of~$T$.
 Conversely, the congruences in which a given separating tree appears form an interval in the lattice of simple congruences.
 
-We then consider the Schröder separating trees, that is, directed trees on a partition of~$[n]$ such that any two ancestor (resp.~descendant) subtrees of a node~$J$ are separated by at least one element of~$J$. 
+We then consider Schröder separating trees, that is, directed trees on a partition of~$[n]$ such that any two ancestor (resp.~descendant) subtrees of a node~$J$ are separated by at least one element of~$J$. 
 They can also be obtained by edge contractions in separating trees, so that the Hasse diagrams of the preposets of a simple congruence all are Schröder separating trees.
-Again, we characterize which Schröder separating trees appear for a given simple congruence~$\equiv$ in terms of the arcs  contracted by~$\equiv$.
-Let us underline that this provide the first combinatorial model for all faces of the quotientope~$\Quotientope$ when~$\equiv$ is a simple congruence.
-Note that for an arbitrary congruence~$\equiv$, the vertices of the quotientope~$\Quotientope$ correspond to non-crossing arc diagrams in~$\arcs$, the facets~$\Quotientope$ correspond to admissible bipartitions of~$[n]$ \cite{AlbertinPilaudRitter}, and the intervals in the quotient~$\f{S}_n/{\equiv}$ correspond to semi-crossing arc bidiagrams~\cite{AlbertinPilaud} in~$\arcs$ (introduced in the context of the canonical complex of the weak order), but there is no combinatorial model for all faces of the quotientope~$\Quotientope$.
+Again, we characterize which Schröder separating trees appear for a given simple congruence~$\equiv$ in terms of the arcs contracted by~$\equiv$.
+Let us underline that this provides the first combinatorial model for all faces of the quotientope~$\Quotientope$ when~$\equiv$ is a simple congruence.
+Note that for an arbitrary congruence~$\equiv$, there are combinatorial models for the vertices of the quotientope~$\Quotientope$ by~\cite{Reading-arcDiagrams}, for the facets of~$\Quotientope$ by~\cite{AlbertinPilaudRitter}, and for the intervals in the quotient~$\f{S}_n/{\equiv}$ by~\cite{AlbertinPilaud}, but there is no combinatorial model for all faces of the quotientope~$\Quotientope$.
 
 Over/under in Hopf algebra on separating trees.
 
@@ -413,53 +413,6 @@ Its arc ideal is given by the set~$\arcs_\textrm{sylv} \eqdef \set{(i, j, {]i,j[
 
 %%%%%%%%%%%%%%%%%%%
 
-\subsection{Quotient fans and quotientopes}
-\label{subsec:quotientFansQuotientopes}
-
-Fix a lattice congruence~$\equiv$ of the weak order.
-Geometric realizations of the quotient~$\f{S}_n / {\equiv}$ were studied in~\cite{Reading-HopfAlgebras, PilaudSantos-quotientopes, PadrolPilaudRitter}.
-
-\begin{theorem}[\cite{Reading-HopfAlgebras}]
-The cones obtained by glueing together the maximal cones of the braid fan~$\braidFan$ corresponding to permutations in the same congruence class of~$\equiv$ define the \defn{quotient~fan}~$\quotientFan$.
-\end{theorem}
-
-Each cone of the quotient fan~$\quotientFan$ is the \defn{preposet cone} $\Cone({\preccurlyeq}) \eqdef \set{\b{x} \in \R^n}{x_i \le x_j \text{ for all } i \preccurlyeq j}$ of some preposet~$\preccurlyeq$ on~$[n]$.
-We call \defn{$\equiv$-preposets} (resp.~\defn{$\equiv$-posets}) the preposets (resp.~posets) whose cone is a cone of~$\quotientFan$.
-
-\vincent{Clean this part... we don't need all anymore...}
-The cone~$\Cone(\preccurlyeq)$ is the union of the cones~$\Cone(\mu)$ of the braid fan~$\braidFan$ over all ordered set partitions~$\mu$ of~$[n]$ such that~$i \preccurlyeq j$ implies $i \preccurlyeq_\mu j$ for all~$i,j \in [n]$.
-For an ordered set partition~$\mu$ of~$[n]$, we denote by~$\preccurlyeq^\equiv_\mu$ the preposet on~$[n]$ such that~$\Cone(\preccurlyeq^\equiv_\mu)$ is the smallest cone of~$\quotientFan$ containing the braid cone~$\Cone(\mu)$.
-In particular, the maximal cones of~$\quotientFan$ are poset cones of certain posets whose sets of linear extensions give the congruence classes of~$\equiv$, and the only cone of~$\quotientFan$ containing the braid cone~$\Cone(\sigma)$ of a permutation~$\sigma$ is the cone~$\Cone(\preccurlyeq^\equiv_\sigma)$ of the poset~$\preccurlyeq^\equiv_\sigma$ described in~\cref{subsec:latticeCongruencesArcIdeals}.
-
-Finally, we recall the following result of~\cite{PilaudSantos-quotientopes, PadrolPilaudRitter}.
-In this paper, we will not use the precise construction, only the fact that these polytopes exist.
-
-\begin{theorem}[\cite{PilaudSantos-quotientopes, PadrolPilaudRitter}]
-The quotient fan~$\quotientFan$ is the normal fan of a \defn{quotientpe}~$\Quotientope$.
-\end{theorem}
-
-\begin{proposition}[\cite{Reading-HopfAlgebras, PilaudSantos-quotientopes, PadrolPilaudRitter}]
-The Hasse diagram of the quotient lattice~$\f{S}_n / {\equiv}$ is the dual graph of the quotient fan~$\quotientFan$, or the graph of the quotientope~$\Quotientope$, oriented in the linear direction~$\b{\alpha} \eqdef \sum_{i \in [n]} (2i-n-1) \, \b{e}_i$.
-\end{proposition}
-
-\begin{example}
-\label{exm:sylvesterFanAssociahedron}
-For the sylvester congruence~$\equiv_\textrm{sylv}$ of \cref{exm:sylvesterCongruence}, the quotient fan~$\quotientFan[\textrm{sylv}]$ has a cone~$\Cone(S) \eqdef \set{\b{x} \in \hyp}{\b{x}_a \le \b{x}_b \text{ if there is a directed path from } a \text{ to } b \text{ in } S}$ for each Schröder tree~$S$ with $n+1$ leaves.
-In particular, $\quotientFan[\textrm{sylv}]$ has a chamber for each binary tree with $n+1$ leaves (or equivalently $n$ nodes).
-\cref{fig:Tamari4}\,(middle) illustrates the quotient fan~$\quotientFan[\textrm{sylv}]$ for~$n = 4$.
-The quotient fan~$\quotientFan[\equiv_\textrm{sylv}]$ is the normal fan of the classical associahedron~$\Asso$ of~\cite{ShniderSternberg, Loday}, defined equivalently as the convex hull of the points~$\sum_{j \in [n]} \ell(T,j) \, r(T,j) \, \b{e}_j$ for all binary trees~$T$ on~$n$ nodes, where $\ell(T,j)$ and~$r(T,j)$ respectively denote the numbers of leaves in the left and right subtrees of the node~$j$ of~$T$ (labeled in inorder).
-\cref{fig:Tamari4}\,(right) shows the associahedron~$\Asso[4]$.
-%
-\begin{figure}
-	\capstart
-	\centerline{\includegraphics[scale=.48]{TamariLattice4} \; \includegraphics[scale=.6]{sylvesterFan4} \hspace{-.3cm} \includegraphics[scale=.6]{associahedron4}}
-	\caption{The Tamari lattice (left) can be seen as the dual graph of the quotient fan~$\equiv_\textrm{sylv}$ (middle) or as the graph of J.-L.~Loday's associahedron (right). \cite[Fig.~5]{PadrolPilaudRitter}}
-	\label{fig:Tamari4}
-\end{figure}
-\end{example}
-
-%%%%%%%%%%%%%%%%%%%
-
 \subsection{Poset insertion map}
 \label{subsec:insertionMap}
 
@@ -490,6 +443,13 @@ Finally, we define~$\boxslash_\equiv(\sigma)$ to be the subset of $\prec$-maxima
 
 Symmetrically, we define~$\boxbslash(\sigma) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \sigma_i > \sigma_j \text{ and } \sigma({]i,j[}) \cap {]\sigma_j, \sigma_i[} = \varnothing}$, we associate an arc~$\arcDown(i, j, \sigma) \eqdef (\sigma_j, \sigma_i, \set{\sigma_k}{k < i \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}}, \set{\sigma_k}{j < k \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}})$ to each~${(i,j) \in \boxbslash(\sigma)}$, and we let~$\boxbslash_\equiv(\sigma)$ be the $\prec$-maximal elements in~$\set{(i, j) \in \boxbslash(\sigma)}{\arcDown(i, j, \sigma) \in \arcs_\equiv}$.
 
+\begin{figure}
+	\capstart
+	\centerline{\includegraphics[scale=.85]{arcDiagramsQuotients}}
+	\caption{The posets (top) corresponding to the $\equiv_\arcs$-congruence class of the permutation~$\sigma = 2537146$ for different arc ideals (bottom).}
+	\label{fig:arcDiagramsQuotients}
+\end{figure}
+
 \begin{proposition}[{\cite[Sect.~2.4]{Pilaud-arcDiagramAlgebra}}]
 \label{prop:insertionMap}
 The noncrossing arc diagram~$\arcDiagramUp(\sigma)$ (resp.~$\arcDiagramDown(\sigma)$) contains exactly the arcs~$\arcUp(i,j,\sigma)$ for all~$(i,j) \in \boxslash_\equiv(\sigma)$ (resp.~the arcs~$\arcDown(i,j,\sigma)$ for all~$(i,j) \in \boxbslash_\equiv(\sigma)$.
@@ -499,6 +459,13 @@ The noncrossing arc diagram~$\arcDiagramUp(\sigma)$ (resp.~$\arcDiagramDown(\sig
 \label{coro:insertionMap}
 The $\equiv$-poset~$\preccurlyeq_\sigma^\equiv$ corresponding to the $\equiv$-congruence class of a permutation~$\sigma$ has cover relations~$\sigma_i \preccurlyeq_\sigma^\equiv \sigma_j$ for~$(i,j) \in \boxslash_\equiv(\sigma) \cup \boxbslash_\equiv(\sigma)$.
 \end{corollary}
+
+As already mentioned in~\cite[Sect.~2.4]{Pilaud-arcDiagramAlgebra}, the $\equiv$-poset~$\preccurlyeq_\sigma^\equiv$ can also be obtained by an insertion procedure.
+We again skip the precise description as it is not needed in this paper.
+
+\begin{example}
+For the sylvester congruence~$\equiv_\textrm{sylv}$ of \cref{exm:sylvesterCongruence}, the $\equiv$-poset~$\preccurlyeq_\sigma^\equiv$ is the binary search tree obtained by insertion of the permutation~$\sigma$, as described in~\cite{HivertNovelliThibon-algebraBinarySearchTrees}.
+\end{example}
 
 %\subsubsection{Direct description}
 %
@@ -597,6 +564,53 @@ The $\equiv$-poset~$\preccurlyeq_\sigma^\equiv$ corresponding to the $\equiv$-co
 
 %%%%%%%%%%%%%%%%%%%
 
+\subsection{Quotient fans and quotientopes}
+\label{subsec:quotientFansQuotientopes}
+
+Fix a lattice congruence~$\equiv$ of the weak order.
+Geometric realizations of the quotient~$\f{S}_n / {\equiv}$ were studied in~\cite{Reading-HopfAlgebras, PilaudSantos-quotientopes, PadrolPilaudRitter}.
+
+\begin{theorem}[\cite{Reading-HopfAlgebras}]
+The cones obtained by glueing together the maximal cones of the braid fan~$\braidFan$ corresponding to permutations in the same congruence class of~$\equiv$ define the \defn{quotient~fan}~$\quotientFan$.
+\end{theorem}
+
+Each cone of the quotient fan~$\quotientFan$ is the \defn{preposet cone} $\Cone({\preccurlyeq}) \eqdef \set{\b{x} \in \R^n}{x_i \le x_j \text{ for all } i \preccurlyeq j}$ of some preposet~$\preccurlyeq$ on~$[n]$ (\ie reflexive and transitive binary relation).
+We call \defn{$\equiv$-preposets} (resp.~\defn{$\equiv$-posets}) the preposets (resp.~posets) whose cone is a cone of~$\quotientFan$.
+The $\equiv$-posets are precisely the posets~$\preccurlyeq^\equiv_\sigma$ described in~\cref{subsec:latticeCongruencesArcIdeals} for any choice of representatives~$\sigma$ in~$\f{S}_n/{\equiv}$.
+
+%The cone~$\Cone(\preccurlyeq)$ is the union of the cones~$\Cone(\mu)$ of the braid fan~$\braidFan$ over all ordered set partitions~$\mu$ of~$[n]$ such that~$i \preccurlyeq j$ implies $i \preccurlyeq_\mu j$ for all~$i,j \in [n]$.
+%For an ordered set partition~$\mu$ of~$[n]$, we denote by~$\preccurlyeq^\equiv_\mu$ the preposet on~$[n]$ such that~$\Cone(\preccurlyeq^\equiv_\mu)$ is the smallest cone of~$\quotientFan$ containing the braid cone~$\Cone(\mu)$.
+%In particular, the maximal cones of~$\quotientFan$ are poset cones of certain posets whose sets of linear extensions give the congruence classes of~$\equiv$, and the only cone of~$\quotientFan$ containing the braid cone~$\Cone(\sigma)$ of a permutation~$\sigma$ is the cone~$\Cone(\preccurlyeq^\equiv_\sigma)$ of the poset~$\preccurlyeq^\equiv_\sigma$ described in~\cref{subsec:latticeCongruencesArcIdeals}.
+
+Finally, we recall the following result of~\cite{PilaudSantos-quotientopes, PadrolPilaudRitter}.
+In this paper, we will not use the precise construction, only the fact that these polytopes exist.
+
+\begin{theorem}[\cite{PilaudSantos-quotientopes, PadrolPilaudRitter}]
+The quotient fan~$\quotientFan$ is the normal fan of a \defn{quotientpe}~$\Quotientope$.
+\end{theorem}
+
+\begin{proposition}[\cite{Reading-HopfAlgebras, PilaudSantos-quotientopes, PadrolPilaudRitter}]
+The Hasse diagram of the quotient lattice~$\f{S}_n / {\equiv}$ is the dual graph of the quotient fan~$\quotientFan$, or the graph of the quotientope~$\Quotientope$, oriented in the linear direction~$\b{\alpha} \eqdef \sum_{i \in [n]} (2i-n-1) \, \b{e}_i$.
+\end{proposition}
+
+\begin{example}
+\label{exm:sylvesterFanAssociahedron}
+For the sylvester congruence~$\equiv_\textrm{sylv}$ of \cref{exm:sylvesterCongruence}, the quotient fan~$\quotientFan[\textrm{sylv}]$ has a cone~$\Cone(S) \eqdef \set{\b{x} \in \hyp}{\b{x}_a \le \b{x}_b \text{ if there is a directed path from } a \text{ to } b \text{ in } S}$ for each Schröder tree~$S$ with $n+1$ leaves.
+In particular, $\quotientFan[\textrm{sylv}]$ has a chamber for each binary tree with $n+1$ leaves (or equivalently $n$ nodes).
+\cref{fig:Tamari4}\,(middle) illustrates the quotient fan~$\quotientFan[\textrm{sylv}]$ for~$n = 4$.
+The quotient fan~$\quotientFan[\equiv_\textrm{sylv}]$ is the normal fan of the classical associahedron~$\Asso$ of~\cite{ShniderSternberg, Loday}, defined equivalently as the convex hull of the points~$\sum_{j \in [n]} \ell(T,j) \, r(T,j) \, \b{e}_j$ for all binary trees~$T$ on~$n$ nodes, where $\ell(T,j)$ and~$r(T,j)$ respectively denote the numbers of leaves in the left and right subtrees of the node~$j$ of~$T$ (labeled in inorder).
+\cref{fig:Tamari4}\,(right) shows the associahedron~$\Asso[4]$.
+%
+\begin{figure}
+	\capstart
+	\centerline{\includegraphics[scale=.48]{TamariLattice4} \; \includegraphics[scale=.6]{sylvesterFan4} \hspace{-.3cm} \includegraphics[scale=.6]{associahedron4}}
+	\caption{The Tamari lattice (left) can be seen as the dual graph of the quotient fan~$\equiv_\textrm{sylv}$ (middle) or as the graph of J.-L.~Loday's associahedron (right). \cite[Fig.~5]{PadrolPilaudRitter}}
+	\label{fig:Tamari4}
+\end{figure}
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%
+
 \subsection{Relevant congruences}
 \label{subsec:relevantCongruences}
 
@@ -629,15 +643,16 @@ It has a congruence class for each  $\arc$-Cambrian tree~\cite{LangePilaud, Chat
 The quotient~$\f{S}_n / {\equiv_\arc}$ is the \defn{$\arc$-Cambrian lattice}~\cite{Reading-CambrianLattices}, the quotient fan~$\quotientFan[\arc]$ is the \defn{$\arc$-Cambrian fan} of~\cite{ReadingSpeyer} and the quotientope~$\Quotientope[\arc]$ is the \defn{$\arc$-associahedron} of~\cite{HohlwegLange}.
 
 \item \label{item:permutreeCongruence}
-For~$\decoration \in \Decorations^n$, the \defn{$\decoration$-permutree congruence}~$\equiv_\decoration$ is defined by the ideal~$\arcs_\decoration$ of arcs which do not pass above the points~$j$ with~$\decoration_j \in \{\upCirc, \upDownCirc\}$ nor below the points~$j$ with~$\decoration_j \in \{\downCirc, \upDownCirc\}$.
+For~$\decoration \in \Decorations^n$, the \defn{$\decoration$-permutree congruence}~$\equiv_\decoration$ is defined by the ideal~$\arcs_\decoration$ of arcs which do not pass above the points~$j$ with~$\decoration_j \in \{\upCirc, \upDownCirc\}$ nor below the points~$j$ with~${\decoration_j \in \{\downCirc, \upDownCirc\}}$.
 Its congruence classes are the sets of linear extensions of the $\decoration$-permutrees~\cite{PilaudPons-permutrees}.
 %It can also be seen as the transitive closure of the rewriting rules~$U i k V j W \equiv_\decoration U k i V j W$ for~$i < j < k$ with~$\decoration_j \in \{\downCirc, \upDownCirc\}$ and~$U j V i k W \equiv_\decoration U j V k i W$ for~$i < j < k$ with~$\decoration_j \in \{\upCirc, \upDownCirc\}$.
 The quotient~$\f{S}_n / {\equiv_\decoration}$ is the \defn{$\decoration$-permutree lattice}~\cite{PilaudPons-permutrees}, the quotient fan~$\quotientFan[\decoration]$ is the \defn{$\decoration$-permutree fan} of~\cite{PilaudPons-permutrees} and the quotientope~$\Quotientope[\decoration]$ is the \defn{$\decoration$-permutreehedron} of~\cite{PilaudPons-permutrees}.
 
 \item \label{item:abSashesCongruence}
-For~$a, b \ge 2$ define the \defn{$(a,b)$-sashes congruence}~$\equiv^s_{a,b}$ by the ideal~$\arcs^s_{a,b}$ of arcs which do not pass above $a$ consecutive points, nor below $b$ consecutive points.
-\cite{Law,LaniniNovelli}.
-\vincent{todo}
+For~$a, b \ge 2$ define the \defn{$(a,b)$-sashes congruence}~$\equiv_{\textrm{sh}(a,b)}$ by the ideal~$\arcs_{\textrm{sh}(a,b)}$ of arcs which do not pass above $a$ consecutive points, nor below $b$ consecutive points.
+Note that~$\equiv_{\textrm{sh}(n,n)} = \equiv_{\textrm{triv}}$, that~$\equiv_{\textrm{sh}(1,n)} = \equiv_{\textrm{sylv}}$, that~$\equiv_{\textrm{sh}(1,1)} = \equiv_{\textrm{rec}}$.
+The $(1,2)$-sashes congruence was studied in~\cite{Law} and its equivalence classes are counted by the Pell numbers.
+The $(2,2)$-sashes congruence was studied in~\cite{LaniniNovelli} and its equivalence classes are counted by central binomial coefficients.
 
 %\item \label{item:abTwistCongruence}
 %For~$a, b \ge 2$ define the \defn{$(a,b)$-twist congruence}~$\equiv^t_{a,b}$ by the ideal~$\arcs^t_{a,b}$ of arcs which do not pass above $a$ points, nor below $b$ points.
@@ -1085,6 +1100,25 @@ A \defn{Schröder separating tree} is a directed tree on the parts of a set part
 
 \begin{remark}
 Note that the separating trees are precisely the Schröder separating trees with $n$ nodes (or equivalently, where each node of~$S$ is a singleton).
+\end{remark}
+
+\begin{remark}
+The number of Schröder separating trees on~$[n]$ with $k$ nodes is given by the following table:
+\[
+\begin{array}{c|cccccccc}
+k \backslash n & 1 & 2 & 3 & 4 & 5 & 6 &  \dots \\
+\hline
+1 & 1 & 1 & 1 &   1 &     1 & 1 & \dots\\
+2 &    & 2 & 6 & 14 &   30 & 62 & \dots \\
+3 &    &    & 8 & 46 & 184 & 638 & \dots\\
+4 &    &    &    & 42 & 388 & 2344 & \dots\\
+5 &    &    &    &      & 264 & 3556 & \dots\\
+6 &    &    &    &      &        & 1898 & \dots\\ 
+\vdots &&&&&& & \ddots \\
+\hline
+\Sigma & 1 & 3 & 15 & 103 & 867 & 8499 & \dots
+\end{array}
+\]
 \end{remark}
 
 \begin{definition}
