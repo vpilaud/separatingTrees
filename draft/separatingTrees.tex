@@ -235,8 +235,8 @@ We finally explore the connections of our separating trees with quiver represent
 \label{sec:introduction}
 
 Lattice congruences of the weak order of a Coxeter group were pioneered by N.~Reading~\cite{Reading-CambrianLattices} in connection to the combinatorics of finite type cluster algebras~\cite{FominZelevinsky-ClusterAlgebrasI,FominZelevinsky-ClusterAlgebrasII}.
-For the symmetric group, \cite{Reading-arcDiagrams} described the combinatorics of a lattice congruence of the weak order in terms of non-crossing arc diagrams.
-Moreover, \cite{PilaudSantos-quotientopes, PadrolPilaudRitter} constructed the quotientope~$\Quotientope$ of a lattice congruence~$\equiv$, whose normal fan is the quotient fan~$\quotientFan$~\cite{Reading-HopfAlgebras} obtained by coarsening the braid arrangement according to the congruence classes of~$\equiv$, and whose oriented skeleton is the quotient~$\f{S}_n/{\equiv}$.
+For the symmetric group, \cite{Reading-arcDiagrams} described the combinatorics of a lattice congruence~$\equiv$ of the weak order in terms of noncrossing arc diagrams.
+Moreover, \cite{PilaudSantos-quotientopes, PadrolPilaudRitter} constructed the quotientope~$\Quotientope$, whose normal fan is the quotient fan~$\quotientFan$~\cite{Reading-HopfAlgebras} obtained by coarsening the braid arrangement according to the congruence classes of~$\equiv$, and whose oriented skeleton is the quotient~$\f{S}_n/{\equiv}$.
 The most classical congruence of the weak order is certainly the sylvester congruence~\cite{Tonks, HivertNovelliThibon-algebraBinarySearchTrees}, whose quotient is the Tamari lattice~\cite{Tamari}, and whose quotientope is the associahedron of~\cite{ShniderSternberg, Loday}.
 
 A congruence~$\equiv$ is called simple when the Hasse diagram of the quotient~$\f{S}_n/{\equiv}$ is regular, or equivalently when the quotient fan~$\quotientFan$ is simplicial, or equivalently when the quotientope~$\Quotientope$ is a simple polytope.
@@ -245,7 +245,7 @@ These congruences naturally appear in algebraic contexts, in particular in the c
 
 The simple congruences of the weak order are precisely those whose minimal contracted arcs are all either up arcs or down arcs.
 The forward direction of this statement is easy to prove.
-The backward direction was originally proved by H.~Hoang and T.~Mütze in~\cite[Sect.~4.4]{HoangMutze} with a purely combinatorial (but slightly involved) proof.
+The backward direction was originally proved by H.~Hoang and T.~Mütze in~\cite[Sect.~4.4]{HoangMutze} with a purely combinatorial (but slightly involved) method.
 In their paper on the lattice theory of torsion classes, L.~Demonet, O.~Iyama, N.~Reading, I.~Reiten, and H.~Thomas provided an alternative proof~\cite[Sect.~6.3]{DemonetIyamaReadingReitenThomas} in terms of quiver representation theory.
 
 Our first contribution is an alternative elementary combinatorial proof of this characterization based on the description of the Hasse diagrams of the posets of a simple congruence~$\equiv$.
@@ -255,11 +255,11 @@ Our proof is based on the insertion map from permutatoins to posets of~$\equiv$ 
 In fact, we actually completely characterize which separating trees appear for a given simple congruence~$\equiv$.
 Namely, given a separating tree~$T$, each edge of~$T$ defines a mandatory arc while each pair of parents or children of a node of~$T$ defines a forbidden arc.
 We prove that the separating tree~$T$ appears for the congruence~$\equiv$ if and only if~$\equiv$ contracts the forbidden arcs of~$T$ but not the mandatory arcs of~$T$.
-Conversely, the congruences in which a given separating tree appears form an interval in the lattice of simple congruences.
+In particular, the congruences in which a given separating tree appears form an interval in the lattice of simple congruences.
 
 We then consider Schröder separating trees, that is, directed trees on a partition of~$[n]$ such that any two ancestor (resp.~descendant) subtrees of a node~$J$ are separated by at least one element of~$J$. 
 They can also be obtained by edge contractions in separating trees, so that the Hasse diagrams of the preposets of a simple congruence all are Schröder separating trees.
-Again, we characterize which Schröder separating trees appear for a given simple congruence~$\equiv$ in terms of the arcs contracted by~$\equiv$.
+Again, we characterize which Schröder separating trees appear for a given simple congruence~$\equiv$ in terms of mandatory and forbidden arcs contracted by~$\equiv$.
 Let us underline that this provides the first combinatorial model for all faces of the quotientope~$\Quotientope$ when~$\equiv$ is a simple congruence.
 Note that for an arbitrary congruence~$\equiv$, there are combinatorial models for the vertices of the quotientope~$\Quotientope$ by~\cite{Reading-arcDiagrams}, for the facets of~$\Quotientope$ by~\cite{AlbertinPilaudRitter}, and for the intervals in the quotient~$\f{S}_n/{\equiv}$ by~\cite{AlbertinPilaud}, but there is no combinatorial model for all faces of the quotientope~$\Quotientope$.
 
@@ -323,7 +323,7 @@ Two arcs~$(i, j, A, B)$ and~$(i', j', A', B')$ \defn{cross} if the two correspon
 A \defn{noncrossing arc diagram} is a collection of arcs of~$\arcs_n$ where any two arcs do not cross and have distinct left endpoints and distinct right endpoints (but the right endpoint of an arc can be the left endpoint of an other arc).
 See \cref{fig:noncrossingArcDiagrams} for illustrations.
 
-%We start by the bijection of \cite{Reading-arcDiagrams} between permutations and non-crossing arc diagrams.
+%We start by the bijection of \cite{Reading-arcDiagrams} between permutations and noncrossing arc diagrams.
 Consider now a permutation~$\sigma$ of~$[n]$, and its \defn{permutation table} containing the points~$(\sigma_p, p)$ for~$p \in [n]$.
 (This unusual choice of orientation is necessary to fit later with the existing constructions ~\cite{LodayRonco, HivertNovelliThibon-algebraBinarySearchTrees, ChatelPilaud, PilaudPons-permutrees}.)
 We draw segments between any two consecutive dots~$(\sigma_p, p)$ and~$(\sigma_{p+1}, p+1)$, colored blue if~$\sigma_p < \sigma_{p+1}$ is an \defn{ascent} and red if~$\sigma_p > \sigma_{p+1}$ is a \defn{descent}.
@@ -354,7 +354,7 @@ A \defn{lattice congruence} of the weak order is an equivalence relation~$\equiv
 The \defn{lattice quotient}~$\f{S}_n/{\equiv}$ is the lattice on the congruence classes of~$\equiv$ where~$X \le Y$ if and only if there exist~$x \in X$ and~$y \in Y$ such that~$x \le y$, and~$X \meet Y$ (resp.~$X \join Y$) is the congruence class of~$x \meet y$ (resp.~$x \join y$) for any~$x \in X$~and~$y \in Y$.
 
 The compatibility with the meet and join operations in fact forces all congruence classes of~$\equiv$ to be intervals.
-For a permutation~$\sigma$, we denote by~$\projDown(\sigma)$ and~$\projUp(\sigma)$ the top and bottom permutations of the $\equiv$-congruence class of~$\sigma$, and we define the non-crossing arc diagrams~$\arcDiagramDown(\sigma) \eqdef \arcDiagramDown[](\projDown(\sigma))$ and~$\arcDiagramUp(\sigma) \eqdef \arcDiagramUp[](\projUp(\sigma))$.
+For a permutation~$\sigma$, we denote by~$\projDown(\sigma)$ and~$\projUp(\sigma)$ the top and bottom permutations of the $\equiv$-congruence class of~$\sigma$, and we define the noncrossing arc diagrams~$\arcDiagramDown(\sigma) \eqdef \arcDiagramDown[](\projDown(\sigma))$ and~$\arcDiagramUp(\sigma) \eqdef \arcDiagramUp[](\projUp(\sigma))$.
 The interval~$[\projDown(\sigma), \projUp(\sigma)]$ is the set of all linear extensions of a poset~$\preccurlyeq^\equiv_\sigma$ on~$[n]$ whose cover relations are~$j \preccurlyeq^\equiv_\sigma i$ for each descent~$ji$ of~$\projDown(\sigma)$ and~$i \preccurlyeq^\equiv_\sigma j$ for each ascent~$ij$ of~$\projUp(\sigma)$.
 Hence, the Hasse diagram of the poset~$\preccurlyeq^\equiv_\sigma$ is obtained by superimposing the arcs of~$\arcDiagramDown(\sigma)$ oriented from right to left with the arcs of~$\arcDiagramUp(\sigma)$ oriented from left to right.
 
@@ -395,20 +395,22 @@ This lattice is distributive, and we have~$\arcs_{{\equiv} \join {\equiv'}} = \a
 
 \begin{example}
 \label{exm:sylvesterCongruence}
-The most classical lattice congruence of the weak order on~$\f{S}_n$ is the \defn{sylvester congruence}~$\equiv_\textrm{sylv}$ \cite{LodayRonco, HivertNovelliThibon-algebraBinarySearchTrees}.
-Its congruence classes are the fibers of the binary search tree insertion algorithm, or equivalently the sets of linear extensions of binary trees (labeled in inorder and considered as posets oriented from bottom to top).
-It can also be seen as the transitive closure of the rewriting rule~$U i k V j W \equiv_\textrm{sylv} U k i V j W$ where~$i < j < k$ are letters and~$U,V,W$ are words on~$[n]$.
-In other words, the permutations minimal in their sylvester congruence class are those avoiding the pattern~$312$.
-The quotient of the weak order by the sylvester congruence is (isomorphic to) the classical \defn{Tamari lattice}~\cite{Tamari}, whose elements are the binary trees on~$n$ nodes and whose cover relations are right rotations in binary trees.
-See \cref{fig:sylvesterCongruence} for~$n = 4$.
-Its arc ideal is given by the set~$\arcs_\textrm{sylv} \eqdef \set{(i, j, {]i,j[}, \varnothing)}{1 \le i < j \le n}$ of up arcs, and the corresponding noncrossing arc diagrams are known as \defn{noncrossing partitions} of~$[n]$.
 %
-\begin{figure}
+\begin{figure}[b]
 	\capstart
 	\centerline{\includegraphics[scale=.6]{weakOrderLeft4} \; \includegraphics[scale=.6]{weakOrderCongruence4} \; \includegraphics[scale=.48]{TamariLattice4}}
 	\caption{The weak order on~$\f{S}_4$ (left), the sylvester congruence~$\equiv_\textrm{sylv}$~(middle), and the Tamari lattice (right). \cite[Fig.~1 \& 2]{PilaudSantos-quotientopes}}
 	\label{fig:sylvesterCongruence}
 \end{figure}
+%
+The most classical lattice congruence of the weak order on~$\f{S}_n$ is the \defn{sylvester congruence}~$\equiv_\textrm{sylv}$ \cite{LodayRonco, HivertNovelliThibon-algebraBinarySearchTrees}.
+See \cref{fig:sylvesterCongruence}\,(middle).
+Its congruence classes are the fibers of the binary search tree insertion algorithm, or equivalently the sets of linear extensions of binary trees (labeled in inorder and considered as posets oriented from bottom to top).
+It can also be seen as the transitive closure of the rewriting rule~$U i k V j W \equiv_\textrm{sylv} U k i V j W$ where~$i < j < k$ are letters and~$U,V,W$ are words on~$[n]$.
+In other words, the permutations minimal in their sylvester congruence class are those avoiding the pattern~$312$.
+The quotient of the weak order by the sylvester congruence is (isomorphic to) the classical \defn{Tamari lattice}~\cite{Tamari}, whose elements are the binary trees on~$n$ nodes and whose cover relations are right rotations in binary trees.
+See \cref{fig:sylvesterCongruence}\,(right).
+Its arc ideal is given by the set~$\arcs_\textrm{sylv} \eqdef \set{(i, j, {]i,j[}, \varnothing)}{1 \le i < j \le n}$ of up arcs, and the corresponding noncrossing arc diagrams are known as \defn{noncrossing partitions} of~$[n]$.
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%
@@ -446,9 +448,11 @@ Symmetrically, we define~$\boxbslash(\sigma) \eqdef \set{(i, j)}{1 \le i < j \le
 \begin{figure}
 	\capstart
 	\centerline{\includegraphics[scale=.85]{arcDiagramsQuotients}}
-	\caption{The posets (top) corresponding to the $\equiv_\arcs$-congruence class of the permutation~$\sigma = 2537146$ for different arc ideals (bottom).}
+	\caption{The poset~$\preccurlyeq_\sigma^\equiv$ (middle row) and the noncrossing arc diagrams~$\arcDiagramUp(\sigma)$ (top row) and~$\arcDiagramDown(\sigma)$ (bottom row) corresponding to the $\equiv_\arcs$-congruence class of the permutation~$\sigma = 2537146$ for different arc ideals (represented in grey on the top and bottom rows).}
 	\label{fig:arcDiagramsQuotients}
 \end{figure}
+
+The following statements are illustrated in \cref{fig:arcDiagramsQuotients}.
 
 \begin{proposition}[{\cite[Sect.~2.4]{Pilaud-arcDiagramAlgebra}}]
 \label{prop:insertionMap}
@@ -597,9 +601,9 @@ The Hasse diagram of the quotient lattice~$\f{S}_n / {\equiv}$ is the dual graph
 \label{exm:sylvesterFanAssociahedron}
 For the sylvester congruence~$\equiv_\textrm{sylv}$ of \cref{exm:sylvesterCongruence}, the quotient fan~$\quotientFan[\textrm{sylv}]$ has a cone~$\Cone(S) \eqdef \set{\b{x} \in \hyp}{\b{x}_a \le \b{x}_b \text{ if there is a directed path from } a \text{ to } b \text{ in } S}$ for each Schröder tree~$S$ with $n+1$ leaves.
 In particular, $\quotientFan[\textrm{sylv}]$ has a chamber for each binary tree with $n+1$ leaves (or equivalently $n$ nodes).
-\cref{fig:Tamari4}\,(middle) illustrates the quotient fan~$\quotientFan[\textrm{sylv}]$ for~$n = 4$.
-The quotient fan~$\quotientFan[\equiv_\textrm{sylv}]$ is the normal fan of the classical associahedron~$\Asso$ of~\cite{ShniderSternberg, Loday}, defined equivalently as the convex hull of the points~$\sum_{j \in [n]} \ell(T,j) \, r(T,j) \, \b{e}_j$ for all binary trees~$T$ on~$n$ nodes, where $\ell(T,j)$ and~$r(T,j)$ respectively denote the numbers of leaves in the left and right subtrees of the node~$j$ of~$T$ (labeled in inorder).
-\cref{fig:Tamari4}\,(right) shows the associahedron~$\Asso[4]$.
+See \cref{fig:Tamari4}\,(middle). % illustrates the quotient fan~$\quotientFan[\textrm{sylv}]$ for~$n = 4$.
+The quotient fan~$\quotientFan[\equiv_\textrm{sylv}]$ is the normal fan of the classical associahedron~$\Asso$ of~\cite{ShniderSternberg, Loday}, defined as the convex hull of the points~$\sum_{j \in [n]} \ell(T,j) \, r(T,j) \, \b{e}_j$ for all binary trees~$T$ on~$n$ nodes, where $\ell(T,j)$ and~$r(T,j)$ respectively denote the numbers of leaves in the left and right subtrees of the node~$j$ of~$T$ (labeled in inorder).
+See \cref{fig:Tamari4}\,(right). % shows the associahedron~$\Asso[4]$.
 %
 \begin{figure}
 	\capstart
@@ -821,18 +825,31 @@ A \defn{separating tree} is a directed tree on~$[n]$ such that
 \end{itemize}
 \end{definition}
 
+\begin{example}
+\label{exm:separatingTrees}
 \cref{fig:separatingTrees} represents some separating trees. We use the following conventions:
 \begin{itemize}
 \item all edges are oriented from bottom to top, so that we omit to add arrows to specify the direction of the edges,
 \item the vertices are ordered increasingly from left to right,
 \item we often place a red wall above each node with two parents and below each node with two children to make the separation visible.
 \end{itemize}
-\vincent{add a figure with examples of separating trees.}
+%
+\begin{figure}
+	\capstart
+	\centerline{\includegraphics[scale=.85]{figures/separatingTrees}}
+	\caption{Some separating trees on~$[7]$.}
+	\label{fig:separatingTrees}
+\end{figure}
+%
+\end{example}
 
 \begin{remark}
+\label{rem:separatingTreesVSPermutrees}
 Readers familiar with~\cite{PilaudPons-permutrees} might wonder what differs between permutrees and separating trees.
 The subtle distinction is that empty ancestor or descendant subtrees are allowed in permutrees and not in separating trees.
 For instance, in a separating tree, it is impossible to say that a node has two children, one of which is empty.
+We will see in \cref{rem:separatingTreesArePermutrees} that any separating tree appears in at least one permutree congruence.
+However, simple congruences are much richer than permutree congruences.
 \end{remark}
 
 \begin{remark}
@@ -898,7 +915,64 @@ The \defn{forbidden up} (resp.~\defn{down}) \defn{arcs} of a separating tree~$T$
 \end{definition}
 
 \begin{example}
-\vincent{basic example on a picture}
+For instance, the four separating trees of \cref{fig:separatingTrees} have the following mandatory arcs:
+\[
+\begin{array}{c@{\qquad}|@{\qquad}c@{\qquad}|@{\qquad}c@{\qquad}|@{\qquad}c}
+(1, 3, \{2\}, \varnothing) &
+(1, 2, \varnothing, \varnothing) &
+\;\;(1, 3, \{2\}, \varnothing)\;\; &
+\;\;\;(1, 2, \varnothing, \varnothing)\;\;\;
+\\
+(1, 4, \{2,3\}, \varnothing) &
+(1, 4, \{2,3\}, \varnothing) &
+(2, 3, \varnothing, \varnothing) &
+(2, 3, \varnothing, \varnothing)
+\\
+(2, 3, \varnothing, \varnothing) &
+(2, 5, \{3\}, \{4\}) &
+(3, 4, \varnothing, \varnothing) &
+(3, 4, \varnothing, \varnothing)
+\\
+(4, 5, \varnothing, \varnothing) &
+(3, 5, \varnothing, \{4\}) &
+(4, 5, \varnothing, \varnothing) &
+(3, 5, \varnothing, \{4\})
+\\
+(4, 6, \{5\}, \varnothing) &
+(5, 7, \varnothing, \{6\}) &
+(4, 6, \{5\}, \varnothing) &
+(5, 6, \varnothing, \varnothing)
+\\
+(6, 7, \varnothing, \varnothing) &
+(6, 7, \varnothing, \varnothing) &
+(6, 7, \varnothing, \varnothing) &
+(6, 7, \varnothing, \varnothing)
+\end{array}
+\]
+and the following forbidden arcs:
+\[
+\begin{array}{c@{\qquad}|@{\qquad}c@{\qquad}|@{\qquad}c@{\qquad}|@{\qquad}c}
+\;\;(3, 5, \varnothing, \{4\})\;\; &
+\;\;(4, 6, \{5\}, \varnothing)\;\; &
+(1, 4, \{2,3\}, \varnothing) &
+(1, 3, \{2\}, \varnothing)
+\\
+(5, 7, \varnothing, \{6\}) &
+&
+(3, 5, \varnothing, \{4\}) &
+(2, 5, \varnothing, \{3,4\})
+\\
+(5, 7, \varnothing, \{6\}) &
+&
+&
+(4, 6, \{5\}, \varnothing)
+\\
+&
+&
+&
+(5, 7, \varnothing, \{6\})
+\end{array}
+\]
 \end{example}
 
 Finally, we give a planar characterization of separating tree which will be useful in the proof of \cref{prop:simpleImpliesSeparatingTrees}.
@@ -1063,6 +1137,12 @@ The simple lattice congruences~$\equiv$ for which a given separating tree~$T$ is
 Immediately follows from \cref{def:admissibleSeparatingTrees,prop:admissibleSeparatingTrees}.
 \end{proof}
 
+\begin{remark}
+\label{rem:separatingTreesArePermutrees}
+Aa a follow-up of \cref{rem:separatingTreesVSPermutrees}, note that any separating tree appears in at least one permutree congruence.
+\vincent{todo}
+\end{remark}
+
 \begin{example}
 \vincent{basic example on a picture}
 \end{example}
@@ -1105,21 +1185,23 @@ Note that the separating trees are precisely the Schröder separating trees with
 \begin{remark}
 The number of Schröder separating trees on~$[n]$ with $k$ nodes is given by the following table:
 \[
-\begin{array}{c|cccccccc}
-k \backslash n & 1 & 2 & 3 & 4 & 5 & 6 &  \dots \\
+\begin{array}{c|ccccccccc}
+k \backslash n & 1 & 2 & 3 & 4 & 5 & 6 & 7 & \dots \\
 \hline
-1 & 1 & 1 & 1 &   1 &     1 & 1 & \dots\\
-2 &    & 2 & 6 & 14 &   30 & 62 & \dots \\
-3 &    &    & 8 & 46 & 184 & 638 & \dots\\
-4 &    &    &    & 42 & 388 & 2344 & \dots\\
-5 &    &    &    &      & 264 & 3556 & \dots\\
-6 &    &    &    &      &        & 1898 & \dots\\ 
-\vdots &&&&&& & \ddots \\
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & \dots\\
+2 & & 2 & 6 & 14 & 30 &. 62 & 126 & \dots \\
+3 & & & 8 & 46 & 184 &. 638 & 2064 & \dots\\
+4 & & & & 42 & 388 & 2344 & 11818 & \dots\\
+5 & & & & & 264 & 3556 & 30134 & \dots\\
+6 & & & & & & 1898 & 35134 & \dots\\ 
+7 & & & & & & & 15266 & \dots\\ 
+\vdots & & & & & & & & \ddots \\
 \hline
-\Sigma & 1 & 3 & 15 & 103 & 867 & 8499 & \dots
+\Sigma & 1 & 3 & 15 & 103 & 867 & 8499 & 94543 & \dots
 \end{array}
 \]
 \end{remark}
+
 
 \begin{definition}
 The \defn{contraction} of an edge~$e$ in a tree~$S$ is the tree obtained by contracting the edge~$e$ and labeling the resulting node with the union of the labels of the endpoints~of~$e$.
@@ -1403,6 +1485,10 @@ If~$\equiv$ is a simple congruence of the weak order, then the Hasse diagrams of
 As $\equiv$ is a simple congruence, the Hasse diagrams of the $\equiv$-preposets are precisely the (iterated) contractions of the Hasse diagrams of the $\equiv$-posets.
 The statement thus follows from \cref{prop:admissibleSeparatingTrees,lem:contractionAdmissibleSchroderSeparatingTree,lem:decontractionAdmissibleSchroderSeparatingTree}.
 \end{proof}
+
+\begin{remark}
+\cref{prop:whichCongruences} extends verbatim to Schröder separating trees.
+\end{remark}
 
 \begin{example}
 \vincent{basic example on a picture}
