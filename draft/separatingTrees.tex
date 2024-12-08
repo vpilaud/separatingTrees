@@ -375,6 +375,7 @@ Visually, $\arc$ is a subarc of~$\arc'$ if the endpoints of~$\arc$ are located i
 The \defn{arc poset} is the poset on all arcs of~$\arcs_n$ ordered by reverse subarc order (big elements are subarcs of small elements in this poset).
 The the arc poset on~$\arcs_4$ is illustrated in \cref{fig:forcingOrder}.
 An \defn{arc ideal} is an upper ideal of the arc poset.
+\vincent{should we use subarc order instead?}
 
 \begin{figure}
 	\capstart
@@ -702,6 +703,7 @@ This paper focusses on the following congruences of the weak order.
 \begin{definition}[{\cite[Sect.~4.4]{HoangMutze}}]
 \label{def:simpleCongruence}
 A lattice congruence~$\equiv$ of the weak order is \defn{simple} if all maximal (in the arc poset) arcs of~$\arcs_n \ssm \arcs_\equiv$ are up arcs or down arcs.
+\vincent{should we say subarc minimal instead?}
 \end{definition}
 
 %\begin{remark}
@@ -723,6 +725,12 @@ Among the examples of \cref{subsec:relevantCongruences},
 \end{itemize}
 are all simple congruences of the weak order.
 \end{example}
+
+\begin{remark}
+\label{rem:permutreeCongruences}
+Note that the permutree congruences of~\cite{PilaudPons-permutrees} are by definition the simple congruences for which all maximal arcs of~$\arcs_n \ssm \arcs_\equiv$ have length~$2$, meaning that they are of the form~$(i-1, i+1, \{i\}, \varnothing)$ or~$(i-1, i+1, \varnothing, \{i\})$ for some~$2 \le i \le n-1$.
+\vincent{should we say subarc minimal instead?}
+\end{remark}
 
 \begin{example}
 In contrast, among the examples of \cref{subsec:relevantCongruences},
@@ -831,12 +839,14 @@ A \defn{separating tree} is a directed tree on~$[n]$ such that
 \begin{itemize}
 \item all edges are oriented from bottom to top, so that we omit to add arrows to specify the direction of the edges,
 \item the vertices are ordered increasingly from left to right,
-\item we often place a red wall above each node with two parents and below each node with two children to make the separation visible.
+%\item we often place a red wall above each node with two parents and below each node with two children to make the separation visible.
 \end{itemize}
 %
-\begin{figure}
+\begin{figure}[h]
 	\capstart
 	\centerline{\includegraphics[scale=.85]{figures/separatingTrees}}
+%	\centerline{\includegraphics[scale=.85]{mandatoryForbiddenArcsSeparatingTrees}}
+%	\centerline{\includegraphics[scale=.85]{minMaxCongruencesSeparatingTrees}}
 	\caption{Some separating trees on~$[7]$.}
 	\label{fig:separatingTrees}
 \end{figure}
@@ -915,65 +925,21 @@ The \defn{forbidden up} (resp.~\defn{down}) \defn{arcs} of a separating tree~$T$
 \end{definition}
 
 \begin{example}
-For instance, the four separating trees of \cref{fig:separatingTrees} have the following mandatory arcs:
-\[
-\begin{array}{c@{\qquad}|@{\qquad}c@{\qquad}|@{\qquad}c@{\qquad}|@{\qquad}c}
-(1, 3, \{2\}, \varnothing) &
-(1, 2, \varnothing, \varnothing) &
-\;\;(1, 3, \{2\}, \varnothing)\;\; &
-\;\;\;(1, 2, \varnothing, \varnothing)\;\;\;
-\\
-(1, 4, \{2,3\}, \varnothing) &
-(1, 4, \{2,3\}, \varnothing) &
-(2, 3, \varnothing, \varnothing) &
-(2, 3, \varnothing, \varnothing)
-\\
-(2, 3, \varnothing, \varnothing) &
-(2, 5, \{3\}, \{4\}) &
-(3, 4, \varnothing, \varnothing) &
-(3, 4, \varnothing, \varnothing)
-\\
-(4, 5, \varnothing, \varnothing) &
-(3, 5, \varnothing, \{4\}) &
-(4, 5, \varnothing, \varnothing) &
-(3, 5, \varnothing, \{4\})
-\\
-(4, 6, \{5\}, \varnothing) &
-(5, 7, \varnothing, \{6\}) &
-(4, 6, \{5\}, \varnothing) &
-(5, 6, \varnothing, \varnothing)
-\\
-(6, 7, \varnothing, \varnothing) &
-(6, 7, \varnothing, \varnothing) &
-(6, 7, \varnothing, \varnothing) &
-(6, 7, \varnothing, \varnothing)
-\end{array}
-\]
-and the following forbidden arcs:
-\[
-\begin{array}{c@{\qquad}|@{\qquad}c@{\qquad}|@{\qquad}c@{\qquad}|@{\qquad}c}
-\;\;(3, 5, \varnothing, \{4\})\;\; &
-\;\;(4, 6, \{5\}, \varnothing)\;\; &
-(1, 4, \{2,3\}, \varnothing) &
-(1, 3, \{2\}, \varnothing)
-\\
-(5, 7, \varnothing, \{6\}) &
-&
-(3, 5, \varnothing, \{4\}) &
-(2, 5, \varnothing, \{3,4\})
-\\
-(5, 7, \varnothing, \{6\}) &
-&
-&
-(4, 6, \{5\}, \varnothing)
-\\
-&
-&
-&
-(5, 7, \varnothing, \{6\})
-\end{array}
-\]
+For instance, \cref{fig:mandatoryForbiddenArcsSeparatingTrees} shows the mandatory (blue, top) and forbidden (red bottom) arcs of the four separating trees of \cref{fig:separatingTrees}.
+\begin{figure}
+	\capstart
+%	\centerline{\includegraphics[scale=.85]{figures/separatingTrees}}
+	\centerline{\includegraphics[scale=.85]{mandatoryForbiddenArcsSeparatingTrees}}
+%	\centerline{\includegraphics[scale=.85]{minMaxCongruencesSeparatingTrees}}
+	\caption{The mandatory arcs (blue, top) and the forbidden arcs (red, bottom) of the four separating trees of \cref{fig:separatingTrees}.}
+	\label{fig:mandatoryForbiddenArcsSeparatingTrees}
+\end{figure}
 \end{example}
+
+\begin{remark}
+\label{rem:separatingTreeFallHorizontalAxis}
+If we draw $T$ such that its nodes are ordered increasingly from left to right, and its edges are oriented from bottom to top, then the mandatory arcs of~$T$ are obtained by letting $T$ fall down to the horizontal axis, allowing the edges to curve, but not to cross each other nor to pass through any node.
+\end{remark}
 
 Finally, we give a planar characterization of separating tree which will be useful in the proof of \cref{prop:simpleImpliesSeparatingTrees}.
 
@@ -1139,12 +1105,25 @@ Immediately follows from \cref{def:admissibleSeparatingTrees,prop:admissibleSepa
 
 \begin{remark}
 \label{rem:separatingTreesArePermutrees}
-Aa a follow-up of \cref{rem:separatingTreesVSPermutrees}, note that any separating tree appears in at least one permutree congruence.
-\vincent{todo}
+As a follow-up of \cref{rem:separatingTreesVSPermutrees}, we obtain that any separating tree appears in at least one permutree congruence.
+Indeed the minimal simple congruence~$\equiv_\circ$ in \cref{prop:whichCongruences} is always a permutree congruence.
+Indeed, consider an up arc~$u(i, j)$ with~$1 \le i < j \le n$ with~$j-i > 2$, and assume that both~$u(i,j-1)$ and~$u(i+1,j)$ are in~$\arcs_{\equiv_\circ}$.
+By definition, $u(i,j-1)$ and~$u(i+1,j)$ are subarcs of some mandatory arcs~$\alpha$ and~$\beta$ of~$T$.
+Since~$i-j > 2$ and~$\alpha$ and~$\beta$ are not crossing (see \cref{rem:separatingTreeFallHorizontalAxis}), either~$\alpha$ passes above~$j$ or~$\beta$ passes above~$i$.
+Hence, $u(i,j)$ is a subarc of either~$\alpha$ or~$\beta$, thus it is in~$\arcs_{\equiv_\circ}$.
+We conclude that the subarc minimal arcs in~$\arcs \ssm \arcs_{\equiv_\circ}$ have length at least~$2$, so that~$\equiv_\circ$ is a permutree congruence (see \cref{rem:permutreeCongruences}).
 \end{remark}
 
 \begin{example}
-\vincent{basic example on a picture}
+For instance, \cref{fig:minMaxCongruencesSeparatingTrees} shows the subarc minimal uncontracted arcs of the minimal (blue, top) and maximal (red, bottom) simple congruences for the four separating trees of \cref{fig:separatingTrees}.
+\begin{figure}
+	\capstart
+%	\centerline{\includegraphics[scale=.85]{figures/separatingTrees}}
+%	\centerline{\includegraphics[scale=.85]{mandatoryForbiddenArcsSeparatingTrees}}
+	\centerline{\includegraphics[scale=.85]{minMaxCongruencesSeparatingTrees}}
+	\caption{The subarc minimal uncontracted arcs of the minimal (blue, top) and maximal (red, bottom) simple congruences for the four separating trees of \cref{fig:separatingTrees} (whose mandatory and forbidden arcs are shown in \cref{fig:mandatoryForbiddenArcsSeparatingTrees}).}
+	\label{fig:minMaxCongruencesSeparatingTrees}
+\end{figure}
 \end{example}
 
 \begin{example}
@@ -1176,7 +1155,20 @@ We now define the higher dimensional analogue of separating trees.
 A \defn{Schröder separating tree} is a directed tree on the parts of a set partition of~$[n]$ such that for any two ancestor (resp.~descendant) subtrees of a node~$J$ are separated by an integer~$j \in J$, meaning that all integers that appear in a node of one subtree are smaller than~$j$, while all integers that appear in a node of the other subtree are larger than~$j$.
 \end{definition}
 
-\vincent{add a figure with examples of Schröder separating trees.}
+\begin{example}
+\label{exm:SchroderSeparatingTrees}
+\cref{fig:SchroderSeparatingTrees} represents some Schroder separating trees. We use the same conventions as in \cref{exm:separatingTrees}.
+%
+\begin{figure}[h]
+	\capstart
+	\centerline{\includegraphics[scale=.85]{SchroderSeparatingTrees}}
+%	\centerline{\includegraphics[scale=.85]{mandatoryForbiddenArcsSchroderSeparatingTrees}}
+%	\centerline{\includegraphics[scale=.85]{minMaxCongruencesSchroderSeparatingTrees}}
+	\caption{Some Schroder separating trees on~$[7]$.}
+	\label{fig:SchroderSeparatingTrees}
+\end{figure}
+%
+\end{example}
 
 \begin{remark}
 Note that the separating trees are precisely the Schröder separating trees with $n$ nodes (or equivalently, where each node of~$S$ is a singleton).
@@ -1302,7 +1294,7 @@ The \defn{mandatory arcs} of a Schröder separating tree~$S$ are the arcs of the
 
 \begin{definition}
 \label{def:arcsSchroderSeparatingTree}
-The \defn{forbidden up} (resp.~\defn{down}) \defn{arcs} of a separating tree~$T$ are the up arcs~$u(M, m)$ (resp.~down arcs~$d(M, m)$), with~$M \eqdef \max(L)$ and~$m \eqdef \min(R)$ where~$L$ and~$R$ are two ancestor (resp.~descendant) subtrees of a node~$J$ of~$T$ with~$L < R$.
+The \defn{forbidden up} (resp.~\defn{down}) \defn{arcs} of a Schröder separating tree~$T$ are the up arcs~$u(M, m)$ (resp.~down arcs~$d(M, m)$), with~$M \eqdef \max(L)$ and~$m \eqdef \min(R)$ where~$L$ and~$R$ are two ancestor (resp.~descendant) subtrees of a node~$J$ of~$T$ with~$L < R$.
 \end{definition}
 
 \begin{remark}
@@ -1310,7 +1302,17 @@ Note that the number of mandatory arcs of a Schröder separating tree on~$[n]$ i
 \end{remark}
 
 \begin{example}
-\vincent{basic example on a picture}
+For instance, \cref{fig:mandatoryForbiddenArcsSchroderSeparatingTrees} shows the mandatory (blue, top) and forbidden (red bottom) arcs of the four Schröder separating trees of \cref{fig:SchroderSeparatingTrees}.
+%
+\begin{figure}
+	\capstart
+%	\centerline{\includegraphics[scale=.85]{SchroderSeparatingTrees}}
+	\centerline{\includegraphics[scale=.85]{mandatoryForbiddenArcsSchroderSeparatingTrees}}
+%	\centerline{\includegraphics[scale=.85]{minMaxCongruencesSchroderSeparatingTrees}}
+	\caption{The mandatory arcs (blue, top) and the forbidden arcs (red, bottom) of the four Schröder separating trees of \cref{fig:SchroderSeparatingTrees}.}
+	\label{fig:mandatoryForbiddenArcsSchroderSeparatingTrees}
+\end{figure}
+%
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%
@@ -1487,24 +1489,32 @@ The statement thus follows from \cref{prop:admissibleSeparatingTrees,lem:contrac
 \end{proof}
 
 \begin{remark}
-\cref{prop:whichCongruences} extends verbatim to Schröder separating trees.
-\end{remark}
-
-\begin{example}
-\vincent{basic example on a picture}
-\end{example}
-
-\begin{example}
-\vincent{Sylvester, Cambrian, permutrees...}
-\end{example}
-
-\begin{remark}
 The number of $\equiv$-admissible Schröder separating trees is
 \[
 \sum_T 2^{\#\des(T)}
 \]
 where the sum ranges over all $\equiv$-admissible separating trees, and~$\des(T)$ denotes the descents of~$T$ (\ie~the edges~$i \leftarrow j$ with~$1 \le i < j \le j$).
 \end{remark}
+
+\begin{remark}
+\cref{prop:whichCongruences} extends verbatim to Schröder separating trees.
+\end{remark}
+
+\begin{example}
+For instance, \cref{fig:minMaxCongruencesSchroderSeparatingTrees} shows the subarc minimal uncontracted arcs of the minimal (blue, top) and maximal (red, bottom) simple congruences for the four Schröder separating trees of \cref{fig:SchroderSeparatingTrees}.
+\begin{figure}
+	\capstart
+%	\centerline{\includegraphics[scale=.85]{SchroderSeparatingTrees}}
+%	\centerline{\includegraphics[scale=.85]{mandatoryForbiddenArcsSchroderSeparatingTrees}}
+	\centerline{\includegraphics[scale=.85]{minMaxCongruencesSchroderSeparatingTrees}}
+	\caption{The subarc minimal uncontracted arcs of the minimal (blue, top) and maximal (red, bottom) simple congruences for the four Schröder separating trees of \cref{fig:SchroderSeparatingTrees} (whose mandatory and forbidden arcs are shown in \cref{fig:mandatoryForbiddenArcsSchroderSeparatingTrees}).}
+	\label{fig:minMaxCongruencesSchroderSeparatingTrees}
+\end{figure}
+\end{example}
+
+\begin{example}
+\vincent{Sylvester, Cambrian, permutrees...}
+\end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
