@@ -1038,6 +1038,10 @@ A separating tree~$T$ is \defn{$\equiv$-admissible} if~$\arcs_\equiv$ contains a
 %\end{enumerate}
 \end{definition}
 
+\begin{example}
+For instance, the separating trees which are admissible for the sylvester congruence (resp.~$\decoration$-permutree congruence) are precisely the binary trees (resp.~$\decoration$-permutrees) on~$[n]$ to which we have deleted all pending leaves to keep only the $n$ internal nodes.
+\end{example}
+
 \begin{lemma}
 \label{lem:admissibleSeparatingTreesWithCommonLinearExtensions}
 If~$T$ and~$T'$ are two $\equiv$-admissible separating trees with a common linear extension, then~${T = T'}$.
@@ -1089,7 +1093,6 @@ As~$\sigma$ is a linear extension of both~$T$ and~$T'$, we obtain by \cref{lem:a
 We can also describe the lattice congruences~$\equiv$ for which a given separating tree~$T$ is (the Hasse diagram of) an $\equiv$-poset.
 %Recall from \cref{rem:bridges} that the  \defn{up} (resp.~\defn{down}) \defn{bridges} of an arc~$\arc \eqdef (i, j, A, B)$ as the up arcs~$u(k, \ell)$ (resp.~down arcs~$d(k, \ell)$) such that~$]k,\ell[$ is an inclusion maximal interval of~$A$ (resp.~of~$B$).
 
-
 \begin{proposition}
 \label{prop:whichCongruences}
 The simple lattice congruences~$\equiv$ for which a given separating tree~$T$ is (the Hasse diagram of) an $\equiv$-poset form an interval~$[\equiv_\circ, \equiv_\bullet]$ in the simple congruence lattice, where
@@ -1124,10 +1127,6 @@ For instance, \cref{fig:minMaxCongruencesSeparatingTrees} shows the subarc minim
 	\caption{The subarc minimal uncontracted arcs of the minimal (blue, top) and maximal (red, bottom) simple congruences for the four separating trees of \cref{fig:separatingTrees} (whose mandatory and forbidden arcs are shown in \cref{fig:mandatoryForbiddenArcsSeparatingTrees}).}
 	\label{fig:minMaxCongruencesSeparatingTrees}
 \end{figure}
-\end{example}
-
-\begin{example}
-\vincent{Sylvester, Cambrian, permutrees...}
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%
@@ -1345,6 +1344,10 @@ A Schröder separating tree~$S$ is \defn{$\equiv$-admissible} if~$\arcs_\equiv$ 
 %\end{itemize}
 \end{definition}
 
+\begin{example}
+For instance, the Schröder separating trees which are admissible for the sylvester congruence (resp.~$\decoration$-permutree congruence) are precisely the Schröder trees (resp.~Schröder  $\decoration$-permutrees) on~$[n]$ to which we have deleted all pending leaves to keep only the internal nodes.
+\end{example}
+
 \begin{remark}
 Note that the $\equiv$-admissible separating trees are precisely the $\equiv$-admissible Schröder separating trees with $n$ nodes (or equivalently, where each node of~$S$ is a singleton).
 \end{remark}
@@ -1510,10 +1513,6 @@ For instance, \cref{fig:minMaxCongruencesSchroderSeparatingTrees} shows the suba
 	\caption{The subarc minimal uncontracted arcs of the minimal (blue, top) and maximal (red, bottom) simple congruences for the four Schröder separating trees of \cref{fig:SchroderSeparatingTrees} (whose mandatory and forbidden arcs are shown in \cref{fig:mandatoryForbiddenArcsSchroderSeparatingTrees}).}
 	\label{fig:minMaxCongruencesSchroderSeparatingTrees}
 \end{figure}
-\end{example}
-
-\begin{example}
-\vincent{Sylvester, Cambrian, permutrees...}
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
