@@ -702,8 +702,9 @@ This paper focusses on the following congruences of the weak order.
 
 \begin{definition}[{\cite[Sect.~4.4]{HoangMutze}}]
 \label{def:simpleCongruence}
-A lattice congruence~$\equiv$ of the weak order is \defn{simple} if all maximal (in the arc poset) arcs of~$\arcs_n \ssm \arcs_\equiv$ are up arcs or down arcs.
+A lattice congruence~$\equiv$ of the weak order is \defn{simple} if all maximal (in the arc poset) arcs of~$\arcs_n \ssm \arcs_\equiv$ are up arcs~$u(i,j)$ or down arcs~$u(i,j)$ with~$j-i > 1$.
 \vincent{should we say subarc minimal instead?}
+\vincent{We need to say somewhere that we only care about essential congruences. Hence we want strict up arcs and strict down arcs.}
 \end{definition}
 
 %\begin{remark}
@@ -769,7 +770,8 @@ For instance, the Baxter congruence is not simple, while it is the join (in the 
 \end{remark}
 
 \begin{remark}
-As already observed in~\cite[Sect.~4.4]{HoangMutze}, the number of simple congruences of the weak order on~$\f{S}_n$ is~$C_n^2$, where~$C_{n-1} \eqdef \frac{1}{n+1} \binom{2n}{n}$ is the Catalan number.
+As already observed in~\cite[Sect.~4.4]{HoangMutze}, the number of simple congruences of the weak order on~$\f{S}_n$ is~$C_{n-1}^2$, where~$C_n \eqdef \frac{1}{n+1} \binom{2n}{n}$ is the Catalan number.
+\vincent{Be careful that it only takes into account essential congruences here...}
 \end{remark}
 
 One of the contributions of the present paper is a simple combinatorial proof of the following statement.
@@ -1180,8 +1182,8 @@ The number of Schröder separating trees on~$[n]$ with $k$ nodes is given by the
 k \backslash n & 1 & 2 & 3 & 4 & 5 & 6 & 7 & \dots \\
 \hline
 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & \dots\\
-2 & & 2 & 6 & 14 & 30 &. 62 & 126 & \dots \\
-3 & & & 8 & 46 & 184 &. 638 & 2064 & \dots\\
+2 & & 2 & 6 & 14 & 30 & 62 & 126 & \dots \\
+3 & & & 8 & 46 & 184 & 638 & 2064 & \dots\\
 4 & & & & 42 & 388 & 2344 & 11818 & \dots\\
 5 & & & & & 264 & 3556 & 30134 & \dots\\
 6 & & & & & & 1898 & 35134 & \dots\\ 
