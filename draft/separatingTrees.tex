@@ -661,7 +661,8 @@ The quotient~$\f{S}_n / {\equiv_\decoration}$ is the \defn{$\decoration$-permutr
 For~$a, b \ge 1$ define the \defn{$(a,b)$-sashes congruence}~$\equiv_{\textrm{sh}(a,b)}$ by the ideal~$\arcs_{\textrm{sh}(a,b)}$ of arcs which do not pass above $a$ consecutive points, nor below $b$ consecutive points.
 Note that~${\equiv_{\textrm{sh}(n,n)}} = {\equiv_{\textrm{triv}}}$, that~${\equiv_{\textrm{sh}(1,n)}} = {\equiv_{\textrm{sylv}}}$, that~${\equiv_{\textrm{sh}(1,1)}} = {\equiv_{\textrm{rec}}}$.
 The $(1,2)$-sashes congruence was studied in~\cite{Law} and its equivalence classes are counted by the Pell numbers.
-The $(2,2)$-sashes congruence was studied in~\cite{LaniniNovelli} and its equivalence classes are counted by central binomial coefficients.
+The $(2,2)$-sashes congruence was studied in~\cite{ChatelPilaud} as a particular Baxter-Cambrian congruence, and its equivalence classes are counted by central binomial coefficients.
+The~$(1,n-1)$-sashes congruence is studied in~\cite{LaniniNovelli}, and the generating function of its number of equivalence classes is the inverse of the truncation of~$1 + x/(1-x-\sum_{i=0}^{n-1} C_i x^{i+1})$.
 
 %\item \label{item:abTwistCongruence}
 %For~$a, b \ge 2$ define the \defn{$(a,b)$-twist congruence}~$\equiv^t_{a,b}$ by the ideal~$\arcs^t_{a,b}$ of arcs which do not pass above $a$ points, nor below $b$ points.
@@ -773,6 +774,9 @@ For instance, the Baxter congruence is not simple, while it is the join (in the 
 \begin{remark}
 As already observed in~\cite[Sect.~4.4]{HoangMutze}, the number of essential simple congruences of the weak order on~$\f{S}_n$ is~$C_{n-1}^2$, where~$C_n \eqdef \frac{1}{n+1} \binom{2n}{n}$ is the Catalan number.
 Indeed the subarc minimal arcs in~$\arcs_n \ssm \arcs_\equiv$ indeed form two (above and below) independent pairwise non-nesting collections of arcs.
+% If we allow non essential congruences, the numbers are not really nice:
+% sage: [add([prod([catalan_number(X[i+1]-X[i]-1)^2 for i in range(len(X)-1)]) for X in [sorted(list(X)+[0,n]) for X in Subsets(range(1,n))]]) for n in range(2,10)]                                                                                                                                                            
+% [2, 7, 38, 274, 2350, 22531, 233292, 2555658]
 \end{remark}
 
 One of the contributions of the present paper is a simple combinatorial proof of the following statement.
