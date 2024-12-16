@@ -372,16 +372,16 @@ Namely, the noncrossing arc diagrams of~$\arcs_\equiv$ precisely encode the cano
 Understanding the lattice congruences of the weak order, thus boils down to understand the sets of arcs~$\arcs_\equiv$.
 An arc~$\arc \eqdef (i, j, A, B) \in \arcs_n$ is a \defn{subarc} of an arc~$\arc' \eqdef (i', j', A', B') \in \arcs_n$ if~$i' \le i < j \le j'$ and~${A \subseteq A'}$ and~${B \subseteq B'}$.
 Visually, $\arc$ is a subarc of~$\arc'$ if the endpoints of~$\arc$ are located in between those of~$\arc'$ and~$\arc$ agrees with~$\arc'$ in between its endpoints.
-The \defn{arc poset} is the poset on all arcs of~$\arcs_n$ ordered by reverse subarc order (big elements are subarcs of small elements in this poset).
-The the arc poset on~$\arcs_4$ is illustrated in \cref{fig:forcingOrder}.
-An \defn{arc ideal} is an upper ideal of the arc poset.
-\vincent{should we use subarc order instead?}
+%The \defn{arc poset} is the poset on all arcs of~$\arcs_n$ ordered by reverse subarc order (big elements are subarcs of small elements in this poset).
+The subarc poset on~$\arcs_4$ is illustrated in \cref{fig:subarcOrder}.
+Note that contrarily to~\cite{Reading-arcDiagrams, PilaudSantos-quotientopes, PadrolPilaudRitter}, we do not reverse the subarc poset to avoid confusion when speaking about subarc minimal arcs (hence, our subarc minimal arcs have minimal length).
+An \defn{arc ideal} is a lower ideal of the subarc poset.
 
 \begin{figure}
 	\capstart
-	\centerline{\includegraphics[scale=.7,valign=c]{forcing} \hspace{1cm} \includegraphics[scale=.6,valign=c]{forcingOrder}}
-	\caption{The subarc relation among arcs (left) and the arc poset for~$n = 4$ (right). The red arc~$(i,j,A,B)$ is a subarc of the blue arc~$(i',j',A',B')$. \mbox{\cite[Fig.~5]{PilaudSantos-quotientopes}}}
-	\label{fig:forcingOrder}
+	\centerline{\includegraphics[scale=.7,valign=c]{forcing} \hspace{1cm} \includegraphics[scale=.6,valign=c]{subarcOrder}}
+	\caption{The subarc relation among arcs (left) and the subarc poset for~$n = 4$ (right). The red arc~$(i,j,A,B)$ is a subarc of the blue arc~$(i',j',A',B')$. \mbox{\cite[Fig.~5]{PilaudSantos-quotientopes}}}
+	\label{fig:subarcOrder}
 \end{figure}
 
 \begin{theorem}[{\cite[Thm.~4.4 \& Coro.~4.5]{Reading-arcDiagrams}}]
@@ -393,6 +393,9 @@ We make no distinction between arc ideals and lattice congruences.
 
 Finally, note that the set of all congruences of the weak order is itself a lattice, whose meet is the intersection of congruences and join is the transitive closure of union of congruences.
 This lattice is distributive, and we have~$\arcs_{{\equiv} \join {\equiv'}} = \arcs_\equiv \cup \arcs_{\equiv'}$ and~$\arcs_{{\equiv} \meet {\equiv'}} = \arcs_\equiv \cap \arcs_{\equiv'}$.
+
+Throughout the paper, we focus on \defn{essential} lattice congruences~$\equiv$, whose arc ideal~$\arcs_\equiv$ contains all basic arcs~$(i, i+1, \varnothing, \varnothing)$ for~$i \in [n-1]$.
+The non-essential lattice congruences can be understood as Cartesian products of essential congruences of weak orders of smaller rank.
 
 \begin{example}
 \label{exm:sylvesterCongruence}
@@ -418,6 +421,13 @@ Its arc ideal is given by the set~$\arcs_\textrm{sylv} \eqdef \set{(i, j, {]i,j[
 
 \subsection{Poset insertion map}
 \label{subsec:insertionMap}
+
+\begin{figure}[b]
+	\capstart
+	\centerline{\includegraphics[scale=.85]{arcDiagramsQuotients}}
+	\caption{The poset~$\preccurlyeq_\sigma^\equiv$ (middle row) and the noncrossing arc diagrams~$\arcDiagramUp(\sigma)$ (top row) and~$\arcDiagramDown(\sigma)$ (bottom row) corresponding to the $\equiv_\arcs$-congruence class of the permutation~$\sigma = 2537146$ for different arc ideals (represented in grey on the top and bottom rows).}
+	\label{fig:arcDiagramsQuotients}
+\end{figure}
 
 For a fixed lattice congruence~$\equiv$ of the weak order, we describe in this section the lattice morphism from the weak order to its quotient~$\f{S}/{\equiv}$, sending a permutation~$\sigma$ of~$\f{S}_n$ to its $\equiv$-poset~$\preccurlyeq_\sigma^\equiv$.
 %We provide two distinct approaches to describe this map:
@@ -445,13 +455,6 @@ Moreover, we order~$\boxslash(\sigma)$ by the slope of the diagonal joining~$(\s
 Finally, we define~$\boxslash_\equiv(\sigma)$ to be the subset of $\prec$-maximal elements in~$\set{(i, j) \in \boxslash(\sigma)}{\arcUp(i, j, \sigma) \in \arcs_\equiv}$.
 
 Symmetrically, we define~$\boxbslash(\sigma) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \sigma_i > \sigma_j \text{ and } \sigma({]i,j[}) \cap {]\sigma_j, \sigma_i[} = \varnothing}$, we associate an arc~$\arcDown(i, j, \sigma) \eqdef (\sigma_j, \sigma_i, \set{\sigma_k}{k < i \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}}, \set{\sigma_k}{j < k \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}})$ to each~${(i,j) \in \boxbslash(\sigma)}$, and we let~$\boxbslash_\equiv(\sigma)$ be the $\prec$-maximal elements in~$\set{(i, j) \in \boxbslash(\sigma)}{\arcDown(i, j, \sigma) \in \arcs_\equiv}$.
-
-\begin{figure}
-	\capstart
-	\centerline{\includegraphics[scale=.85]{arcDiagramsQuotients}}
-	\caption{The poset~$\preccurlyeq_\sigma^\equiv$ (middle row) and the noncrossing arc diagrams~$\arcDiagramUp(\sigma)$ (top row) and~$\arcDiagramDown(\sigma)$ (bottom row) corresponding to the $\equiv_\arcs$-congruence class of the permutation~$\sigma = 2537146$ for different arc ideals (represented in grey on the top and bottom rows).}
-	\label{fig:arcDiagramsQuotients}
-\end{figure}
 
 The following statements are illustrated in \cref{fig:arcDiagramsQuotients}.
 
@@ -600,18 +603,19 @@ The Hasse diagram of the quotient lattice~$\f{S}_n / {\equiv}$ is the dual graph
 
 \begin{example}
 \label{exm:sylvesterFanAssociahedron}
-For the sylvester congruence~$\equiv_\textrm{sylv}$ of \cref{exm:sylvesterCongruence}, the quotient fan~$\quotientFan[\textrm{sylv}]$ has a cone~$\Cone(S) \eqdef \set{\b{x} \in \hyp}{\b{x}_a \le \b{x}_b \text{ if there is a directed path from } a \text{ to } b \text{ in } S}$ for each Schröder tree~$S$ with $n+1$ leaves.
-In particular, $\quotientFan[\textrm{sylv}]$ has a chamber for each binary tree with $n+1$ leaves (or equivalently $n$ nodes).
-See \cref{fig:Tamari4}\,(middle). % illustrates the quotient fan~$\quotientFan[\textrm{sylv}]$ for~$n = 4$.
-The quotient fan~$\quotientFan[\equiv_\textrm{sylv}]$ is the normal fan of the classical associahedron~$\Asso$ of~\cite{ShniderSternberg, Loday}, defined as the convex hull of the points~$\sum_{j \in [n]} \ell(T,j) \, r(T,j) \, \b{e}_j$ for all binary trees~$T$ on~$n$ nodes, where $\ell(T,j)$ and~$r(T,j)$ respectively denote the numbers of leaves in the left and right subtrees of the node~$j$ of~$T$ (labeled in inorder).
-See \cref{fig:Tamari4}\,(right). % shows the associahedron~$\Asso[4]$.
 %
-\begin{figure}
+\begin{figure}[b]
 	\capstart
 	\centerline{\includegraphics[scale=.48]{TamariLattice4} \; \includegraphics[scale=.6]{sylvesterFan4} \hspace{-.3cm} \includegraphics[scale=.6]{associahedron4}}
 	\caption{The Tamari lattice (left) can be seen as the dual graph of the quotient fan~$\equiv_\textrm{sylv}$ (middle) or as the graph of J.-L.~Loday's associahedron (right). \cite[Fig.~5]{PadrolPilaudRitter}}
 	\label{fig:Tamari4}
 \end{figure}
+%
+For the sylvester congruence~$\equiv_\textrm{sylv}$ of \cref{exm:sylvesterCongruence}, the quotient fan~$\quotientFan[\textrm{sylv}]$ has a cone~$\Cone(S) \eqdef \set{\b{x} \in \hyp}{\b{x}_a \le \b{x}_b \text{ if there is a directed path from } a \text{ to } b \text{ in } S}$ for each Schröder tree~$S$ with $n+1$ leaves.
+In particular, $\quotientFan[\textrm{sylv}]$ has a chamber for each binary tree with $n+1$ leaves (or equivalently $n$ nodes).
+See \cref{fig:Tamari4}\,(middle). % illustrates the quotient fan~$\quotientFan[\textrm{sylv}]$ for~$n = 4$.
+The quotient fan~$\quotientFan[\equiv_\textrm{sylv}]$ is the normal fan of the classical associahedron~$\Asso$ of~\cite{ShniderSternberg, Loday}, defined as the convex hull of the points~$\sum_{j \in [n]} \ell(T,j) \, r(T,j) \, \b{e}_j$ for all binary trees~$T$ on~$n$ nodes, where $\ell(T,j)$ and~$r(T,j)$ respectively denote the numbers of leaves in the left and right subtrees of the node~$j$ of~$T$ (labeled in inorder).
+See \cref{fig:Tamari4}\,(right). % shows the associahedron~$\Asso[4]$.
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%
@@ -654,8 +658,8 @@ Its congruence classes are the sets of linear extensions of the $\decoration$-pe
 The quotient~$\f{S}_n / {\equiv_\decoration}$ is the \defn{$\decoration$-permutree lattice}~\cite{PilaudPons-permutrees}, the quotient fan~$\quotientFan[\decoration]$ is the \defn{$\decoration$-permutree fan} of~\cite{PilaudPons-permutrees} and the quotientope~$\Quotientope[\decoration]$ is the \defn{$\decoration$-permutreehedron} of~\cite{PilaudPons-permutrees}.
 
 \item \label{item:abSashesCongruence}
-For~$a, b \ge 2$ define the \defn{$(a,b)$-sashes congruence}~$\equiv_{\textrm{sh}(a,b)}$ by the ideal~$\arcs_{\textrm{sh}(a,b)}$ of arcs which do not pass above $a$ consecutive points, nor below $b$ consecutive points.
-Note that~$\equiv_{\textrm{sh}(n,n)} = \equiv_{\textrm{triv}}$, that~$\equiv_{\textrm{sh}(1,n)} = \equiv_{\textrm{sylv}}$, that~$\equiv_{\textrm{sh}(1,1)} = \equiv_{\textrm{rec}}$.
+For~$a, b \ge 1$ define the \defn{$(a,b)$-sashes congruence}~$\equiv_{\textrm{sh}(a,b)}$ by the ideal~$\arcs_{\textrm{sh}(a,b)}$ of arcs which do not pass above $a$ consecutive points, nor below $b$ consecutive points.
+Note that~${\equiv_{\textrm{sh}(n,n)}} = {\equiv_{\textrm{triv}}}$, that~${\equiv_{\textrm{sh}(1,n)}} = {\equiv_{\textrm{sylv}}}$, that~${\equiv_{\textrm{sh}(1,1)}} = {\equiv_{\textrm{rec}}}$.
 The $(1,2)$-sashes congruence was studied in~\cite{Law} and its equivalence classes are counted by the Pell numbers.
 The $(2,2)$-sashes congruence was studied in~\cite{LaniniNovelli} and its equivalence classes are counted by central binomial coefficients.
 
@@ -702,9 +706,7 @@ This paper focusses on the following congruences of the weak order.
 
 \begin{definition}[{\cite[Sect.~4.4]{HoangMutze}}]
 \label{def:simpleCongruence}
-A lattice congruence~$\equiv$ of the weak order is \defn{simple} if all maximal (in the arc poset) arcs of~$\arcs_n \ssm \arcs_\equiv$ are up arcs~$u(i,j)$ or down arcs~$u(i,j)$ with~$j-i > 1$.
-\vincent{should we say subarc minimal instead?}
-\vincent{We need to say somewhere that we only care about essential congruences. Hence we want strict up arcs and strict down arcs.}
+A lattice congruence~$\equiv$ of the weak order is \defn{simple} if all subarc minimal arcs of~$\arcs_n \ssm \arcs_\equiv$ are up arcs or down arcs.
 \end{definition}
 
 %\begin{remark}
@@ -729,8 +731,7 @@ are all simple congruences of the weak order.
 
 \begin{remark}
 \label{rem:permutreeCongruences}
-Note that the permutree congruences of~\cite{PilaudPons-permutrees} are by definition the simple congruences for which all maximal arcs of~$\arcs_n \ssm \arcs_\equiv$ have length~$2$, meaning that they are of the form~$(i-1, i+1, \{i\}, \varnothing)$ or~$(i-1, i+1, \varnothing, \{i\})$ for some~$2 \le i \le n-1$.
-\vincent{should we say subarc minimal instead?}
+Note that the permutree congruences of~\cite{PilaudPons-permutrees} are by definition the simple congruences for which all subarc minimal arcs of~$\arcs_n \ssm \arcs_\equiv$ have length~$2$, meaning that they are of the form~$(i-1, i+1, \{i\}, \varnothing)$ or~$(i-1, i+1, \varnothing, \{i\})$ for some~$2 \le i \le n-1$.
 \end{remark}
 
 \begin{example}
@@ -742,7 +743,7 @@ In contrast, among the examples of \cref{subsec:relevantCongruences},
 \item the $p$-twist congruence~\cite{Pilaud-brickAlgebra}
 \end{itemize}
 are non-simple congruences of the weak order (except when~$n \le 3$ or~$p = 1$).
-%A good example of a congruence which is not simple is the Baxter congruence~\cite{LawReading, Giraudo} whose quotient corresponds to diagonal rectangulations of a square. Its arcs are all up or down arcs, so that its maximal non arcs are all arcs of the form~$(i, i+3, \{i+1\}, \{i+2\})$ or~$(i, i+3, \{i+2\}, \{i+1\})$ for~$i \in [n-3]$.
+%A good example of a congruence which is not simple is the Baxter congruence~\cite{LawReading, Giraudo} whose quotient corresponds to diagonal rectangulations of a square. Its arcs are all up or down arcs, so that its subarc minimal non arcs are all arcs of the form~$(i, i+3, \{i+1\}, \{i+2\})$ or~$(i, i+3, \{i+2\}, \{i+1\})$ for~$i \in [n-3]$.
 \end{example}
 
 As all congruences, the simple congruences of the weak order have a natural lattice structure.
@@ -760,7 +761,7 @@ For two congruences~$\equiv$ and~$\equiv'$, the non arcs of~${\equiv} \meet {\eq
 \arcs_n \ssm \arcs_{{\equiv} \meet {\equiv'}} = \arcs_n \ssm (\arcs_{\equiv} \cap \arcs_{\equiv'}) = (\arcs_n \ssm \arcs_{\equiv}) \cup (\arcs_n \ssm \arcs_{\equiv'})
 % = \nonarcs_{\equiv} \cup \nonarcs_{\equiv'}
 \]
-so that any maximal non arc of~${\equiv} \meet {\equiv'}$ is a maximal non arc of~${\equiv}$ or a maximal non arc of~${\equiv'}$.
+so that any subarc minimal non-arc of~${\equiv} \meet {\equiv'}$ is a subarc minimal non-arc of~${\equiv}$ or a subarc minimal non-arc of~${\equiv'}$.
 Thus, the simple congruence form a finite meet semilattice, hence a lattice under refinement.
 \end{proof}
 
@@ -770,8 +771,8 @@ For instance, the Baxter congruence is not simple, while it is the join (in the 
 \end{remark}
 
 \begin{remark}
-As already observed in~\cite[Sect.~4.4]{HoangMutze}, the number of simple congruences of the weak order on~$\f{S}_n$ is~$C_{n-1}^2$, where~$C_n \eqdef \frac{1}{n+1} \binom{2n}{n}$ is the Catalan number.
-\vincent{Be careful that it only takes into account essential congruences here...}
+As already observed in~\cite[Sect.~4.4]{HoangMutze}, the number of essential simple congruences of the weak order on~$\f{S}_n$ is~$C_{n-1}^2$, where~$C_n \eqdef \frac{1}{n+1} \binom{2n}{n}$ is the Catalan number.
+Indeed the subarc minimal arcs in~$\arcs_n \ssm \arcs_\equiv$ indeed form two (above and below) independent pairwise non-nesting collections of arcs.
 \end{remark}
 
 One of the contributions of the present paper is a simple combinatorial proof of the following statement.
@@ -781,11 +782,11 @@ In this paper, we propose an alternative simple combinatorial proof based on the
 
 \begin{theorem}[{\cite[Sect.~4.4]{HoangMutze} \& \cite[Sect.~6.3]{DemonetIyamaReadingReitenThomas}}]
 \label{thm:simpleCongruences}
-The following assertions are equivalent for a lattice congruence~$\equiv$ of the weak order:
+The following assertions are equivalent for an essential lattice congruence~$\equiv$ of the weak order:
 \begin{enumerate}[(i)]
 \item $\equiv$ is a simple congruence,
 \item the Hasse diagram of any $\equiv$-poset is a tree,
-\item the Hasse diagram of the lattice quotient~$\f{S}_n/{\equiv}$ is regular (\ie constant degree),
+\item the Hasse diagram of the lattice quotient~$\f{S}_n/{\equiv}$ is regular,
 \item the quotient fan~$\quotientFan$ is a simplicial fan,
 \item the quotientope~$\Quotientope$ is a simple polytope.
 \end{enumerate}
@@ -988,7 +989,7 @@ In fact, we prove the following stronger statement on the $\equiv$-posets of a s
 
 \begin{proposition}
 \label{prop:simpleImpliesSeparatingTrees}
-If~$\equiv$ is a simple congruence of the weak order, then the Hasse diagram of any $\equiv$-poset is a separating tree.
+If~$\equiv$ is an essential simple congruence of the weak order, then the Hasse diagram of any $\equiv$-poset is a separating tree.
 \end{proposition}
 
 \begin{proof}
@@ -1006,7 +1007,7 @@ Assume for instance that~$p$ appears before~$q$ in~$\sigma$ (the other case is s
 Consider the leftmost point~$r$ of the table of~$\sigma$ in the rectangle~${]p, q]} \times {]\sigma^{-1}_p < \sigma^{-1}_q]}$.
 Note that~${j < r \le q}$ as~$(p,j) \in \boxslash(\sigma)$, and that~$(p,r) \in \boxslash(\sigma)$.
 As~$(p, r) \prec (p, j)$ and~$(p, j) \in \boxslash_\equiv(\sigma)$ we therefore obtain that~$\arcUp(p, r, \sigma) \notin \arcs_\equiv$.
-Let~$\alpha \eqdef (u, v, U, V)$ be a maximal (in the arc poset) arc of~$\arcs_n \ssm \arcs_\equiv$ which is a subarc of~$\arcUp(p, r, \sigma)$.
+Let~$\alpha \eqdef (u, v, U, V)$ be a subarc minimal arc of~$\arcs_n \ssm \arcs_\equiv$ which is a subarc of~$\arcUp(p, r, \sigma)$.
 As~$\arcUp(p, j, \sigma)$ and~$\arcUp(j, q, \sigma)$ both belong to~$\arcs_\equiv$, we have~$p \le u < j < v \le r$.
 As~$\equiv$ is a simple congruence, we have either~$U = \varnothing$ or~$V = \varnothing$.
 If~$V = \varnothing$, then~$U = {]u,v[} \ni j$, contradicting that~$\alpha$ is a subarc of~$\arcUp(p, r, \sigma)$.
@@ -1031,7 +1032,7 @@ Recall that we have defined the mandatory and forbidden arcs of a separating tre
 
 \begin{definition}
 \label{def:admissibleSeparatingTrees}
-Fix a lattice congruence~$\equiv$ of the weak order.
+Fix an essential lattice congruence~$\equiv$ of the weak order.
 A separating tree~$T$ is \defn{$\equiv$-admissible} if~$\arcs_\equiv$ contains all mandatory arcs of~$T$ and none of the forbidden arcs of~$T$.
 %\begin{enumerate}[(i)]
 %\item all arcs of~$T$ are in~$\arcs_\equiv$,
@@ -1091,13 +1092,13 @@ By the previous paragraph, we obtain that~$T'$ is a $\equiv$-admissible separati
 As~$\sigma$ is a linear extension of both~$T$ and~$T'$, we obtain by \cref{lem:admissibleSeparatingTreesWithCommonLinearExtensions} that~$T = T'$, and we conclude that~$T$ is the Hasse diagram of a $\equiv$-poset.
 \end{proof}
 
-\cref{prop:admissibleSeparatingTrees} characterizes the separating trees~$T$ which are (Hasse diagrams of) $\equiv$-posets for a given lattice congruence~$\equiv$.
-We can also describe the lattice congruences~$\equiv$ for which a given separating tree~$T$ is (the Hasse diagram of) an $\equiv$-poset.
+\cref{prop:admissibleSeparatingTrees} characterizes the separating trees~$T$ which are (Hasse diagrams of) $\equiv$-posets for a given essential lattice congruence~$\equiv$.
+We can also describe the essential lattice congruences~$\equiv$ for which a given separating tree~$T$ is (the Hasse diagram of) an $\equiv$-poset.
 %Recall from \cref{rem:bridges} that the  \defn{up} (resp.~\defn{down}) \defn{bridges} of an arc~$\arc \eqdef (i, j, A, B)$ as the up arcs~$u(k, \ell)$ (resp.~down arcs~$d(k, \ell)$) such that~$]k,\ell[$ is an inclusion maximal interval of~$A$ (resp.~of~$B$).
 
 \begin{proposition}
 \label{prop:whichCongruences}
-The simple lattice congruences~$\equiv$ for which a given separating tree~$T$ is (the Hasse diagram of) an $\equiv$-poset form an interval~$[\equiv_\circ, \equiv_\bullet]$ in the simple congruence lattice, where
+The simple essential lattice congruences~$\equiv$ for which a given separating tree~$T$ is (the Hasse diagram of) an $\equiv$-poset form an interval~$[\equiv_\circ, \equiv_\bullet]$ in the simple congruence lattice, where
 \begin{itemize}
 \item $\equiv_\circ$ is the congruence where~$\arcs_n \ssm \arcs_\equiv$ is the lower ideal of the arc poset generated by all up and down arcs which are not subarcs of any mandatory arc of~$T$,
 \item $\equiv_\bullet$ is the congruence where~$\arcs_n \ssm \arcs_\equiv$ is the lower ideal of the arc poset generated by the forbidden arcs of~$T$.
@@ -1338,7 +1339,7 @@ Recall that we have defined the mandatory and forbidden arcs of a Schröder sepa
 
 \begin{definition}
 \label{def:admissibleSchroderSeparatingTrees}
-Fix a simple lattice congruence~$\equiv$ of the weak order.
+Fix a simple essential lattice congruence~$\equiv$ of the weak order.
 A Schröder separating tree~$S$ is \defn{$\equiv$-admissible} if~$\arcs_\equiv$ contains all mandatory arcs of~$S$ and none of the forbidden arcs of~$S$.
 %\begin{itemize}
 %\item all arcs of~$S$ are in~$\arcs_\equiv$,
