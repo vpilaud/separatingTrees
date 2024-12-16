@@ -772,8 +772,12 @@ For instance, the Baxter congruence is not simple, while it is the join (in the 
 \end{remark}
 
 \begin{remark}
-As already observed in~\cite[Sect.~4.4]{HoangMutze}, the number of essential simple congruences of the weak order on~$\f{S}_n$ is~$C_{n-1}^2$, where~$C_n \eqdef \frac{1}{n+1} \binom{2n}{n}$ is the Catalan number.
+As already observed in~\cite[Sect.~4.4]{HoangMutze}, the number of simple essential congruences of the weak order on~$\f{S}_n$ is~$C_{n-1}^2$, where~$C_n \eqdef \frac{1}{n+1} \binom{2n}{n}$ is the Catalan number.
 Indeed the subarc minimal arcs in~$\arcs_n \ssm \arcs_\equiv$ indeed form two (above and below) independent pairwise non-nesting collections of arcs.
+The number of all (non-necessarily essential) simple congruences of the weak order on~$\f{S}_n$ is~$\sum_{k \ge 1} \sum_{0 = i_0 < i_1 < \dots < i_k = n} \prod_{i \in [k]} C_{i_j - i_{j-1}}$, and the first few numbers are
+\[
+1, 2, 7, 38, 274, 2350, 22531, 233292, 2555658, 29232554, 346013450, 4211121946, 52446977292, \dots
+\]
 % If we allow non essential congruences, the numbers are not really nice:
 % sage: [add([prod([catalan_number(X[i+1]-X[i]-1)^2 for i in range(len(X)-1)]) for X in [sorted(list(X)+[0,n]) for X in Subsets(range(1,n))]]) for n in range(2,10)]                                                                                                                                                            
 % [2, 7, 38, 274, 2350, 22531, 233292, 2555658]
@@ -815,6 +819,11 @@ all belong to~$\arcs_\equiv$ (otherwise, $\alpha$ would not be a minimal non arc
 It thus immediately follows from~\cref{prop:insertionMap} that the preposet~$\preccurlyeq_\sigma^\equiv$ has cover relations~$a \preccurlyeq_\sigma^\equiv i$, $a \preccurlyeq_\sigma^\equiv j$, $i \preccurlyeq_\sigma^\equiv b$, and $j \preccurlyeq_\sigma^\equiv b$.
 Hence, the Hasse diagram of the $\equiv$-poset~$\preccurlyeq_\sigma^\equiv$ is not a tree.
 \end{proof}
+
+\begin{remark}
+If we considered the non-essential congruences, the $\equiv$-posets would be forests instead of trees.
+As the non-essential quotients of the weak order can be understood as Cartesian products of essential quotients of weak orders of smaller rank, we focus on essential congruences in \cref{thm:simpleCongruences} and throughout the paper
+\end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -993,7 +1002,7 @@ In fact, we prove the following stronger statement on the $\equiv$-posets of a s
 
 \begin{proposition}
 \label{prop:simpleImpliesSeparatingTrees}
-If~$\equiv$ is an essential simple congruence of the weak order, then the Hasse diagram of any $\equiv$-poset is a separating tree.
+If~$\equiv$ is a simple essential congruence of the weak order, then the Hasse diagram of any $\equiv$-poset is a separating tree.
 \end{proposition}
 
 \begin{proof}
@@ -1075,7 +1084,7 @@ We conclude that there is a path from~$q$ to~$k$ in~$T$, and from~$k$ to~$q$ in~
 
 \begin{proposition}
 \label{prop:admissibleSeparatingTrees}
-If~$\equiv$ is a simple congruence of the weak order, then the Hasse diagrams of the $\equiv$-posets are precisely the $\equiv$-admissible separating trees.
+If~$\equiv$ is a simple essential congruence of the weak order, then the Hasse diagrams of the $\equiv$-posets are precisely the $\equiv$-admissible separating trees.
 \end{proposition}
 
 \begin{proof}
@@ -1330,7 +1339,7 @@ The following statement is the analogue of \cref{prop:simpleImpliesSeparatingTre
 
 \begin{proposition}
 \label{prop:simpleImpliesSchroderSeparatingTrees}
-If~$\equiv$ is a simple congruence of the weak order, then the Hasse diagram of any $\equiv$-preposet is a Schröder separating tree.
+If~$\equiv$ is a simple essential congruence of the weak order, then the Hasse diagram of any $\equiv$-preposet is a Schröder separating tree.
 \end{proposition}
 
 \begin{proof}
@@ -1490,7 +1499,7 @@ The proof is symmetrical for the forbidden down arcs.
 
 \begin{proposition}
 \label{prop:admissibleSchroderSeparatingTrees}
-If~$\equiv$ is a simple congruence of the weak order, then the Hasse diagrams of the $\equiv$-preposets are precisely the $\equiv$-admissible Schröder separating trees.
+If~$\equiv$ is a simple essential congruence of the weak order, then the Hasse diagrams of the $\equiv$-preposets are precisely the $\equiv$-admissible Schröder separating trees.
 \end{proposition}
 
 \begin{proof}
