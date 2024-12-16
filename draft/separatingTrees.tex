@@ -918,12 +918,12 @@ We conclude that~$\pi$ is a directed path from~$k$ to~$j$.
 \cref{lem:separatingTree1,lem:separatingTree3,subsec:insertionMap} motivate the following definitions of arcs associated to a separating tree~$T$, which will be crucial in \cref{def:admissibleSeparatingTrees,prop:admissibleSeparatingTrees}.
 
 \begin{definition}
-\label{def:arcsSeparatingTree}
+\label{def:mandatoryArcsSeparatingTree}
 The \defn{mandatory arcs} of a separating tree~$T$ are the arcs of the form~$(i, k, A, B)$, where~$i < k$ form an edge of~$T$ and~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$i-k$ (resp.~$i-k$ to~$j$).
 \end{definition}
 
 \begin{definition}
-\label{def:nonArcsSeparatingTree}
+\label{def:forbiddenArcsSeparatingTree}
 The \defn{forbidden up} (resp.~\defn{down}) \defn{arcs} of a separating tree~$T$ are the up arcs~$u(M, m)$ (resp.~down arcs~$d(M, m)$), with~$M \eqdef \max(L)$ and~$m \eqdef \min(R)$ where~$L$ and~$R$ are two ancestor (resp.~descendant) subtrees of a node~$j$ of~$T$ with~$L < R$.
 \end{definition}
 
@@ -1017,10 +1017,10 @@ Hence,~$i-k$ cannot be an edge of~$H$.
 \end{proof}
 
 We can actually characterize the $\equiv$-posets of a simple congruence~$\equiv$.
-Recall that we have defined the mandatory and forbidden arcs of a separating tree in \cref{def:arcsSeparatingTree,def:nonArcsSeparatingTree}.
+Recall that we have defined the mandatory and forbidden arcs of a separating tree in \cref{def:mandatoryArcsSeparatingTree,def:forbiddenArcsSeparatingTree}.
 
 %\begin{definition}
-%\label{def:arcsSeparatingTree}
+%\label{def:mandatoryArcsSeparatingTree}
 %From \cref{lem:separatingTree1}, each edge in a separating tree~$T$ actually defines an arc. Namely an edge~$i - k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$i-k$ (resp.~$i-k$ to~$j$).
 %%\begin{itemize}
 %%\item each edge~$i \leftarrow k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$k$ (resp.~$i$ to~$j$),
@@ -1062,7 +1062,7 @@ By symmetry, we can assume that~$\pi$ has two outcoming edges at~$j$.
 Let~$M$ (resp.~$m$) denotes the maximum (resp.~minimum) of the left (resp.~right) ancestor subtree of~$j$ in~$T'$.
 Note that~$p \le M < j < m \le q$ since~$T'$ is separating.
 For any~$k \in {]M,m[}$, \cref{lem:separatingTree3} ensures the existence of a path from~$k$ to~$j$ in~$T'$, hence from~$k$ to~$q$.
-Consider now the edge between~$p$ and~$q$ in~$T$, and let~$(p, q, A, B)$ denote the mandatory arc of~$T$ defined in \cref{def:arcsSeparatingTree}.
+Consider now the edge between~$p$ and~$q$ in~$T$, and let~$(p, q, A, B)$ denote the mandatory arc of~$T$ defined in \cref{def:mandatoryArcsSeparatingTree}.
 As~$T$ and~$T'$ are both $\equiv$-admissible, we obtain that~$\arcs_\equiv$ contains the mandatory arc~$(p, q, A, B)$ of~$T$ but not the forbidden arc~$(M, m, {]M,m[}, \varnothing)$ of~$T'$.
 As~$p \le M < m \le q$, this implies that there is~$k \in {]M,m[} \ssm A$.
 By \cref{lem:separatingTree1}, there is a path from~$q$ to~$k$ in~$T$.
@@ -1283,10 +1283,10 @@ If~$\pi$ is not directed, then there exists some node~$L$ along~$\pi$ such that~
 This would contradict the separating property at~$J$ since~$i < j < k$.
 \end{proof}
 
-The following  definitions are the analogues of \cref{def:arcsSeparatingTree,def:nonArcsSeparatingTree}.
+The following  definitions are the analogues of \cref{def:mandatoryArcsSeparatingTree,def:forbiddenArcsSeparatingTree}.
 
 \begin{definition}
-\label{def:arcsSchroderSeparatingTree}
+\label{def:mandatoryArcsSchroderSeparatingTree}
 The \defn{mandatory arcs} of a Schröder separating tree~$S$ are the arcs of the form~$(i, k, A, B)$, where~$i < k$ and~$A \sqcup B = {]i,k[}$ are such that
 \begin{itemize}
 \item the nodes~$I$ and~$K$ of~$S$ with~$i \in I$ and~$k \in K$ either coincide or form an edge in~$S$, and moreover~${]i,k[} \cap (I \cup K) = \varnothing$, 
@@ -1295,7 +1295,7 @@ The \defn{mandatory arcs} of a Schröder separating tree~$S$ are the arcs of the
 \end{definition}
 
 \begin{definition}
-\label{def:arcsSchroderSeparatingTree}
+\label{def:forbiddenArcsSchroderSeparatingTree}
 The \defn{forbidden up} (resp.~\defn{down}) \defn{arcs} of a Schröder separating tree~$T$ are the up arcs~$u(M, m)$ (resp.~down arcs~$d(M, m)$), with~$M \eqdef \max(L)$ and~$m \eqdef \min(R)$ where~$L$ and~$R$ are two ancestor (resp.~descendant) subtrees of a node~$J$ of~$T$ with~$L < R$.
 \end{definition}
 
@@ -1335,7 +1335,7 @@ The statement thus immediately follows from \cref{prop:simpleImpliesSeparatingTr
 \end{proof}
 
 We now aim at characterizing the $\equiv$-preposets of a simple congruence~$\equiv$, analoguously to \cref{def:admissibleSeparatingTrees}.
-Recall that we have defined the mandatory and forbidden arcs of a Schröder separating tree in \cref{def:arcsSeparatingTree,def:nonArcsSeparatingTree}.
+Recall that we have defined the mandatory and forbidden arcs of a Schröder separating tree in \cref{def:mandatoryArcsSeparatingTree,def:forbiddenArcsSeparatingTree}.
 
 \begin{definition}
 \label{def:admissibleSchroderSeparatingTrees}
@@ -1367,7 +1367,7 @@ We have seen in \cref{lem:contractionSchroderSeparatingTree} that~$T$ is a Schr�
 Consider first a mandatory arc~$(i,k,A,B)$ of~$T$.
 Let~$I$ and~$K$ be the nodes of~$T$ such that~$i \in I$ and~$k \in K$, and similarly let~$I'$ and~$K'$ be the nodes of~$S$ such that~$i \in I'$ and~$k \in K'$.
 Note that~$I' \subseteq I$ and~$K' \subseteq K$.
-By \cref{def:arcsSchroderSeparatingTree}, $I$ and~$K$ either coincide or form an edge of~$T$, and~${{]i,k[} \cap (I \cup K) = \varnothing}$.
+By \cref{def:mandatoryArcsSchroderSeparatingTree}, $I$ and~$K$ either coincide or form an edge of~$T$, and~${{]i,k[} \cap (I \cup K) = \varnothing}$.
 Assume first that~$I'$ and~$K'$ coincide or form an edge of~$S$.
 Since~${{]i,k[} \cap (I' \cup K') \subseteq {]i,k[} \cap (I \cup K) = \varnothing}$ and any directed path in~$S$ contracts to a directed path in~$T$, we then obtain that~$(i,k,A,B)$ is also a mandatory arc of~$S$, hence belongs to~$\arcs_\equiv$ since~$S$ is $\equiv$-admissible.
 Assume now that~$I'$ and~$K'$ are distinct and not connected in~$S$.
@@ -1434,7 +1434,7 @@ Consider now a mandatory arc~$(i,k,A,B)$ of~$T$.
 Let~$I$ and~$K$ be the nodes of~$T$ such that~$i \in I$ and~$k \in K$, and similarly let~$I'$ and~$K'$ be the nodes of~$S$ such that~$i \in I'$ and~$k \in K'$.
 Note that~$I \subseteq I'$ and~$K \subseteq K'$.
 Moreover, either~$I = I'$ or~$I \in \{J_\circ, J_\bullet\}$ and~$I' = J_{\circ\bullet}$ and similarly for~$K$ and~$K'$.
-By \cref{def:arcsSchroderSeparatingTree}, $I$ and~$K$ either coincide or form an edge of~$T$, and~${{]i,k[} \cap (I \cup K) = \varnothing}$.
+By \cref{def:mandatoryArcsSchroderSeparatingTree}, $I$ and~$K$ either coincide or form an edge of~$T$, and~${{]i,k[} \cap (I \cup K) = \varnothing}$.
 Hence, $I'$ and~$K'$ either coincide or form an edge of~$S$.
 If we have~${]i,k[} \cap (I' \cup K') = \varnothing$, then we obtain that $(i,k,A,B)$ is a mandatory arc of~$S$ since any directed path in~$T$ contracts to a directed path in~$S$.
 As $S$ is $\equiv$-admissible, we therefore obtain that~$(i,k,A,B)$ is in~$\arcs_\equiv$ as desired.
