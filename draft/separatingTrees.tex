@@ -1,7 +1,7 @@
 \documentclass{amsart}
 
 \usepackage[T1]{fontenc}
-\usepackage{enumerate, amsmath, amsfonts, amssymb, amsthm, mathrsfs, wasysym, graphics, graphicx, xcolor, url, hyperref, hypcap, xargs, multicol, pdflscape, multirow, hvfloat, array, ae, aecompl, pifont, mathtools, a4wide, float, blkarray, overpic, nicefrac, etoolbox, stmaryrd}
+\usepackage{enumerate, amsmath, amsfonts, amssymb, amsthm, mathrsfs, wasysym, graphics, graphicx, xcolor, url, hyperref, hypcap, xargs, multicol, pdflscape, multirow, hvfloat, array, ae, aecompl, pifont, mathtools, a4wide, float, blkarray, overpic, nicefrac, etoolbox, stmaryrd, shuffle}
 \usepackage[bb=boondox]{mathalfa}%allows for mathbb 0 and 1
 \usepackage[shortlabels, inline]{enumitem}
 \usepackage[noabbrev,capitalise]{cleveref}
@@ -67,6 +67,7 @@
 % \newcommand{\one}{{1\!\!1}} % the all one vector
 \newcommand{\one}{{\mathbb{1}}} % the all one vector
 \newcommand{\zero}{{\mathbb{0}}} % the all zero vector
+\newcommand{\shiftedShuffle}{\,\bar\shuffle\,} % shifted shuffle
 
 \newcommand{\eqdef}{\mbox{\,\raisebox{0.2ex}{\scriptsize\ensuremath{\mathrm:}}\ensuremath{=}\,}} % :=
 \newcommand{\defeq}{\mbox{~\ensuremath{=}\raisebox{0.2ex}{\scriptsize\ensuremath{\mathrm:}} }} % =:
@@ -1536,184 +1537,79 @@ For instance, \cref{fig:minMaxCongruencesSchroderSeparatingTrees} shows the suba
 \section{Hopf algebra}
 \label{sec:HopfAlgebra}
 
-explain product combinatorially \\
-coproduct obtained by horizontal cut and product \\
-lattice structure provides a multiplicative basis
+This section is devoted to algebraic aspects of the essential simple congruences.
+Since there is no natural coproduct in this context, we shall only sketch the algebraic structure and refer the reader to~\cite{ChatelPilaud, PilaudPons-permutrees, Pilaud-arcDiagramAlgebra} for more detailed explanations and basic definitions.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The natural algebra structure between sets of permutations is given by the shuffle product of the Hopf algebra on permutations of C.~Reutenauer and C.~Malvenuto~\cite{MalvenutoReutenauer}.
+Recall that the \defn{shifted shuffle} of two permutations~$\rho \in \f{S}_m$ and~$\sigma \in \f{S}_n$ is the set~$\rho \shiftedShuffle \sigma$ of permutations of~$\f{S}_{m+n}$ whose first $m$ (resp.~last~$n$) values appear in the same order as~$\rho$ (resp.~$\sigma$).
+For instance,
+\[
+{\red 12} \shiftedShuffle {\darkblue 231} = \{ {\red 12}{\darkblue 453}, {\red 1}{\darkblue 4}{\red 2}{\darkblue 53}, {\red 1}{\darkblue 45}{\red 2}{\darkblue 3}, {\red 1}{\darkblue 453}{\red 2}, {\darkblue 4}{\red 12}{\darkblue 53}, {\darkblue 4}{\red 1}{\darkblue 5}{\red 2}{\darkblue 3}, {\darkblue 4}{\red 1}{\darkblue 53}{\red 2}, {\darkblue 45}{\red 12}{\darkblue 3}, {\darkblue 45}{\red 1}{\darkblue 3}{\red 2}, {\darkblue 453}{\red 12} \}.
+\]
 
-\section{Hopf algebra}
-\label{sec:HopfAlgebra}
+Given two essential simple congruences~$\equiv$ on~$\f{S}_m$ and~$\equiv'$ on~$\f{S}_n$ and two congruence classes~$R$ of~$\f{S}_m/{\equiv}$ and~$S$ of~$\f{S}_n/{\equiv'}$, we can consider the shuffle product~$R \shiftedShuffle S = \bigcup_{\rho \in R, \sigma \in S} \rho \shiftedShuffle \sigma$.
+To provide an algebraic structure, we need~$R \shiftedShuffle S$ to be a disjoint union of classes of an essential simple congruence that depends on~$\equiv$ and~$\equiv'$.
+There are various possible solutions, but we want our choice to specialize to the existing constructions for binary trees~\cite{LodayRonco}, Cambrian trees~\cite{ChatelPilaud}, and permutrees~\cite{PilaudPons-permutrees}.
 
-This (short) section is devoted to algebraic aspects of all (nontrivial?)
-simple congruences. Since there is no natural conproduct on those classes, we
-shall only sketch the algebraic structure and refer the reader
-to~\cite{ChatelPilaud, PilaudPons-permutrees} for more detailed explanations
-and the basic definitions.
-
-Let us consider two simple congruences $S_1$ and $S_2$ on respectively
-$n$ and $p$ letters, and two classes $C_1$ and $C_2$ respectively
-corresponding to $S_1$ and $S_2$. Then the natural product of $C_1$ and $C_2$
-seen as sets of permutations is the set $C$ of all their shifted shuffles. In
-order to provide an algebraic structure, this set $C$ has to be a disjoint
-union of classes of a simple congruence $C$ that depends on $C_1$ and $C_2$.
-There are many different solutions for $C$ among which the concatenation of
-$S_1$ and $S_2$ but this one is not very satisfactory since if $S_1$ and $S_2$
-are two sylvester congruences, their concatenation is not (it misses the
-two arcs below $n$ and $n+1$).
-
-So, if one wants to get the Loday-Ronco algebra and more general
-algebras defined in~\cite{ChatelPilaud, PilaudPons-permutrees}, one has to
-somehow add some forbidden arcs starting in $[1,n]$ and ending in $[n+1,n+p]$. 
-
-Let us define a bi-rational segment of size $n$ as a sequence of $n$ pairs of
-rational numbers. Represent it as the interval $[1,n]$ with bars above and
-below that each contain a rational number.
-From this bi-rational segment, one obtains the simple congruence whose minimal
-forbidden arcs are the shortest simple arcs that cross any set of rationals of
-sum greater than $1$.
-
-For example, with the bi-rational sequence
-$( (0,0),(\frac12,\frac12),(\frac13,\frac12),(\frac12,\frac12), (1,1) )$,
-one forbids the arcs $(1,4,\emptyset,\{2,3\}), (1,5,\{2,3,4\},\emptyset),
-(2,5,\emptyset,\{3,4\})$. Note that the first and last values do not
-contribute to any arc since no arcs cross these numbers.
+To this end, let us define a \defn{birational sequence} of length $n$ as a sequence~$\b{r}$ of~$n$ pairs of positive rational numbers.
+We represent~$\b{r}$ by placing vertical walls above and below the points of~$[n]$, each labeled by a rational number.
+We associate to~$\b{r}$ the simple congruence~$\equiv_\b{r}$ whose minimal forbidden arcs are the shortest up or down arcs that cross walls whose labels sum greater than~$1$.
+For example, the birational sequence~$((0,0), (\frac12,\frac12), (\frac13,\frac12), (\frac12,\frac12), (1,1))$ forbids the arcs $(1, 4, \varnothing, \{2,3\}), (1, 5, \{2,3,4\}, \varnothing), (2, 5, \varnothing, \{3,4\})$ and all their suparcs.
+Note that the first and last birationals of~$\b{r}$ do not matter at the moment since no arcs cross these walls.
+We first observe that this model encompasses all essential simple congrruences.
 
 \begin{proposition}
-Any simple congruence can be obtained as the image of a bi-rational segment.
+Any essential simple congruence is the congruence~$\equiv_\b{r}$ defined by a birational sequence~$\b{r}$.
 \end{proposition}
 
-The forbidden arcs above and below the axis depending on disjoint sets of
-fractions, we can limit ourselves to proving that any set of forbidden arcs
-above the axis can be obtained as the image of a rational sequence.
+\begin{proof}
+The forbidden arcs above and below the axis depending on disjoint sets of rationals, we can limit ourselves to proving that any set of nonnesting essential up arcs is percisely the set of minimal forbidden arcs by a rational sequence.
+Consider a set of~$k$ nonnesting essential up arcs~$u(a_1, b_1), \dots, u(a_k, b_k)$, ordered such that~$a_1 < \dots < a_k$ and~$b_1 < \dots < b_k$ (these conditions are equivalent since the arcs are nonnesting).
+We prove by induction on~$k$ that this set is indeed the set of minimal forbidden arcs by some rational sequence, which moreover vanishes outside~${]a_1, b_k[}$.
+For~$k = 0$, the sequence~$(0, \dots, 0)$ forbids no up arc.
+By induction hypothesis, there exists a rational sequence~$\b{r} \eqdef (r_1, \dots, r_n)$  which precisely forbids the arcs~$u(a_1,b_1), \dots, u(a_{k-1},b_{k-1})$ and vanishes outside~${]a_1, b_{k-1}[}$.
+As the condition for preserving an arc is open, there exists a sufficiently small~${\varepsilon > 0}$ so that~$\b{r} + \varepsilon \one_{]a_k, b_k[}$ still forbids precisely~$u(a_1,b_1), \dots, u(a_{k-1},b_{k-1})$.
+Finally, let~$\b{s} \eqdef \b{r} + \varepsilon \one_{]a_k, b_k[} + (1 - \varepsilon (b_k-a_k-1) - \sum_{a_k < i < b_{k-1}} r_i) \one_{\{b_k-1\}}$.
+By definition, $\b{s}$ vanishes outside~${]a_1,b_k[}$.
+As~$\b{r} + \varepsilon \one_{]a_k, b_k[}$ precisely forbids~$u(a_1,b_1), \dots, u(a_{k-1},b_{k-1})$ and vanishes outside~${]a_1, b_k[}$, the sequence~$\b{s}$ also forbids these arcs and an additional minimal arc of the form~$(a,b_k)$.
+The choice of the weight at~$b_k-1$ ensures that~$a = a_k$.
+\end{proof}
+
+We shall now see that the concatenation of the birational sequences indeed defines an algebra structure for essential simple congruences.
+We denote by~$\b{rs}$ the birational sequence of length~$m+n$ obtained by the concatenation of a birational sequence~$\b{r}$ of length~$m$ with a birational sequence~$\b{s}$ of length~$n$.
+
+\begin{proposition}
+\label{prop:product}
+For any birational sequences~$\b{r}, \b{s}$ of length~$m$ and~$n$, and any congruence classes~$R$ of~$\f{S}_m/{\equiv_\b{r}}$ and~$S$ of~$\f{S}_n/{\equiv_\b{s}}$, the shuffle~$R \shiftedShuffle S$ is a disjoint union of congruence classes of~$\f{S}_{m+n}/{\equiv_\b{rs}}$.
+\end{proposition}
+
+\begin{proof}
+Observe first that the arcs forbidden by~$\b{rs}$ with both endpoints in~$[m]$ (resp.~in~$[m+n] \ssm [n]$) are precisely the arcs forbidden by~$\b{r}$ (resp.~the arcs forbidden by~$\b{s}$ shifted by~$m$).
+
+Since the shifted shuffles of distinct permutations are disjoint, we only need to prove that, if a permutation~$\pi$ belongs to~$R \shiftedShuffle S$, then so do all the permutations of its class.
+As classes are connected in the weak order, we only need to prove it for a permutation~$\pi'$ adjacent~to~$\pi$.
+
+Let~$\rho \in R$ and~$\sigma \in S$ be such that~$\pi$ belongs to~$\rho \shiftedShuffle \sigma$.
+If~$\pi$ and~$\pi'$ differ by the transposition of a value in~$[m]$ and a value in~$[m+n] \ssm [m]$, then $\pi'$ also belongs to~$\rho \shiftedShuffle \sigma$ by definition of the shifted shuffle~$\shiftedShuffle$.
+If~$\pi$ and~$\pi'$ differ by the transposition of two values~$u,v$ in~$[m]$ (resp.~in~$[m+n] \ssm [m]$), then $\pi'$ belongs to~$\rho' \shiftedShuffle \sigma$ (resp.~$\rho \shiftedShuffle \sigma'$) where~$\rho$ and~$\rho'$ (resp.~$\sigma$ and~$\sigma'$) differ by the transposition of the values~$u,v$.
+As the arc corresponding to the transposition between~$\pi$ in~$\pi'$ is forbidden by~$\b{rs}$, it (resp.~its shift) is also forbidden by~$\b{r}$ (resp.~$\b{s}$), so that~$\rho' \in R$ (resp.~$\sigma' \in S$).
+In both cases, we obtained that~$\pi'$ also belongs to~$R \shiftedShuffle S$.
+\end{proof}
+
+It follows from \cref{prop:product} that one can define the following algebra.
 
 \begin{definition}
-Consider a set $S$ of nonnesting arcs and order $S$ by the natural order of
-their first values.
-
-Let the first arc be $(a,b)$. Assign the value $0$ to all values smaller than
-or equal to $a$, that is $r_i=0$ for all $i\leq a$.
-Then define $r_i=\frac{1}{b-a-1}$ for all $i$ in $[a+1,b-1]$.
-
-Now consider the next arc $(a',b')$.
-First define $r_i=0$ for $i\in[b,a']$ if this interval is nonempty.
-Then define $r_{b'-1}$ to be any value strictly between the sum of the $r$
-from $a+2$ to $b-1$ and $1$:
-$ \sum_{i=a+2}^{b-1} r_i < r_{b'-1}<1$.
-Finally, define $r_i$ with $i\in [a'+1,b'-2]$ as values all equal and such
-that $(b'-a'-2)r_{a'+1} + r_{b'-1}=1$.
-
-Do the same procedure on all other arcs in $S$ (the values $a$ and $b$ in
-general are the values of the previous arc in $S$) and
-finally assign $0$ to all values to the right of the last arc.
-
-Note that this procedure is well-defined since the only step that could be
-impossible is to assign a value to an $r_{b'-1}$ but since the sum of all the
-$r_i$ with $i\in[a+1,b-1]$ is $1$ and none of these are zero, the sum
-of the $r_i$ with $i\in[a+2,b-1]$ is necessarily strictly smaller than $1$.
-Moreover, all the $r_i$ are nonnegative for the same reason.
+A \defn{decorated separating tree} is a pair~$(T, \b{t})$, where~$\b{t}$ is a birational sequence and~$T$ is a separating tree of~$\equiv_\b{t}$.
+The \defn{decorated separating tree algebra} is the algebra with basis indexed by decorated separating trees and where the product is given by~$(R, \b{r}) \cdot (S, \b{s}) = \sum_{i \in [k]} (T_i, \b{rs})$ such that the union of the linear extensions of~$T_1, \dots, T_k$ is the shifted shuffle of the linear extensions of~$R$ with the linear extensions of~$S$.
 \end{definition}
 
-For example, if $S=\{[1,4],[5,9]\}$, we can get the sequence
-\begin{equation}
-0,\frac12,\frac12,0,0,\frac19,\frac19,\frac19,\frac23,0,0,0,\dots
-\end{equation}
-Here we chose $r_8=\frac23$ which is indeed between $\frac12$ and $1$.
-
-\begin{lemma}
-Given a set $S$ of nonnesting arcs, the previous algorithm gives a sequence of
-rational numbers whose associated set of minimal forbidden arcs is $S$.
-\end{lemma}
-
-\begin{proof}
-We have already seen that the algorithm is well-defined.
-Now all arcs in $S$ are minimal forbidden arcs since they sum to exactly $1$
-and cross no zero value.
-
-Finally, consider an arc $(a,b)$ of sum at least $1$.
-If $a$ is the origin of an element $(a,b')$ in $S$, then given what was said
-immediately above, $b>b'$ and this arc is not minimal and can be discarded.
-
-If not, let $(a',b')$ be the smallest arc in $S$ satisfying $a'>a$.
-If $b\geq b'$ then $(a,b)$ contains $(a',b')$ and it is not minimal
-either.
-If $b<b'$, then the arc $(a,b)$ can only contain a proper suffix of the arc
-that is to its left and a proper prefix of $(a',b')$. Since the arc to its
-left and to its right are consecutive arcs in $S$ and given the condition on
-$r_{b'-1}$, this cannot happen since the sum the rationals in $(a,b)$ would be
-smaller than $1$.
-\end{proof}
-
-We shall now see that the concatenation of the bi-rational segments indeed
-define an algebra structure on simple congruences.
-
-\begin{theorem}
-Given two simple congruences given by their sets of minimal forbidden
-arcs $S_1$ and $S_2$, consider their corresponding bi-rational segments and
-concatenate those bi-rational segments.
-This defines a new simple congruence $S$.
-
-Then the set $C$ of all shifted shuffles of elements of a class $C_1$ in $S_1$
-with elements of a class $C_2$ in $S_2$ decomposes into classes of $S$.
-\end{theorem}
-
-\begin{proof}
-First note that the simple congruence $S$ has as minimal forbidden arcs
-the minimal forbidden arcs of $S_1$ and the ones of $S_2$ shifted, and
-possibly some other arcs that all cross the concatenation of both.
-
-Now, since the shifted shuffles of elements of $C_1$  with elements of $C_2$
-only gives rise to distinct permutations, one only has to prove that if a
-permutation appears in $C$ then all its class does.
-It can even be restricted to prove that if $p$ appears in $C$ then any
-permutation congruent to $p$ by one rewriting also appears in $C$ since any
-congruence class is obtained by iterating rewritings.
-
-But this is direct: if $\sigma\to \sigma'$ is a rewriting thanks to an arc in
-$S_1$ (resp. $S_2$) then $\sigma'$ also appears in $C$ as in the shifted
-shuffle of another element of $C_1$ (resp. $C_2$) with the same element of
-$C_2$ (resp.  $C_1$). Otherwise, the rewriting comes from an arc that crosses
-$n$, so that $\sigma'$ differs from $\sigma$ by exchanging a value in $[1,n]$
-($n$ is the number of letters of any element in $C_1$) with a value in
-$[n+1,n+p]$ and then $\sigma'$ also appears in the shifted shuffle of the same
-elements of both $C_1$ and $C_2$ as $p$, hence appears in $C$.
-\end{proof}
-
-Given our algebraic structure on simple congruences or, more precisely, on
-bi-rational segments, one easily proves that both over and under operations
-extend to our case (see~\cite{PilaudPons-permutrees} for details about those
-oprations) since the only useful ingredient is that all congruence classes
-are intervals of the weak order.
-
 \begin{remark}
-Note that one recovers the algebraic structure on permutrees defined
-in~\cite{PilaudPons-permutrees}: assign either $1$ or $0$ to each rational
-depending on whether or not there is an arc above (or below) the value.
-\end{remark}
-
-\begin{remark}
-Unfortunately, the natural coproduct on permutations given the product is
-the deconcatenation of permutations (with their pairs of rationals attached)
-and this operation does not define a cogebra on the simple congruences.
-For example, $F_{24153}$ with the sequence of fractions
-$( (0,0), (\frac12,0), (\frac13,0), (\frac12,0), (0,0))$
-is alone in its class (given the conditions, the only forbidden arc is $(1,5)$
-and $1$ and $5$ can only exchange if all values in between are to their left
-and they are not in our case) so gives rise to only one term of size $4$
-tensored with a term of size $1$ that is
-$F_{2314}\otimes F_{1}$.
-
-But now $2314$ is equipped with the sequence of fractions
-$( (0,0), (\frac12,0), (\frac12,0), (0,0) )$,
-this permutation is not alone in its congruence class (now $1$ and $4$ can
-exchange since both $2$ and $3$ are to their left), so the coproduct does
-not define a cogebra.
-\end{remark}
-
-\begin{remark}
-In the special case where all minimal forbidden arcs are of size $2$, that is
-the case of permutrees, no such counterexamples can appear, hence explaining
-why there is a Hopf structure in that case.
+\begin{enumerate}
+\item Restricting to bibinary sequences (where all entries are either~$0$ or~$1$), we recover the algebraic structure defined on permutrees in~\cite{PilaudPons-permutrees}. It recovers in particular the algebraic structure on binary trees by J.-L.~Loday and M.~Ronco~\cite{LodayRonco} and on Cambrian trees by~\cite{ChatelPilaud}.
+\item Similarly to~\cite{ChatelPilaud, PilaudPons-permutrees}, we can understand the product of~\cref{prop:product} by over and under operations on decorated separating trees, and we obtain a multiplicative basis of the decorated separating tree algebra using upper sets of congruence classes. The only crucial ingredient is that all congruence classes are intervals of the weak order. Details are left to the reader.
+\item In contrast to~\cite{LodayRonco, ChatelPilaud, PilaudPons-permutrees}, there is unfortunately no natural Hopf algebra structure on decorated separating trees. The natural coproduct would be the deconcatenation of permutations (with pairs of rationals attached to values). Unfortunately, this operation does not define a cogebra on decorated separating trees. For example, the birational sequence~$((0,0), (\frac12,0), (\frac13,0), (\frac12,0), (0,0))$, the only forbidden arc is~$u(1,5)$. Hence, the permutation~$24153$ is alone in its class (since~$1$ and~$5$ are not consecutive). So its deconcatenation gives rise to a single term~$2314 \otimes 1$ in~$\f{S}_4 \otimes \f{S}_1$. The corresponding deconcatenated birational sequence~$((0,0), (\frac12,0), (\frac12,0), (0,0))$ forbids~$u(1,4)$, so that~$2314$ is equivalent to~$2341$ (since~$1$ and~$4$ are now consecutive). Hence, the deconcatenation does not define a coalgebra.
+\item Restricting to bibinary sequences, this phenomenon disappears, explaining the Hopf algebra structures in~\cite{LodayRonco, ChatelPilaud, PilaudPons-permutrees}.
+\end{enumerate}
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
