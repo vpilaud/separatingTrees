@@ -139,7 +139,6 @@
 % arc diagrams
 \newcommand{\arc}{\alpha} % arc
 \newcommand{\arcs}{{\mathcal{A}}} % arcs
-\newcommand{\nonarcs}{{\mathcal{B}}} % non-arcs
 \newcommand{\meet}{\wedge} % meet
 \newcommand{\join}{\vee} % join
 \newcommand{\decoration}{{\b{\delta}}} % decoration
@@ -220,8 +219,7 @@ A congruence of the weak order is simple if its quotientope is a simple polytope
 We provide an alternative elementary proof of the characterization of the simple congruences in terms of forbidden up and down arcs.
 For this, we provide a combinatorial description of the vertices of the corresponding quotientopes in terms of separating trees.
 This also yields a combinatorial description of all faces of the corresponding quotientopes.
-We then define the Hopf algebra of separating trees and describe the product and coproduct in this Hopf algebra in terms of simple over and under operations.
-We finally explore the connections of our separating trees with quiver representation theory.
+We finally explore algebraic aspects of separating threes, in particular their connections with quiver representation theory.
 \end{abstract}
 
 \maketitle
@@ -268,6 +266,8 @@ Algebra on decorated separating trees.
 
 Algebraic congruences. Preprojective algebra.
 
+\vincent{todo}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \clearpage
@@ -284,7 +284,7 @@ Throughout the paper, we let~$[n] \eqdef \{1, \dots, n\}$, $[i,j] \eqdef \{i, \d
 \label{subsec:weakOrder}
 
 The \defn{weak order} is the lattice on permutations of~$[n]$ defined by ${\sigma \le \tau \iff \inv(\sigma) \subseteq \inv(\tau)}$ where~$\inv(\sigma) \eqdef \set{(\sigma_p, \sigma_q)}{1 \le p < q \le n \text{ and } \sigma_p > \sigma_q}$ is the \defn{inversion set} of~$\sigma$.
-The cover relations correspond to exchanges of two consecutive values in a permutation: a permutation~$\sigma$ covers (resp.~is covered by) the permutations obtained from~$\sigma$ by reversing a \defn{descent}~$\sigma_p > \sigma_{p+1}$ (resp.~an \defn{ascent}~$\sigma_p < \sigma_{p+1}$) of~$\sigma$.
+The cover relations correspond to exchanges of two entries in adjacent positions in a permutation: a permutation~$\sigma$ covers (resp.~is covered by) the permutations obtained from~$\sigma$ by reversing a \defn{descent}~$\sigma_p > \sigma_{p+1}$ (resp.~an \defn{ascent}~$\sigma_p < \sigma_{p+1}$) of~$\sigma$.
 See \cref{fig:weakOrder4}\,(left).
 %It can be interpreted geometrically on the braid fan~$\braidFan$ or the permutahedron~$\Perm$ defined~below.
 
@@ -369,6 +369,7 @@ The quotient~$\f{S}_n/{\equiv}$ is isomorphic (as a poset) to the subposet of th
 
 This proposition actually translates the fact that canonical representations behave properly under lattice quotients.
 Namely, the noncrossing arc diagrams of~$\arcs_\equiv$ precisely encode the canonical join (resp.~meet) representations in the quotient~$\f{S}_n/{\equiv}$.
+See~\cite{Reading-arcDiagrams}.
 
 Understanding the lattice congruences of the weak order, thus boils down to understand the sets of arcs~$\arcs_\equiv$.
 An arc~$\arc \eqdef (i, j, A, B) \in \arcs_n$ is a \defn{subarc} of an arc~$\arc' \eqdef (i', j', A', B') \in \arcs_n$ if~$i' \le i < j \le j'$ and~${A \subseteq A'}$ and~${B \subseteq B'}$.
@@ -410,7 +411,7 @@ The non-essential lattice congruences can be understood as Cartesian products of
 %
 The most classical lattice congruence of the weak order on~$\f{S}_n$ is the \defn{sylvester congruence}~$\equiv_\textrm{sylv}$ \cite{LodayRonco, HivertNovelliThibon-algebraBinarySearchTrees}.
 See \cref{fig:sylvesterCongruence}\,(middle).
-Its congruence classes are the fibers of the binary search tree insertion algorithm, or equivalently the sets of linear extensions of binary trees (labeled in inorder and considered as posets oriented from bottom to top).
+Its congruence classes are the fibers of the binary search tree insertion algorithm, or equivalently the sets of linear extensions of binary trees (labeled in inorder and considered as posets oriented toward their roots).
 It can also be seen as the transitive closure of the rewriting rule~$U i k V j W \equiv_\textrm{sylv} U k i V j W$ where~$i < j < k$ are letters and~$U,V,W$ are words on~$[n]$.
 In other words, the permutations minimal in their sylvester congruence class are those avoiding the pattern~$312$.
 The quotient of the weak order by the sylvester congruence is (isomorphic to) the classical \defn{Tamari lattice}~\cite{Tamari}, whose elements are the binary trees on~$n$ nodes and whose cover relations are right rotations in binary trees.
@@ -455,7 +456,7 @@ For~$(i, j) \in \boxslash(\sigma)$, we define an arc~$\alpha(i, j, \sigma)$ by
 Moreover, we order~$\boxslash(\sigma)$ by the slope of the diagonal joining~$(\sigma_i, i)$ to~$(\sigma_j, j)$, that is, $(i, j) \prec (k,\ell)$ if~$i \le k < \ell \le j$ and~$\sigma_k \le \sigma_i < \sigma_j \le \sigma_\ell$.
 Finally, we define~$\boxslash_\equiv(\sigma)$ to be the subset of $\prec$-maximal elements in~$\set{(i, j) \in \boxslash(\sigma)}{\arcUp(i, j, \sigma) \in \arcs_\equiv}$.
 
-Symmetrically, we define~$\boxbslash(\sigma) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \sigma_i > \sigma_j \text{ and } \sigma({]i,j[}) \cap {]\sigma_j, \sigma_i[} = \varnothing}$, we associate an arc~$\arcDown(i, j, \sigma) \eqdef (\sigma_j, \sigma_i, \set{\sigma_k}{k < i \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}}, \set{\sigma_k}{j < k \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}})$ to each~${(i,j) \in \boxbslash(\sigma)}$, and we let~$\boxbslash_\equiv(\sigma)$ be the $\prec$-maximal elements in~$\set{(i, j) \in \boxbslash(\sigma)}{\arcDown(i, j, \sigma) \in \arcs_\equiv}$.
+Symmetrically, we define~$\boxbslash(\sigma) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \sigma_i > \sigma_j \text{ and } \sigma({]i,j[}) \cap {]\sigma_j, \sigma_i[} = \varnothing}$, we associate an arc~$\arcDown(i, j, \sigma) \eqdef (\sigma_j, \sigma_i, \set{\sigma_k}{k < i \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}}, \set{\sigma_k}{j < k \text{ and } \sigma_k \in {]\sigma_j, \sigma_i[}})$~to each~${(i,j) \in \boxbslash(\sigma)}$, and we let~$\boxbslash_\equiv(\sigma)$ be the $\prec$-maximal elements in~$\set{(i, j) \in \boxbslash(\sigma)}{\arcDown(i, j, \sigma) \in \arcs_\equiv}$.
 
 The following statements are illustrated in \cref{fig:arcDiagramsQuotients}.
 
@@ -608,7 +609,7 @@ The Hasse diagram of the quotient lattice~$\f{S}_n / {\equiv}$ is the dual graph
 \begin{figure}[b]
 	\capstart
 	\centerline{\includegraphics[scale=.48]{TamariLattice4} \; \includegraphics[scale=.6]{sylvesterFan4} \hspace{-.3cm} \includegraphics[scale=.6]{associahedron4}}
-	\caption{The Tamari lattice (left) can be seen as the dual graph of the quotient fan~$\equiv_\textrm{sylv}$ (middle) or as the graph of J.-L.~Loday's associahedron (right). \cite[Fig.~5]{PadrolPilaudRitter}}
+	\caption{The cover graph of the Tamari lattice (left) can be seen as the dual graph of the sylvester fan~$\quotientFan[\equiv_\textrm{sylv}]$ (middle) or as the graph of J.-L.~Loday's \mbox{associahedron (right).~\cite[Fig.~5]{PadrolPilaudRitter}}}
 	\label{fig:Tamari4}
 \end{figure}
 %
@@ -654,13 +655,13 @@ The quotient~$\f{S}_n / {\equiv_\arc}$ is the \defn{$\arc$-Cambrian lattice}~\ci
 
 \item \label{item:permutreeCongruence}
 For~$\decoration \in \Decorations^n$, the \defn{$\decoration$-permutree congruence}~$\equiv_\decoration$ is defined by the ideal~$\arcs_\decoration$ of arcs which do not pass above the points~$j$ with~$\decoration_j \in \{\upCirc, \upDownCirc\}$ nor below the points~$j$ with~${\decoration_j \in \{\downCirc, \upDownCirc\}}$.
-Its congruence classes are the sets of linear extensions of the $\decoration$-permutrees~\cite{PilaudPons-permutrees}.
+Its congruence classes are the sets of linear extensions of the \linebreak $\decoration$-permutrees~\cite{PilaudPons-permutrees}.
 %It can also be seen as the transitive closure of the rewriting rules~$U i k V j W \equiv_\decoration U k i V j W$ for~$i < j < k$ with~$\decoration_j \in \{\downCirc, \upDownCirc\}$ and~$U j V i k W \equiv_\decoration U j V k i W$ for~$i < j < k$ with~$\decoration_j \in \{\upCirc, \upDownCirc\}$.
 The quotient~$\f{S}_n / {\equiv_\decoration}$ is the \defn{$\decoration$-permutree lattice}~\cite{PilaudPons-permutrees}, the quotient fan~$\quotientFan[\decoration]$ is the \defn{$\decoration$-permutree fan} of~\cite{PilaudPons-permutrees} and the quotientope~$\Quotientope[\decoration]$ is the \defn{$\decoration$-permutreehedron} of~\cite{PilaudPons-permutrees}.
 
 \item \label{item:abSashesCongruence}
 For~$a, b \ge 1$ define the \defn{$(a,b)$-sashes congruence}~$\equiv_{\textrm{sh}(a,b)}$ by the ideal~$\arcs_{\textrm{sh}(a,b)}$ of arcs which do not pass above $a$ consecutive points, nor below $b$ consecutive points.
-Note that~${\equiv_{\textrm{sh}(n,n)}} = {\equiv_{\textrm{triv}}}$, that~${\equiv_{\textrm{sh}(1,n)}} = {\equiv_{\textrm{sylv}}}$, that~${\equiv_{\textrm{sh}(1,1)}} = {\equiv_{\textrm{rec}}}$.
+Note that~${{\equiv_{\textrm{sh}(n,n)}} = {\equiv_{\textrm{triv}}}}$, that~${\equiv_{\textrm{sh}(1,n)}} = {\equiv_{\textrm{sylv}}}$, that~${\equiv_{\textrm{sh}(1,1)}} = {\equiv_{\textrm{rec}}}$.
 The $(1,2)$-sashes congruence was studied in~\cite{Law} and its equivalence classes are counted by the Pell numbers.
 The $(2,2)$-sashes congruence was studied in~\cite{ChatelPilaud} as a particular Baxter-Cambrian congruence, and its equivalence classes are counted by central binomial coefficients.
 The~$(1,n-1)$-sashes congruence is studied in~\cite{LaniniNovelli}, and the generating function of its number of equivalence classes is the inverse of the truncation of~$1 + x/(1-x-\sum_{i=0}^{n-1} C_i x^{i+1})$.
@@ -669,7 +670,7 @@ The~$(1,n-1)$-sashes congruence is studied in~\cite{LaniniNovelli}, and the gene
 %For~$a, b \ge 2$ define the \defn{$(a,b)$-twist congruence}~$\equiv^t_{a,b}$ by the ideal~$\arcs^t_{a,b}$ of arcs which do not pass above $a$ points, nor below $b$ points.
 
 \item \label{item:BaxterCongruence}
-The \defn{diagonal rectangulation congruence}~$\equiv_\textrm{DR}$ (\aka \defn{Baxter congruence}) is defined by the ideal of arcs that do not cross the horizontal axis, \ie~$\arcs_\textrm{DR} = \set{(i, j, A, B) \in \arcs_n}{A = \varnothing \text{ or } B = \varnothing}$.
+The \defn{diagonal rectangulation congruence}~$\equiv_\textrm{DR}$ (or \defn{Baxter congruence}) is defined by the ideal of arcs that do not cross the horizontal axis, \ie~$\arcs_\textrm{DR} = \set{(i, j, A, B) \in \arcs_n}{A = \varnothing \text{ or } B = \varnothing}$.
 Its congruence classes correspond to diagonal rectangulations~\cite{LawReading} or equivalently pairs of twin binary trees~\cite{Giraudo}, which are counted by the Baxter numbers.
 %It can also be seen as the transitive closure of the rewriting rule~$U j V i \ell W k X \equiv_{\textrm{DR}} U j V \ell i W k X$ for~$i < j, k < \ell$.
 The quotient~$\f{S}_n / {\equiv_\textrm{DR}}$ is the \defn{diagonal rectangulation lattice}~\cite{LawReading}, the quotientope~$\Quotientope[\textrm{DR}]$ is the Minkowski sum of two opposite Loday associahedra~\cite{LawReading,CardinalPilaud}.
@@ -703,7 +704,7 @@ The graph associahedra congruences of~\cite{BarnardMcConville}.
 \subsection{Simple congruences}
 \label{subsec:simpleCongruences}
 
-For any~$1 \le i < j \le n$, we always denote by~$u(i,j) \eqdef (i, j, {]i,j[}, \varnothing)$ (resp.~by~$d(i,j) \eqdef (i, j, \varnothing, {]i,j[})$) the up (resp.~down) arc joining~$i$ to~$j$.
+For any~$1 \le i < j \le n$, we always denote by~$u(i,j) \eqdef (i, j, {]i,j[}, \varnothing)$ (resp.~by~$d(i,j) \eqdef (i, j, \varnothing, {]i,j[})$) the \defn{up} (resp.~\defn{down}) \defn{arc} joining~$i$ to~$j$.
 This paper focusses on the following congruences of the weak order.
 
 \begin{definition}[{\cite[Sect.~4.4]{HoangMutze}}]
@@ -726,7 +727,7 @@ Among the examples of \cref{subsec:relevantCongruences},
 \item the Cambrian congruences~\cite{Reading-CambrianLattices, ChatelPilaud},
 \item the permutree congruences~\cite{PilaudPons-permutrees},
 \item the $(a,b)$-sashes congruences~\cite{Law,LaniniNovelli},
-\item the graph associahedra congruences of~\cite{BarnardMcConville}
+\item the graph associahedra congruences of~\cite{BarnardMcConville},
 \end{itemize}
 are all simple congruences of the weak order.
 \end{example}
@@ -742,7 +743,7 @@ In contrast, among the examples of \cref{subsec:relevantCongruences},
 \item the diagonal rectangulation congruence~\cite{LawReading,Giraudo,CardinalPilaud},
 \item the generic rectangulation congruence~\cite{Reading-rectangulations,CardinalPilaud},
 \item the $p$-recoil congruence~\cite{NovelliReutenauerThibon, Reading-HopfAlgebras, Pilaud-brickAlgebra},
-\item the $p$-twist congruence~\cite{Pilaud-brickAlgebra}
+\item the $p$-twist congruence~\cite{Pilaud-brickAlgebra},
 \end{itemize}
 are non-simple congruences of the weak order (except when~$n \le 3$ or~$p = 1$).
 %A good example of a congruence which is not simple is the Baxter congruence~\cite{LawReading, Giraudo} whose quotient corresponds to diagonal rectangulations of a square. Its arcs are all up or down arcs, so that its subarc minimal non arcs are all arcs of the form~$(i, i+3, \{i+1\}, \{i+2\})$ or~$(i, i+3, \{i+2\}, \{i+1\})$ for~$i \in [n-3]$.
@@ -769,12 +770,12 @@ Thus, the simple congruence form a finite meet semilattice, hence a lattice unde
 
 \begin{remark}
 Note that the simple congruences do not induce a sublattice of the congruence lattice.
-For instance, the Baxter congruence is not simple, while it is the join (in the congruence lattice) of the sylvester and anti-sylvester congruence (where the allowed arcs are exactly the down arcs).
+For instance, the Baxter congruence is not simple, while it is the join (in the congruence lattice) of the sylvester and anti-sylvester congruence (where the allowed arcs are exactly the down arcs), which are both simple congruences.
 \end{remark}
 
 \begin{remark}
 As already observed in~\cite[Sect.~4.4]{HoangMutze}, the number of simple essential congruences of the weak order on~$\f{S}_n$ is~$C_{n-1}^2$, where~$C_n \eqdef \frac{1}{n+1} \binom{2n}{n}$ is the Catalan number.
-Indeed the subarc minimal arcs in~$\arcs_n \ssm \arcs_\equiv$ indeed form two (above and below) independent pairwise non-nesting collections of arcs.
+Indeed, the subarc minimal arcs in~$\arcs_n \ssm \arcs_\equiv$ form two (above and below) independent pairwise nonnesting collections of intervals.
 The number of all (non-necessarily essential) simple congruences of the weak order on~$\f{S}_n$ is~$\sum_{k \ge 1} \sum_{0 = i_0 < i_1 < \dots < i_k = n} \prod_{i \in [k]} C_{i_j - i_{j-1}}$, and the first few numbers are
 \[
 1, 2, 7, 38, 274, 2350, 22531, 233292, 2555658, 29232554, 346013450, 4211121946, 52446977292, \dots
@@ -812,7 +813,7 @@ The equivalences (ii) $\iff$ (iii) $\iff$ (iv) $\iff$ (v) are standard.
 \qquad
 (a, j, \varnothing, {]a,j[} \cap B)
 \qquad
-(i, b, {]i,a[} \cap A, \varnothing)
+(i, b, {]i,b[} \cap A, \varnothing)
 \qquad\text{and}\qquad
 (b, j, {]b,j[} \cap A, B)
 \]
@@ -838,7 +839,7 @@ In this section, we define separating trees (\cref{subsec:separatingTrees}) and 
 \subsection{Separating trees}
 \label{subsec:separatingTrees}
 
-For a vertex~$v$ in a directed tree~$T$, we call \defn{parents} (resp.~\defn{children}) of~$v$ the targets of the outgoing arcs (resp.~the  sources of the incoming arcs) at~$v$ and \defn{ancestor} (resp.~\defn{descendant}) \defn{subtrees} of~$v$ the subtrees attached to them.
+For a node~$j$ in a directed tree~$T$, we call \defn{parents} (resp.~\defn{children}) of~$j$ the targets of the outgoing arcs (resp.~the  sources of the incoming arcs) at~$j$ and \defn{ancestor} (resp.~\defn{descendant}) \defn{subtrees} of~$j$ the subtrees attached to them.
 This paper focusses on the following family of trees.
 
 \begin{definition}
@@ -855,7 +856,7 @@ A \defn{separating tree} is a directed tree on~$[n]$ such that
 \cref{fig:separatingTrees} represents some separating trees. We use the following conventions:
 \begin{itemize}
 \item all edges are oriented from bottom to top, so that we omit to add arrows to specify the direction of the edges,
-\item the vertices are ordered increasingly from left to right,
+\item the vertices are ordered increasingly from left to right.
 %\item we often place a red wall above each node with two parents and below each node with two children to make the separation visible.
 \end{itemize}
 %
@@ -910,7 +911,7 @@ If~$\pi$ is not a directed path, then there exists some node~$\ell$ along~$\pi$ 
 This contradicts the separating property, as $i < j < k$ so that~$\ell$ cannot separate~$j$ from~$\{i,k\}$.
 Hence, the path~$\pi$ is directed, either from~$i \leftarrow k$ to~$j$, or from~$j$ to~$i \leftarrow k$.
 Again using~$i < j < k$, the path~$\pi$ cannot be incoming at~$i$, nor outgoing from~$k$.
-We conclude that $T$ contains a directed path either from~$i$ to~$j$, or from~$j$ to~$k$,
+We conclude that $T$ contains a directed path either from~$i$ to~$j$, or from~$j$ to~$k$.
 The second part of the statement is symmetric.
 \end{proof}
 
@@ -933,7 +934,7 @@ We conclude that~$\pi$ is a directed path from~$k$ to~$j$.
 
 \begin{definition}
 \label{def:mandatoryArcsSeparatingTree}
-The \defn{mandatory arcs} of a separating tree~$T$ are the arcs of the form~$(i, k, A, B)$, where~$i < k$ form an edge of~$T$ and~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$i-k$ (resp.~$i-k$ to~$j$).
+The \defn{mandatory arcs} of a separating tree~$T$ are the arcs of the form~$(i, k, A, B)$, where~$i < k$ form an edge of~$T$ and~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining the node $j$ to the edge~$i-k$ (resp.~the edge~$i-k$ to the node~$j$).
 \end{definition}
 
 \begin{definition}
@@ -958,7 +959,7 @@ For instance, \cref{fig:mandatoryForbiddenArcsSeparatingTrees} shows the mandato
 If we draw $T$ such that its nodes are ordered increasingly from left to right, and its edges are oriented from bottom to top, then the mandatory arcs of~$T$ are obtained by letting $T$ fall down to the horizontal axis, allowing the edges to curve, but not to cross each other nor to pass through any node.
 \end{remark}
 
-Finally, we give a planar characterization of separating tree which will be useful in the proof of \cref{prop:simpleImpliesSeparatingTrees}.
+Finally, we give a planar characterization of separating trees which will be useful in the proof of \cref{prop:simpleImpliesSeparatingTrees}.
 
 \begin{lemma}
 \label{lem:separatingTree2}
@@ -968,17 +969,17 @@ Then~$G$ is a separated tree~if~and~only~if
 \item each node~$j$ of~$G$ has at most one outgoing (resp.~incoming) neighbor~$i < j$ and at most one outgoing (resp.~incoming) neighbor~$k > j$,
 \item if~$i < j < k$ and~$j$ has two parents (resp.~children) and~$i-k$ is an edge of~$G$, then~$i-k$ passes below (resp.~above)~$j$.
 \end{enumerate}
-In other words, when we draw a red wall above each node with two parents and below each node with two children, the edges of the separating tree never cross the red walls.
+In other words, when we draw a wall above each node with two parents and below each node with two children, the edges of the separating tree never cross the walls.
 %In a separating tree, there is no edge passing above a node with two parent or below a node with two children.
 \end{lemma}
 
 \begin{proof}
 First, if~$G$ is a separating tree, then it satisfies~(i) by definition and~(ii) by a direct application of \cref{lem:separatingTree1}.
 Conversely, assume that~$G$ satisfies~(i) and~(ii).
-Assume that~$G$ contains a (non oriented) cycle~$C$, and let~$j$ be the topmost vertex of~$C$.
+Assume that~$G$ contains a (non oriented) cycle~$C$, and let~$j$ be the topmost node of~$C$.
 Hence~$j$ has two incoming edges~$p \to j$ and~$q \to j$, and we can assume that~$p < j < q$ by Condition~(i).
 Therefore, $C$ has an edge~$i-k$ with~$i < j < k$ to connect~$p$ with~$q$.
-As~$j$ is the topmost vertex of~$C$, the edge~$i-k$ passes below~$j$, contradicting Condition~(ii).
+As~$j$ is the topmost node of~$C$, the edge~$i-k$ passes below~$j$, contradicting Condition~(ii).
 We conclude that~$G$ is a tree.
 Consider now a node~$j$ of~$G$.
 By~(i), $j$ has at most two parents and at most two children.
@@ -989,6 +990,7 @@ By~(ii), this edge must pass below~$j$.
 Therefore, the path~$\pi$ is not a directed path from~$j$ to~$k$.
 Hence, there exists a node~$i < j$ along~$\pi$ such that~$\pi$ has two incoming arrows at~$i$, and $k$ belong to the left descendant subtree of~$i$.
 By induction, we obtain that~$k < i < j$, contradicting our assumption.
+The proof for the right ancestor (resp.~descendant) is symmetrical.
 We conclude that~$G$ is indeed a separating tree.
 \end{proof}
 
@@ -1010,9 +1012,9 @@ If~$\equiv$ is a simple essential congruence of the weak order, then the Hasse d
 Assume that $\equiv$ is simple, and consider the Hasse diagram~$H$ of a $\equiv$-poset~$\preccurlyeq$.
 Pick a linear extension~$\sigma$ of~$H$.
 By \cref{coro:insertionMap}, we obtain~$H$ starting from the permutation table of~$\sigma$.
-We check the two conditions of \cref{lem:separatingTree2}.
+We check that~$H$ fulfills the two conditions of \cref{lem:separatingTree2}.
 
-First, for each $j \in [n]$, there is at most one~$i \in [n]$ such that~$(i,j) \in \boxslash_\equiv(\sigma)$, so that~$G$ has at most one incoming neighbor~$i < j$ in~$H$.
+First, for each $j \in [n]$, there is at most one~$i \in [n]$ such that~$(i,j) \in \boxslash_\equiv(\sigma)$, so that there is has at most one incoming neighbor~$i < j$ in~$H$.
 Similarly, each $j \in [n]$ has at most one incoming neighbor~$k > j$.
 (Note that this part holds for all congruences, not only the simple ones.)
 
@@ -1056,7 +1058,7 @@ A separating tree~$T$ is \defn{$\equiv$-admissible} if~$\arcs_\equiv$ contains a
 \end{definition}
 
 \begin{example}
-For instance, the separating trees which are admissible for the sylvester congruence (resp.~$\decoration$-permutree congruence) are precisely the binary trees (resp.~$\decoration$-permutrees) on~$[n]$ to which we have deleted all pending leaves to keep only the $n$ internal nodes.
+For instance, the separating trees which are admissible for the sylvester congruence (resp.~$\decoration$-permutree congruence) are precisely the binary trees (resp.~$\decoration$-permutrees) on~$[n]$ to which we have deleted all pending leaves to keep only the~$n$ internal nodes and~$n-1$ internal edges.
 \end{example}
 
 \begin{lemma}
@@ -1066,10 +1068,8 @@ If~$T$ and~$T'$ are two $\equiv$-admissible separating trees with a common linea
 
 \begin{proof}
 Assume that~$T$ and~$T'$ are two distinct $\equiv$-admissible separating trees. 
-As they are trees on~$[n]$, they both have~$n-1$ edges, hence there is an edge of~$T$ which is not an edge of~$T'$.
-Assume for instance that there are~$1 \le p < q \le n$ such that there is an edge from~$p$ and~$q$ in~$T$ which is not in~$T'$.
-If there is an edge from~$q$ to~$p$ in~$T'$, then $T$ and~$T'$ cannot have a common linear extension.
-Otherwise, $p$ and~$q$ are incomparable in~$T'$.
+By symmetry, we can assume that there are~$1 \le p < q \le n$ such that the edge from~$p$ to~$q$ is in~$T$ but not in the transitive closure of~$T'$.
+As $T$ and~$T'$ have a common linear extension, this implies that~$p$ and~$q$ are incomparable in~$T'$.
 As~$T'$ is a tree, there is an undirected path~$\pi$ from~$p$ to~$q$ in~$T'$.
 Let~$j$ be the last node along~$\pi$ where~$\pi$ has either two outgoing edges, or two incoming edges.
 By symmetry, we can assume that~$\pi$ has two outcoming edges at~$j$.
@@ -1107,32 +1107,21 @@ As~$\sigma$ is a linear extension of both~$T$ and~$T'$, we obtain by \cref{lem:a
 \end{proof}
 
 \cref{prop:admissibleSeparatingTrees} characterizes the separating trees~$T$ which are (Hasse diagrams of) $\equiv$-posets for a given essential lattice congruence~$\equiv$.
-We can also describe the essential lattice congruences~$\equiv$ for which a given separating tree~$T$ is (the Hasse diagram of) an $\equiv$-poset.
+Conversely, we can also describe the essential lattice congruences~$\equiv$ for which a given separating tree~$T$ is (the Hasse diagram of) a $\equiv$-poset.
 %Recall from \cref{rem:bridges} that the  \defn{up} (resp.~\defn{down}) \defn{bridges} of an arc~$\arc \eqdef (i, j, A, B)$ as the up arcs~$u(k, \ell)$ (resp.~down arcs~$d(k, \ell)$) such that~$]k,\ell[$ is an inclusion maximal interval of~$A$ (resp.~of~$B$).
 
 \begin{proposition}
 \label{prop:whichCongruences}
-The simple essential lattice congruences~$\equiv$ for which a given separating tree~$T$ is (the Hasse diagram of) an $\equiv$-poset form an interval~$[\equiv_\circ, \equiv_\bullet]$ in the simple congruence lattice, where
+The simple essential lattice congruences~$\equiv$ for which a given separating tree~$T$ is (the Hasse diagram of) a $\equiv$-poset form an interval~$[\equiv_\circ, \equiv_\bullet]$ in the simple congruence lattice, where
 \begin{itemize}
-\item $\equiv_\circ$ is the congruence where~$\arcs_n \ssm \arcs_\equiv$ is the lower ideal of the arc poset generated by all up and down arcs which are not subarcs of any mandatory arc of~$T$,
-\item $\equiv_\bullet$ is the congruence where~$\arcs_n \ssm \arcs_\equiv$ is the lower ideal of the arc poset generated by the forbidden arcs of~$T$.
+\item $\equiv_\circ$ is the congruence where~$\arcs_n \ssm \arcs_\equiv$ is the upper ideal of the arc poset generated by all up and down arcs which are not subarcs of any mandatory arc of~$T$,
+\item $\equiv_\bullet$ is the congruence where~$\arcs_n \ssm \arcs_\equiv$ is the upper ideal of the arc poset generated by the forbidden arcs of~$T$.
 \end{itemize}
 \end{proposition}
 
 \begin{proof}
 Immediately follows from \cref{def:admissibleSeparatingTrees,prop:admissibleSeparatingTrees}.
 \end{proof}
-
-\begin{remark}
-\label{rem:separatingTreesArePermutrees}
-As a follow-up of \cref{rem:separatingTreesVSPermutrees}, we obtain that any separating tree appears in at least one permutree congruence.
-Indeed the minimal simple congruence~$\equiv_\circ$ in \cref{prop:whichCongruences} is always a permutree congruence.
-Indeed, consider an up arc~$u(i, j)$ with~$1 \le i < j \le n$ with~$j-i > 2$, and assume that both~$u(i,j-1)$ and~$u(i+1,j)$ are in~$\arcs_{\equiv_\circ}$.
-By definition, $u(i,j-1)$ and~$u(i+1,j)$ are subarcs of some mandatory arcs~$\alpha$ and~$\beta$ of~$T$.
-Since~$i-j > 2$ and~$\alpha$ and~$\beta$ are not crossing (see \cref{rem:separatingTreeFallHorizontalAxis}), either~$\alpha$ passes above~$j$ or~$\beta$ passes above~$i$.
-Hence, $u(i,j)$ is a subarc of either~$\alpha$ or~$\beta$, thus it is in~$\arcs_{\equiv_\circ}$.
-We conclude that the subarc minimal arcs in~$\arcs \ssm \arcs_{\equiv_\circ}$ have length at least~$2$, so that~$\equiv_\circ$ is a permutree congruence (see \cref{rem:permutreeCongruences}).
-\end{remark}
 
 \begin{example}
 For instance, \cref{fig:minMaxCongruencesSeparatingTrees} shows the subarc minimal uncontracted arcs of the minimal (blue, top) and maximal (red, bottom) simple congruences for the four separating trees of \cref{fig:separatingTrees}.
@@ -1145,6 +1134,17 @@ For instance, \cref{fig:minMaxCongruencesSeparatingTrees} shows the subarc minim
 	\label{fig:minMaxCongruencesSeparatingTrees}
 \end{figure}
 \end{example}
+
+\begin{remark}
+\label{rem:separatingTreesArePermutrees}
+As a follow-up of \cref{rem:separatingTreesVSPermutrees}, we obtain that any separating tree appears in at least one permutree congruence.
+Indeed the minimal simple congruence~$\equiv_\circ$ in \cref{prop:whichCongruences} is always a permutree congruence.
+Indeed, consider an up arc~$u(i, j)$ with~$1 \le i < j \le n$ with~$j-i > 2$, and assume that both~$u(i,j-1)$ and~$u(i+1,j)$ are in~$\arcs_{\equiv_\circ}$.
+By definition, $u(i,j-1)$ and~$u(i+1,j)$ are subarcs of some mandatory arcs~$\alpha$ and~$\beta$ of~$T$.
+Since~$i-j > 2$ and~$\alpha$ and~$\beta$ are not crossing (see \cref{rem:separatingTreeFallHorizontalAxis}), either~$\alpha$ passes above~$j$ or~$\beta$ passes above~$i$.
+Hence, $u(i,j)$ is a subarc of either~$\alpha$ or~$\beta$, thus it is in~$\arcs_{\equiv_\circ}$.
+We conclude that the subarc minimal arcs in~$\arcs \ssm \arcs_{\equiv_\circ}$ have length at least~$2$, so that~$\equiv_\circ$ is a permutree congruence (see \cref{rem:permutreeCongruences}).
+\end{remark}
 
 %%%%%%%%%%%%%%%%%%%
 
@@ -1168,7 +1168,7 @@ We now define the higher dimensional analogue of separating trees.
 
 \begin{definition}
 \label{def:ShcroderSeparatingTree}
-A \defn{Schröder separating tree} is a directed tree on the parts of a set partition of~$[n]$ such that for any two ancestor (resp.~descendant) subtrees of a node~$J$ are separated by an integer~$j \in J$, meaning that all integers that appear in a node of one subtree are smaller than~$j$, while all integers that appear in a node of the other subtree are larger than~$j$.
+A \defn{Schröder separating tree} is a directed tree on the parts of a set partition of~$[n]$ such that any two ancestor (resp.~descendant) subtrees of a node~$J$ are separated by an integer~$j \in J$, meaning that all integers that appear in a node of one subtree are smaller than~$j$, while all integers that appear in a node of the other subtree are larger than~$j$.
 \end{definition}
 
 \begin{example}
@@ -1212,7 +1212,7 @@ k \backslash n & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & \dots \\
 \end{remark}
 
 \begin{definition}
-The \defn{contraction} of an edge~$e$ in a tree~$S$ is the tree obtained by contracting the edge~$e$ and labeling the resulting node with the union of the labels of the endpoints~of~$e$.
+The \defn{contraction} of an edge~$e$ in a tree~$S$ is the tree obtained by contracting the edge~$e$ and labeling the resulting node with the union of the parts labelling the endpoints~of~$e$.
 \end{definition}
 
 \begin{lemma}
@@ -1283,7 +1283,7 @@ The following statement is the analogue of \cref{lem:separatingTree1}.
 \begin{lemma}
 \label{lem:SchroderSeparatingTree1}
 Consider three vertices~$I,J,K$ in a Schröder separating tree~$S$ such that there is~$i \in I$, $j \in J$ and~$k \in K$ with~$i < j < k$.
-If~$I = K$ or~$I - K$ is an edge of~$S$, then there is a directed path in~$S$ joining either~$I-K$ to~$J$, or~$J$ to~$I-K$.
+If~$I = K$ or~$I - K$ is an edge of~$S$, then there is a directed path in~$S$ joining either the edge~$I-K$ to the node~$J$, or the node~$J$ to the edge~$I-K$.
 %\begin{itemize}
 %\item if~$I = K$ or~$I \leftarrow K$ is an edge of~$S$, then there is a directed path in~$S$ joining either~$I$ to~$J$, or~$J$ to~$K$,
 %\item if~$I = K$ or~$I \to K$ is an edge of~$S$, then there is a directed path in~$S$ joining either~$J$ to~$I$, or~$K$ to~$J$.
@@ -1344,7 +1344,7 @@ If~$\equiv$ is a simple essential congruence of the weak order, then the Hasse d
 \end{proposition}
 
 \begin{proof}
-As~$\equiv$ is a simple congruence, the Hasse diagrams of the $\equiv$-preposets are precisely the contractions of the Hasse diagrams of its $\equiv$-posets.
+As~$\equiv$ is a simple congruence, the Hasse diagrams of the $\equiv$-preposets are precisely the (iterated) contractions of the Hasse diagrams of the $\equiv$-posets.
 The statement thus immediately follows from \cref{prop:simpleImpliesSeparatingTrees,lem:contractionSchroderSeparatingTree}.
 \end{proof}
 
@@ -1362,12 +1362,14 @@ A Schröder separating tree~$S$ is \defn{$\equiv$-admissible} if~$\arcs_\equiv$ 
 \end{definition}
 
 \begin{example}
-For instance, the Schröder separating trees which are admissible for the sylvester congruence (resp.~$\decoration$-permutree congruence) are precisely the Schröder trees (resp.~Schröder  $\decoration$-permutrees) on~$[n]$ to which we have deleted all pending leaves to keep only the internal nodes.
+For instance, the Schröder separating trees which are admissible for the sylvester congruence (resp.~$\decoration$-permutree congruence) are precisely the Schröder trees (resp.~Schröder  $\decoration$-permutrees) on~$[n]$ to which we have deleted all pending leaves to keep only the internal nodes and internal edges.
 \end{example}
 
 \begin{remark}
 Note that the $\equiv$-admissible separating trees are precisely the $\equiv$-admissible Schröder separating trees with $n$ nodes (or equivalently, where each node of~$S$ is a singleton).
 \end{remark}
+
+The following statements are analogues of \cref{lem:contractionSchroderSeparatingTree,lem:decontractionSchroderSeparatingTree} for $\equiv$-admissible Schröder separating trees.
 
 \begin{lemma}
 \label{lem:contractionAdmissibleSchroderSeparatingTree}
@@ -1516,10 +1518,6 @@ The number of $\equiv$-admissible Schröder separating trees is
 where the sum ranges over all $\equiv$-admissible separating trees, and~$\des(T)$ denotes the descents of~$T$ (\ie~the edges~$i \leftarrow j$ with~$1 \le i < j \le j$).
 \end{remark}
 
-\begin{remark}
-\cref{prop:whichCongruences} extends verbatim to Schröder separating trees.
-\end{remark}
-
 \begin{example}
 For instance, \cref{fig:minMaxCongruencesSchroderSeparatingTrees} shows the subarc minimal uncontracted arcs of the minimal (blue, top) and maximal (red, bottom) simple congruences for the four Schröder separating trees of \cref{fig:SchroderSeparatingTrees}.
 \begin{figure}
@@ -1531,6 +1529,10 @@ For instance, \cref{fig:minMaxCongruencesSchroderSeparatingTrees} shows the suba
 	\label{fig:minMaxCongruencesSchroderSeparatingTrees}
 \end{figure}
 \end{example}
+
+\begin{remark}
+\cref{prop:whichCongruences} extends verbatim to Schröder separating trees.
+\end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
