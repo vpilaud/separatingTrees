@@ -89,7 +89,7 @@
 \newcommand{\ie}{\textit{i.e.}~} % id est
 \newcommand{\eg}{\textit{e.g.}~} % exempli gratia
 \newcommand{\Eg}{\textit{E.g.}~} % exempli gratia
-\newcommand{\apriori}{\textit{a priori}} % a priori
+\newcommand{\apriori}{\textit{a~priori}~} % a priori
 \newcommand{\viceversa}{\textit{vice versa}} % vice versa
 \newcommand{\versus}{\textit{vs.}~} % versus
 \newcommand{\aka}{\textit{a.k.a.}~} % also known as
@@ -196,7 +196,8 @@
 %\title{Poset associahedra as sections of graph associahedra}
 
 \thanks{
-VP was partially supported by the Spanish project PID2022-137283NB-C21 of MCIN/AEI/10.13039/501100011033 / FEDER, UE, by the Severo Ochoa and María de Maeztu Program for Centers and Units of Excellence in R\&D (CEX2020-001084-M), by the Departament de Recerca i Universitats de la Generalitat de Catalunya (2021 SGR 00697), by the French project CHARMS (ANR-19-CE40-0017), and by the French--Austrian project PAGCAP (ANR-21-CE48-0020 \& FWF I 5788).
+JCN was partially supported by the project CARPLO of the Agence Nationale de la recherche (ANR-20-CE40-0007).
+VP was partially supported by the Spanish project PID2022-137283NB-C21 of MCIN/AEI/10.13039/501100011033 / FEDER, UE, by the Spanish--German project COMPOTE (AEI PCI2024-155081-2 \& DFG 541393733), by the Severo Ochoa and María de Maeztu Program for Centers and Units of Excellence in R\&D (CEX2020-001084-M), by the Departament de Recerca i Universitats de la Generalitat de Catalunya (2021 SGR 00697), and by the French--Austrian project PAGCAP (ANR-21-CE48-0020 \& FWF I 5788).
 }
 
 \author{Emily Barnard}
@@ -205,9 +206,14 @@ VP was partially supported by the Spanish project PID2022-137283NB-C21 of MCIN/A
 \urladdr{\url{https://emilybarnard.github.io}}
 
 \author{Jean-Christophe Novelli}
-\address[Jean-Christophe Novelli]{Universit\'e Gustave Eiffel, Marne-la-Vallée, France}
+%\address[Jean-Christophe Novelli]{Universit\'e Gustave Eiffel, Marne-la-Vallée, France}
+\address[Jean-Christophe Novelli]{LIGM, Universit\'e Gustave-Eiffel, CNRS,
+ENPC, ESIEE-Paris \\
+5 Boulevard Descartes \\Champs-sur-Marne \\77454 Marne-la-Vall\'ee cedex 2 \\
+FRANCE}
 \email{jean-christophe.novelli@univ-eiffel.fr}
 \urladdr{\url{https://igm.univ-mlv.fr/~novelli/}}
+
 
 \author{Vincent Pilaud}
 \address[Vincent Pilaud]{Universitat de Barcelona \& Centre de Recerca Matemàtica, Barcelona, Spain}
@@ -223,7 +229,7 @@ A congruence of the weak order is simple if its quotientope is a simple polytope
 We provide an alternative elementary proof of the characterization of the simple congruences in terms of forbidden up and down arcs.
 For this, we provide a combinatorial description of the vertices of the corresponding quotientopes in terms of separating trees.
 This also yields a combinatorial description of all faces of the corresponding quotientopes.
-We finally explore algebraic aspects of separating threes, in particular their connections with quiver representation theory.
+We finally explore algebraic aspects of separating trees, in particular their connections with quiver representation theory.
 \end{abstract}
 
 \maketitle
@@ -246,13 +252,13 @@ A congruence~$\equiv$ is called simple when the Hasse diagram of the quotient~$\
 Important examples include the sylvester congruence~\cite{Tonks, HivertNovelliThibon-algebraBinarySearchTrees}, the recoil congruence, the Cambrian and permutree congruences~\cite{Reading-CambrianLattices, PilaudPons-permutrees}, and the sashes congruences~\cite{Law,LaniniNovelli}.
 These congruences naturally appear in algebraic contexts, in particular in the construction of certain combinatorial Hopf algebras~\cite{LodayRonco, HivertNovelliThibon-algebraBinarySearchTrees, ChatelPilaud, PilaudPons-permutrees}, and in quiver representation theory~\cite{DemonetIyamaReadingReitenThomas}.
 
-The simple congruences of the weak order are precisely those whose minimal contracted arcs are all either up arcs or down arcs.
+The simple congruences of the weak order are precisely those whose minimal contracted arcs do not cross the horizontal axis.
 The forward direction of this statement is easy to prove.
 The backward direction was originally proved by H.~Hoang and T.~Mütze in~\cite[Sect.~4.4]{HoangMutze} with a purely combinatorial (but slightly involved) method.
 In their paper on the lattice theory of torsion classes, L.~Demonet, O.~Iyama, N.~Reading, I.~Reiten, and H.~Thomas provided an alternative proof~\cite[Sect.~6.3]{DemonetIyamaReadingReitenThomas} in terms of quiver representation theory.
 
 Our first contribution is an alternative elementary combinatorial proof of this characterization based on the description of the Hasse diagrams of the posets of a simple congruence~$\equiv$.
-Namely, we show that they are \defn{separating trees}, that is, directed trees on~$[n]$ where each node has at most two parents and at most two children, and where any node with two parents (resp.~children) separates its two ancestor (resp.~descendant) subtrees.
+Namely, we show that they are \defn{separating trees}, that is, directed trees on~$[n]$ where each node has at most two parents and at most two children, and where any node with two parents (resp.~children) separates its ancestor (resp.~descendant) subtrees.
 Our proof is based on the insertion map from permutatoins to posets of~$\equiv$ already described in~\cite{Pilaud-arcDiagramAlgebra}.
 
 In fact, we actually completely characterize which separating trees appear for a given simple congruence~$\equiv$.
@@ -677,7 +683,7 @@ Its congruence classes correspond to diagonal rectangulations~\cite{LawReading} 
 The quotient~$\f{S}_n / {\equiv_\textrm{DR}}$ is the \defn{diagonal rectangulation lattice}~\cite{LawReading}, the quotientope~$\Quotientope[\textrm{DR}]$ is the Minkowski sum of two opposite Loday associahedra~\cite{LawReading,CardinalPilaud}.
 
 \item \label{item:GenericRectangulationCongruence}
-The \defn{generic rectangulation congruence}~$\equiv_\textrm{GR}$ is define by the ideal of arcs that cross the horizontal axis at most once, \ie~$\arcs_\textrm{GR} = \set{(i, j, A, B) \in \arcs_n}{A \text{ and } B \text{ are both intervals}}$.
+The \defn{generic rectangulation congruence}~$\equiv_\textrm{GR}$ is defined by the ideal of arcs that cross the horizontal axis at most once, \ie~$\arcs_\textrm{GR} = \set{(i, j, A, B) \in \arcs_n}{A \text{ and } B \text{ are both intervals}}$.
 Its congruence classes correspond to generic rectangulations~\cite{Reading-rectangulations}, \ie any rectangulation of the square with no $4$ incident rectangles, considered equivalent under wall slides.
 %It can also be seen as the transitive closure of the rewriting rules~$UbVdWaeXcY \equiv_\textrm{GR} UbVdWeaXcY$, $UdVbWaeXcY \equiv_\textrm{GR} UdVbWeaXcY$, $UcVaeWbXdY \equiv_\textrm{GR} UcVeaWbXdY$, and $UcVaeWdXbY \equiv_\textrm{GR} UcVeaWdXbY$ for~$a < b < c < d < e$.
 The quotient~$\f{S}_n / {\equiv_\textrm{GR}}$ is the \defn{generic rectangulation lattice}~\cite{Reading-rectangulations}, and the quotientope~$\Quotientope[\textrm{GR}]$  is an interesting polytope studied in~\cite{CardinalPilaud}.
@@ -705,7 +711,7 @@ The graph associahedra congruences of~\cite{BarnardMcConville} were defined by t
 \label{subsec:simpleCongruences}
 
 For any~$1 \le i < j \le n$, we always denote by~$u(i,j) \eqdef (i, j, {]i,j[}, \varnothing)$ (resp.~by~$d(i,j) \eqdef (i, j, \varnothing, {]i,j[})$) the \defn{up} (resp.~\defn{down}) \defn{arc} joining~$i$ to~$j$.
-This paper focusses on the following congruences of the weak order.
+This paper focuses on the following congruences of the weak order.
 
 \begin{definition}[{\cite[Sect.~4.4]{HoangMutze}}]
 \label{def:simpleCongruence}
@@ -807,7 +813,7 @@ The equivalences (ii) $\iff$ (iii) $\iff$ (iv) $\iff$ (v) are standard.
 
 (i)~$\Longrightarrow$~(ii): See \cref{subsec:posetsSimpleCongruences}.
 
-(ii)~$\Longrightarrow$~(i): Assume that~$\equiv$ has a minimal non arc~$\alpha \eqdef (i, j, A, B)$ with~$A \ne \varnothing \ne B$, let~$a \eqdef \max(A)$ and~$b \eqdef \min(B)$, and let~$\sigma$ be the permutation with arc diagram~$\{\alpha\}$. Then the four arcs
+(ii)~$\Longrightarrow$~(i): Assume that~$\equiv$ has a subarc minimal non arc~$\alpha \eqdef (i, j, A, B)$ with~$A \ne \varnothing \ne B$, let~$a \eqdef \max(A)$ and~$b \eqdef \min(B)$, and let~$\sigma$ be the permutation with arc diagram~$\{\alpha\}$. Then the four arcs
 \[
 (i, a, A, {]i,a[} \cap B)
 \qquad
@@ -817,7 +823,7 @@ The equivalences (ii) $\iff$ (iii) $\iff$ (iv) $\iff$ (v) are standard.
 \qquad\text{and}\qquad
 (b, j, {]b,j[} \cap A, B)
 \]
-all belong to~$\arcs_\equiv$ (otherwise, $\alpha$ would not be a minimal non arc).
+all belong to~$\arcs_\equiv$ (otherwise, $\alpha$ would not be a subarc minimal non arc).
 It thus immediately follows from~\cref{prop:insertionMap} that the preposet~$\preccurlyeq_\sigma^\equiv$ has cover relations~$a \preccurlyeq_\sigma^\equiv i$, $a \preccurlyeq_\sigma^\equiv j$, $i \preccurlyeq_\sigma^\equiv b$, and $j \preccurlyeq_\sigma^\equiv b$.
 Hence, the Hasse diagram of the $\equiv$-poset~$\preccurlyeq_\sigma^\equiv$ is not a tree.
 \end{proof}
@@ -885,7 +891,7 @@ In this section, we define separating trees (\cref{subsec:separatingTrees}) and 
 \label{subsec:separatingTrees}
 
 For a node~$j$ in a directed tree~$T$, we call \defn{parents} (resp.~\defn{children}) of~$j$ the targets of the outgoing arcs (resp.~the  sources of the incoming arcs) at~$j$ and \defn{ancestor} (resp.~\defn{descendant}) \defn{subtrees} of~$j$ the subtrees attached to them.
-This paper focusses on the following family of trees.
+This paper focuses on the following family of trees.
 
 \begin{definition}
 \label{def:separatingTree}
@@ -951,7 +957,7 @@ Consider three nodes~$1 \le i < j < k \le n$ in a separating tree~$T$. Then
 
 \begin{proof}
 Assume that~$1 \le i < j < k \le n$ and~$i \leftarrow k$ is an edge of~$T$.
-As~$T$ is a tree, there is a (a priori undirected) path~$\pi$ joining~$j$ and the edge~$i \leftarrow k$.
+As~$T$ is a tree, there is a (\apriori undirected) path~$\pi$ joining~$j$ and the edge~$i \leftarrow k$.
 If~$\pi$ is not a directed path, then there exists some node~$\ell$ along~$\pi$ such that~$\pi$ has either two incoming or two outgoing edges at~$\ell$.
 This contradicts the separating property, as $i < j < k$ so that~$\ell$ cannot separate~$j$ from~$\{i,k\}$.
 Hence, the path~$\pi$ is directed, either from~$i \leftarrow k$ to~$j$, or from~$j$ to~$i \leftarrow k$.
@@ -966,8 +972,8 @@ Consider a node~$j$ in a separating tree~$T$ with two ancestor (resp.~descendant
 \end{lemma}
 
 \begin{proof}
-Assume that~$j$ has two ancestors, the proof for two descendants is symmetric.
-As~$T$ is a tree, there is a (a priori undirected) path~$\pi$ between~$k$ and~$j$.
+Assume that~$j$ has two ancestors, the proof for two descendants being symmetric.
+As~$T$ is a tree, there is a (\apriori undirected) path~$\pi$ between~$k$ and~$j$.
 As~$M < k < m$, we obtain that~$k$ is not an ancestor of~$j$, so that the path~$\pi$ ends with an incoming edge at~$j$.
 If~$\pi$ is not a directed path, then there exists some node~$\ell$ along~$\pi$ such that~$\pi$ has either two outgoing or two incoming edges at~$\ell$.
 This contradicts the separating property, as $M < k < m$ so that~$\ell$ cannot separate~$k$ from~$\{M,m\}$.
@@ -1033,9 +1039,9 @@ Assume by contradiction that this subtree contains some~$k$ larger than~$j$, and
 Along this path, there is an edge~$i - k$ with~$i < j < k$.
 By~(ii), this edge must pass below~$j$.
 Therefore, the path~$\pi$ is not a directed path from~$j$ to~$k$.
-Hence, there exists a node~$i < j$ along~$\pi$ such that~$\pi$ has two incoming arrows at~$i$, and $k$ belong to the left descendant subtree of~$i$.
-By induction, we obtain that~$k < i < j$, contradicting our assumption.
-The proof for the right ancestor (resp.~descendant) is symmetrical.
+Hence, there exists a node~$h < j$ along~$\pi$ such that~$\pi$ has two incoming arrows at~$h$, and $k$ belongs to the left descendant subtree of~$h$.
+By induction, we obtain that~$k < h < j$, contradicting our assumption.
+The proof for the right ancestor (resp.~descendant) is symmetric.
 We conclude that~$G$ is indeed a separating tree.
 \end{proof}
 
@@ -1045,7 +1051,7 @@ We conclude that~$G$ is indeed a separating tree.
 \label{subsec:posetsSimpleCongruences}
 
 We now provide a short combinatorial proof of the implication~(i)~$\Longrightarrow$~(ii) of \cref{thm:simpleCongruences}.
-Our proof is a very elementary approach just based on the insertion map described in~\cref{subsec:insertionMap}.
+Our proof is a very elementary approach based on the insertion map described in~\cref{subsec:insertionMap}.
 In fact, we prove the following stronger statement on the $\equiv$-posets of a simple congruence~$\equiv$.
 
 \begin{proposition}
@@ -1059,7 +1065,7 @@ Pick a linear extension~$\sigma$ of~$H$.
 By \cref{coro:insertionMap}, we obtain~$H$ starting from the permutation table of~$\sigma$.
 We check that~$H$ fulfills the two conditions of \cref{lem:separatingTree2}.
 
-First, for each $j \in [n]$, there is at most one~$i \in [n]$ such that~$(i,j) \in \boxslash_\equiv(\sigma)$, so that there is has at most one incoming neighbor~$i < j$ in~$H$.
+First, for each $j \in [n]$, there is at most one~$i \in [n]$ such that~$(i,j) \in \boxslash_\equiv(\sigma)$, so that $j$ has at most one incoming neighbor~$i < j$ in~$H$.
 Similarly, each $j \in [n]$ has at most one incoming neighbor~$k > j$.
 (Note that this part holds for all congruences, not only the simple ones.)
 
@@ -1116,8 +1122,8 @@ Assume that~$T$ and~$T'$ are two distinct $\equiv$-admissible separating trees.
 By symmetry, we can assume that there are~$1 \le p < q \le n$ such that the edge from~$p$ to~$q$ is in~$T$ but not in the transitive closure of~$T'$.
 As $T$ and~$T'$ have a common linear extension, this implies that~$p$ and~$q$ are incomparable in~$T'$.
 As~$T'$ is a tree, there is an undirected path~$\pi$ from~$p$ to~$q$ in~$T'$.
-Let~$j$ be the last node along~$\pi$ where~$\pi$ has either two outgoing edges, or two incoming edges.
-By symmetry, we can assume that~$\pi$ has two outcoming edges at~$j$.
+Let~$j$ be the last node along~$\pi$ with either two outgoing edges, or two incoming edges.
+By symmetry, we can assume that~$\pi$ has two incoming edges at~$j$.
 Let~$M$ (resp.~$m$) denotes the maximum (resp.~minimum) of the left (resp.~right) ancestor subtree of~$j$ in~$T'$.
 Note that~$p \le M < j < m \le q$ since~$T'$ is separating.
 For any~$k \in {]M,m[}$, \cref{lem:separatingTree3} ensures the existence of a path from~$k$ to~$j$ in~$T'$, hence from~$k$ to~$q$.
@@ -1143,7 +1149,7 @@ Since~$M$ and~$m$ are incomparable in~$T$, there exists a linear extension~$\sig
 Hence,~$(M,m)$ is in~$\boxslash_\sigma$ and is minimal for~$\prec$.
 Moreover, \cref{lem:separatingTree3} implies that~${\arcUp(M, m, \sigma) = u(M,m)}$.
 As~$(M,m)$ is not an edge of~$T$, we conclude that~${\arcUp(M, m, \sigma) = u(M,m) \notin \arcs_\equiv}$.
-The proof is symmetrical for forbidden down arcs.
+The proof is symmetric for forbidden down arcs.
 We conclude that~$T$ is~$\equiv$-admissible.
 
 Assume now that~$T$ is a $\equiv$-admissible separating tree, let~$\sigma$ be any linear extension of~$T$, and let~$T'$ be the tree obtained by insertion of $\sigma$ according to \cref{subsec:insertionMap}.
@@ -1218,14 +1224,14 @@ A \defn{Schröder separating tree} is a directed tree on the parts of a set part
 
 \begin{example}
 \label{exm:SchroderSeparatingTrees}
-\cref{fig:SchroderSeparatingTrees} represents some Schroder separating trees. We use the same conventions as in \cref{exm:separatingTrees}.
+\cref{fig:SchroderSeparatingTrees} represents some Schröder separating trees. We use the same conventions as in \cref{exm:separatingTrees}.
 %
 \begin{figure}[h]
 	\capstart
 	\centerline{\includegraphics[scale=.85]{SchroderSeparatingTrees}}
 %	\centerline{\includegraphics[scale=.85]{mandatoryForbiddenArcsSchroderSeparatingTrees}}
 %	\centerline{\includegraphics[scale=.85]{minMaxCongruencesSchroderSeparatingTrees}}
-	\caption{Some Schroder separating trees on~$[7]$.}
+	\caption{Some Schröder separating trees on~$[7]$.}
 	\label{fig:SchroderSeparatingTrees}
 \end{figure}
 %
@@ -1337,7 +1343,7 @@ If~$I = K$ or~$I - K$ is an edge of~$S$, then there is a directed path in~$S$ jo
 
 \begin{proof}
 The proof is identical to that of~\cref{lem:separatingTree1}.
-As~$S$ is a tree, there is a (a priori undirected) path~$\pi$ between~$I-K$ and~$J$ in~$S$.
+As~$S$ is a tree, there is a (\apriori undirected) path~$\pi$ between~$I-K$ and~$J$ in~$S$.
 If~$\pi$ is not directed, then there exists some node~$L$ along~$\pi$ such that~$\pi$ has either two incoming or two outgoing edges at~$\pi$.
 This would contradict the separating property at~$J$ since~$i < j < k$.
 \end{proof}
@@ -1447,7 +1453,7 @@ Otherwise, we have that~$J = J_{\circ\bullet}$, and $L$ is an ancestor subtree o
 Let~$R'$ be the ancestor subtree of~$J_\circ$ in~$S$ containing~$R$, and let~$m' \eqdef \max(R')$.
 As~${R \subseteq R'}$, we have $m' < m$, so that the up arc~$u(M, m')$ is a subarc of the arc~$u(M,m)$.
 We conclude that the arc~$u(M,m)$ is not in~$\arcs_\equiv$ since its subarc~$u(M, m')$ is not in~$\arcs_\equiv$ since~$S$ is $\equiv$-admissible.
-The proof is symmetrical for the forbidden down arcs.
+The proof is symmetric for the forbidden down arcs.
 \end{proof}
 
 \begin{lemma}
@@ -1522,7 +1528,7 @@ Moreover, $(a_{j-1}, a_j)$ defines a mandatory arc~$\alpha_j$ of~$S$ for each~$j
 Similarly, $(b_{j-1}, b_j)$ defines a mandatory arc~$\beta_j$ of~$S$ for each~$j \in [s]$ (because $b_{j-1}$ and~$b_j$ are consecutive in the node~$J_{\circ\bullet}$ of~$S$ for~$j \in [s-1]$, and $a_{s-1} \in J_{\circ\bullet}$ while $a_s = k \in K$ are consecutive in neighbors of~$S$).
 Moreover, all these arcs are subarcs of~$(i,k,A,B)$ and belong to~$\arcs_\equiv$ since~$S$ is $\equiv$-admissible.
 Finally, we have seen that~$\alpha_1 \eqdef d(a_0,a_1) = d(i,m)$ is a subarc of~$(i,k,A,B)$ and belongs to~$\arcs_\equiv$.
-Assume now by means of contadiction that~$(i,k,A,B)$ is not in~$\arcs_\equiv$.
+Assume now by means of contradiction that~$(i,k,A,B)$ is not in~$\arcs_\equiv$.
 Let~$i \le p < q \le k$ be such that the subarc~$\gamma \eqdef (p, q, A \cap {]p,q[}, B \cap {]p,q[})$ of~$(i,k,A,B)$ is minimal in~$\arcs \ssm \arcs_\equiv$ for the subarc order.
 There is no~$j \in [r]$ (resp.~$j \in [s]$) such that~${a_{j-1} \le p < q \le a_j}$ (resp.~$b_{j-1} \le p < q \le b_j$) since~$\alpha_j$ (resp.~$\beta_j$) is a subarc of~$(i,k,A,B)$ and belongs to~$\arcs_\equiv$.
 %Similarly, there is no~$i \in [s]$ such that~$b_{i-1} \le p < q \le b_i$, since~$\beta_i$ is a subarc of~$(i,k,A,B)$ and belong to~$\arcs_\equiv$.
@@ -1540,7 +1546,7 @@ We can thus assume that~$m < \min(J_\bullet)$.
 Let~$Y$ be the ancestor subtree of~$J_\bullet$ containing~$m$.
 Then~$L$ and~$Y$ are distinct ancestor subtrees of~$J_{\circ\bullet}$ in~$S$ with~$L < Y$ and~$M = \max(L)$ while~$m = \min(Y)$, so that~$u(M,m)$ is a forbidden up arc of~$S$.
 Since~$S$ is $\equiv$-admissible, we conclude that~$u(M,m)$ is not in~$\arcs_\equiv$.
-The proof is symmetrical for the forbidden down arcs.
+The proof is symmetric for the forbidden down arcs.
 \end{proof}
 
 %The following statement is the analogue of \cref{prop:admissibleSeparatingTrees}, and characterizes the $\equiv$-preposets of a simple congruence~$\equiv$.
@@ -1560,7 +1566,7 @@ The number of $\equiv$-admissible Schröder separating trees is
 \[
 \sum_T 2^{\#\des(T)}
 \]
-where the sum ranges over all $\equiv$-admissible separating trees, and~$\des(T)$ denotes the descents of~$T$ (\ie~the edges~$i \leftarrow j$ with~$1 \le i < j \le j$).
+where the sum ranges over all $\equiv$-admissible separating trees, and~$\des(T)$ denotes the descents of~$T$ (\ie~the edges~$i \leftarrow j$ with~$1 \le i < j \le n$).
 \end{remark}
 
 \begin{example}
@@ -1600,25 +1606,25 @@ There are various possible solutions, but we want our choice to specialize to th
 
 To this end, let us define a \defn{birational sequence} of length $n$ as a sequence~$\b{r}$ of~$n$ pairs of positive rational numbers.
 We represent~$\b{r}$ by placing vertical walls above and below the points of~$[n]$, each labeled by a rational number.
-We associate to~$\b{r}$ the simple congruence~$\equiv_\b{r}$ whose minimal forbidden arcs are the shortest up or down arcs that cross walls whose labels sum greater than~$1$.
+We associate to~$\b{r}$ the simple congruence~$\equiv_\b{r}$ whose subarc minimal forbidden arcs are the shortest up or down arcs that cross walls whose label sums are greater than~$1$.
 For example, the birational sequence~$((0,0), (\frac12,\frac12), (\frac13,\frac12), (\frac12,\frac12), (1,1))$ forbids the arcs $(1, 4, \varnothing, \{2,3\}), (1, 5, \{2,3,4\}, \varnothing), (2, 5, \varnothing, \{3,4\})$ and all their suparcs.
 Note that the first and last birationals of~$\b{r}$ do not matter at the moment since no arcs cross these walls.
-We first observe that this model encompasses all essential simple congrruences.
+We first observe that this model encompasses all essential simple congruences.
 
 \begin{proposition}
-Any essential simple congruence is the congruence~$\equiv_\b{r}$ defined by a birational sequence~$\b{r}$.
+The essential simple congruences are recisely the congruences~$\equiv_\b{r}$ defined by birational sequences~$\b{r}$.
 \end{proposition}
 
 \begin{proof}
-The forbidden arcs above and below the axis depending on disjoint sets of rationals, we can limit ourselves to proving that any set of nonnesting essential up arcs is percisely the set of minimal forbidden arcs by a rational sequence.
+The forbidden arcs above and below the axis depending on disjoint sets of rationals, we can limit ourselves to proving that any set of nonnesting essential up arcs is precisely the set of subarc minimal forbidden arcs by a rational sequence.
 Consider a set of~$k$ nonnesting essential up arcs~$u(a_1, b_1), \dots, u(a_k, b_k)$, ordered such that~$a_1 < \dots < a_k$ and~$b_1 < \dots < b_k$ (these conditions are equivalent since the arcs are nonnesting).
-We prove by induction on~$k$ that this set is indeed the set of minimal forbidden arcs by some rational sequence, which moreover vanishes outside~${]a_1, b_k[}$.
+We prove by induction on~$k$ that this set is indeed the set of subarc minimal forbidden arcs by some rational sequence, which moreover vanishes outside~${]a_1, b_k[}$.
 For~$k = 0$, the sequence~$(0, \dots, 0)$ forbids no up arc.
 By induction hypothesis, there exists a rational sequence~$\b{r} \eqdef (r_1, \dots, r_n)$  which precisely forbids the arcs~$u(a_1,b_1), \dots, u(a_{k-1},b_{k-1})$ and vanishes outside~${]a_1, b_{k-1}[}$.
 As the condition for preserving an arc is open, there exists a sufficiently small~${\varepsilon > 0}$ so that~$\b{r} + \varepsilon \one_{]a_k, b_k[}$ still forbids precisely~$u(a_1,b_1), \dots, u(a_{k-1},b_{k-1})$.
 Finally, let~$\b{s} \eqdef \b{r} + \varepsilon \one_{]a_k, b_k[} + (1 - \varepsilon (b_k-a_k-1) - \sum_{a_k < i < b_{k-1}} r_i) \one_{\{b_k-1\}}$.
 By definition, $\b{s}$ vanishes outside~${]a_1,b_k[}$.
-As~$\b{r} + \varepsilon \one_{]a_k, b_k[}$ precisely forbids~$u(a_1,b_1), \dots, u(a_{k-1},b_{k-1})$ and vanishes outside~${]a_1, b_k[}$, the sequence~$\b{s}$ also forbids these arcs and an additional minimal arc of the form~$(a,b_k)$.
+As~$\b{r} + \varepsilon \one_{]a_k, b_k[}$ precisely forbids~$u(a_1,b_1), \dots, u(a_{k-1},b_{k-1})$ and vanishes outside~${]a_1, b_k[}$, the sequence~$\b{s}$ also forbids these arcs and an additional subarc minimal arc of the form~$(a,b_k)$.
 The choice of the weight at~$b_k-1$ ensures that~$a = a_k$.
 \end{proof}
 
@@ -1627,7 +1633,7 @@ We denote by~$\b{rs}$ the birational sequence of length~$m+n$ obtained by the co
 
 \begin{proposition}
 \label{prop:product}
-For any birational sequences~$\b{r}, \b{s}$ of length~$m$ and~$n$, and any congruence classes~$R$ of~$\f{S}_m/{\equiv_\b{r}}$ and~$S$ of~$\f{S}_n/{\equiv_\b{s}}$, the shuffle~$R \shiftedShuffle S$ is a disjoint union of congruence classes of~$\f{S}_{m+n}/{\equiv_\b{rs}}$.
+For any birational sequences~$\b{r}, \b{s}$ of length~$m$ and~$n$, and any congruence classes~$R$ of~$\f{S}_m/{\equiv_\b{r}}$ and~$S$ of~$\f{S}_n/{\equiv_\b{s}}$, the shifted shuffle~$R \shiftedShuffle S$ is a disjoint union of congruence classes of~$\f{S}_{m+n}/{\equiv_\b{rs}}$.
 \end{proposition}
 
 \begin{proof}
@@ -1652,9 +1658,9 @@ The \defn{decorated separating tree algebra} is the algebra with basis indexed b
 
 \begin{remark}
 \begin{enumerate}
-\item Restricting to bibinary sequences (where all entries are either~$0$ or~$1$), we recover the algebraic structure defined on permutrees in~\cite{PilaudPons-permutrees}. It recovers in particular the algebraic structure on binary trees by J.-L.~Loday and M.~Ronco~\cite{LodayRonco} and on Cambrian trees by~\cite{ChatelPilaud}.
+\item Restricting to bibinary sequences (where all entries are either~$0$ or~$1$), we recover the algebraic structure defined on permutrees in~\cite{PilaudPons-permutrees}. It encompasses in particular the algebraic structure on binary trees by J.-L.~Loday and M.~Ronco~\cite{LodayRonco} and on Cambrian trees by~\cite{ChatelPilaud}.
 \item Similarly to~\cite{ChatelPilaud, PilaudPons-permutrees}, we can understand the product of~\cref{prop:product} by over and under operations on decorated separating trees, and we obtain a multiplicative basis of the decorated separating tree algebra using upper sets of congruence classes. The only crucial ingredient is that all congruence classes are intervals of the weak order. Details are left to the reader.
-\item In contrast to~\cite{LodayRonco, ChatelPilaud, PilaudPons-permutrees}, there is unfortunately no natural Hopf algebra structure on decorated separating trees. The natural coproduct would be the deconcatenation of permutations (with pairs of rationals attached to values). Unfortunately, this operation does not define a cogebra on decorated separating trees. For example, the birational sequence~$((0,0), (\frac12,0), (\frac13,0), (\frac12,0), (0,0))$, the only forbidden arc is~$u(1,5)$. Hence, the permutation~$24153$ is alone in its class (since~$1$ and~$5$ are not consecutive). So its deconcatenation gives rise to a single term~$2314 \otimes 1$ in~$\f{S}_4 \otimes \f{S}_1$. The corresponding deconcatenated birational sequence~$((0,0), (\frac12,0), (\frac12,0), (0,0))$ forbids~$u(1,4)$, so that~$2314$ is equivalent to~$2341$ (since~$1$ and~$4$ are now consecutive). Hence, the deconcatenation does not define a coalgebra.
+\item In contrast to~\cite{LodayRonco, ChatelPilaud, PilaudPons-permutrees}, there is unfortunately no natural Hopf algebra structure on decorated separating trees. The natural coproduct would be the deconcatenation of permutations (with pairs of rationals attached to values). Unfortunately, this operation does not define a coalgebra on decorated separating trees. For example, the birational sequence~$((0,0), (\frac12,0), (\frac13,0), (\frac12,0), (0,0))$ has only one forbidden arc~$u(1,5)$. Hence, the permutation~$24153$ is alone in its class (since~$1$ and~$5$ are not consecutive). So its deconcatenation gives rise to a single term~$2314 \otimes 1$ in~$\f{S}_4 \otimes \f{S}_1$. The corresponding deconcatenated birational sequence~$((0,0), (\frac12,0), (\frac12,0), (0,0))$ forbids~$u(1,4)$, so that~$2314$ is equivalent to~$2341$ (since~$1$ and~$4$ are now consecutive). Hence, the deconcatenation does not define a coalgebra.
 \item Restricting to bibinary sequences, this phenomenon disappears, explaining the Hopf algebra structures in~\cite{LodayRonco, ChatelPilaud, PilaudPons-permutrees}.
 \end{enumerate}
 \end{remark}
