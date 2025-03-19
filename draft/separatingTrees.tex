@@ -246,7 +246,7 @@ We finally explore algebraic aspects of separating trees, in particular their co
 Lattice congruences of the weak order of a Coxeter group were pioneered by N.~Reading~\cite{Reading-CambrianLattices} in connection to the combinatorics of finite type cluster algebras~\cite{FominZelevinsky-ClusterAlgebrasI,FominZelevinsky-ClusterAlgebrasII}.
 For the symmetric group, \cite{Reading-arcDiagrams} described the combinatorics of a lattice congruence~$\equiv$ of the weak order in terms of noncrossing arc diagrams.
 Moreover, \cite{PilaudSantos-quotientopes, PadrolPilaudRitter} constructed the quotientope~$\Quotientope$, whose normal fan is the quotient fan~$\quotientFan$~\cite{Reading-HopfAlgebras} obtained by coarsening the braid arrangement according to the congruence classes of~$\equiv$, and whose oriented skeleton is the quotient~$\f{S}_n/{\equiv}$.
-The most classical congruence of the weak order is certainly the sylvester congruence~\cite{Tonks, HivertNovelliThibon-algebraBinarySearchTrees}, whose quotient is the Tamari lattice~\cite{Tamari}, and whose quotientope is the associahedron of~\cite{ShniderSternberg, Loday}.
+The most classical congruence of the weak order is certainly the sylvester congruence~\cite{Tonks, HivertNovelliThibon-algebraBinarySearchTrees}, whose quotient is the Tamari lattice~\cite{Tamari}, and whose quotientope is the associahedron of~\cite{ShniderSternberg, Loday, PilaudSantosZiegler}.
 
 A congruence~$\equiv$ is called simple when the Hasse diagram of the quotient~$\f{S}_n/{\equiv}$ is regular, or equivalently when the quotient fan~$\quotientFan$ is simplicial, or equivalently when the quotientope~$\Quotientope$ is a simple polytope.
 Important examples include the sylvester congruence~\cite{Tonks, HivertNovelliThibon-algebraBinarySearchTrees}, the recoil congruence, the Cambrian and permutree congruences~\cite{Reading-CambrianLattices, PilaudPons-permutrees}, and the sashes congruences~\cite{Law,LaniniNovelli}.
@@ -902,6 +902,7 @@ A \defn{separating tree} is a directed tree on~$[n]$ such that
 \end{itemize}
 \end{definition}
 
+\pagebreak
 \begin{example}
 \label{exm:separatingTrees}
 \cref{fig:separatingTrees} represents some separating trees. We use the following conventions:
@@ -995,6 +996,7 @@ The \defn{forbidden up} (resp.~\defn{down}) \defn{arcs} of a separating tree~$T$
 
 \begin{example}
 For instance, \cref{fig:mandatoryForbiddenArcsSeparatingTrees} shows the mandatory (blue, top) and forbidden (red bottom) arcs of the four separating trees of \cref{fig:separatingTrees}.
+
 \begin{figure}
 	\capstart
 %	\centerline{\includegraphics[scale=.85]{figures/separatingTrees}}
@@ -1134,6 +1136,7 @@ By \cref{lem:separatingTree1}, there is a path from~$q$ to~$k$ in~$T$.
 We conclude that there is a path from~$q$ to~$k$ in~$T$, and from~$k$ to~$q$ in~$T'$, so that~$T$ and~$T'$ cannot have a common linear extension.
 \end{proof}
 
+\pagebreak
 \begin{proposition}
 \label{prop:admissibleSeparatingTrees}
 If~$\equiv$ is a simple essential congruence of the weak order, then the Hasse diagrams of the $\equiv$-posets are precisely the $\equiv$-admissible separating trees.
@@ -1176,6 +1179,7 @@ Immediately follows from \cref{def:admissibleSeparatingTrees,prop:admissibleSepa
 
 \begin{example}
 For instance, \cref{fig:minMaxCongruencesSeparatingTrees} shows the subarc minimal uncontracted arcs of the minimal (blue, top) and maximal (red, bottom) simple congruences for the four separating trees of \cref{fig:separatingTrees}.
+
 \begin{figure}
 	\capstart
 %	\centerline{\includegraphics[scale=.85]{figures/separatingTrees}}
@@ -1197,14 +1201,9 @@ Hence, $u(i,j)$ is a subarc of either~$\alpha$ or~$\beta$, thus it is in~$\arcs_
 We conclude that the subarc minimal arcs in~$\arcs \ssm \arcs_{\equiv_\circ}$ have length at least~$2$, so that~$\equiv_\circ$ is a permutree congruence (see \cref{rem:permutreeCongruences}).
 \end{remark}
 
-%%%%%%%%%%%%%%%%%%%
-
-%\subsection{Rotations in $\equiv$-admissible separating trees}
-%
-%\vincent{todo?}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\pagebreak
 \section{Schröder separating trees and preposets of simple congruences}
 \label{sec:SchroderSeparatingTreesPreposetsSimpleCongruences}
 
@@ -1571,6 +1570,7 @@ where the sum ranges over all $\equiv$-admissible separating trees, and~$\des(T)
 
 \begin{example}
 For instance, \cref{fig:minMaxCongruencesSchroderSeparatingTrees} shows the subarc minimal uncontracted arcs of the minimal (blue, top) and maximal (red, bottom) simple congruences for the four Schröder separating trees of \cref{fig:SchroderSeparatingTrees}.
+
 \begin{figure}
 	\capstart
 %	\centerline{\includegraphics[scale=.85]{SchroderSeparatingTrees}}
@@ -1670,8 +1670,7 @@ The \defn{decorated separating tree algebra} is the algebra with basis indexed b
 \section{Quiver representation theory}
 \label{sec:representationTheory}
 
-In this section we describe how our main results apply to the combinatorics of quiver representations~\cite{AssemSimsonSkowronski, AdachiIyamaReiten, DemonetIyamaReadingReitenThomas} (see also the survey articles~\cite{Thomas-TamariQuiverRepresentations, Thomas-surveyTorsionClasses}).
-\vincent{Emily, please complete this list}
+In this section we describe how our main results apply to the combinatorics of quiver representations~\cite{AssemSimsonSkowronski, Schiffler, AdachiIyamaReiten, DemonetIyamaReadingReitenThomas} (see also the survey articles~\cite{Thomas-TamariQuiverRepresentations, Thomas-surveyTorsionClasses}).
 
 Fix a field $K$.
 A quiver $Q \eqdef (Q_0,Q_1)$ is a finite directed graph with vertices~$Q_0$ and directed edges (or arrows)~$Q_1$.
@@ -1694,8 +1693,7 @@ Thus the set of torsion classes forms a lattice which we denote by $\tors(A)$.
 In fact, the lattice $\tors(A)$ shares many pleasant properties with the weak order on a finite Coxeter group.
 The lattice $\tors(A)$ is semidistributive, congruence uniform, and Hasse-regular, although it is not generally known whether $\tors(A)$ can be realized as the skeleton of a simple polytope.
 One notable exception is when A is the preprojective algebra $\Pi_n$ of type~$A_n$.
-In this paper, we work with a simpler algebra, which we denote as $\RA_n$, following \textcolor{red}{CITE} called the \defn{Orpheus Algebra}, see \textcolor{red}{CITE}.
-\vincent{Not sure what you have in mind here.}
+In this paper, we work with a simpler algebra, which we denote as $\RA_n$ following~\cite{BarnardCarrollZhu}, also called the \defn{Orpheus Algebra} in~\cite{BarnardCoelhoSimoesGunawanSchiffler}.
 Importantly, the lattice of torsion classes for both the Orpheus algebra $\RA_n$ \cite[Sect.~4]{BarnardCarrollZhu} and the preprojective algebra of type $A_n$ \cite[Thm.~2.3]{Mizuno, Mizuno-arcDiagrams} are isomorphic to the weak order on $A_n$.
 
 \begin{definition}
