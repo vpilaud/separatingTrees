@@ -192,8 +192,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[Separating trees and simple comgruences]{Separating trees and simple congruences of the weak order}
-%\title{Poset associahedra as sections of graph associahedra}
+\title{Separating trees and simple congruences of the weak order}
 
 \thanks{
 JCN was partially supported by the project CARPLO of the Agence Nationale de la recherche (ANR-20-CE40-0007).
@@ -206,7 +205,6 @@ VP was partially supported by the Spanish project PID2022-137283NB-C21 of MCIN/A
 \urladdr{\url{https://emilybarnard.github.io}}
 
 \author{Jean-Christophe Novelli}
-%\address[Jean-Christophe Novelli]{Universit\'e Gustave Eiffel, Marne-la-Vallée, France}
 \address[Jean-Christophe Novelli]{LIGM, Universit\'e Gustave-Eiffel, CNRS,
 ENPC, ESIEE-Paris \\
 5 Boulevard Descartes \\Champs-sur-Marne \\77454 Marne-la-Vall\'ee cedex 2 \\
@@ -293,10 +291,8 @@ Throughout the paper, we let~$[n] \eqdef \{1, \dots, n\}$, $[i,j] \eqdef \{i, \d
 The \defn{weak order} is the lattice on permutations of~$[n]$ defined by ${\sigma \le \tau \iff \inv(\sigma) \subseteq \inv(\tau)}$ where~$\inv(\sigma) \eqdef \set{(\sigma_p, \sigma_q)}{1 \le p < q \le n \text{ and } \sigma_p > \sigma_q}$ is the \defn{inversion set} of~$\sigma$.
 The cover relations correspond to exchanges of two entries in adjacent positions in a permutation: a permutation~$\sigma$ covers (resp.~is covered by) the permutations obtained from~$\sigma$ by reversing a \defn{descent}~$\sigma_p > \sigma_{p+1}$ (resp.~an \defn{ascent}~$\sigma_p < \sigma_{p+1}$) of~$\sigma$.
 See \cref{fig:weakOrder4}\,(left).
-%It can be interpreted geometrically on the braid fan~$\braidFan$ or the permutahedron~$\Perm$ defined~below.
 
 The \defn{braid arrangement} is the set~$\HA_n$ of hyperplanes~$\set{\b{x} \in \R^n}{\b{x}_i = \b{x}_j}$ for ${1 \le i < j \le n}$.
-%As all hyperplanes of~$\HA_n$ contain the line~$\R \one \eqdef \R(1,1,\dots,1)$, we restrict to the hyperplane ${\hyp \eqdef \bigset{\b{x} \in \R^n}{\sum_{i \in [n]} \b{x}_i = 0}}$.
 They divide~$\R^n$ into chambers, which are the maximal cones of a complete simplicial fan~$\braidFan$, called \defn{braid fan}.
 This fan has a cone~$\Cone(\mu) \eqdef \set{\b{x} \in \R^n}{x_i \le x_j \text{ for all } i \preccurlyeq_\mu j}$ for each ordered set partition~$\mu$ of~$[n]$.
 Here~$\preccurlyeq_\mu$ denotes the \defn{preposet} (\ie reflexive and transitive binary relation) on~$[n]$ defined by~$i \preccurlyeq_\mu j$ if the part of~$\mu$ containing~$i$ is before or equal to the part of~$\mu$ containing~$j$.
@@ -331,7 +327,6 @@ Two arcs~$(i, j, A, B)$ and~$(i', j', A', B')$ \defn{cross} if the two correspon
 A \defn{noncrossing arc diagram} is a collection of arcs of~$\arcs_n$ where any two arcs do not cross and have distinct left endpoints and distinct right endpoints (but the right endpoint of an arc can be the left endpoint of an other arc).
 See \cref{fig:noncrossingArcDiagrams} for illustrations.
 
-%We start by the bijection of \cite{Reading-arcDiagrams} between permutations and noncrossing arc diagrams.
 Consider now a permutation~$\sigma$ of~$[n]$, and its \defn{permutation table} containing the points~$(\sigma_p, p)$ for~$p \in [n]$.
 (This unusual choice of orientation is necessary to fit later with the existing constructions ~\cite{LodayRonco, HivertNovelliThibon-algebraBinarySearchTrees, ChatelPilaud, PilaudPons-permutrees}.)
 We draw segments between any two consecutive dots~$(\sigma_p, p)$ and~$(\sigma_{p+1}, p+1)$, colored blue if~$\sigma_p < \sigma_{p+1}$ is an \defn{ascent} and red if~$\sigma_p > \sigma_{p+1}$ is a \defn{descent}.
@@ -368,7 +363,6 @@ Hence, the Hasse diagram of the poset~$\preccurlyeq^\equiv_\sigma$ is obtained b
 
 We now denote by~$\arcs_\equiv$ the set of arcs corresponding via~$\arcDiagramDown[]$ to permutations with a single descent and minimal in their class, or equivalently, via~$\arcDiagramUp[]$ to permutations with a single ascent and maximal in their class.
 This set~$\arcs_\equiv$ enables us to describe completely the lattice quotient~$\f{S}_n / {\equiv}$.
-%It will also be convenient to consider the complement~$\nonarcs_\equiv \eqdef \arcs_n \ssm \arcs_\equiv$.
 
 \begin{proposition}
 The quotient~$\f{S}_n/{\equiv}$ is isomorphic (as a poset) to the subposet of the weak order induced by the permutations which are minimal (resp.~maximal) in their class, which are precisely the permutations~$\sigma$ for which all arcs in the noncrossing arc diagram~$\arcDiagramDown[](\sigma)$ (resp.~$\arcDiagramUp[](\sigma)$) belong~to~$\arcs_\equiv$.
@@ -381,7 +375,6 @@ See~\cite{Reading-arcDiagrams}.
 Understanding the lattice congruences of the weak order, thus boils down to understand the sets of arcs~$\arcs_\equiv$.
 An arc~$\arc \eqdef (i, j, A, B) \in \arcs_n$ is a \defn{subarc} of an arc~$\arc' \eqdef (i', j', A', B') \in \arcs_n$ if~$i' \le i < j \le j'$ and~${A \subseteq A'}$ and~${B \subseteq B'}$.
 Visually, $\arc$ is a subarc of~$\arc'$ if the endpoints of~$\arc$ are located in between those of~$\arc'$ and~$\arc$ agrees with~$\arc'$ in between its endpoints.
-%The \defn{arc poset} is the poset on all arcs of~$\arcs_n$ ordered by reverse subarc order (big elements are subarcs of small elements in this poset).
 The subarc poset on~$\arcs_4$ is illustrated in \cref{fig:subarcOrder}.
 Note that contrarily to~\cite{Reading-arcDiagrams, PilaudSantos-quotientopes, PadrolPilaudRitter}, we do not reverse the subarc poset to avoid confusion when speaking about subarc minimal arcs (hence, our subarc minimal arcs have minimal length).
 An \defn{arc ideal} is a lower ideal of the subarc poset.
@@ -439,18 +432,6 @@ Its arc ideal is given by the set~$\arcs_\textrm{sylv} \eqdef \set{(i, j, {]i,j[
 \end{figure}
 
 For a fixed lattice congruence~$\equiv$ of the weak order, we describe in this section the lattice morphism from the weak order to its quotient~$\f{S}/{\equiv}$, sending a permutation~$\sigma$ of~$\f{S}_n$ to its $\equiv$-poset~$\preccurlyeq_\sigma^\equiv$.
-%We provide two distinct approaches to describe this map:
-%\begin{enumerate}[(i)]
-%\item the one-step approach of~\cite[Sect.~2.4]{Pilaud-arcDiagramAlgebra},
-%\item a sweeping algorithm generalizing the binary tree insertion of~\cite{HivertNovelliThibon-algebraBinarySearchTrees}, which was only mentioned in~\cite[Sect.~2.4]{Pilaud-arcDiagramAlgebra} and is described in details for the first time in this paper.
-%\end{enumerate}
-%
-%\Vincent{Not sure whether we really want / need to keep both...}
-%
-%\subsubsection{Direct description}
-%
-%\Vincent{Not sure that it is the good presentation... For the next section, we need the other direction.}
-%
 We still represent a permutation~$\sigma$ by its table~$\set{(\sigma_i, i)}{i \in [n]}$.
 We consider the set~$\boxslash(\sigma)$ of pairs of positions~$(i,j)$ such that the rectangle with bottom left corner~$(\sigma_i, i)$ and top right corner~$(\sigma_j, j)$ contains no other point~$(\sigma_k, k)$ of the permutation table of~$\sigma$, that is,
 \[
@@ -484,101 +465,6 @@ We again skip the precise description as it is not needed in this paper.
 For the sylvester congruence~$\equiv_\textrm{sylv}$ of \cref{exm:sylvesterCongruence}, the $\equiv$-poset~$\preccurlyeq_\sigma^\equiv$ is the binary search tree obtained by insertion of the permutation~$\sigma$, as described in~\cite{HivertNovelliThibon-algebraBinarySearchTrees}.
 \end{example}
 
-%\subsubsection{Direct description}
-%
-%%\Vincent{Alternative presentation using values instead of positions.}
-%
-%We still represent a permutation~$\sigma$ by its table, where we have a point~$(\sigma_p, p)$ for each position~$p \in [n]$, or equivalently a point~$(i, \sigma^{-1}_i)$ for each value~$i \in [n]$.
-%We consider the set~$\boxslash(\sigma)$ of pairs of values~$(i,j)$ such that the rectangle with bottom left corner~$(i, \sigma^{-1}_i)$ and top right corner~$(j, \sigma^{-1}_j)$ contains no other point~$(k, \sigma^{-1}_k)$ of the permutation table of~$\sigma$, that is,
-%\[
-%\boxslash(\sigma) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \sigma^{-1}_i < \sigma^{-1}_j \text{ and } \sigma^{-1}(]i, j[) \cap {[\sigma^{-1}_i, \sigma^{-1}_j]} = \varnothing}.
-%\]
-%For~$(i, j) \in \boxslash(\sigma)$, we define an arc~$\alpha(i, j, \sigma)$ by
-%\[
-%\arcUp(i, j, \sigma) \eqdef (i, j, \set{k}{i < k < j \text{ and } \sigma^{-1}_k < \sigma^{-1}_i}, \set{k}{i < k < j \text{ and } \sigma^{-1}_j < \sigma^{-1}_k}).
-%\]
-%Moreover, we order~$\boxslash(\sigma)$ by $(i, j) \prec (k,\ell)$ if~$i \le k < \ell \le j$ and~$\sigma^{-1}_k \le \sigma^{-1}_i < \sigma^{-1}_j \le \sigma^{-1}_\ell$.
-%In other words, $(i, j) \prec (k, \ell)$ if the corresponding corresponding segments either cross, or share their left endpoint or share their right endpoint, and the slope of~$(i, j)$ is smaller than the slope of~$(k, \ell)$.
-%Finally, we define~$\boxslash_\equiv(\sigma)$ to be the subset of $\prec$-minimal elements in~$\set{(i, j) \in \boxslash(\sigma)}{\arcUp(i, j, \sigma) \in \arcs_\equiv}$.
-%
-%Symmetrically, define
-%\[
-%\boxbslash(\sigma) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \sigma^{-1}_i > \sigma^{-1}_j \text{ and } \sigma^{-1}({]i,j[}) \cap {[\sigma^{-1}_j, \sigma^{-1}_i]} = \varnothing},
-%\]
-%associate an arc
-%\[
-%\arcDown(i, j, \sigma) \eqdef (i, j, \set{k}{i < k < j \text{ and } \sigma^{-1}_k < \sigma^{-1}_j}, \set{k}{i < k < j \text{ and } \sigma^{-1}_i < \sigma^{-1}_k})
-%\]
-%to each~${(i,j) \in \boxbslash(\sigma)}$, and let~$\boxbslash_\equiv(\sigma)$ be the $\prec$-minimal elements in~$\set{(i, j) \in \boxbslash(\sigma)}{\arcDown(i, j, \sigma) \in \arcs_\equiv}$ for the order~$\prec$ on~$\boxbslash(\sigma)$ defined by $(i, j) \prec (k,\ell)$ if~$i \le k < \ell \le j$ and~$\sigma^{-1}_\ell \le \sigma^{-1}_j < \sigma^{-1}_i \le \sigma^{-1}_k$.
-%
-%\begin{proposition}[{\cite[Sect.~2.4]{Pilaud-arcDiagramAlgebra}}]
-%\label{prop:insertionMap}
-%The noncrossing arc diagram~$\arcDiagramUp(\sigma)$ (resp.~$\arcDiagramDown(\sigma)$) contains exactly the arcs~$\arcUp(i,j,\sigma)$ for all~$(i,j) \in \boxslash_\equiv(\sigma)$ (resp.~the arcs~$\arcDown(i,j,\sigma)$ for all~$(i,j) \in \boxbslash_\equiv(\sigma)$.
-%\end{proposition}
-%
-%\begin{corollary}
-%\label{coro:insertionMap}
-%The $\equiv$-poset~$\preccurlyeq$ corresponding to the $\equiv$-congruence class of a permutation~$\sigma$ has cover relations~$i \preccurlyeq j$ for~$(i,j) \in \boxslash_\equiv(\sigma)$ and~$j \preccurlyeq i$ for all~$(i,j) \in \boxbslash_\equiv(\sigma)$.
-%\end{corollary}
-%
-%\begin{figure}
-%	\capstart
-%	\centerline{\includegraphics[scale=.85]{arcDiagramsQuotients}}
-%	\caption{The posets (top) corresponding to the $\equiv_\arcs$-congruence class of the permutation~$\sigma = 2537146$ for different arc ideals (bottom).}
-%	\label{fig:arcDiagramsQuotients}
-%\end{figure}
-%
-%\subsubsection{Sweeping algorithm}
-%\vincent{todo}
-
-%%%%%%%%%%%%%%%%%%%%
-%
-%\subsection{Preposet insertion map}
-%\label{subsec:insertionMap}
-%
-%\vincent{I am not even sure we need this section anymore...}
-%In this section, we describe the map sending an ordered partition~$\mu$ of~$[n]$ to the preposet~$\preccurlyeq_\mu^\equiv$.
-%While similar to the insertion map of \cref{subsec:insertionMap}, it was not considered in~\cite{Pilaud-arcDiagramAlgebra}.
-%
-%Recall that an ordered partition~$\mu \eqdef \mu_1 | \mu_2 | \dots | \mu_k$ of~$[n]$ with~$k$ parts can also be seen as a surjection~$\mu^{-1}$ from~$[n]$ to~$[k]$, where~$\mu^{-1}(i) = j$ if~$i \in \mu_j$.
-%We represent an ordered partition~$\mu$ by its table~$\set{(i, \mu^{-1}(i))}{i \in [n]}$, whose $j$th row represents the block~$\mu_j$.
-%We consider the set~$\boxslash(\mu)$ of all pairs of values~$(i,j)$ such that the (possibly flat) rectangle with bottom left corner~$(i, \mu^{-1}_i)$ and top right corner~$(j, \mu^{-1}_j)$ contains no other point~$(k, \mu^{-1}_k)$ of the  table of~$\mu$, that is,
-%\[
-%\boxslash(\mu) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \mu^{-1}_i \le \mu^{-1}_j \text{ and } \mu^{-1}(]i, j[) \cap {[\mu^{-1}_i, \mu^{-1}_j]} = \varnothing}.
-%\]
-%For~$(i, j) \in \boxslash(\mu)$, we define an arc~$\alpha(i, j, \mu)$ by
-%\[
-%\arcUp(i, j, \mu) \eqdef (i, j, \set{k}{i < k < j \text{ and } \mu^{-1}_k < \mu^{-1}_i}, \set{k}{i < k < j \text{ and } \mu^{-1}_j < \mu^{-1}_k}).
-%\]
-%Moreover, we order~$\boxslash(\mu)$ by $(i, j) \prec (k,\ell)$ if~$i \le k < \ell \le j$ and~$\mu^{-1}_k \le \mu^{-1}_i < \mu^{-1}_j \le \mu^{-1}_\ell$.
-%Finally, we define~$\boxslash_\equiv(\mu)$ to be the subset of $\prec$-minimal elements in~$\set{(i, j) \in \boxslash(\mu)}{\arcUp(i, j, \mu) \in \arcs_\equiv}$.
-%
-%Symmetrically, define
-%\[
-%\boxbslash(\mu) \eqdef \set{(i, j)}{1 \le i < j \le n, \, \mu^{-1}_i \ge \mu^{-1}_j \text{ and } \mu^{-1}({]i,j[}) \cap {[\mu^{-1}_j, \mu^{-1}_i]} = \varnothing},
-%\]
-%associate an arc
-%\[
-%\arcDown(i, j, \mu) \eqdef (i, j, \set{k}{i < k < j \text{ and } \mu^{-1}_k < \mu^{-1}_j}, \set{k}{i < k < j \text{ and } \mu^{-1}_i < \mu^{-1}_k})
-%\]
-%to each~${(i,j) \in \boxbslash(\mu)}$, and let~$\boxbslash_\equiv(\mu)$ be the $\prec$-minimal elements in~$\set{(i, j) \in \boxbslash(\mu)}{\arcDown(i, j, \mu) \in \arcs_\equiv}$ for the order~$\prec$ on~$\boxbslash(\sigma)$ defined by $(i, j) \prec (k,\ell)$ if~$i \le k < \ell \le j$ and~$\mu^{-1}_\ell \le \mu^{-1}_j < \mu^{-1}_i \le \mu^{-1}_k$.
-%
-%Remember from \cref{subsec:quotientFansQuotientopes} that for an ordered partition~$\mu$ of~$[n]$, there is a unique $\equiv$-preposet~$\preccurlyeq^\equiv_\mu$ such that the preposet cone~$\Cone(\preccurlyeq^\equiv_\mu)$ is the smallest cone of~$\quotientFan$ containing the braid cone~$\Cone(\mu)$.
-%
-%\begin{corollary}
-%\label{coro:insertionMapFaces}
-%The $\equiv$-preposet~$\preccurlyeq^\equiv_\mu$ given by an ordered partition~$\mu$ of~$[n]$ has cover relations~$i \preccurlyeq^\equiv_\mu j$ for~$(i,j) \in \boxslash_\equiv(\mu)$ and~$j \preccurlyeq^\equiv_\mu i$ for all~$(i,j) \in \boxbslash_\equiv(\mu)$.
-%\end{corollary}
-%
-%\begin{figure}
-%	\capstart
-%	\centerline{\includegraphics[scale=.85]{arcDiagramsQuotients}}
-%	\caption{The preposets (top) corresponding to the $\equiv_\arcs$-congruence class of the ordered partition~$\mu = ???$ for different arc ideals (bottom).}
-%	\label{fig:arcDiagramsFacesQuotients}
-%\end{figure}
-%
-%\Vincent{Should we also include a sweeping description for the preposet insertion map?}
-
 %%%%%%%%%%%%%%%%%%%
 
 \subsection{Quotient fans and quotientopes}
@@ -594,10 +480,6 @@ The cones obtained by glueing together the maximal cones of the braid fan~$\brai
 Each cone of the quotient fan~$\quotientFan$ is the \defn{preposet cone} $\Cone({\preccurlyeq}) \eqdef \set{\b{x} \in \R^n}{x_i \le x_j \text{ for all } i \preccurlyeq j}$ of some preposet~$\preccurlyeq$ on~$[n]$ (\ie reflexive and transitive binary relation).
 We call \defn{$\equiv$-preposets} (resp.~\defn{$\equiv$-posets}) the preposets (resp.~posets) whose cone is a cone of~$\quotientFan$.
 The $\equiv$-posets are precisely the posets~$\preccurlyeq^\equiv_\sigma$ described in~\cref{subsec:latticeCongruencesArcIdeals} for any choice of representatives~$\sigma$ in~$\f{S}_n/{\equiv}$.
-
-%The cone~$\Cone(\preccurlyeq)$ is the union of the cones~$\Cone(\mu)$ of the braid fan~$\braidFan$ over all ordered set partitions~$\mu$ of~$[n]$ such that~$i \preccurlyeq j$ implies $i \preccurlyeq_\mu j$ for all~$i,j \in [n]$.
-%For an ordered set partition~$\mu$ of~$[n]$, we denote by~$\preccurlyeq^\equiv_\mu$ the preposet on~$[n]$ such that~$\Cone(\preccurlyeq^\equiv_\mu)$ is the smallest cone of~$\quotientFan$ containing the braid cone~$\Cone(\mu)$.
-%In particular, the maximal cones of~$\quotientFan$ are poset cones of certain posets whose sets of linear extensions give the congruence classes of~$\equiv$, and the only cone of~$\quotientFan$ containing the braid cone~$\Cone(\sigma)$ of a permutation~$\sigma$ is the cone~$\Cone(\preccurlyeq^\equiv_\sigma)$ of the poset~$\preccurlyeq^\equiv_\sigma$ described in~\cref{subsec:latticeCongruencesArcIdeals}.
 
 Finally, we recall the following result of~\cite{PilaudSantos-quotientopes, PadrolPilaudRitter}.
 In this paper, we will not use the precise construction, only the fact that these polytopes exist.
@@ -622,9 +504,9 @@ The Hasse diagram of the quotient lattice~$\f{S}_n / {\equiv}$ is the dual graph
 %
 For the sylvester congruence~$\equiv_\textrm{sylv}$ of \cref{exm:sylvesterCongruence}, the quotient fan~$\quotientFan[\textrm{sylv}]$ has a cone~$\Cone(S) \eqdef \set{\b{x} \in \hyp}{\b{x}_a \le \b{x}_b \text{ if there is a directed path from } a \text{ to } b \text{ in } S}$ for each Schröder tree~$S$ with $n+1$ leaves.
 In particular, $\quotientFan[\textrm{sylv}]$ has a chamber for each binary tree with $n+1$ leaves (or equivalently $n$ nodes).
-See \cref{fig:Tamari4}\,(middle). % illustrates the quotient fan~$\quotientFan[\textrm{sylv}]$ for~$n = 4$.
+See \cref{fig:Tamari4}\,(middle).
 The quotient fan~$\quotientFan[\equiv_\textrm{sylv}]$ is the normal fan of the classical associahedron~$\Asso$ of~\cite{ShniderSternberg, Loday}, defined as the convex hull of the points~$\sum_{j \in [n]} \ell(T,j) \, r(T,j) \, \b{e}_j$ for all binary trees~$T$ on~$n$ nodes, where $\ell(T,j)$ and~$r(T,j)$ respectively denote the numbers of leaves in the left and right subtrees of the node~$j$ of~$T$ (labeled in inorder).
-See \cref{fig:Tamari4}\,(right). % shows the associahedron~$\Asso[4]$.
+See \cref{fig:Tamari4}\,(right).
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%
@@ -643,21 +525,16 @@ The quotient~$\f{S}_n/{\equiv_\textrm{triv}}$ is the weak order, the quotient fa
 \item \label{item:sylvesterCongruence}
 The \defn{sylvester congruence} is defined by the ideal~$\arcs_\textrm{sylv} \eqdef \set{(i, j, {]i,j[}, \varnothing)}{1 \le i < j \le n}$ of up arcs.
 It has a congruence class for each binary tree, given by the linear extensions of this tree (when labeled in inorder and oriented towards its root)~\cite{Tonks, HivertNovelliThibon-algebraBinarySearchTrees}.
-%It can also be seen as the transitive closure of the rewriting rule~$U i k V j W \equiv_\textrm{sylv} U k i V j W$ where~$i < j < k$ are letters and~$U,V,W$ are words on~$[n]$.
 The quotient~$\f{S}_n/{\equiv_\textrm{sylv}}$ is the Tamari lattice, the quotient fan~$\quotientFan[\textrm{sylv}]$ is the sylvester fan, and the quotientope~$\Quotientope[\textrm{sylv}]$ is the associahedron~$\Asso$.
 
 \item \label{item:recoilCongruence}
 The \defn{recoil congruence}~$\equiv_\textrm{rec}$ is defined by the ideal~$\arcs_\textrm{rec} = \set{(i, i+1, \varnothing, \varnothing)}{i \in [n-1]}$ of basic arcs.
 It has a congruence class for each subset~$I \subseteq [n-1]$ given by the permutations whose recoils (descents of the inverse) are at positions in~$I$.
-%It can also be seen as the transitive closure of the rewriting rule~$U i j V \equiv_{\textrm{rec}} U j i V$ for~$|i - j| > 1$.
 The quotient~$\f{S}_n/{\equiv_\textrm{rec}}$ is the boolean lattice, the quotient fan~$\quotientFan[\textrm{rec}]$ is defined by the hyperplanes~$x_i = x_{i+1}$ for~$i \in [n-1]$, and the quotientope~$\Quotientope[\textrm{rec}]$ is the parallelotope~$\sum_{i \in [n-1]} [\b{e}_i, \b{e}_{i+1}]$.
 
 \item \label{item:CambrianCongruence}
 For an arc~$\arc \eqdef (i, j, A, B) \in \arcs_n$, the \defn{$\arc$-Cambrian congruence}~$\equiv_\arc$ is defined by the ideal~$\arcs_\arc$ of the arc poset generated by~$\arc$.
 It has a congruence class for each  $\arc$-Cambrian tree~\cite{LangePilaud, ChatelPilaud, PilaudPons-permutrees}.
-%The $\arc$-Cambrian congruence classes are fibers of the $\arc$-Cambrian tree insertion, or equivalently linear extensions of $\arc$-Cambrian trees~\cite{LangePilaud, ChatelPilaud, PilaudPons-permutrees}. %, that is, trees on~$[a,b]$ such that the node~$j \in \{a\} \cup A$ (resp.~$j \in B \cup \{b\}$) has one ancestor (resp.~descendant) subtree and two descendant (resp.~ancestor) subtrees, and~$i < j < k$ for any nodes $i$ in the left descendant (resp.~ancestor) subtree of~$j$ and~$k$ in the right descendant (resp.~ancestor) subtree of~$j$.
-%The $\arc$-Cambrian congruence can also be seen as the transitive closure of the three rewriting rules~${U i j V \equiv_\arc U j i V}$ for~$i < a$ or~$j > b$, $U i k V j W \equiv_\arc U k i V j W$ for~$i < j < k$ with~$j \in A$, and~$U j V i k W \equiv_\arc U j V k i W$ for~$i < j < k$ with~$j \in B$.
-%In particular, the uncontracted permutations in the $\arc$-Cambrian congruence are those avoiding the consecutive patterns~$ji$ with~$i < j$ and~$i < a$ or~$j > b$, and the patterns~$kij$ for~$i < j < k$ with~$j \in A$ and~$jki$ for~$i < j < k$ with~$j \in B$.
 The quotient~$\f{S}_n / {\equiv_\arc}$ is the \defn{$\arc$-Cambrian lattice}~\cite{Reading-CambrianLattices}, the quotient fan~$\quotientFan[\arc]$ is the \defn{$\arc$-Cambrian fan} of~\cite{ReadingSpeyer} and the quotientope~$\Quotientope[\arc]$ is the \defn{$\arc$-associahedron} of~\cite{HohlwegLange}.
 
 \item \label{item:permutreeCongruence}
@@ -672,9 +549,6 @@ Note that~${{\equiv_{\textrm{sh}(n,n)}} = {\equiv_{\textrm{triv}}}}$, that~${\eq
 The $(1,2)$-sashes congruence was studied in~\cite{Law} and its equivalence classes are counted by the Pell numbers.
 The $(2,2)$-sashes congruence was studied in~\cite{ChatelPilaud} as a particular Baxter-Cambrian congruence, and its equivalence classes are counted by central binomial coefficients.
 The~$(1,n-1)$-sashes congruence is studied in~\cite{LaniniNovelli}, and the generating function of its number of equivalence classes is the inverse of the truncation of~$1 + x/(1-x-\sum_{i=0}^{n-1} C_i x^{i+1})$.
-
-%\item \label{item:abTwistCongruence}
-%For~$a, b \ge 2$ define the \defn{$(a,b)$-twist congruence}~$\equiv^t_{a,b}$ by the ideal~$\arcs^t_{a,b}$ of arcs which do not pass above $a$ points, nor below $b$ points.
 
 \item \label{item:BaxterCongruence}
 The \defn{diagonal rectangulation congruence}~$\equiv_\textrm{DR}$ (or \defn{Baxter congruence}) is defined by the ideal of arcs that do not cross the horizontal axis, \ie~$\arcs_\textrm{DR} = \set{(i, j, A, B) \in \arcs_n}{A = \varnothing \text{ or } B = \varnothing}$.
@@ -718,12 +592,6 @@ This paper focuses on the following congruences of the weak order.
 A lattice congruence~$\equiv$ of the weak order is \defn{simple} if all subarc minimal arcs of~$\arcs_n \ssm \arcs_\equiv$ are up arcs or down arcs.
 \end{definition}
 
-%\begin{remark}
-%\label{rem:bridges}
-%Define the \defn{up} (resp.~\defn{down}) \defn{bridges} of an arc~$\arc \eqdef (i, j, A, B)$ as the up arcs~$u(k, \ell)$ (resp.~down arcs~$d(k, \ell)$) such that~$]k,\ell[$ is an inclusion maximal interval of~$A$ (resp.~of~$B$).
-%Then for a simple congruence~$\equiv$, the arc~$\arc$ belongs to~$\arcs_\equiv$ if and only if all its bridges belong to~$\arcs_\equiv$.
-%\end{remark}
-
 \begin{example}
 Among the examples of \cref{subsec:relevantCongruences},
 \begin{itemize}
@@ -752,7 +620,6 @@ In contrast, among the examples of \cref{subsec:relevantCongruences},
 \item the $p$-twist congruence~\cite{Pilaud-brickAlgebra},
 \end{itemize}
 are non-simple congruences of the weak order (except when~$n \le 3$ or~$p = 1$).
-%A good example of a congruence which is not simple is the Baxter congruence~\cite{LawReading, Giraudo} whose quotient corresponds to diagonal rectangulations of a square. Its arcs are all up or down arcs, so that its subarc minimal non arcs are all arcs of the form~$(i, i+3, \{i+1\}, \{i+2\})$ or~$(i, i+3, \{i+2\}, \{i+1\})$ for~$i \in [n-3]$.
 \end{example}
 
 As all congruences, the simple congruences of the weak order have a natural lattice structure.
@@ -766,9 +633,7 @@ Hence, they form a lattice under refinement.
 \begin{proof}
 For two congruences~$\equiv$ and~$\equiv'$, the non arcs of~${\equiv} \meet {\equiv'}$ are
 \[
-%\nonarcs_{{\equiv} \meet {\equiv'}} = 
 \arcs_n \ssm \arcs_{{\equiv} \meet {\equiv'}} = \arcs_n \ssm (\arcs_{\equiv} \cap \arcs_{\equiv'}) = (\arcs_n \ssm \arcs_{\equiv}) \cup (\arcs_n \ssm \arcs_{\equiv'})
-% = \nonarcs_{\equiv} \cup \nonarcs_{\equiv'}
 \]
 so that any subarc minimal non-arc of~${\equiv} \meet {\equiv'}$ is a subarc minimal non-arc of~${\equiv}$ or a subarc minimal non-arc of~${\equiv'}$.
 Thus, the simple congruence form a finite meet semilattice, hence a lattice under refinement.
@@ -909,14 +774,11 @@ A \defn{separating tree} is a directed tree on~$[n]$ such that
 \begin{itemize}
 \item all edges are oriented from bottom to top, so that we omit to add arrows to specify the direction of the edges,
 \item the vertices are ordered increasingly from left to right.
-%\item we often place a red wall above each node with two parents and below each node with two children to make the separation visible.
 \end{itemize}
 %
 \begin{figure}[h]
 	\capstart
 	\centerline{\includegraphics[scale=.85]{figures/separatingTrees}}
-%	\centerline{\includegraphics[scale=.85]{mandatoryForbiddenArcsSeparatingTrees}}
-%	\centerline{\includegraphics[scale=.85]{minMaxCongruencesSeparatingTrees}}
 	\caption{Some separating trees on~$[7]$.}
 	\label{fig:separatingTrees}
 \end{figure}
@@ -953,7 +815,6 @@ Consider three nodes~$1 \le i < j < k \le n$ in a separating tree~$T$. Then
 \item if~$i \leftarrow k$ is an edge of~$T$, then there is a directed path in~$T$ joining either~$i$ to~$j$, or~$j$ to~$k$,
 \item if~$i \to k$ is an edge of~$T$, then there is a directed path in~$T$ joining either~$j$ to~$i$, or~$k$ to~$j$.
 \end{itemize}
-%A symmetric statement holds for an arc~$i \leftarrow k$.
 \end{lemma}
 
 \begin{proof}
@@ -981,7 +842,6 @@ This contradicts the separating property, as $M < k < m$ so that~$\ell$ cannot s
 We conclude that~$\pi$ is a directed path from~$k$ to~$j$.
 \end{proof}
 
-%From \cref{lem:separatingTree1}, we observe that each edge in a separating tree actually defines an arc.
 \cref{lem:separatingTree1,lem:separatingTree3,subsec:insertionMap} motivate the following definitions of arcs associated to a separating tree~$T$, which will be crucial in \cref{def:admissibleSeparatingTrees,prop:admissibleSeparatingTrees}.
 
 \begin{definition}
@@ -999,9 +859,7 @@ For instance, \cref{fig:mandatoryForbiddenArcsSeparatingTrees} shows the mandato
 
 \begin{figure}
 	\capstart
-%	\centerline{\includegraphics[scale=.85]{figures/separatingTrees}}
 	\centerline{\includegraphics[scale=.85]{mandatoryForbiddenArcsSeparatingTrees}}
-%	\centerline{\includegraphics[scale=.85]{minMaxCongruencesSeparatingTrees}}
 	\caption{The mandatory arcs (blue, top) and the forbidden arcs (red, bottom) of the four separating trees of \cref{fig:separatingTrees}.}
 	\label{fig:mandatoryForbiddenArcsSeparatingTrees}
 \end{figure}
@@ -1023,7 +881,6 @@ Then~$G$ is a separated tree~if~and~only~if
 \item if~$i < j < k$ and~$j$ has two parents (resp.~children) and~$i-k$ is an edge of~$G$, then~$i-k$ passes below (resp.~above)~$j$.
 \end{enumerate}
 In other words, when we draw a wall above each node with two parents and below each node with two children, the edges of the separating tree never cross the walls.
-%In a separating tree, there is no edge passing above a node with two parent or below a node with two children.
 \end{lemma}
 
 \begin{proof}
@@ -1088,26 +945,10 @@ Hence,~$i-k$ cannot be an edge of~$H$.
 We can actually characterize the $\equiv$-posets of a simple congruence~$\equiv$.
 Recall that we have defined the mandatory and forbidden arcs of a separating tree in \cref{def:mandatoryArcsSeparatingTree,def:forbiddenArcsSeparatingTree}.
 
-%\begin{definition}
-%\label{def:mandatoryArcsSeparatingTree}
-%From \cref{lem:separatingTree1}, each edge in a separating tree~$T$ actually defines an arc. Namely an edge~$i - k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$i-k$ (resp.~$i-k$ to~$j$).
-%%\begin{itemize}
-%%\item each edge~$i \leftarrow k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$k$ (resp.~$i$ to~$j$),
-%%\item each edge~$i \to k$ in~$T$ with~$i < k$ defines an arc~$(i, k, A, B)$ where~$A$ (resp.~$B$) is the set of nodes~$j \in {]i,k[}$ such that there is a directed path in~$T$ joining $j$ to~$i$ (resp.~$k$ to~$j$).
-%%\end{itemize}
-%\end{definition}
-%
-%In the sequel, we therefore always implicitly consider an edge in a separating tree as an arc.
-
 \begin{definition}
 \label{def:admissibleSeparatingTrees}
 Fix an essential lattice congruence~$\equiv$ of the weak order.
 A separating tree~$T$ is \defn{$\equiv$-admissible} if~$\arcs_\equiv$ contains all mandatory arcs of~$T$ and none of the forbidden arcs of~$T$.
-%\begin{enumerate}[(i)]
-%\item all arcs of~$T$ are in~$\arcs_\equiv$,
-%\item none of the forbidden up arcs and forbidden down arcs of~$T$ are in~$\arcs_\equiv$.
-%%\item if a node~$j$ of~$T$ has two ancestor (resp.~descendant) subtrees~$L$ and~$R$ with~$L < R$, then the up arc~$u(\max(L), \min(R))$ (resp.~down arc~$d(\max(L), \min(R))$) is not~in~$\arcs_\equiv$.
-%\end{enumerate}
 \end{definition}
 
 \begin{example}
@@ -1147,7 +988,6 @@ Consider first a $\equiv$-poset.
 By \cref{prop:simpleImpliesSeparatingTrees}, its Hasse diagram is a separating tree~$T$, and we just need to prove that~$T$ is $\equiv$-admissible.
 First, $\arcs_\equiv$ clearly contains the mandatory arcs of~$T$ by \cref{subsec:insertionMap}.
 Consider now a forbidden up arc~$u(M,m)$ of~$T$.
-%Assume now that a node~$j$ of~$T$ has two ancestor subtrees~$L$ and~$R$ with~$L < R$, and let~$M \eqdef \max(L)$ and~$m \eqdef \min(R)$.
 Since~$M$ and~$m$ are incomparable in~$T$, there exists a linear extension~$\sigma$ of~$T$ in which~$M$ appears just before~$m$.
 Hence,~$(M,m)$ is in~$\boxslash_\sigma$ and is minimal for~$\prec$.
 Moreover, \cref{lem:separatingTree3} implies that~${\arcUp(M, m, \sigma) = u(M,m)}$.
@@ -1162,7 +1002,6 @@ As~$\sigma$ is a linear extension of both~$T$ and~$T'$, we obtain by \cref{lem:a
 
 \cref{prop:admissibleSeparatingTrees} characterizes the separating trees~$T$ which are (Hasse diagrams of) $\equiv$-posets for a given essential lattice congruence~$\equiv$.
 Conversely, we can also describe the essential lattice congruences~$\equiv$ for which a given separating tree~$T$ is (the Hasse diagram of) a $\equiv$-poset.
-%Recall from \cref{rem:bridges} that the  \defn{up} (resp.~\defn{down}) \defn{bridges} of an arc~$\arc \eqdef (i, j, A, B)$ as the up arcs~$u(k, \ell)$ (resp.~down arcs~$d(k, \ell)$) such that~$]k,\ell[$ is an inclusion maximal interval of~$A$ (resp.~of~$B$).
 
 \begin{proposition}
 \label{prop:whichCongruences}
@@ -1182,8 +1021,6 @@ For instance, \cref{fig:minMaxCongruencesSeparatingTrees} shows the subarc minim
 
 \begin{figure}
 	\capstart
-%	\centerline{\includegraphics[scale=.85]{figures/separatingTrees}}
-%	\centerline{\includegraphics[scale=.85]{mandatoryForbiddenArcsSeparatingTrees}}
 	\centerline{\includegraphics[scale=.85]{minMaxCongruencesSeparatingTrees}}
 	\caption{The subarc minimal uncontracted arcs of the minimal (blue, top) and maximal (red, bottom) simple congruences for the four separating trees of \cref{fig:separatingTrees} (whose mandatory and forbidden arcs are shown in \cref{fig:mandatoryForbiddenArcsSeparatingTrees}).}
 	\label{fig:minMaxCongruencesSeparatingTrees}
@@ -1228,8 +1065,6 @@ A \defn{Schröder separating tree} is a directed tree on the parts of a set part
 \begin{figure}[h]
 	\capstart
 	\centerline{\includegraphics[scale=.85]{SchroderSeparatingTrees}}
-%	\centerline{\includegraphics[scale=.85]{mandatoryForbiddenArcsSchroderSeparatingTrees}}
-%	\centerline{\includegraphics[scale=.85]{minMaxCongruencesSchroderSeparatingTrees}}
 	\caption{Some Schröder separating trees on~$[7]$.}
 	\label{fig:SchroderSeparatingTrees}
 \end{figure}
@@ -1310,22 +1145,6 @@ We have~$X < \max(J_\circ)$ so that we can define~$j_\circ \eqdef \min\set{j \in
 Any ancestor subtree~$Z$ of~$J_\bullet$ in~$T$ is an ancestor subtree of~$J_{\circ\bullet}$ in~$S$, hence there is~$j_Z \in J_{\circ\bullet}$ with~$X < j_Z < Z$, which implies that~$X < j_\circ < Z$.
 Any descendant subtree~$Z$ of~$J_\bullet$ in~$T$ satisfies~$\min(J_\bullet) < Z$ by definition of~$T$, so that~$X < j_\circ < Z$.
 Finally, as $X < j_\circ < J_\bullet$, we obtain that~$j_\circ \in J_\circ$ separates~$X$ and~$Y$.
-%Let~$T$ be the tree obtained from~$S$ by splitting the node~$J_{\circ\bullet}$ into an edge~$J_\circ \to J_\bullet$, and attaching each ancestor (resp.~descendant) subtree~$X$ of~$J_{\circ\bullet}$ to~$J_\circ$ (resp.~$J_\bullet$) if there is an ancestor (resp.~descendant) subtree~$Y$ of~$J_{\circ\bullet}$ such that~$X < Y$ (resp.~$Y < X$) and any~$j \in J_{\circ\bullet}$ separating~$X$ and~$Y$ belongs to~$J_\circ$ (resp.~$J_\bullet$), and to~$J_\bullet$ (resp.~$J_\circ$) otherwise. %, and similarly each descendant subtree~$X$ of~$J_{\circ\bullet}$ to~$J_\bullet$ if there is a descendant subtree~$Y$ of~$J_{\circ\bullet}$ such that~$Y < X$ and any~$j \in J_{\circ\bullet}$ separating~$X$ and~$Y$ belongs to~$J_\bullet$, and to~$J_\circ$ otherwise.
-%Note that if an ancestor  (resp.~descendant) subtree~$X$ of~$J_{\circ\bullet}$ is attached to~$J_\circ$ (resp.~$J_\bullet$), then~$X < \max(J_\circ)$ (resp.~$\min(J_\bullet) < X$).
-%%Similarly, if a descendant subtree of~$J_{\circ\bullet}$ is attached to~$J_\bullet$, then~$\min(J_\bullet) < X$.
-%By definition, $T$ is a tree on the parts of a partition of~$[n]$, and $S$ is the contraction of the edge~$J_\circ \to J_\bullet$ in the tree~$T$, so we just need to check that~$T$ is a Schröder separating tree.
-%Consider two ancestor subtrees~$X$ and~$Y$ of a node~$J$ of~$T$ (the case of descendant subtrees is symmetric).
-%If~$J \notin \{J_\circ, J_\bullet\}$, there is nothing to prove.
-%Assume first that~$J = J_\bullet$.
-%We thus obtain that $X$ and~$Y$ were ancestor subtrees of~$J_{\circ\bullet}$ in~$S$.
-%As~$S$ is a Schröder separating tree, there is~$j \in J_{\circ\bullet}$ separating~$X$ and~$Y$.
-%Assume that~$j$ is maximal for this property, and assume by symmetry that~$X < j < Y$.
-%As~$X$ is attached to~$J_\bullet$, we conclude that~$j \in J_\bullet = J$ separates~$X$ and~$Y$.
-%Assume now that~$J = J_\circ$.
-%If neither~$X$ nor~$Y$ contains~$J_\bullet$, then they were both ancestor subtrees of~$J_{\circ\bullet}$ in~$S$.
-%As~$S$ is a Schröder separating tree, there is~$j \in J_{\circ\bullet}$ separating~$X$ and~$Y$.
-%As~$X$ and~$Y$ were attached to~$J_\circ$, we have~$X < \max(J_\circ)$ and~$Y < \max(J_\circ)$, from which we deduce that~$j \in J_\circ = J$.
-%If say~$Y$ contains~$J_\bullet$, then~$X$ does not so that~$X < \max(J_\circ)$, and~$\max(J_\circ)$ separates $X$ from~$Y$.
 \end{proof}
 
 The following statement is the analogue of \cref{lem:separatingTree1}.
@@ -1334,10 +1153,6 @@ The following statement is the analogue of \cref{lem:separatingTree1}.
 \label{lem:SchroderSeparatingTree1}
 Consider three vertices~$I,J,K$ in a Schröder separating tree~$S$ such that there is~$i \in I$, $j \in J$ and~$k \in K$ with~$i < j < k$.
 If~$I = K$ or~$I - K$ is an edge of~$S$, then there is a directed path in~$S$ joining either the edge~$I-K$ to the node~$J$, or the node~$J$ to the edge~$I-K$.
-%\begin{itemize}
-%\item if~$I = K$ or~$I \leftarrow K$ is an edge of~$S$, then there is a directed path in~$S$ joining either~$I$ to~$J$, or~$J$ to~$K$,
-%\item if~$I = K$ or~$I \to K$ is an edge of~$S$, then there is a directed path in~$S$ joining either~$J$ to~$I$, or~$K$ to~$J$.
-%\end{itemize}
 \end{lemma}
 
 \begin{proof}
@@ -1372,9 +1187,7 @@ For instance, \cref{fig:mandatoryForbiddenArcsSchroderSeparatingTrees} shows the
 %
 \begin{figure}
 	\capstart
-%	\centerline{\includegraphics[scale=.85]{SchroderSeparatingTrees}}
 	\centerline{\includegraphics[scale=.85]{mandatoryForbiddenArcsSchroderSeparatingTrees}}
-%	\centerline{\includegraphics[scale=.85]{minMaxCongruencesSchroderSeparatingTrees}}
 	\caption{The mandatory arcs (blue, top) and the forbidden arcs (red, bottom) of the four Schröder separating trees of \cref{fig:SchroderSeparatingTrees}.}
 	\label{fig:mandatoryForbiddenArcsSchroderSeparatingTrees}
 \end{figure}
@@ -1405,10 +1218,6 @@ Recall that we have defined the mandatory and forbidden arcs of a Schröder sepa
 \label{def:admissibleSchroderSeparatingTrees}
 Fix a simple essential lattice congruence~$\equiv$ of the weak order.
 A Schröder separating tree~$S$ is \defn{$\equiv$-admissible} if~$\arcs_\equiv$ contains all mandatory arcs of~$S$ and none of the forbidden arcs of~$S$.
-%\begin{itemize}
-%\item all arcs of~$S$ are in~$\arcs_\equiv$,
-%\item if a node~$J$ of~$S$ has two ancestor (resp.~descendants) subtrees~$L$ and~$R$ with~$L < R$, then the up arc~$u(\max(L), \min(R))$ (resp.~down arc~$d(\max(L), \min(R))$) is not~in~$\arcs_\equiv$.
-%\end{itemize}
 \end{definition}
 
 \begin{example}
@@ -1465,9 +1274,7 @@ A $\equiv$-admissible separating tree is clearly a contraction minimal $\equiv$-
 Conversely, consider a $\equiv$-admissible Schröder separating tree~$S$ which is not contraction minimal.
 Then it has a node~$J_{\circ\bullet}$ with~$|J_{\circ\bullet}| > 1$.
 Let~$J_{\circ\bullet} = J_\circ \sqcup J_\bullet$ for some arbitrary~${J_\circ \ne \varnothing \ne J_\bullet}$ with~$J_\circ < J_\bullet$.
-Let~$T$ be the tree obtained by splitting the node~$J_{\circ\bullet}$ of~$S$ into two nodes~$J_\circ$ and~$J_\bullet$, adding an edge~$J_\circ \to J_\bullet$, and attaching 
-%each ancestor (resp.~descendant) subtree~$X$ of~$J_{\circ\bullet}$ to~$J_\circ$ if~$\max(X) < \max(J_\circ)$ and the up arc~$u(\max(X), \min(J_\bullet))$ is not in~$\arcs_\equiv$ (resp.~to~$J_\bullet$ if~$\min(J_\bullet) < \min(X)$ and the down arc~$d(\max(J_\circ), \min(X))$ is not in~$\arcs_\equiv$) and to~$J_\bullet$ (resp.~to~$J_\circ$) otherwise.
-each ancestor subtree~$X$ of~$J_{\circ\bullet}$ to~$J_\circ$ if~$X < \max(J_\circ)$ and the up arc~$u(\max(X), \min(J_\bullet))$ is not in~$\arcs_\equiv$ and to~$J_\bullet$ otherwise, and similarly each descendant subtree~$X$ of~$J_{\circ\bullet}$ to~$J_\bullet$ if~$\min(J_\bullet) < X$ and the down arc~$d(\max(J_\circ), \min(X))$ is not in~$\arcs_\equiv$ and to~$J_\circ$ otherwise.
+Let~$T$ be the tree obtained by splitting the node~$J_{\circ\bullet}$ of~$S$ into two nodes~$J_\circ$ and~$J_\bullet$, adding an edge~$J_\circ \to J_\bullet$, and attaching each ancestor subtree~$X$ of~$J_{\circ\bullet}$ to~$J_\circ$ if~$X < \max(J_\circ)$ and the up arc~$u(\max(X), \min(J_\bullet))$ is not in~$\arcs_\equiv$ and to~$J_\bullet$ otherwise, and similarly each descendant subtree~$X$ of~$J_{\circ\bullet}$ to~$J_\bullet$ if~$\min(J_\bullet) < X$ and the down arc~$d(\max(J_\circ), \min(X))$ is not in~$\arcs_\equiv$ and to~$J_\circ$ otherwise.
 Note that our definition of~$T$ here slightly differs from that of the proof of \cref{lem:decontractionSchroderSeparatingTree} since we need to additionally ensure that~$T$ is still $\equiv$-admissible.
 By definition, $T$ is a tree on the parts of a partition of~$[n]$, and $S$ is the contraction of the edge~$J_\circ \to J_\bullet$ in the tree~$T$, so we just need to check that~$T$ is separating and $\equiv$-admissible.
 
@@ -1485,16 +1292,6 @@ Since~$X$ is attached to~$J_\bullet$, we have two options:
 \item either~$X \not< \max(J_\circ)$, then we obtain that~$j \in J_\bullet = J$ and~$j$ separates~$X$ from~$Y$,
 \item or~$X < \max(J_\circ)$ and the up arc~$u(\max(X), \min(J_\bullet))$ is in~$\arcs_\equiv$. As~$u(\max(X), \min(Y))$ is not in~$\arcs_\equiv$, we obtain that~$\min(J_\bullet) < \min(Y)$, so that~$\min(J_\bullet)$ separates~$X$ from~$Y$.
 \end{itemize}
-%Assume now that~$J = J_\circ$.
-%If neither~$X$ nor~$Y$ contain~$J_\bullet$, then they were both ancestor subtrees of~$J_{\circ\bullet}$ in~$S$.
-%As~$S$ is a Schröder separating tree, there is~$j \in J_{\circ\bullet}$ separating~$X$ and~$Y$.
-%As~$X$ and~$Y$ were attached to~$J_\circ$, we have~$X < \max(J_\circ)$ and~$Y < \max(J_\circ)$, from which we deduce that~${j \in J_\circ = J}$.
-%Assume now that~$X$ does not contain~$J_\bullet$ but that~$Y$ contains~$J_\bullet$.
-%We have~${X < \max(J_\circ)}$ so that we can define~$j_\circ \eqdef \min\set{j \in J_\circ}{X < j}$.
-%Any ancestor subtree~$Z$ of~$J_\bullet$ in~$T$ is an ancestor subtree of~$J_{\circ\bullet}$ in~$S$, hence there is~$j_Z \in J_{\circ\bullet}$ with~$X < j_Z < Z$, which implies that~$X < j_\circ < Z$.
-%Any descendant subtree~$Z$ of~$J_\bullet$ in~$T$ satisfies~$\min(J_\bullet) < Z$ by definition of~$T$, so that~$X < j_\circ < Z$.
-%Finally, as $X < j_\circ < J_\bullet$, we obtain that~$j_\circ \in J_\circ$ separates~$X$ and~$Y$.
-%This concludes the proof that~$T$ is separating.
 
 Consider now a mandatory arc~$(i,k,A,B)$ of~$T$.
 Let~$I$ and~$K$ be the nodes of~$T$ such that~$i \in I$ and~$k \in K$, and similarly let~$I'$ and~$K'$ be the nodes of~$S$ such that~$i \in I'$ and~$k \in K'$.
@@ -1530,7 +1327,6 @@ Finally, we have seen that~$\alpha_1 \eqdef d(a_0,a_1) = d(i,m)$ is a subarc of~
 Assume now by means of contradiction that~$(i,k,A,B)$ is not in~$\arcs_\equiv$.
 Let~$i \le p < q \le k$ be such that the subarc~$\gamma \eqdef (p, q, A \cap {]p,q[}, B \cap {]p,q[})$ of~$(i,k,A,B)$ is minimal in~$\arcs \ssm \arcs_\equiv$ for the subarc order.
 There is no~$j \in [r]$ (resp.~$j \in [s]$) such that~${a_{j-1} \le p < q \le a_j}$ (resp.~$b_{j-1} \le p < q \le b_j$) since~$\alpha_j$ (resp.~$\beta_j$) is a subarc of~$(i,k,A,B)$ and belongs to~$\arcs_\equiv$.
-%Similarly, there is no~$i \in [s]$ such that~$b_{i-1} \le p < q \le b_i$, since~$\beta_i$ is a subarc of~$(i,k,A,B)$ and belong to~$\arcs_\equiv$.
 Hence, there is~$j \in [r-1]$ (resp.~$j \in [s-1]$) such that~$p < a_j < q$ (resp.~$p < b_j < q$).
 Since~$\{a_1, \dots, a_{r-1}\} \subseteq A$ while~$\{b_1, \dots, b_{s-1}\} \subseteq B$, the subarc~$\gamma$ of~$(i,k,A,B)$ is neither an up arc, nor a down arc.
 This contradicts our assumption that~$\equiv$ is a simple congruence.
@@ -1547,8 +1343,6 @@ Then~$L$ and~$Y$ are distinct ancestor subtrees of~$J_{\circ\bullet}$ in~$S$ wit
 Since~$S$ is $\equiv$-admissible, we conclude that~$u(M,m)$ is not in~$\arcs_\equiv$.
 The proof is symmetric for the forbidden down arcs.
 \end{proof}
-
-%The following statement is the analogue of \cref{prop:admissibleSeparatingTrees}, and characterizes the $\equiv$-preposets of a simple congruence~$\equiv$.
 
 \begin{proposition}
 \label{prop:admissibleSchroderSeparatingTrees}
@@ -1573,8 +1367,6 @@ For instance, \cref{fig:minMaxCongruencesSchroderSeparatingTrees} shows the suba
 
 \begin{figure}
 	\capstart
-%	\centerline{\includegraphics[scale=.85]{SchroderSeparatingTrees}}
-%	\centerline{\includegraphics[scale=.85]{mandatoryForbiddenArcsSchroderSeparatingTrees}}
 	\centerline{\includegraphics[scale=.85]{minMaxCongruencesSchroderSeparatingTrees}}
 	\caption{The subarc minimal uncontracted arcs of the minimal (blue, top) and maximal (red, bottom) simple congruences for the four Schröder separating trees of \cref{fig:SchroderSeparatingTrees} (whose mandatory and forbidden arcs are shown in \cref{fig:mandatoryForbiddenArcsSchroderSeparatingTrees}).}
 	\label{fig:minMaxCongruencesSchroderSeparatingTrees}
